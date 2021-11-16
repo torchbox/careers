@@ -6,6 +6,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
+                <title>Torchbox Careers</title>
+                <meta
+                    name="description"
+                    content="Are you a talented digital designer, UX consultant, Django engineer, search specialist or digital marketer? Then check out our jobs - we'd love to hear from you! Oxford, Bristol or remote."
+                />
+                <link rel="icon" href="/favicon.ico" />
                 <link
                     rel="preload"
                     href="/fonts/apercu/apercu-light-pro.woff2"
@@ -32,7 +38,17 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
             </Head>
 
-            <Component {...pageProps} />
+            <header>
+                <p>Header here</p>
+            </header>
+
+            <main>
+                <Component {...pageProps} />
+            </main>
+
+            <footer>
+                <p>Footer here</p>
+            </footer>
         </>
     );
 }
