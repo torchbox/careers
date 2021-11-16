@@ -1,0 +1,4 @@
+// Map z-index keys
+@function z-index($key) {
+    @return map-get($z-index, $key);
+}

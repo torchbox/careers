@@ -1,0 +1,195 @@
+@import "variables.scss";
+@import "mixins.scss";
+@import "fonts.scss";
+
+// needs to be at the top of the global styles
+:root {
+    --color--coral: #fd5765;
+    --color--coral-dark: #eb0316;
+    --color--lagoon: #3beccd;
+    --color--indigo: #2f128d;
+    --color--dark-indigo: #251657;
+    --color--light-grey: #f4f3f6;
+    --color--light-grey-accessible: #757575;
+    --color--grey: #444;
+    --color--grey-dark: #333;
+    --color--white: #fff;
+    --color--white-translucent: rgba(255, 255, 255, 0.8);
+    --color--black-translucent: rgba(0, 0, 0, 0.05);
+    --color--black: #000;
+    /* Theme base */
+    --color--primary: var(--color--coral);
+    --color--accent: var(--color--dark-indigo);
+    --color--link: var(--color--coral);
+    --color--underline: var(--color--coral);
+    --color--hover: var(--color--coral-dark);
+    --color--background: var(--color--indigo);
+    --color--section-title: var(--color--dark-indigo);
+    --color--header-icon-color: var(--color--coral);
+    --color--get-in-touch-numbers: var(--color--white);
+    --color--accent-dark: var(--color--coral-dark);
+    --color-header-links: var(--color--dark-indigo);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: $font--primary;
+    line-height: 1.4;
+    color: var(--color--grey);
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: math.div(map-get($small-font-sizes, xs), 16px) * 100%;
+    scroll-behavior: smooth;
+
+    @include media-query(medium) {
+        font-size: math.div(map-get($medium-font-sizes, xs), 16px) * 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    @include font-size(s);
+    overflow-x: hidden;
+    background-color: var(--color--white);
+    font-variant-ligatures: none;
+
+    &.no-scroll {
+        overflow-y: hidden;
+    }
+}
+
+// Prevent empty space below images appearing
+img,
+svg {
+    vertical-align: top;
+}
+
+// Responsive images
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+a {
+    color: var(--color--link);
+    text-decoration: none;
+    transition: color $transition;
+    border-bottom: 2px solid var(--color--underline);
+
+    &:hover {
+        color: var(--color--hover);
+        cursor: pointer;
+    }
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+    @include heading-text();
+}
+
+html,
+.body-text {
+    @include body-text();
+}
+
+blockquote {
+    @include quote-text();
+}
+
+// Default sizes
+h1,
+.heading--1 {
+    @include font-size(xl);
+    font-weight: $weight--bold;
+    margin: 0 0 math.div($gutter, 2);
+    color: var(--color--dark-indigo);
+
+    @include media-query(medium) {
+        margin-right: $variable-gutter--small;
+    }
+}
+
+h2,
+.heading--2 {
+    @include font-size(l);
+    font-weight: $weight--heavy;
+    margin: ($gutter * 3) 0 $gutter;
+    color: var(--color--dark-indigo);
+}
+
+h3,
+h4,
+.heading--3,
+.heading--4 {
+    @include font-size(m);
+    font-weight: $weight--bold;
+    margin: ($gutter * 3) 0 math.div($gutter, 2);
+    color: var(--color--dark-indigo);
+}
+
+h5,
+h6,
+.heading--5,
+.heading--6 {
+    @include font-size(m);
+}
+
+small {
+    @include font-size(xxs);
+}
+
+p {
+    margin: 0 0 ($gutter * 1.5);
+    color: var(--color--grey);
+}
+
+b,
+strong {
+    font-weight: $weight--bold;
+}
+
+.strong-black {
+    font-weight: $weight--heavy;
+}
+
+i {
+    font-style: italic;
+}
+
+pre {
+    margin: 0 0 ($gutter * 1.5) 0;
+    padding: math.div($gutter, 2);
+    font-family: monospace;
+    word-break: break-all;
+    white-space: pre-wrap;
+    background: var(--color--light-grey);
+    border-radius: 5px;
+}
