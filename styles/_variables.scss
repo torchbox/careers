@@ -61,17 +61,16 @@ $breakpoints: (
 // --------------------------------- Grid Dimensions --------------------------------------
 
 // Wrappers
-$site-width: 1280px;
+$site-width: 1440px;
 $wrapper--small: 840px;
 
 // Grid setup
 $grid: 20px;
 $gutter: $grid;
 
-// Gutters based on view width
-$variable-gutter--small: 8.33vw;
-$variable-gutter--medium: ($variable-gutter--small * 2);
-$variable-gutter--large: ($variable-gutter--small * 3);
+$variable-gutter--small: $grid;
+$variable-gutter--medium: ($variable-gutter--small * 3);
+$variable-gutter--large: ($variable-gutter--small * 5.5);
 
 // --------------------------------- Transitions --------------------------------------
 

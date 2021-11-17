@@ -72,21 +72,6 @@
 }
 
 /* ============================================
-    Grid container
-*/
-
-@mixin container($size: null) {
-    position: relative;
-    @if $size == large {
-        margin: 0 $variable-gutter--large;
-    } @else if $size == medium {
-        margin: 0 $variable-gutter--medium 0 $variable-gutter--large;
-    } @else {
-        margin: 0 $variable-gutter--small;
-    }
-}
-
-/* ============================================
     Streamfield spacing
 */
 
