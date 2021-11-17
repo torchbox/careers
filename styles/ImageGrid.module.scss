@@ -1,0 +1,16 @@
+.imageGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: $gutter;
+    max-width: $site-width;
+    margin: 0 auto $variable-gutter--small;
+
+    @include media-query(medium) {
+        gap: ($gutter * 2);
+        margin: 0 auto $variable-gutter--large;
+    }
+
+    img {
+        max-height: 450px;
+    }
+}
