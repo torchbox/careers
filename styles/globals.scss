@@ -90,7 +90,6 @@ a {
     color: var(--color--link);
     text-decoration: none;
     transition: color $transition;
-    border-bottom: 2px solid var(--color--underline);
 
     &:hover {
         color: var(--color--hover);
