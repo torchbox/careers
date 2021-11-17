@@ -152,3 +152,15 @@
     font-weight: inherit;
     text-transform: inherit;
 }
+
+@mixin component-spacing() {
+    margin-bottom: $variable-gutter--small;
+
+    @include media-query(medium) {
+        margin-bottom: $variable-gutter--medium;
+    }
+
+    @include media-query(large) {
+        margin-bottom: $variable-gutter--large;
+    }
+}
