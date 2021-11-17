@@ -130,10 +130,6 @@ h1,
     font-weight: $weight--bold;
     margin: 0 0 math.div($gutter, 2);
     color: var(--color--dark-indigo);
-
-    @include media-query(medium) {
-        margin-right: $variable-gutter--small;
-    }
 }
 
 h2,
