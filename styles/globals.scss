@@ -128,8 +128,9 @@ h1,
 .heading--1 {
     @include font-size(xl);
     font-weight: $weight--bold;
-    margin: 0 0 math.div($gutter, 2);
-    color: var(--color--dark-indigo);
+    margin: 0 0 $gutter;
+    color: var(--color--indigo);
+    line-height: 1.15;
 }
 
 h2,
@@ -137,7 +138,7 @@ h2,
     @include font-size(l);
     font-weight: $weight--heavy;
     margin: ($gutter * 3) 0 $gutter;
-    color: var(--color--dark-indigo);
+    color: var(--color--indigo);
 }
 
 h3,
@@ -147,7 +148,7 @@ h4,
     @include font-size(m);
     font-weight: $weight--bold;
     margin: ($gutter * 3) 0 math.div($gutter, 2);
-    color: var(--color--dark-indigo);
+    color: var(--color--indigo);
 }
 
 h5,
