@@ -15,7 +15,7 @@ const Home: NextPage = () => {
                 Second kind fruitful evening.
             </p>
 
-            <ChevronLink href="careers/jobs">View available jobs</ChevronLink>
+            <ChevronLink href="/careers/jobs">View available jobs</ChevronLink>
         </div>
     );
 };
