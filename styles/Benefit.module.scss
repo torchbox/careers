@@ -1,0 +1,12 @@
+.benefit {
+    &Icon {
+        width: 30px;
+        height: 30px;
+        background-color: var(--color--primary);
+        margin-bottom: $gutter;
+    }
+
+    &Text {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,15 @@
+.benefitsList {
+    max-width: $content--narrow;
+    margin: 0 auto $component-spacing--large;
+    padding: 0 $gutter;
+}
+
+.benefits {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include media-query(medium) {
+        gap: $gutter;
+        grid-template-columns: 1fr 1fr;
+    }
+}
