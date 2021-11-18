@@ -1,0 +1,144 @@
+.footer {
+    position: relative;
+    background-color: var(--color--light-grey);
+    padding: ($gutter * 5) 0 ($gutter * 1.5);
+
+    &Top {
+        margin: 0 $variable-gutter--small;
+        margin-bottom: ($gutter * 2);
+    }
+
+    &TopLink {
+        font-size: map-get($small-font-sizes, m);
+        display: inline-block;
+        margin-right: $gutter;
+        font-weight: $weight--heavy;
+        color: var(--color--dark-indigo);
+        transition: all $transition-quick;
+        border-bottom: 2px solid var(--color--light-grey);
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:focus,
+        &:hover {
+            color: var(--color--dark-indigo);
+            border-bottom: 2px solid var(--color--underline);
+        }
+
+        @include media-query(medium) {
+            font-size: map-get($medium-font-sizes, m);
+        }
+    }
+
+    &Content {
+        margin: 0 $variable-gutter--small;
+    }
+
+    &Image {
+        @include z-index(overlap);
+        display: none;
+        position: absolute;
+        bottom: -8px;
+        right: 20px;
+
+        @include media-query(medium) {
+            display: block;
+        }
+    }
+
+    &AddressList {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 0 ($gutter * 3);
+    }
+
+    &Address {
+        position: relative;
+        padding: 0 ($gutter * 5) $gutter 0;
+
+        p {
+            @include font-size(xxs);
+            line-height: 22px;
+            color: var(--color--grey);
+            max-width: 300px;
+        }
+    }
+
+    &AddressTitle {
+        @include font-size(s);
+        font-weight: bold;
+        color: var(--color--dark-indigo);
+        margin: 0 0 math.div($gutter, 2);
+        line-height: 1;
+
+        &::after {
+            position: absolute;
+            top: -6px;
+            margin-left: 10px;
+            content: "";
+            width: 20px;
+            height: 30px;
+            background: url("../public/images/cssBackgrounds/diamond.svg");
+            transform: rotate(30deg);
+        }
+    }
+
+    &Bottom {
+        @include media-query(large) {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &Copyright {
+        font-size: 0.7em;
+        color: var(--color--grey);
+        margin-right: math.div($gutter, 2);
+    }
+
+    &Link {
+        @include font-size(xxs);
+        display: inline-block;
+        height: 23px;
+        margin-right: math.div($gutter, 2);
+        font-weight: $weight--bold;
+        border-bottom: 2px solid var(--color--lagoon);
+        color: var(--color--dark-indigo);
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:focus,
+        &:hover {
+            color: var(--color--dark-indigo);
+        }
+    }
+}
+
+.teaserList {
+    background-color: var(--color--light-grey);
+    padding-bottom: ($gutter * 1.5);
+
+    @include media-query(large) {
+        padding-bottom: $gutter * 4;
+    }
+
+    &Container {
+        margin: 0 $variable-gutter--small;
+    }
+
+    &Title {
+        margin: 0 0 30px;
+    }
+
+    &Content {
+        @include media-query(large) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
