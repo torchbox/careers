@@ -68,9 +68,13 @@ $wrapper--small: 840px;
 $grid: 20px;
 $gutter: $grid;
 
-$variable-gutter--small: $grid;
-$variable-gutter--medium: ($variable-gutter--small * 3);
-$variable-gutter--large: ($variable-gutter--small * 5.5);
+$variable-gutter--small: 8.33vw;
+$variable-gutter--medium: ($variable-gutter--small * 2);
+$variable-gutter--large: ($variable-gutter--small * 3);
+
+$component-spacing--small: $grid;
+$component-spacing--medium: ($component-spacing--small * 3);
+$component-spacing--large: ($component-spacing--small * 5.5);
 
 // --------------------------------- Transitions --------------------------------------
 

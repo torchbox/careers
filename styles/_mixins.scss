@@ -154,13 +154,13 @@
 }
 
 @mixin component-spacing() {
-    margin-bottom: $variable-gutter--small;
+    margin-bottom: $component-spacing--small;
 
     @include media-query(medium) {
-        margin-bottom: $variable-gutter--medium;
+        margin-bottom: $component-spacing--medium;
     }
 
     @include media-query(large) {
-        margin-bottom: $variable-gutter--large;
+        margin-bottom: $component-spacing--large;
     }
 }
