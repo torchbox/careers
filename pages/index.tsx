@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import ImageGrid from "components/ImageGrid/ImageGrid";
 import styles from "styles/Home.module.scss";
+import { imageGridData } from "data/image-grid";
 
 const Home: NextPage = () => {
     return (
@@ -9,7 +10,7 @@ const Home: NextPage = () => {
                 <h1 className={styles.title}>Why Torchbox</h1>
             </div>
 
-            <ImageGrid />
+            <ImageGrid images={imageGridData} />
         </>
     );
 };
