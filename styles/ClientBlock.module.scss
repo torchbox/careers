@@ -1,0 +1,24 @@
+.clientBlock {
+    @include component-spacing-centered();
+    text-align: center;
+    max-width: $site-width;
+    padding: 0 $gutter;
+
+    &Title {
+        color: var(--color--indigo);
+    }
+
+    &Logos {
+        display: grid;
+        gap: $gutter;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include media-query(medium) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include media-query(large) {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+}
