@@ -164,3 +164,15 @@
         margin-bottom: $component-spacing--large;
     }
 }
+
+@mixin component-spacing-centered() {
+    margin: 0 auto $component-spacing--small;
+
+    @include media-query(medium) {
+        margin: 0 auto $component-spacing--medium;
+    }
+
+    @include media-query(large) {
+        margin: 0 auto $component-spacing--large;
+    }
+}
