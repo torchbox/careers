@@ -15,12 +15,10 @@ type ClientBlockProps = {
 
 const ClientBlock: NextPage<ClientBlockProps> = ({ title, text, logos }) => {
     return (
-        <div className={styles.clientBlock}>
-            {title ? (
-                <h2 className={styles.clientBlockTitle}>{title}</h2>
-            ) : null}
-            {text ? <p className={styles.clientBlockText}>{text}</p> : null}
-            <div className={styles.clientBlockLogos}>
+        <div className={styles.container}>
+            {title ? <h2 className={styles.title}>{title}</h2> : null}
+            {text ? <p className={styles.text}>{text}</p> : null}
+            <div className={styles.logos}>
                 {logos.map((logo, index) => (
                     <Image
                         key={index}
