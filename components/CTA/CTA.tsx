@@ -12,11 +12,11 @@ type CTAProps = {
 const CTA: NextPage<CTAProps> = ({ title, text, href }) => {
     return (
         <Link href={href}>
-            <a className={styles.cta}>
-                <p className={styles.ctaTitle}>
+            <a className={styles.link}>
+                <p className={styles.title}>
                     {title} <Chevron />
                 </p>
-                {text ? <p className={styles.ctaText}>{text}</p> : null}
+                {text ? <p className={styles.text}>{text}</p> : null}
             </a>
         </Link>
     );

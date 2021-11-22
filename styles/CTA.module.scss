@@ -1,4 +1,4 @@
-.cta {
+.link {
     display: block;
     background-color: var(--color--off-white);
     padding: 20px;
@@ -20,30 +20,30 @@
             transform: translateX(5px);
         }
     }
+}
 
-    &Title {
-        @include font-size(l);
-        font-weight: $weight--bold;
-        color: var(--color--primary);
-        display: flex;
-        align-items: center;
-        margin-bottom: 5px;
+.title {
+    @include font-size(l);
+    font-weight: $weight--bold;
+    color: var(--color--primary);
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 
-        svg {
-            fill: var(--color--indigo);
-            width: 15px;
-            height: 20px;
-            margin-left: 10px;
-            transition: fill $transition-quick, transform $transition-quick;
+    svg {
+        fill: var(--color--indigo);
+        width: 15px;
+        height: 20px;
+        margin-left: 10px;
+        transition: fill $transition-quick, transform $transition-quick;
 
-            @include media-query(large) {
-                width: 20px;
-                height: 30px;
-            }
+        @include media-query(large) {
+            width: 20px;
+            height: 30px;
         }
     }
+}
 
-    &Text {
-        margin-bottom: 0;
-    }
+.text {
+    margin-bottom: 0;
 }
