@@ -13,7 +13,7 @@ type BenefitsListProps = {
 
 const BenefitsList: NextPage<BenefitsListProps> = ({ heading, benefits }) => {
     return (
-        <div className={styles.benefitsList}>
+        <div className={styles.container}>
             <h3 className={styles.heading}>{heading}</h3>
             <ul className={styles.benefits}>
                 {benefits.map((benefit) => (

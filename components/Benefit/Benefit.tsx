@@ -8,8 +8,8 @@ type BenefitProps = {
 const Benefit: NextPage<BenefitProps> = ({ text }) => {
     return (
         <li className={styles.benefit}>
-            <div className={styles.benefitIcon} />
-            <p className={styles.benefitText}>{text}</p>
+            <div className={styles.icon} />
+            <p className={styles.text}>{text}</p>
         </li>
     );
 };
