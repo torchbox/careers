@@ -1,0 +1,23 @@
+.list {
+    background-color: var(--color--light-grey);
+    padding-bottom: ($gutter * 1.5);
+
+    @include media-query(large) {
+        padding-bottom: $gutter * 4;
+    }
+}
+
+.container {
+    margin: 0 $variable-gutter--small;
+}
+
+.title {
+    margin: 0 0 30px;
+}
+
+.content {
+    @include media-query(large) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}

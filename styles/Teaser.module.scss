@@ -1,4 +1,4 @@
-.teaser {
+.link {
     display: block;
     text-decoration: none;
     background-color: var(--color--white);
@@ -21,41 +21,41 @@
             color: var(--color--dark-indigo);
         }
     }
+}
 
-    &Title {
-        font-size: map-get($small-font-sizes, xxl);
-        color: var(--color--indigo);
-        font-weight: 800;
-        line-height: 40px;
-        margin: 0;
+.title {
+    font-size: map-get($small-font-sizes, xxl);
+    color: var(--color--indigo);
+    font-weight: 800;
+    line-height: 40px;
+    margin: 0;
 
-        @include media-query(medium) {
-            font-size: map-get($medium-font-sizes, xl);
-            line-height: 50px;
-        }
-
-        @include media-query(large) {
-            font-size: map-get($large-font-sizes, xl);
-        }
+    @include media-query(medium) {
+        font-size: map-get($medium-font-sizes, xl);
+        line-height: 50px;
     }
 
-    &Icon {
-        width: 20px;
-        height: 30px;
-        margin-top: 3px;
-        margin-left: 10px;
-        fill: var(--color--lagoon);
-
-        @include media-query(medium) {
-            margin-top: 8px;
-        }
+    @include media-query(large) {
+        font-size: map-get($large-font-sizes, xl);
     }
+}
 
-    &Text {
-        @include font-size(s);
-        display: block;
-        line-height: 30px;
-        color: var(--color--grey-dark);
-        margin: 10px 0;
+.icon {
+    width: 20px;
+    height: 30px;
+    margin-top: 3px;
+    margin-left: 10px;
+    fill: var(--color--lagoon);
+
+    @include media-query(medium) {
+        margin-top: 8px;
     }
+}
+
+.text {
+    @include font-size(s);
+    display: block;
+    line-height: 30px;
+    color: var(--color--grey-dark);
+    margin: 10px 0;
 }
