@@ -15,7 +15,7 @@ const Testimonial: NextPage<TestimonialProps> = ({
     return (
         <blockquote className={styles.testimonial}>
             <svg
-                className={styles.testimonialIcon}
+                className={styles.icon}
                 viewBox="0 0 222.5 170.6"
                 aria-hidden="true"
             >
@@ -25,17 +25,15 @@ const Testimonial: NextPage<TestimonialProps> = ({
                 ></path>
             </svg>
             <div>
-                <p className={styles.testimonialText}>{quote}</p>
-                <cite className={styles.testimonialCite}>
+                <p className={styles.quote}>{quote}</p>
+                <cite className={styles.cite}>
                     {attribution ? (
-                        <span className={styles.testimonialAttribution}>
+                        <span className={styles.attribution}>
                             {attribution}
                         </span>
                     ) : null}
 
-                    {role ? (
-                        <span className={styles.testimonialRole}>{role}</span>
-                    ) : null}
+                    {role ? <span className={styles.role}>{role}</span> : null}
                 </cite>
             </div>
         </blockquote>
