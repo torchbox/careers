@@ -41,7 +41,6 @@ const LandingPage: NextPage<{
 export default LandingPage;
 
 export async function getStaticProps({ preview = false }) {
-    console.log(preview);
     const landingPageContent = (await getLandingPage(preview)) ?? [];
     return {
         props: { preview, landingPageContent },

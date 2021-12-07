@@ -1,6 +1,6 @@
 .container {
     background-color: var(--color--light-grey);
-    padding: $grid / 2;
+    padding: math.div($grid, 2);
     text-align: center;
     position: sticky;
     top: 0;
