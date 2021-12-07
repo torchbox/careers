@@ -1,0 +1,12 @@
+.container {
+    background-color: var(--color--light-grey);
+    padding: $grid / 2;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.message {
+    margin: 0px;
+}
