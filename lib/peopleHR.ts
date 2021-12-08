@@ -1,5 +1,22 @@
 import xml2js from "xml2js";
 
+//Todo: refactor the JobPost so it fails gracefully with missing data: how to do this?
+//Todo: refactor the JobPost so it uses strings instead of string[]
+export interface JobPost {
+    title: string[];
+    description: string[];
+    link?: string[] | null;
+    JobURL?: string[] | null;
+    vacancyname?: string[] | null;
+    vacancydescription?: string[] | null;
+    department?: string[] | null;
+    jobtitle?: string[] | null;
+    salaryrange?: string[] | null;
+    city?: string[] | null;
+    company?: string[] | null;
+    reference?: string[] | null;
+}
+
 async function fetchPeopleHRFeed() {
     return fetch(`${process.env.PEOPLEHR_RSS_FEED_URL}`).then((response) =>
         response.text()
@@ -66,25 +83,60 @@ function processHTML(description: string) {
     //In the first job posting there are two levels of empty tags to remove.
     description = description.replace(/\<p[ ]*\>[ ]*\<\/p\>/gm, "");
 
-    //Todo: This doesn't work for the first job post?
-    description = description.replace(/\<hr\>/gm, "");
-
     return description;
 }
 
-export async function getJobDescriptions() {
-    const entries = await fetchPeopleHRFeed();
-    const entriesJSON: any = await parseXml(entries);
-
-    let descriptions: string[] = [];
-    for (let i = 0; i < 8; i++) {
-        let rawHTML = entriesJSON.rss.channel[0].item[i].description[0];
-        descriptions.push(processHTML(rawHTML));
-    }
-    return descriptions;
+function convertTitleToSlug(title: string) {
+    title = title.toLowerCase();
+    title = title.replace(/[^a-zA-Z0-9]+/g, "-");
+    return title;
 }
 
-export async function getHRData() {
+async function getHRData() {
     const entries = await fetchPeopleHRFeed();
     return await parseXml(entries);
+}
+
+export async function getAllJobSlugs() {
+    let feedData: any = await getHRData();
+    let jobPostings: JobPost[] = feedData.rss.channel[0].item;
+
+    //Todo: refactor as a array.map
+    let slugs: string[] = [];
+    for (let i = 0; i < jobPostings.length; i++) {
+        slugs.push(convertTitleToSlug(jobPostings[i].title[0]));
+    }
+
+    return slugs;
+}
+
+export async function getAllJobs() {
+    let feedData: any = await getHRData();
+    let jobPostings: JobPost[] = feedData.rss.channel[0].item;
+
+    return jobPostings;
+}
+
+export async function getJobData(slug: string) {
+    let feedData: any = await getHRData();
+    let jobPostings: JobPost[] = feedData.rss.channel[0].item;
+
+    //Todo: this default post needs reconsideration.
+    //This is not a good fallback to use with ISR, many spoof pages could be cached pointlessly.
+    let jobPosting: JobPost = {
+        title: ["Error"],
+        description: ["This job was unable to be found."],
+    };
+
+    //Todo: better way to retrieve the job from the list than generating each slug?
+    for (let i = 0; i < jobPostings.length; i++) {
+        let jobSlug = convertTitleToSlug(jobPostings[i].title[0]);
+
+        if (jobSlug === slug) {
+            jobPosting = jobPostings[i];
+            jobPosting.description[0] = processHTML(jobPosting.description[0]);
+        }
+    }
+
+    return jobPosting;
 }
