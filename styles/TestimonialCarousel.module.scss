@@ -1,0 +1,26 @@
+.container {
+    @include component-spacing-centered();
+    max-width: $site-width;
+    margin: 0 auto;
+}
+
+.dot {
+    width: 9px;
+    height: 15px;
+    content: "";
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(30deg);
+    margin-right: 20px;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+    transition: 0.2s all ease;
+    margin-top: ($gutter * 2);
+
+    // active state
+    &:disabled {
+        width: 14px;
+        height: 20px;
+        background: var(--color--accent);
+    }
+}
