@@ -1,15 +1,15 @@
 import type { NextPage } from "next";
-import { getJobData, getAllJobSlugs } from "lib/peopleHR";
+import { getJobPost, getAllJobSlugs } from "lib/peopleHR";
 import type { JobPost } from "lib/peopleHR";
 import styles from "styles/Jobs.module.scss";
 
-const JobPosting: NextPage<{ jobData: JobPost }> = ({ jobData }) => {
+const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
     return (
         <div className={styles.container}>
-            <h1>{jobData.title}</h1>
+            <h1>{job.title}</h1>
             <div
                 dangerouslySetInnerHTML={{
-                    __html: jobData.description[0],
+                    __html: job.description,
                 }}
             ></div>
         </div>
@@ -18,16 +18,10 @@ const JobPosting: NextPage<{ jobData: JobPost }> = ({ jobData }) => {
 
 export default JobPosting;
 
-type Parameters = {
-    params: {
-        slug: string;
-    };
-};
-
-export async function getStaticProps({ params }: Parameters) {
-    const jobData = (await getJobData(params.slug)) ?? [];
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+    const job = (await getJobPost(params.slug)) ?? [];
     return {
-        props: { jobData },
+        props: { job },
         revalidate: 60 * 15, //After 15 minutes, the cache expires and the page gets rebuilt.
     };
 }
