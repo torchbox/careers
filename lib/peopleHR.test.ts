@@ -2,7 +2,7 @@ import {
     convertTitleToSlug,
     cleanUpHTML,
     createJobPostFromJSON,
-} from "./peopleHR";
+} from './peopleHR';
 
 import {
     juniorDeveloperDescription,
@@ -11,31 +11,31 @@ import {
     illegalScriptFormattedDescription,
     jobPostingJSON,
     jobPostingObject,
-} from "./peopleHRTestData";
+} from './peopleHRTestData';
 
-test("converts job title to URL slug", () => {
-    expect(convertTitleToSlug("Senior Python Developer")).toBe(
-        "senior-python-developer"
+test('converts job title to URL slug', () => {
+    expect(convertTitleToSlug('Senior Python Developer')).toBe(
+        'senior-python-developer',
     );
-    expect(convertTitleToSlug("Chief  Wagtail   Architect")).toBe(
-        "chief-wagtail-architect"
+    expect(convertTitleToSlug('Chief  Wagtail   Architect')).toBe(
+        'chief-wagtail-architect',
     );
-    expect(convertTitleToSlug("ux-designer")).toBe("ux-designer");
+    expect(convertTitleToSlug('ux-designer')).toBe('ux-designer');
 });
 
-test("removes excess data from description HTML", () => {
+test('removes excess data from description HTML', () => {
     expect(cleanUpHTML(illegalScriptDescription)).toBe(
-        illegalScriptFormattedDescription
+        illegalScriptFormattedDescription,
     );
     expect(cleanUpHTML(juniorDeveloperDescription)).toBe(
-        juniorDeveloperFormattedDescription
+        juniorDeveloperFormattedDescription,
     );
     expect(cleanUpHTML(jobPostingJSON.description[0])).toBe(
-        jobPostingObject.description
+        jobPostingObject.description,
     );
 });
 
-test("converts job JSON into a JobPost object", () => {
+test('converts job JSON into a JobPost object', () => {
     console.log(jobPostingJSON.title[0]);
     expect(createJobPostFromJSON(jobPostingJSON)).toEqual(jobPostingObject);
 });

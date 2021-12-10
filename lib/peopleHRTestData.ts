@@ -1,39 +1,39 @@
-import type { JobPost } from "./peopleHR";
+import type { JobPost } from './peopleHR';
 
 export const jobPostingJSON: any = {
-    title: ["Wagtail Partnership and Community Manager"],
+    title: ['Wagtail Partnership and Community Manager'],
     description: [
         '<p>Exciting news!<br><br><br></p><br><p style="font-size: 18px"></p>',
     ],
     link: [
-        "https://torchbox.peoplehr.net/Pages/JobBoard/Opening.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4",
+        'https://torchbox.peoplehr.net/Pages/JobBoard/Opening.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4',
     ],
     JobURL: [
-        "https://torchbox.peoplehr.net/Pages/JobBoard/Job.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4",
+        'https://torchbox.peoplehr.net/Pages/JobBoard/Job.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4',
     ],
-    vacancyname: ["Wagtail Partnership and Community Manager"],
+    vacancyname: ['Wagtail Partnership and Community Manager'],
     vacancydescription: [
-        "We’re on the look out for a dynamic partnerships and community manager to help deliver the next phase of Wagtail’s growth",
+        'We’re on the look out for a dynamic partnerships and community manager to help deliver the next phase of Wagtail’s growth',
     ],
-    department: ["Business Development"],
-    jobtitle: ["Wagtail Partnership and Community Manager"],
-    salaryrange: ["£28,350 - £52,800*"],
-    company: ["Torchbox"],
-    city: ["Bristol, Charlbury, US, Philippines and Remote"],
-    reference: ["Wagtail Partnership and Community Manager - December 2021"],
+    department: ['Business Development'],
+    jobtitle: ['Wagtail Partnership and Community Manager'],
+    salaryrange: ['£28,350 - £52,800*'],
+    company: ['Torchbox'],
+    city: ['Bristol, Charlbury, US, Philippines and Remote'],
+    reference: ['Wagtail Partnership and Community Manager - December 2021'],
 };
 
 export const jobPostingObject: JobPost = {
-    title: "Wagtail Partnership and Community Manager",
-    description: "<p>Exciting news!</p>",
-    link: "https://torchbox.peoplehr.net/Pages/JobBoard/Opening.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4",
-    jobURL: "https://torchbox.peoplehr.net/Pages/JobBoard/Job.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4",
+    title: 'Wagtail Partnership and Community Manager',
+    description: '<p>Exciting news!</p>',
+    link: 'https://torchbox.peoplehr.net/Pages/JobBoard/Opening.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4',
+    jobURL: 'https://torchbox.peoplehr.net/Pages/JobBoard/Job.aspx?v=a85792db-4fcb-44e5-badc-1f90acb5ebc4',
     vacancyDescription:
-        "We’re on the look out for a dynamic partnerships and community manager to help deliver the next phase of Wagtail’s growth",
-    department: "Business Development",
-    salaryRange: "£28,350 - £52,800*",
-    city: "Bristol, Charlbury, US, Philippines and Remote",
-    slug: "wagtail-partnership-and-community-manager",
+        'We’re on the look out for a dynamic partnerships and community manager to help deliver the next phase of Wagtail’s growth',
+    department: 'Business Development',
+    salaryRange: '£28,350 - £52,800*',
+    city: 'Bristol, Charlbury, US, Philippines and Remote',
+    slug: 'wagtail-partnership-and-community-manager',
 };
 
 export const illegalScriptDescription: string = `<p>This is some text.</p><script>alert("Hello, world!")</script>`;

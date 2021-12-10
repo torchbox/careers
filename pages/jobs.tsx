@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
-import { getAllJobSummaries } from "../lib/peopleHR";
-import type { JobSummary } from "../lib/peopleHR";
-import styles from "styles/Jobs.module.scss";
-import Link from "next/link";
+import type { NextPage } from 'next';
+import { getAllJobSummaries } from '../lib/peopleHR';
+import type { JobSummary } from '../lib/peopleHR';
+import styles from 'styles/Jobs.module.scss';
+import Link from 'next/link';
 
 const Jobs: NextPage<{ jobs: JobSummary[] }> = ({ jobs }) => {
     return (
@@ -13,7 +13,7 @@ const Jobs: NextPage<{ jobs: JobSummary[] }> = ({ jobs }) => {
                         <b>{job.title}</b>
                     </p>
                     <p>{job.description}</p>
-                    <Link href={"/jobs/" + job.slug}>
+                    <Link href={'/jobs/' + job.slug}>
                         <a>Click here to read more.</a>
                     </Link>
                     <hr className={styles.divider} />
