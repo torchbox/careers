@@ -1,4 +1,4 @@
-$font--primary: "Apercu Pro", arial, helvetica, sans-serif;
+$font--primary: 'Apercu Pro', arial, helvetica, sans-serif;
 
 // Font weights
 $weight--heavy: 800;
@@ -52,10 +52,10 @@ $small-font-sizes: (
 
 // --------------------------------- Breakpoints --------------------------------------
 $breakpoints: (
-    "medium" "(min-width: 599px)",
-    "large" "(min-width: 1023px)",
-    "menu-break" "(min-width: 1255px)",
-    "x-large" "(min-width: 1919px)"
+    'medium' '(min-width: 599px)',
+    'large' '(min-width: 1023px)',
+    'menu-break' '(min-width: 1255px)',
+    'x-large' '(min-width: 1919px)'
 );
 
 // --------------------------------- Grid Dimensions --------------------------------------
