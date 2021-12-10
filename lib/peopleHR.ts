@@ -1,4 +1,5 @@
 import xml2js from 'xml2js';
+import { Window } from 'happy-dom';
 
 export interface JobPost {
     title: string;
@@ -37,15 +38,40 @@ async function parseXml(xmlString: string): Promise<any> {
     );
 }
 
+/**
+ * Completely removes HTML elements (and their children) from the text
+ * @param text HTML to be processed
+ * @param blocklist HTML tags to be removed
+ * @returns
+ */
+function removeAllElementsInBlocklist(text: string, blocklist: string[]) {
+    const window = new Window();
+    const document = window.document;
+
+    document.body.innerHTML = text;
+
+    blocklist.forEach((tag) => {
+        const elements = document.querySelectorAll(tag);
+        elements.forEach((element) => {
+            element.remove();
+        });
+    });
+
+    return document.body.innerHTML;
+}
+
+/**
+ * Formats HTML with a virtual DOM and Regex.
+ * @param description A string of HTML markup
+ * @returns A formatted HTML string
+ */
 export function cleanUpHTML(description: string): string {
+    const blocklist = ['script', 'style', 'iframe', 'br'];
+    //We can't remove the font tags this way as it will delete their child paragraphs.
+    description = removeAllElementsInBlocklist(description, blocklist);
+
     //Remove any zero width spaces (causes a blank new line in some <p> tags)
     description = description.replace(/\u200B/g, '');
-
-    //Remove all script tags, including their contents
-    description = description.replace(
-        /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-        '',
-    );
 
     //Replace strong emphasis tags with bold italic text.
     description = description.replace(
@@ -71,9 +97,6 @@ export function cleanUpHTML(description: string): string {
         `<i class="italic-rich-text">$1</i>`,
     );
 
-    //Remove all <br>'s, as paragraph styling will create breaks in text.
-    description = description.replace(/\<br[^\>]*\>/gm, '');
-
     //Remove all font tags and any styling of text.
     description = description.replace(/style="[^"]+"/gm, '');
     description = description.replace(/\<font[^\>]+\>/gm, '');
@@ -95,42 +118,65 @@ export function cleanUpHTML(description: string): string {
     return description;
 }
 
+function invalidValue(value: any) {
+    if (value === '') return true;
+    if (!value) return true;
+    return false;
+}
+
+function jobPostingJSONIsValid(json: any) {
+    //To be refactored with neater code and Sentry warnings
+    if (invalidValue(json.title[0])) return false; //throw Error('Job post title undefined.');
+    if (invalidValue(json.description[0])) return false; //throw Error('Job post description undefined.');
+    if (invalidValue(json.link[0])) return false; //throw Error('Job post link undefined.');
+    if (invalidValue(json.JobURL[0])) return false; //throw Error('Job post JobURL (application URL) undefined.');
+    if (invalidValue(json.vacancydescription[0])) return false; //throw Error('Job post vacancy description undefined.');
+    if (invalidValue(json.city[0])) return false; //throw Error('Job post city undefined.');
+    if (invalidValue(json.department[0])) return false; //throw Error('Job post department undefined.');
+    if (invalidValue(json.salaryrange[0])) return false; //throw Error('Job post salary range undefined.');
+
+    return true;
+}
+
+/**
+ * convertTitleToSlug
+ * @param title of the job posting
+ * @returns a formatted slug
+ */
 export function convertTitleToSlug(title: string): string {
     title = title.toLowerCase();
     title = title.replace(/[^a-zA-Z0-9]+/g, '-');
     return title;
 }
 
+/**
+ * Bridge between messy JSON and clearly typed data.
+ * @param json the JSON for a single job post
+ * @returns JobPost if valid, otherwise returns undefined
+ */
 export function createJobPostFromJSON(json: any) {
     const slug: string = convertTitleToSlug(json.title[0]);
 
-    //Todo: Add error catching and Sentry logging here!
-    //Catch if any of the vital job post fields are missing.
-    //Create a seperate function for this so it can be reused in create job summary.
+    if (jobPostingJSONIsValid(json)) {
+        const job: JobPost = {
+            title: json.title[0],
+            description: cleanUpHTML(json.description[0]),
+            link: json.link[0],
+            jobURL: json.JobURL[0],
+            vacancyDescription: json.vacancydescription[0],
+            department: json.department[0],
+            salaryRange: json.salaryrange[0],
+            city: json.city[0],
+            slug: slug,
+        };
 
-    const job: JobPost = {
-        title: json.title[0],
-        description: cleanUpHTML(json.description[0]),
-        link: json.link[0],
-        jobURL: json.JobURL[0],
-        vacancyDescription: json.vacancydescription[0],
-        department: json.department[0],
-        salaryRange: json.salaryrange[0],
-        city: json.city[0],
-        slug: slug,
-    };
-
-    return job;
+        return job;
+    } else {
+        return undefined;
+    }
 }
 
 export function createJobSummaryFromPost(post: JobPost): JobSummary {
-    if (post.title === undefined) throw Error('title undefined.');
-    if (post.vacancyDescription === undefined)
-        throw Error('vacancyDescription undefined.');
-    if (post.city === undefined) throw Error('city undefined.');
-    if (post.department === undefined) throw Error('department undefined.');
-    if (post.slug === undefined) throw Error('slug undefined.');
-
     return {
         title: post.title,
         description: post.vacancyDescription,
@@ -140,24 +186,26 @@ export function createJobSummaryFromPost(post: JobPost): JobSummary {
     };
 }
 
+/**
+ * Converts only valid job JSON into posts
+ * @param json RSS feed JSON for all job posts
+ * @returns Array of JobPost
+ */
 function convertJSONToJobPosts(json: any): JobPost[] {
     const jobPostingsJSON = json.rss.channel[0].item;
-    return jobPostingsJSON.map((jobPostJSON: any) =>
-        createJobPostFromJSON(jobPostJSON),
-    );
 
-    //We could add error catching in converting the posts
-    //If any errors occur, the post isn't created & we throw an error with Sentry?
-    //I'd prefer to render the job, and not show the missing information.
-    /*
-    const jobPostings: JobPost[] = [];
+    let jobPosts: JobPost[] = [];
 
     for (let i = 0; i < jobPostingsJSON.length; i++) {
-        jobPostings.push(createJobPostFromJSON(jobPostingsJSON[i]));
+        let job: JobPost | undefined = createJobPostFromJSON(
+            jobPostingsJSON[i],
+        );
+        if (job) {
+            jobPosts.push(job);
+        }
     }
 
-    return jobPostings;
-    */
+    return jobPosts;
 }
 
 export async function getAllJobPostings(): Promise<JobPost[]> {
@@ -171,6 +219,11 @@ export async function getAllJobSlugs(): Promise<(string | undefined)[]> {
     return jobPostings.map((post) => post.slug);
 }
 
+/**
+ * Used for generating pages in jobs/[slug].tsx
+ * @param slug - use valid slug from getAllJobSlugs
+ * @returns JobPost that matches the slug
+ */
 export async function getJobPost(slug: string): Promise<JobPost | undefined> {
     const jobPostings: JobPost[] = await getAllJobPostings();
     return jobPostings.find((post) => post.slug === slug);
