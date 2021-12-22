@@ -10,6 +10,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version-file: ".nvmrc"
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
       - id: node-cache
         uses: actions/cache@v2
         with:
@@ -17,4 +19,5 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/.nvmrc') }}-${{ hashFiles('**/package-lock.json') }}
       - if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm install --no-optional --no-audit --no-fund --progress=false
-      - run: npm run lint
+        run: npm run lint
+        run: npm run test
