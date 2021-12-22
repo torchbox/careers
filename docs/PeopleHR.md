@@ -1,18 +1,16 @@
 # PeopleHR
 
+Next.js reads an RSS feed from PeopleHR to create a list of open jobs at Torchbox. The RSS feed contains job descriptions, which we use to create individual job listing pages with unique URLs, for example `/jobs/junior-developer/`. Further processing of the feed data creates a JobSchema that is embedded into each job page, allowing the postings to be displayed by job aggregators such as Google.
+
+[Some generic information provided by PeopleHR on their RSS feed](https://help.peoplehr.com/en/articles/2345581-ats-rss-feed).
+
 ## Processing the Feed
 
 The peopleHR feed is fetched with `fetchPeopleHRFeed` then converted to JSON with `parseXml`. `convertJSONToJobPosts` then runs error catching and converts JSON to the Job types, which are returned by three core export functions;
 
-`getAllJobSummaries()`
-=> returns an array of job summaries.
-_Used in jobs.tsx_
-
-`getAllJobSlugs()`
-=> returns an array of URL slugs for all the job posts.
-`getJobPost(slug: string)`
-=> returns a job post for a specific slug.
-_Both used in /jobs/\[slug\].tsx_
+`getAllJobSummaries()` _Used in jobs.tsx_
+`getAllJobSlugs()` _Used in /jobs/\[slug\].tsx_
+`getJobPost(slug: string)`_Used in /jobs/\[slug\].tsx_
 
 ## Cleaning the HTML
 
@@ -26,36 +24,4 @@ Information about a job post can be forgotten to be added. `jobPostingJSONIsVali
 
 ## Data Types
 
-This project contains two custom type definitions for the data we process from the PeopleHR RSS feed.
-
-### JobPost
-
-All the non-duplicated data from the RSS feed, with the addition of a custom generated `slug` field. The slug has been generated based on the job title.
-
-```ts
-export interface JobPost {
-  title: string;
-  description: string;
-  link: string;
-  jobURL: string;
-  vacancyDescription: string;
-  department: string;
-  salaryRange: string;
-  city: string;
-  slug: string;
-}
-```
-
-### JobSummary
-
-A summary of all the job data for displaying a list of jobs on the `jobs.tsx` page. When large amounts of data are loaded whilst rendering, Vercel takes much longer to respond, hence the need for a job summary. The below `description` field is populated by the much shorter `vacancydescription`.
-
-```ts
-export interface JobSummary {
-  title: string;
-  description: string;
-  department: string;
-  city: string;
-  slug: string;
-}
-```
+This project contains two custom type definitions for the data we process from the PeopleHR RSS feed, `JobPost` and `JobSummary`.
