@@ -21,10 +21,43 @@ export interface JobSummary {
     slug: string;
 }
 
+// Style rules to pass down through the DOM tree
+interface RecursiveStyling {
+    bold: boolean;
+    italic: boolean;
+}
+
+const Node: {
+    ELEMENT_NODE: number;
+    TEXT_NODE: number;
+} = {
+    ELEMENT_NODE: 1,
+    TEXT_NODE: 3,
+};
+
+const ALLOWLIST: string[] = [
+    'H2',
+    'H3',
+    'H4',
+    'H5',
+    'P',
+    'LI',
+    'UL',
+    'A',
+    'FONT',
+    'DIV',
+    'SPAN',
+];
+
 async function fetchPeopleHRFeed(): Promise<string> {
-    return fetch(`${process.env.PEOPLEHR_RSS_FEED_URL}`).then((response) =>
-        response.text(),
-    );
+    return fetch(`${process.env.PEOPLEHR_RSS_FEED_URL}`).then((response) => {
+        if (response.ok) {
+            return response.text();
+        }
+        throw new Error(
+            `Error fetching PeopleHRFeed: ${response.status}: ${response.statusText}`,
+        );
+    });
 }
 
 async function parseXml(xmlString: string): Promise<any> {
@@ -39,83 +72,194 @@ async function parseXml(xmlString: string): Promise<any> {
 }
 
 /**
- * Completely removes HTML elements (and their children) from the text
- * @param text HTML to be processed
- * @param blocklist HTML tags to be removed
- * @returns
+ * This function removes *most* empty elements recursively.
+ * It won't identify improperly formatted tag syntax, i.e. <p>'s without </p> endings
+ * @param element
  */
-function removeAllElementsInBlocklist(text: string, blocklist: string[]) {
-    const window = new Window();
-    const document = window.document;
+function recursivelyRemoveEmptyElements(element: Element) {
+    const elements = element.querySelectorAll('*');
 
-    document.body.innerHTML = text;
+    let removeList = [];
 
-    blocklist.forEach((tag) => {
-        const elements = document.querySelectorAll(tag);
-        elements.forEach((element) => {
-            element.remove();
-        });
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].innerHTML === '') {
+            removeList.push(elements[i]);
+        }
+    }
+
+    removeList.forEach((element) => {
+        const parentNode = element.parentNode;
+        element.remove();
+        if (parentNode !== null)
+            recursivelyRemoveEmptyElements(parentNode as Element);
     });
+}
 
-    return document.body.innerHTML;
+function removeAllElementsNotInAllowlist(element: Element) {
+    const elements = element.querySelectorAll('*');
+
+    let removeList = [];
+
+    for (let i = 0; i < elements.length; i++) {
+        if (ALLOWLIST.includes(elements[i].tagName) === false) {
+            removeList.push(elements[i]);
+        }
+    }
+
+    removeList.forEach((element) => {
+        element.remove();
+    });
 }
 
 /**
- * Formats HTML with a virtual DOM and Regex.
- * @param description A string of HTML markup
- * @returns A formatted HTML string
+ * Updates bold and italic fields in childStyles if this element has bold / italic signifiers
+ * @param element
+ * @param childStyles
+ * @returns updated style rules for the child element
  */
-export function cleanUpHTML(description: string): string {
-    const blocklist = ['script', 'style', 'iframe', 'br'];
-    //We can't remove the font tags this way as it will delete their child paragraphs.
-    description = removeAllElementsInBlocklist(description, blocklist);
+function setChildStylesDependingOnElement(
+    element: Element,
+    childStyles: RecursiveStyling,
+) {
+    if (element.tagName === 'B' || element.tagName === 'STRONG') {
+        childStyles.bold = true;
+    }
 
-    //Remove any zero width spaces (causes a blank new line in some <p> tags)
-    description = description.replace(/\u200B/g, '');
+    if (element.tagName === 'I' || element.tagName === 'EM') {
+        childStyles.italic = true;
+    }
 
-    //Replace strong emphasis tags with bold italic text.
-    description = description.replace(
-        /<strong><[^\<]+<em>([^\<]+)<\/em><\/font><\/strong>/gm,
-        `<b class="bold-italic-rich-text"><i>$1</i></b>`,
-    );
+    if (element.hasAttribute('style')) {
+        const style = element.getAttribute('style');
+        if (style !== null) {
+            if (style.match(/font-weight:\s*bold|font-weight:\s*700;/g)) {
+                childStyles.bold = true;
+            }
+            if (style.match(/font-style:\s*italic;/g)) {
+                childStyles.italic = true;
+            }
+        }
+    }
 
-    //Replace bold italic styling with bold italic text.
-    description = description.replace(
-        /<[^\<]+font-weight: 700; font-style: italic;[^\>]*>([^\<]+)\<\/font>/gm,
-        `<b class="bold-italic-rich-text"><i>$1</i></b>`,
-    );
+    return childStyles;
+}
 
-    //Replace bold font decelerations with bold text.
-    description = description.replace(
-        /\<[^\<]+font-weight: 700;[^\>]+\>([^\<]+)<\/font>/gm,
-        `<b class="bold-rich-text">$1</b>`,
-    );
+/**
+ * Removes unnecessary attributes from a generic element
+ * Adds target blank and rel attributes to link elements
+ * @param element
+ * @returns processed element
+ */
+export function removeUnnecessaryElementAttributes(element: Element) {
+    let attributeNameList = [];
 
-    //Replace any italic font decelerations with italic text.
-    description = description.replace(
-        /\<[^\<]+font-style: italic;[^\>]+\>([^\<]+)<\/font>/gm,
-        `<i class="italic-rich-text">$1</i>`,
-    );
+    for (let i = 0; i < element.attributes.length; i++) {
+        attributeNameList.push(element.attributes[i].name);
+    }
 
-    //Remove all font tags and any styling of text.
-    description = description.replace(/style="[^"]+"/gm, '');
-    description = description.replace(/\<font[^\>]+\>/gm, '');
-    description = description.replace(/\<\/font\>/gm, '');
+    if (element.tagName === 'A') {
+        attributeNameList.forEach((name) => {
+            if (name !== 'href') element.removeAttribute(name);
+        });
 
-    //Remove role=presentation and aria-level=1 from list items
-    description = description.replace(/\s*role="presentation"\s*/gm, '');
-    description = description.replace(/\s*aria-level="1"\s*/gm, '');
+        element.setAttribute('rel', 'noreferrer noopener');
+        element.setAttribute('target', '_blank');
+    } else {
+        attributeNameList.forEach((name) => {
+            element.removeAttribute(name);
+        });
+    }
 
-    //Remove excess attributes from paragraph tags
-    description = description.replace(/\s*dir="ltr"\s*/gm, '');
-    description = description.replace(/\s*_rdeditor_exists="1"\s*/gm, '');
+    return element;
+}
 
-    //Remove any empty paragraph tags (these shouldn't cause whitespace anyway, but just in case)
-    description = description.replace(/\<p[ ]*\>[ ]*\<\/p\>/gm, '');
-    //In the first job posting there are two levels of empty tags to remove.
-    description = description.replace(/\<p[ ]*\>[ ]*\<\/p\>/gm, '');
+/**
+ * Traverses the DOM to remove inline styles and style effecting tags such as <b>, <em>, ...
+ * It then styles the child text nodes of these elements using a <span> with class rules
+ * @param document - used to create new span elements
+ * @param element - to be processed, can include multiple children
+ * @param childStyles - whether this element is to be formatted with bold / italic
+ * @returns processed element
+ */
+function recursivelyReplaceFontStyling(
+    document: any,
+    element: any,
+    childStyles: RecursiveStyling,
+) {
+    // Check if this element has bold or italic modifiers to pass on to its children
+    childStyles = setChildStylesDependingOnElement(element, childStyles);
 
-    return description;
+    // Remove all the style rules and unnecessary attributes from this element
+    element = removeUnnecessaryElementAttributes(element);
+
+    for (let i = 0; i < element.childNodes.length; i++) {
+        // Recursively call this function on child elements
+        // to propagate the style changes throughout the DOM tree
+        if (element.childNodes[i].nodeType === Node.ELEMENT_NODE) {
+            // Create unique styles object for each element
+            // or else elements will refer to another elements styles
+            const newChildStyles = {
+                bold: childStyles.bold,
+                italic: childStyles.italic,
+            };
+
+            const resultElement = recursivelyReplaceFontStyling(
+                document,
+                element.childNodes[i] as Element,
+                newChildStyles,
+            );
+
+            if (resultElement !== null) {
+                element.childNodes[i] = resultElement as ChildNode;
+            }
+        } else {
+            // Apply the inherited styles to a child text node by wrapping
+            // the node in a <span> with the appropriate classes
+            if (element.childNodes[i].nodeType === Node.TEXT_NODE) {
+                if (childStyles.bold || childStyles.italic) {
+                    const newElement = document.createElement('SPAN');
+                    newElement.innerHTML = element.innerHTML;
+
+                    if (childStyles.bold) {
+                        newElement.classList.add('rich-text--bold');
+                    }
+
+                    if (childStyles.italic) {
+                        newElement.classList.add('rich-text--italic');
+                    }
+
+                    element.childNodes[i] = newElement as ChildNode;
+                }
+            }
+        }
+    }
+
+    return element;
+}
+
+/**
+ * Removes clutter and unneeded styles from the PeopleHR description
+ * @param text - raw description HTML from PeopleHR
+ * @returns clean HTML for rendering
+ */
+export function processPeopleHRDescription(text: string) {
+    const window = new Window();
+    const document = window.document;
+
+    //Remove any zero-width spaces from the description
+    text = text.replace(/\u200B/g, '');
+
+    document.body.innerHTML = text;
+
+    let newBody = recursivelyReplaceFontStyling(document, document.body, {
+        bold: false,
+        italic: false,
+    });
+
+    recursivelyRemoveEmptyElements(newBody);
+    removeAllElementsNotInAllowlist(newBody);
+
+    return newBody.innerHTML;
 }
 
 function invalidValue(value: any) {
@@ -125,7 +269,7 @@ function invalidValue(value: any) {
 }
 
 function jobPostingJSONIsValid(json: any) {
-    //To be refactored with neater code and Sentry warnings
+    //To be refactored with neater code and Sentry warnings in a seperate ticket.
     if (invalidValue(json.title[0])) return false; //throw Error('Job post title undefined.');
     if (invalidValue(json.description[0])) return false; //throw Error('Job post description undefined.');
     if (invalidValue(json.link[0])) return false; //throw Error('Job post link undefined.');
@@ -160,7 +304,7 @@ export function createJobPostFromJSON(json: any) {
     if (jobPostingJSONIsValid(json)) {
         const job: JobPost = {
             title: json.title[0],
-            description: cleanUpHTML(json.description[0]),
+            description: processPeopleHRDescription(json.description[0]),
             link: json.link[0],
             jobURL: json.JobURL[0],
             vacancyDescription: json.vacancydescription[0],
@@ -214,6 +358,10 @@ export async function getAllJobPostings(): Promise<JobPost[]> {
     return convertJSONToJobPosts(peopleHRJobPostings);
 }
 
+/**
+ * Used for generating pages in jobs/[slug].tsx
+ * @returns an array of URL slugs for all the job posts.
+ */
 export async function getAllJobSlugs(): Promise<(string | undefined)[]> {
     const jobPostings: JobPost[] = await getAllJobPostings();
     return jobPostings.map((post) => post.slug);
@@ -221,7 +369,7 @@ export async function getAllJobSlugs(): Promise<(string | undefined)[]> {
 
 /**
  * Used for generating pages in jobs/[slug].tsx
- * @param slug - use valid slug from getAllJobSlugs
+ * @param slug - use a valid slug from getAllJobSlugs
  * @returns JobPost that matches the slug
  */
 export async function getJobPost(slug: string): Promise<JobPost | undefined> {
@@ -229,6 +377,10 @@ export async function getJobPost(slug: string): Promise<JobPost | undefined> {
     return jobPostings.find((post) => post.slug === slug);
 }
 
+/**
+ * Gets a condensed description and general information for each job.
+ * @returns an array of job summaries.
+ */
 export async function getAllJobSummaries() {
     const jobPostings: JobPost[] = await getAllJobPostings();
     return jobPostings.map((post) => createJobSummaryFromPost(post));

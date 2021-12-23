@@ -1,6 +1,6 @@
 import {
     convertTitleToSlug,
-    cleanUpHTML,
+    processPeopleHRDescription,
     createJobPostFromJSON,
 } from './peopleHR';
 
@@ -24,18 +24,17 @@ test('converts job title to URL slug', () => {
 });
 
 test('removes excess data from description HTML', () => {
-    expect(cleanUpHTML(illegalScriptDescription)).toBe(
+    expect(processPeopleHRDescription(illegalScriptDescription)).toBe(
         illegalScriptFormattedDescription,
     );
-    expect(cleanUpHTML(juniorDeveloperDescription)).toBe(
+    expect(processPeopleHRDescription(juniorDeveloperDescription)).toBe(
         juniorDeveloperFormattedDescription,
     );
-    expect(cleanUpHTML(jobPostingJSON.description[0])).toBe(
+    expect(processPeopleHRDescription(jobPostingJSON.description[0])).toBe(
         jobPostingObject.description,
     );
 });
 
 test('converts job JSON into a JobPost object', () => {
-    console.log(jobPostingJSON.title[0]);
     expect(createJobPostFromJSON(jobPostingJSON)).toEqual(jobPostingObject);
 });
