@@ -16,7 +16,7 @@ The peopleHR feed is fetched with `fetchPeopleHRFeed` then converted to JSON wit
 
 The job description from PeopleHR contains preprocessed generated HTML, which is often messy.
 
-We process the HTML with `cleanUpHTML`, which substitutes any `<font>` or `style="font-weight: bold;"` definitions with appropriate HTML tags. Script tags are removed with a virtual DOM, HappyDOM. HappyDOM could fully replace the Regex use here, this waits on further development.
+We process the HTML in peopleHR.ts with `processPeopleHRDescription`, which substitutes any `<strong>` or `style="font-weight: bold;"` definitions with <span> tags that include the appropriate class names. Script tags and similar are removed if they are not part of the tag allowlist.
 
 ## Ensuring the Job Posts Are Complete
 
