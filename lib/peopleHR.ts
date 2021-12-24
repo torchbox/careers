@@ -37,6 +37,8 @@ const Node: {
     TEXT_NODE: 3,
 };
 
+const CACHE_TTL = 60 * 60 * 1000; // One hour, measured in milliseconds
+
 const ALLOWLIST: string[] = [
     'H2',
     'H3',
@@ -71,10 +73,10 @@ async function fetchPeopleHRFeed(): Promise<string | null> {
  * @returns JSON object
  */
 async function parseXml(xmlString: string): Promise<any> {
-    return await new Promise((resolve, reject) =>
+    return await new Promise((resolve) =>
         xml2js.parseString(xmlString, (err: Error, jsonData: any) => {
             if (err) {
-                reject(err);
+                throw err;
             }
             resolve(jsonData);
         }),
@@ -94,18 +96,35 @@ async function getJobPostingData() {
     );
 
     if (existsSync(cacheFilePath)) {
-        const cacheFile = readFileSync(cacheFilePath, 'utf8');
-        const cacheJSON = JSON.parse(cacheFile);
-        const cacheTTL = 60 * 60 * 1000; //One hour, time stored in milliseconds
+        let cacheJSON;
 
-        if (cacheJSON.lastUpdated + cacheTTL < Date.now()) {
+        try {
+            cacheJSON = JSON.parse(readFileSync(cacheFilePath, 'utf8'));
+        } catch (error) {
+            console.error(
+                'Error reading and parsing the PeopleHR cache file: ',
+                error,
+            );
+            cacheJSON.lastUpdated = 0; // Force a rewrite to the cache if the cache has become corrupted
+        }
+
+        if (cacheJSON.lastUpdated + CACHE_TTL < Date.now()) {
             // The cache has timed out, fetch new data from PeopleHR
 
-            const peopleHRJobPostingsXML = await fetchPeopleHRFeed();
+            const peopleHRJobPostingsXML = await fetchPeopleHRFeed().catch(
+                function (error) {
+                    console.error('Error fetching data from PeopleHR: ', error);
+                    return null;
+                },
+            );
 
             if (peopleHRJobPostingsXML === null) {
-                // In the event of a server error, don't update the job listings
-                // if we have cached listings still available to use.
+                // In the event of a server error, don't update the job listings if we
+                // still have cached listings available to use instead
+
+                if (cacheJSON.jobJSON === undefined) {
+                    return null;
+                }
 
                 const fileData = {
                     lastUpdated: Date.now(),
@@ -116,7 +135,7 @@ async function getJobPostingData() {
 
                 return cacheJSON.jobJSON;
             } else {
-                // If we've received a 200 code from the server, update according to the feed contents
+                // If the server responds OK, update according to the feed contents
                 const peopleHRJobPostings = await parseXml(
                     peopleHRJobPostingsXML,
                 );
@@ -126,7 +145,14 @@ async function getJobPostingData() {
                     jobJSON: peopleHRJobPostings,
                 };
 
-                writeFileSync(cacheFilePath, JSON.stringify(fileData));
+                try {
+                    writeFileSync(cacheFilePath, JSON.stringify(fileData));
+                } catch (error) {
+                    console.error(
+                        'Error writing to the PeopleHR cache file: ',
+                        error,
+                    );
+                }
 
                 return peopleHRJobPostings;
             }
@@ -136,7 +162,12 @@ async function getJobPostingData() {
         }
     } else {
         // If the cache file doesn't exist, create one
-        const peopleHRJobPostingsXML = await fetchPeopleHRFeed();
+        const peopleHRJobPostingsXML = await fetchPeopleHRFeed().catch(
+            function (error) {
+                console.error('Error fetching data from PeopleHR: ', error);
+                return null;
+            },
+        );
 
         if (peopleHRJobPostingsXML === null) {
             // In the event of a server error, return 404
@@ -150,7 +181,15 @@ async function getJobPostingData() {
                 jobJSON: peopleHRJobPostings,
             };
 
-            writeFileSync(cacheFilePath, JSON.stringify(fileData));
+            try {
+                writeFileSync(cacheFilePath, JSON.stringify(fileData));
+            } catch (error) {
+                console.error(
+                    'Error writing to the PeopleHR cache file: ',
+                    error,
+                );
+            }
+
             return peopleHRJobPostings;
         }
     }
@@ -180,14 +219,26 @@ function recursivelyRemoveEmptyElements(element: Element) {
     });
 }
 
-export function removeAllElementsNotInAllowlist(element: Element) {
+export function removeAllElementsNotInAllowlist(
+    document: any,
+    element: Element,
+) {
     const elements = element.querySelectorAll('*');
 
     let removeList = [];
 
     for (let i = 0; i < elements.length; i++) {
         if (ALLOWLIST.includes(elements[i].tagName) === false) {
-            removeList.push(elements[i]);
+            if (['B', 'STRONG', 'EM', 'I'].includes(elements[i].tagName)) {
+                // Replace all the styling elements with spans
+                // I've chosen to replace these styling elements for better code consistency
+                // e.g. this means all bold rich text can be styled using only one rule
+                const newSpan = document.createElement('SPAN');
+                newSpan.innerHTML = elements[i].innerHTML;
+                elements[i].parentElement?.replaceChild(newSpan, elements[i]);
+            } else {
+                removeList.push(elements[i]);
+            }
         }
     }
 
@@ -344,7 +395,7 @@ export function processPeopleHRDescription(text: string) {
     });
 
     recursivelyRemoveEmptyElements(newBody);
-    removeAllElementsNotInAllowlist(newBody);
+    removeAllElementsNotInAllowlist(document, newBody);
 
     return newBody.innerHTML;
 }

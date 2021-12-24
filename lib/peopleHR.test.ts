@@ -52,15 +52,19 @@ test('removes all elements not in the allowlist', () => {
     document.body.innerHTML = illegalScriptDescription;
 
     expect(
-        removeAllElementsNotInAllowlist(document.body as unknown as Element)
-            .innerHTML,
+        removeAllElementsNotInAllowlist(
+            document,
+            document.body as unknown as Element,
+        ).innerHTML,
     ).toBe(illegalScriptFormattedDescription);
 
     document.body.innerHTML = illegalElementDescription;
 
     expect(
-        removeAllElementsNotInAllowlist(document.body as unknown as Element)
-            .innerHTML,
+        removeAllElementsNotInAllowlist(
+            document,
+            document.body as unknown as Element,
+        ).innerHTML,
     ).toBe(illegalElementFormattedDescription);
 });
 
