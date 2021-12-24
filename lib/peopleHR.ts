@@ -2,7 +2,7 @@ import xml2js from 'xml2js';
 import { Window } from 'happy-dom';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import path from 'path';
-import { jobPostingJSON } from './peopleHRTestData';
+
 export interface JobPost {
     title: string;
     description: string;
@@ -51,6 +51,10 @@ const ALLOWLIST: string[] = [
     'SPAN',
 ];
 
+/**
+ * Gets Torchbox's active job listings from the PeopleHR RSS Feed
+ * @returns an XML string, or null if a server error occurs.
+ */
 async function fetchPeopleHRFeed(): Promise<string | null> {
     return fetch(`${process.env.PEOPLEHR_RSS_FEED_URL}`).then((response) => {
         if (response.ok) {
@@ -61,6 +65,11 @@ async function fetchPeopleHRFeed(): Promise<string | null> {
     });
 }
 
+/**
+ * Converts XML to JSON using xml2js
+ * @param xmlString
+ * @returns JSON object
+ */
 async function parseXml(xmlString: string): Promise<any> {
     return await new Promise((resolve, reject) =>
         xml2js.parseString(xmlString, (err: Error, jsonData: any) => {
@@ -87,7 +96,7 @@ async function getJobPostingData() {
     if (existsSync(cacheFilePath)) {
         const cacheFile = readFileSync(cacheFilePath, 'utf8');
         const cacheJSON = JSON.parse(cacheFile);
-        const cacheTTL = 10 * 1000; //One hour 60 * 60 * 1000
+        const cacheTTL = 60 * 60 * 1000; //One hour, time stored in milliseconds
 
         if (cacheJSON.lastUpdated + cacheTTL < Date.now()) {
             // The cache has timed out, fetch new data from PeopleHR
@@ -171,7 +180,7 @@ function recursivelyRemoveEmptyElements(element: Element) {
     });
 }
 
-function removeAllElementsNotInAllowlist(element: Element) {
+export function removeAllElementsNotInAllowlist(element: Element) {
     const elements = element.querySelectorAll('*');
 
     let removeList = [];
@@ -185,6 +194,8 @@ function removeAllElementsNotInAllowlist(element: Element) {
     removeList.forEach((element) => {
         element.remove();
     });
+
+    return element;
 }
 
 /**
