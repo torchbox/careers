@@ -19,7 +19,13 @@ const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
 export default JobPosting;
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-    const job = (await getJobPost(params.slug)) ?? [];
+    const job = await getJobPost(params.slug);
+
+    if (job === undefined)
+        return {
+            notFound: true,
+        };
+
     return {
         props: { job },
         revalidate: 60 * 60, //After one hour, the cache expires and the page gets rebuilt.
@@ -28,8 +34,17 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
 export async function getStaticPaths() {
     const allJobSlugs = await getAllJobSlugs();
-    return {
-        paths: allJobSlugs.map((slug) => `/jobs/${slug}`) ?? [],
-        fallback: 'blocking',
-    };
+    if (allJobSlugs !== null && allJobSlugs !== undefined) {
+        return {
+            paths: allJobSlugs.map((slug) => `/jobs/${slug}`) ?? [],
+            fallback: 'blocking',
+        };
+    } else {
+        // If we can't find any job postings from peopleHR, don't create posting pages
+        // Use fallback blocking so ISR gets triggered in the future and the page is generated when PeopleHR goes live.
+        return {
+            paths: [],
+            fallback: 'blocking',
+        };
+    }
 }
