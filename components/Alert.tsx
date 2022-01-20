@@ -10,7 +10,7 @@ export const Alert: React.FC<{ preview: boolean }> = ({ preview }) => {
             {preview ? (
                 <div className={styles.container}>
                     <p className={styles.message}>
-                        This is page is a preview.{" "}
+                        This is a preview page.{" "}
                         <a className={styles.link} onClick={exitPreview}>
                             Click here
                         </a>{" "}

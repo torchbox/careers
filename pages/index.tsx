@@ -3,18 +3,7 @@ import styles from "styles/Home.module.scss";
 import { getLandingPage } from "../lib/api";
 import Layout from "../components/Layout";
 import Image from "next/image";
-
-interface LandingPage {
-    title: string;
-    metadataDescription: string;
-    heroImage: HeroImage;
-}
-interface HeroImage {
-    description: string;
-    url: string;
-    width: number;
-    height: number;
-}
+import { LandingPage } from "types/LandingPage";
 
 const LandingPage: NextPage<{
     preview: boolean;
@@ -32,6 +21,8 @@ const LandingPage: NextPage<{
                         height={landingPageContent.heroImage.height}
                     />
                     <p>{landingPageContent.metadataDescription}</p>
+                    <p>{landingPageContent.ctaTitle}</p>
+                    <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
                 </div>
             </Layout>
         </>

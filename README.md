@@ -24,6 +24,9 @@ Log in to Contentful and from Settings > API Keys populate `.env.local` with the
 
 Restart the development server.
 
+To view the GraphQL API explorer, go to 
+`https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }`
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -14,13 +14,7 @@ export default async function previewLandingPage(
     // Enable Preview Mode by setting the cookies
     res.setPreviewData({});
 
-    // Redirect to the path from the fetched post
-    // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-    const url = `/`;
-    res.write(
-        `<!DOCTYPE html><html><head><meta http-equiv="Refresh" content="0; url=${url}" />
-      <script>window.location.href = '${url}'</script>
-      </head>`
-    );
+    // Redirect to the page being viewed with preview mode
+    res.redirect(307, "/");
     res.end();
 }

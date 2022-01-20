@@ -1,9 +1,12 @@
-//To be refactored when design is confirmed.
-//See https://github.com/vercel/next.js/blob/41f87abdf7be4519e7d928bbed4dec314fcd7851/examples/cms-contentful/lib/api.js#L46
+// Following the code from the Contentful Vercel demonstration library
+// https://github.com/vercel/next.js/blob/41f87abdf7be4519e7d928bbed4dec314fcd7851/examples/cms-contentful/lib/api.js#L46
 
 async function fetchGraphQL(query = "", preview = false) {
+    console.log(
+        `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_API_URL}`
+    );
     return fetch(
-        `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
+        `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_API_URL}`,
         {
             method: "POST",
             headers: {
@@ -19,25 +22,43 @@ async function fetchGraphQL(query = "", preview = false) {
     ).then((response) => response.json());
 }
 
-//Returns all content for index.ts
 export async function getLandingPage(preview: boolean) {
     const landingPageContent = await fetchGraphQL(
         `{
-            landingPage(id: "6PGx0sqpIVLFP3lzgtTSp1", preview: ` +
+            landingPageCollection(limit: 1, preview: ` +
             preview +
             `) {
-              title
-              metadataDescription
-              heroImage {
-                description
-                url
-                width
-                height
+            items {
+                title
+                metadataDescription
+                heroImage {
+                    description
+                    url
+                    width
+                    height
+                }
+                workForYouDescription {
+                    json
+                }
+                workForYouImage {
+                    description
+                    url
+                    width
+                    height
+                }
+                lifeAsATorchboxer {
+                    json
+                }
+                ctaTitle
+                ctaDescription {
+                    json
+                }
               }
             }
           }
         `,
         preview
     );
-    return landingPageContent.data.landingPage;
+
+    return landingPageContent.data.landingPageCollection.items[0];
 }
