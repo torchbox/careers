@@ -4,7 +4,7 @@ const exitPreview = () => {
     document.location.href = "/api/exit-preview";
 };
 
-export const Alert: React.FC<{ preview: boolean }> = ({ preview }) => {
+export const Alert = (preview: { preview: boolean }) => {
     return (
         <>
             {preview ? (

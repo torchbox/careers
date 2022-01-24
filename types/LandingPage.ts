@@ -1,11 +1,6 @@
-export interface Image {
-    description: string;
-    url: string;
-    width: number;
-    height: number;
-}
+import { Image } from "./Base";
 
-export interface LandingPage {
+export type LandingPage = {
     title: string;
     metadataDescription: string;
     heroImage: Image;
@@ -14,4 +9,4 @@ export interface LandingPage {
     lifeAsATorchboxer: any;
     ctaTitle: string;
     ctaDescription: any;
-}
+};

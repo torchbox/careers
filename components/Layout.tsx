@@ -1,18 +1,16 @@
 import Alert from "../components/Alert";
 
-interface LayoutProps {
+type LayoutProps = {
     preview: boolean;
-    children: JSX.Element;
-}
+    children: React.ReactNode;
+};
 
-export const Layout: React.FC<LayoutProps> = ({ preview, children }) => {
+export const Layout = ({ preview, children }: LayoutProps) => {
     return (
-        <>
-            <div>
-                <Alert preview={preview} />
-                <main>{children}</main>
-            </div>
-        </>
+        <div>
+            <Alert preview={preview} />
+            <main>{children}</main>
+        </div>
     );
 };
 
