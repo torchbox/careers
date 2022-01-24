@@ -14,6 +14,7 @@ const LandingPage: NextPage<{
             <Layout preview={preview}>
                 <div className={styles.container}>
                     <h1 className={styles.title}>{landingPageContent.title}</h1>
+                    <p>This is a landing page preview mode demonstration.</p>
                     <Image
                         src={landingPageContent.heroImage.url}
                         alt={landingPageContent.heroImage.description}
