@@ -1,0 +1,40 @@
+.underline-link {
+    font-weight: $weight--bold;
+
+    @include font-size(s);
+    border-bottom: 0;
+    overflow: visible;
+    color: var(--color--white);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 25%;
+        height: 6px;
+        bottom: -7px;
+        left: 0;
+        background-color: var(--color--coral);
+        transition: width $transition-quick;
+    }
+
+    &:hover {
+        color: var(--color--white);
+    }
+
+    &::after {
+        display: none;
+    }
+
+    &:hover,
+    &:focus,
+    &--active {
+        &::before {
+            width: 100%;
+        }
+    }
+
+    &:focus {
+        outline: 4px solid var(--color--white) transparent;
+    }
+}
