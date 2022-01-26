@@ -3,6 +3,10 @@
     padding: 0 $grid;
     grid-template-columns: 1fr 1fr;
 
+    @include media-query(medium) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     @include media-query(large) {
         padding: 0 $grid * 2;
         grid-template-columns: repeat(4, 1fr);
