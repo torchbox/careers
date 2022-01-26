@@ -24,7 +24,7 @@ export const HomepageSubnav = ({
                     Life as a Torchboxer
                 </a>
             </li>
-            <li className={styles.navItem}>
+            <li className={styles.jobNavItem}>
                 <Link href="/jobs">
                     <a className={styles.jobsLink}>
                         Jobs
@@ -35,9 +35,11 @@ export const HomepageSubnav = ({
                 </Link>
             </li>
         </ul>
-        <div className={styles.image}>
-            <img src="images/arrow-loop-right.svg" alt="" />
-        </div>
+        <img
+            className={styles.image}
+            src="images/arrow-loop-right.svg"
+            alt=""
+        />
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.richText}>{children}</div>
     </div>

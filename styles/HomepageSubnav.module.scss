@@ -12,7 +12,7 @@
     }
 
     @include media-query(large) {
-        margin-bottom: $grid * 2;
+        margin-bottom: $grid * 2.5;
     }
 }
 
@@ -21,6 +21,25 @@
 
     @include media-query(medium) {
         margin-right: $grid * 2;
+    }
+}
+
+.jobNavItem {
+    position: relative;
+
+    @include media-query(medium) {
+        margin-left: $grid * 1.5;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -33px;
+            width: 1px;
+            height: 39px;
+            background: #000000;
+            opacity: 0.1;
+        }
     }
 }
 
@@ -68,9 +87,11 @@
 }
 
 .image {
-    & img {
-        display: block;
-        margin-right: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+
+    @include media-query(medium) {
         margin-left: $grid;
     }
 }
