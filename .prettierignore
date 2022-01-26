@@ -6,3 +6,5 @@ static_compiled
 .github
 node_modules
 out
+
+files
