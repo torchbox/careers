@@ -68,4 +68,4 @@ npm ERR! A complete log of this run can be found in:
 npm ERR!     /Users/jameshancock/.npm/_logs/2021-12-20T10_42_27_318Z-debug.log
 ```
 
-**Solution:** Make sure you are running the right node version with 'nvm use' or 'fnm use', then delete the `node_modules` folder and run `npm install` to reinstall next correctly.
+**Solution:** Make sure you are running the right node version with 'nvm use' or 'fnm use', then delete the `node_modules` folder and run `npm install` to reinstall Next.js correctly.
