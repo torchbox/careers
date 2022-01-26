@@ -1,0 +1,92 @@
+.container {
+    margin-top: $grid * 2;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $grid;
+
+    @include media-query(medium) {
+        margin-bottom: $grid * 2;
+    }
+
+    @include media-query(large) {
+        margin-bottom: $grid * 2;
+    }
+}
+
+.navItem {
+    margin-right: $grid;
+
+    @include media-query(medium) {
+        margin-right: $grid * 2;
+    }
+}
+
+.navLink {
+    color: var(--color--dark-indigo);
+}
+
+.jobsLink {
+    color: var(--color--dark-indigo);
+    font-weight: $weight--extrabold;
+    position: relative;
+
+    &:hover > .jobsBadge {
+        color: var(--color--coral);
+
+        &::after {
+            background-color: var(--color--dark-indigo);
+        }
+    }
+}
+
+.jobsBadge {
+    display: inline-block;
+    position: absolute;
+    @include z-index(one);
+    right: -24px;
+    top: -18px;
+    color: var(--color--dark-indigo);
+    @include font-size(xs);
+
+    transition: color $transition;
+
+    &::after {
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -10%) rotate(27deg);
+        left: 50%;
+        top: 0;
+        @include z-index(under);
+        background-color: var(--color--coral);
+        transition: background-color $transition;
+        width: 21px;
+        height: 27px;
+    }
+}
+
+.image {
+    & img {
+        display: block;
+        margin-right: auto;
+        margin-left: $grid;
+    }
+}
+
+.title {
+    text-align: left;
+    margin-top: $grid * 2;
+
+    @include media-query(large) {
+        margin-top: $grid * 3;
+    }
+}
+
+.richText {
+    text-align: left;
+    & p {
+        color: var(--color--dark-indigo);
+    }
+}
