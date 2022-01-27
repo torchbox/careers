@@ -1,15 +1,16 @@
 import Link from 'next/link';
+import { ArrowLoopRight } from './ArrowLoopRight';
 import styles from '/styles/HomepageSubnav.module.scss';
 
 type HomepageSubnavProps = {
     title: string;
-    jobs: number;
+    jobs?: number;
     children: React.ReactNode;
 };
 
 export const HomepageSubnav = ({
     title,
-    jobs,
+    jobs = 0,
     children,
 }: HomepageSubnavProps) => (
     <div className={styles.container}>
@@ -28,18 +29,14 @@ export const HomepageSubnav = ({
                 <Link href="/jobs">
                     <a className={styles.jobsLink}>
                         Jobs
-                        {jobs !== undefined && jobs > 0 ? (
+                        {jobs > 0 ? (
                             <div className={styles.jobsBadge}>{jobs}</div>
                         ) : null}
                     </a>
                 </Link>
             </li>
         </ul>
-        <img
-            className={styles.image}
-            src="images/arrow-loop-right.svg"
-            alt=""
-        />
+        <ArrowLoopRight className={styles.image} />
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.richText}>{children}</div>
     </div>
