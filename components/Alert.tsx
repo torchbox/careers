@@ -4,7 +4,11 @@ const exitPreview = () => {
     document.location.href = "/api/exit-preview";
 };
 
-export const Alert = (preview: { preview: boolean }) => {
+type AlertProps = {
+    preview: boolean;
+};
+
+export const Alert = ({ preview }: AlertProps) => {
     return (
         <>
             {preview ? (
