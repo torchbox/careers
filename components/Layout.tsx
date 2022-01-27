@@ -1,4 +1,4 @@
-import Alert from "../components/Alert";
+import Alert from '../components/Alert';
 
 type LayoutProps = {
     preview: boolean;

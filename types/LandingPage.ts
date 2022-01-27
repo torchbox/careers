@@ -1,4 +1,4 @@
-import { Image } from "./Base";
+import { Image } from './Base';
 
 export type LandingPage = {
     title: string;

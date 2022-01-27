@@ -5,6 +5,6 @@ module.exports = {
         prependData: `@use "sass:math"; @import "variables.scss"; @import "functions.scss"; @import "mixins.scss"; @import "fonts.scss"; `,
     },
     images: {
-        domains: ["images.ctfassets.net"],
+        domains: ['images.ctfassets.net', 'source.unsplash.com'],
     },
 };

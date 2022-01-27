@@ -2,19 +2,30 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+```bash
+fnm use
+```
+
+It's recommended you use `fnm` as this is faster than nvm. If you haven't installed fnm yet, you can use `nvm use` here instead.
 
 ```bash
+npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+N.B. Remember to run `npm install` every time you switch development branches. This triggers a refresh of Prettier, so if you have the Prettier VSCode extension installed, it will correctly format files on save.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Before committing changes, run
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+``
+npm run format
+npm run lint
+
+````
+
+So your code passes CI.
 
 ## Pulling data from Contentful
 
@@ -24,7 +35,7 @@ Log in to Contentful and from Settings > API Keys populate `.env.local` with the
 
 Restart the development server.
 
-To view the GraphQL API explorer, go to 
+To view the GraphQL API explorer, go to
 `https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }`
 
 ## Learn More
@@ -41,7 +52,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
 
 ## Code Style Decisions
 
@@ -61,7 +71,7 @@ export const Layout = ({ preview, children }: LayoutProps) => {
 };
 
 export default Layout;
-```
+````
 
 1. Use `type Variable = { ... }`, avoiding `Interface` for consistency across the codebase where possible.
 2. Where components have more than one prop, define the prop types separately (e.g. `LayoutProps`)
@@ -86,16 +96,20 @@ const LandingPage: NextPage<LandingPageProps> = ({
 
 ```ts
 export type LandingPage = {
-    title: string;
-    metadataDescription: string;
-    heroImage: Image;
-    workForYouDescription: any;
-    workForYouImage: Image;
-    lifeAsATorchboxer: any;
-    ctaTitle: string;
-    ctaDescription: any;
+  title: string;
+  metadataDescription: string;
+  heroImage: Image;
+  workForYouDescription: any;
+  workForYouImage: Image;
+  lifeAsATorchboxer: any;
+  ctaTitle: string;
+  ctaDescription: any;
 };
 ```
 
 6. Where we pull complex unregulated JSON from the Contentful GraphQL Schema, use the `any` type.
 7. Add reusable type definitions to `types/Base.ts`
+
+```
+
+```

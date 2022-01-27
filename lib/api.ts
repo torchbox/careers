@@ -1,21 +1,21 @@
 // Following the code from the Contentful Vercel demonstration library
 // https://github.com/vercel/next.js/blob/41f87abdf7be4519e7d928bbed4dec314fcd7851/examples/cms-contentful/lib/api.js#L46
 
-async function fetchGraphQL(query = "", preview = false) {
+async function fetchGraphQL(query = '', preview = false) {
     return fetch(
         `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_API_URL}`,
         {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${
                     preview
                         ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
                         : process.env.CONTENTFUL_ACCESS_TOKEN
                 }`,
             },
             body: JSON.stringify({ query }),
-        }
+        },
     ).then((response) => response.json());
 }
 
@@ -99,7 +99,7 @@ export async function getLandingPage(preview: boolean) {
             }
         }
         `,
-        preview
+        preview,
     );
 
     return landingPageContent.data.landingPageCollection.items[0];
