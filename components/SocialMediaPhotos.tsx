@@ -7,13 +7,13 @@ type SocialMediaPhotosProps = {
 };
 
 export const SocialMediaPhotos = ({ photos }: SocialMediaPhotosProps) => {
-    const SocialMediaPhotos = photos.slice(0, 8).map((image) => (
-        <li className={styles.image} key={image.description}>
+    const SocialMediaPhotos = photos.slice(0, 8).map((image, index) => (
+        <li className={styles.image} key={`social-media-image-${index}`}>
             <Image layout="fill" src={image.url} alt={image.description} />
         </li>
     ));
 
-    return <div className={styles.container}>{SocialMediaPhotos}</div>;
+    return <ul className={styles.container}>{SocialMediaPhotos}</ul>;
 };
 
 export default SocialMediaPhotos;
