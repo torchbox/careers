@@ -37,7 +37,7 @@
             left: -33px;
             width: 1px;
             height: 39px;
-            background: #000000;
+            background: var(--color--black);
             opacity: 0.1;
         }
     }
@@ -62,23 +62,23 @@
 }
 
 .jobsBadge {
+    @include z-index(one);
+    @include font-size(xs);
+
     display: inline-block;
     position: absolute;
-    @include z-index(one);
     right: -24px;
     top: -18px;
     color: var(--color--dark-indigo);
-    @include font-size(xs);
-
     transition: color $transition;
 
     &::after {
+        @include z-index(under);
         content: '';
         position: absolute;
         transform: translate(-50%, -10%) rotate(27deg);
         left: 50%;
         top: 0;
-        @include z-index(under);
         background-color: var(--color--coral);
         transition: background-color $transition;
         width: 21px;
