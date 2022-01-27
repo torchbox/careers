@@ -10,7 +10,7 @@ const PlaceholderImage = {
     height: 750,
 };
 
-const ImageArray = [...Array(10)].map((_, i) => PlaceholderImage);
+const ImageArray = [...Array(10)].map((_) => PlaceholderImage);
 
 const Home: NextPage = () => {
     return (
