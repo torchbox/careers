@@ -54,14 +54,14 @@ export async function getLandingPage(preview: boolean) {
                         imagesCollection(limit: 8) {
                         items {
                             image {
-                            title
-                            description
-                            contentType
-                            fileName
-                            size
-                            url
-                            width
-                            height
+                                title
+                                description
+                                contentType
+                                fileName
+                                size
+                                url
+                                width
+                                height
                             }
                             description
                         }
@@ -71,12 +71,12 @@ export async function getLandingPage(preview: boolean) {
                         benefitsTitle
                         benefitsIntro
                         benefitsListCollection(limit: 8) {
-                        items {
-                            benefitName
-                            benefitSnippet
+                            items {
+                                benefitName
+                                benefitSnippet
+                            }
                         }
                         }
-                    }
                     }
                 }
                 workForYouDescription {
