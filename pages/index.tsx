@@ -2,6 +2,16 @@ import type { NextPage } from 'next';
 import styles from 'styles/Home.module.scss';
 
 import HomepageSubnav from 'components/HomepageSubnav';
+import SocialMediaPhotos from 'components/SocialMediaPhotos';
+
+const PlaceholderImage = {
+    description: 'This is a placeholder',
+    url: 'https://source.unsplash.com/random/750x750/?nature',
+    width: 750,
+    height: 750,
+};
+
+const ImageArray = [...Array(10)].map((_) => PlaceholderImage);
 
 const Home: NextPage = () => {
     return (
@@ -25,6 +35,7 @@ const Home: NextPage = () => {
                     with:
                 </p>
             </HomepageSubnav>
+            <SocialMediaPhotos photos={ImageArray} />
         </div>
     );
 };
