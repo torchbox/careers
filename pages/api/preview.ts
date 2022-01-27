@@ -7,7 +7,7 @@ export default async function previewLandingPage(
 ) {
     const { secret } = req.query;
 
-    if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET) {
+    if (secret !== process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN) {
         return res.status(401).json({ message: "Invalid token" });
     }
 
