@@ -5,8 +5,6 @@ import Layout from "../components/Layout";
 import Image from "next/image";
 import { LandingPage } from "types/LandingPage";
 
-import RichText from "../components/RichText";
-
 type LandingPageProps = {
     preview: boolean;
     landingPageContent: LandingPage;
@@ -28,10 +26,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
             />
             <p>{landingPageContent.metadataDescription}</p>
             <p>{landingPageContent.ctaTitle}</p>
-            <RichText
-                content={landingPageContent.ctaDescription}
-                theme="LIGHT"
-            />
+            <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
         </div>
     </Layout>
 );
@@ -40,7 +35,6 @@ export default LandingPage;
 
 export async function getStaticProps({ preview = false }) {
     const landingPageContent = (await getLandingPage(preview)) ?? [];
-    console.log("Test 1 ", JSON.stringify(landingPageContent.ctaDescription));
     return {
         props: { preview, landingPageContent },
     };
