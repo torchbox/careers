@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import styles from 'styles/Home.module.scss';
 
+import LandingPageCTA from 'components/LandingPageCTA';
 import HomepageSubnav from 'components/HomepageSubnav';
 import SocialMediaPhotos from 'components/SocialMediaPhotos';
 
@@ -36,6 +37,13 @@ const Home: NextPage = () => {
                 </p>
             </HomepageSubnav>
             <SocialMediaPhotos photos={ImageArray} />
+            <LandingPageCTA jobs={10} title="Ready to make a difference?">
+                <p>
+                    We’re always excited about finding new talent and meeting
+                    people that are as eager as we are to drive significant
+                    positive change.
+                </p>
+            </LandingPageCTA>
         </div>
     );
 };
