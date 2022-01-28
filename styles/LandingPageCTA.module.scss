@@ -1,0 +1,27 @@
+.container {
+    margin: $grid;
+    text-align: left;
+
+    @include media-query(large) {
+        margin: $grid auto;
+        max-width: 930px; // Following design
+    }
+}
+
+.title {
+    @include font-size(l);
+    color: var(--color--dark-indigo);
+}
+
+.richText {
+    max-width: 750px;
+    margin-right: auto;
+    & p {
+        color: var(--color--dark-indigo);
+        @include font-size(s);
+    }
+}
+
+.button {
+    margin-top: $grid * 2;
+}
