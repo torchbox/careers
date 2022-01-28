@@ -37,4 +37,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 # caching data generated when hosted on Vercel
-/files
+/cachedData
