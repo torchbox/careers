@@ -28,9 +28,9 @@
 }
 
 .title {
+    @include font-size(xxxxl);
     font-weight: $weight--extrabold;
     line-height: 60px;
-    @include font-size(xxxxl);
 
     @include media-query(medium) {
         line-height: 70px;
@@ -49,6 +49,7 @@
 
 .links {
     @include font-size(m);
+
     & a:first-child {
         margin-right: $grid * 2;
     }

@@ -1,7 +1,7 @@
 .underline-link {
-    font-weight: $weight--bold;
-
     @include font-size(s);
+
+    font-weight: $weight--bold;
     border-bottom: 0;
     overflow: visible;
     position: relative;
