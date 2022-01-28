@@ -40,14 +40,14 @@ const LandingPage: NextPage<LandingPageProps> = ({
             />
             <p>{landingPageContent.ctaTitle}</p>
             <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
+        </div>
 
-            <LandingPageHero image={PlaceholderImage}>
-                {/* Todo: Replace this with a rich text field component. */}
-                <p>
-                    <strong>Glad you asked.</strong> We are not your average
-                    digital agency...
-                </p>
-            </LandingPageHero>
+        <LandingPageHero image={PlaceholderImage}>
+            {/* Todo: Replace this with a rich text field component. */}
+            <p>
+                <strong>Glad you asked.</strong> We are not your average digital
+                agency...
+            </p>
 
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
@@ -67,7 +67,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     with:
                 </p>
             </LandingPageSubnav>
-        </div>
+        </LandingPageHero>
 
         <LifeAsATorchboxer>
             <p>
