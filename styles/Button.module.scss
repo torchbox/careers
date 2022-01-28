@@ -1,13 +1,12 @@
 .button {
+    @include z-index(zero);
+    @include font-size(m);
     display: block;
     position: relative;
-    @include z-index(zero);
     width: max-content;
-    @include font-size(m);
     font-weight: $weight--extrabold;
     color: var(--color--white);
     padding: 12px 50px 12px 20px;
-
     background-color: var(--color--dark-indigo);
     background: radial-gradient(
         81.08% 2378.82% at 50% 60%,
@@ -26,29 +25,29 @@
 }
 
 .chevron {
-    position: absolute;
     @include z-index(one);
+    position: absolute;
     right: 25px;
     top: 16px;
     transition: transform $transition-quick;
 }
 
 .jobsBadge {
+    @include z-index(one);
+    @include font-size(xs);
     display: inline-block;
     position: absolute;
-    @include z-index(one);
     right: 0px;
     top: -12px;
     color: var(--color--dark-indigo);
-    @include font-size(xs);
 
     &::after {
+        @include z-index(under);
         content: '';
         position: absolute;
         transform: translate(-50%, -10%) rotate(27deg);
         left: 50%;
         top: 0;
-        @include z-index(under);
         background-color: var(--color--coral);
         width: 21px;
         height: 27px;
