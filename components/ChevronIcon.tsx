@@ -1,5 +1,5 @@
 type ChevronIconProps = {
-    className: string;
+    className?: string;
 };
 
 export const ChevronIcon = ({ className }: ChevronIconProps) => (
