@@ -1,7 +1,6 @@
 import { Image } from 'components/Image';
 import styles from '../../styles/LandingPageHero.module.scss';
 import { ImageTypes } from '../../types/Base';
-import { ShardClip } from './ShardClip';
 
 type LandingPageHeroProps = {
     image: ImageTypes;
