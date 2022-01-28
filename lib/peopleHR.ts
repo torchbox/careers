@@ -37,9 +37,10 @@ const Node: {
     TEXT_NODE: 3,
 };
 
-const CACHE_TTL = 60 * 60 * 1000; // One hour, measured in milliseconds
+// One hour, measured in milliseconds
+const CACHE_TTL = 60 * 60 * 1000;
 
-const ALLOWLIST: string[] = [
+const ALLOWLIST = [
     'H2',
     'H3',
     'H4',
@@ -51,20 +52,38 @@ const ALLOWLIST: string[] = [
     'FONT',
     'DIV',
     'SPAN',
-];
+] as const;
+
+type ALLOWLIST =
+    | 'H2'
+    | 'H3'
+    | 'H4'
+    | 'H5'
+    | 'P'
+    | 'LI'
+    | 'UL'
+    | 'A'
+    | 'FONT'
+    | 'DIV'
+    | 'SPAN';
 
 /**
  * Gets Torchbox's active job listings from the PeopleHR RSS Feed
  * @returns an XML string, or null if a server error occurs.
  */
 async function fetchPeopleHRFeed(): Promise<string | null> {
-    return fetch(`${process.env.PEOPLEHR_RSS_FEED_URL}`).then((response) => {
-        if (response.ok) {
-            return response.text();
-        } else {
+    if (process.env.PEOPLEHR_RSS_FEED_URL)
+        return fetch(process.env.PEOPLEHR_RSS_FEED_URL).then((response) => {
+            if (response.ok) return response.text();
+            console.error(
+                'Error fetching PeopleHR feed: RSS Feed URL not responding',
+            );
             return null;
-        }
-    });
+        });
+    console.error(
+        'Error fetching PeopleHR feed: RSS Feed URL not found in .env.local',
+    );
+    return null;
 }
 
 /**
@@ -91,7 +110,7 @@ async function parseXml(xmlString: string): Promise<any> {
 async function getJobPostingData() {
     const cacheFilePath = path.join(
         process.cwd(),
-        'files',
+        'cachedData',
         'peopleHRcache.json',
     );
 
@@ -228,7 +247,7 @@ export function removeAllElementsNotInAllowlist(
     let removeList = [];
 
     for (let i = 0; i < elements.length; i++) {
-        if (ALLOWLIST.includes(elements[i].tagName) === false) {
+        if (ALLOWLIST.includes(elements[i].tagName as ALLOWLIST) === false) {
             if (['B', 'STRONG', 'EM', 'I'].includes(elements[i].tagName)) {
                 // Replace all the styling elements with spans
                 // I've chosen to replace these styling elements for better code consistency

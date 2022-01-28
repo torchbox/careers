@@ -21,7 +21,7 @@ export default JobPosting;
 export async function getStaticProps({ params }: { params: { slug: string } }) {
     const job = await getJobPost(params.slug);
 
-    if (job === undefined)
+    if (!job)
         return {
             notFound: true,
         };
@@ -34,17 +34,17 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
 export async function getStaticPaths() {
     const allJobSlugs = await getAllJobSlugs();
-    if (allJobSlugs !== null && allJobSlugs !== undefined) {
+    if (allJobSlugs) {
         return {
-            paths: allJobSlugs.map((slug) => `/jobs/${slug}`) ?? [],
-            fallback: 'blocking',
-        };
-    } else {
-        // If we can't find any job postings from peopleHR, don't create posting pages
-        // Use fallback blocking so ISR gets triggered in the future and the page is generated when PeopleHR goes live.
-        return {
-            paths: [],
+            paths: allJobSlugs.map((slug) => `/jobs/${slug}`),
             fallback: 'blocking',
         };
     }
+
+    // If we can't find any job postings from peopleHR, don't create posting pages
+    // Use fallback blocking so ISR gets triggered in the future and the page is generated when PeopleHR goes live.
+    return {
+        paths: [],
+        fallback: 'blocking',
+    };
 }
