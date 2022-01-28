@@ -1,3 +1,4 @@
+import { Image } from 'components/Image';
 import styles from '../../styles/LandingPageHero.module.scss';
 import { ImageTypes } from '../../types/Base';
 import { ShardClip } from './ShardClip';
@@ -9,27 +10,34 @@ type LandingPageHeroProps = {
 
 export const LandingPageHero = ({ image, children }: LandingPageHeroProps) => {
     return (
-        <div className={styles.heroContainer}>
-            <ShardClip>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    className={styles.image}
+        <>
+            <svg width="0" height="0" viewBox="0 0 1 1">
+                <defs>
+                    <clipPath
+                        id="shardClipPath"
+                        clipPathUnits="objectBoundingBox"
+                    >
+                        <path d="M 0.436 0.033 L 0.917 0.34 L 0.519 0.985 L 0.024 0.67 Z " />
+                        <path d="M 0.996 0.406 L 0.77 0.79 L 0.967 0.908 L 1.207 0.533 L 1.03 0.429 Z" />
+                    </clipPath>
+                </defs>
+            </svg>
+            <div className={styles.heroContainer}>
+                <Image
                     src={image.url}
                     alt={image.description}
-                    width={image.width}
-                    height={image.height}
+                    className={styles.image}
                 />
-            </ShardClip>
-
-            <div className={styles.textContainer}>
-                <h1 className={styles.title}>
-                    <span className={styles.titleAccent}>Being at</span>
-                    <br />
-                    Torchbox
-                </h1>
-                <div className={styles.subtitle}>{children}</div>
+                <div className={styles.textContainer}>
+                    <h1 className={styles.title}>
+                        <span className={styles.titleAccent}>Being at</span>
+                        <br />
+                        Torchbox
+                    </h1>
+                    <div className={styles.subtitle}>{children}</div>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

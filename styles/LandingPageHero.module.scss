@@ -50,10 +50,68 @@
 }
 
 .image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    clip-path: url(#shardClipPath);
+    width: 375px;
+    height: 375px;
+    margin-left: auto;
+    order: 1;
+
+    @include media-query(medium) {
+        width: 625px;
+        height: 625px;
+        margin-bottom: -$grid * 2;
+    }
+
+    @include media-query(large) {
+        order: 2;
+        width: 575px;
+        height: 575px;
+        margin-bottom: -$grid * 8;
+    }
+
+    @include media-query(hero-break) {
+        width: 750px;
+        height: 775px;
+    }
+
+    & > span {
+        width: 375px !important;
+        height: 375px !important;
+
+        @include media-query(medium) {
+            width: 625px !important;
+            height: 625px !important;
+        }
+
+        @include media-query(large) {
+            width: 575px !important;
+            height: 575px !important;
+        }
+
+        @include media-query(hero-break) {
+            width: 750px !important;
+            height: 775px !important;
+        }
+
+        & > img {
+            width: 375px !important;
+            height: 375px !important;
+            object-fit: cover !important;
+
+            @include media-query(medium) {
+                width: 625px !important;
+                height: 625px !important;
+            }
+
+            @include media-query(large) {
+                width: 575px !important;
+                height: 575px !important;
+            }
+
+            @include media-query(hero-break) {
+                width: 750px !important;
+                height: 775px !important;
+            }
+        }
+    }
 }
