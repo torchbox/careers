@@ -1,0 +1,16 @@
+.container {
+    background-color: var(--color--light-grey);
+    padding: math.div($grid, 2);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.message {
+    margin: 0px;
+}
+
+.link {
+    text-decoration: underline;
+}
