@@ -8,15 +8,15 @@ Next.js reads an RSS feed from PeopleHR to create a list of open jobs at Torchbo
 
 The peopleHR feed is fetched with `fetchPeopleHRFeed` then converted to JSON with `parseXml`. `convertJSONToJobPosts` then runs error catching and converts JSON to the Job types, which are returned by three core export functions;
 
-`getAllJobSummaries()` _Used in jobs.tsx_
-`getAllJobSlugs()` _Used in /jobs/\[slug\].tsx_
-`getJobPost(slug: string)`_Used in /jobs/\[slug\].tsx_
+- `getAllJobSummaries()` _Used in jobs.tsx_
+- `getAllJobSlugs()` _Used in /jobs/\[slug\].tsx_
+- `getJobPost(slug: string)`_Used in /jobs/\[slug\].tsx_
 
 ## Cleaning the HTML
 
 The job description from PeopleHR contains preprocessed generated HTML, which is often messy.
 
-We process the HTML in peopleHR.ts with `processPeopleHRDescription`, which substitutes any `<strong>` or `style="font-weight: bold;"` definitions with <span> tags that include the appropriate class names. Script tags and similar are removed if they are not part of the tag allowlist.
+We process the HTML in peopleHR.ts with `processPeopleHRDescription`, which substitutes any `<strong>` or `style="font-weight: bold;"` definitions with `<span>` tags that include the appropriate class names. Script tags and similar are removed if they are not part of the tag allowlist.
 
 ## Ensuring the Job Posts Are Complete
 

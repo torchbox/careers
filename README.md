@@ -26,7 +26,7 @@ Restart the development server.
 
 ## Pulling data from PeopleHR
 
-Update the .env.local using the RSS feed URL, as found on the password manager.
+Update the `.env.local` using the RSS feed URL, as found on the password manager.
 
 ## Learn More
 
@@ -54,18 +54,6 @@ When running `npm run dev` or similar.
 > next dev
 
 sh: next: command not found
-npm ERR! code ELIFECYCLE
-npm ERR! syscall spawn
-npm ERR! file sh
-npm ERR! errno ENOENT
-npm ERR! careers@ dev: `next dev`
-npm ERR! spawn ENOENT
-npm ERR!
-npm ERR! Failed at the careers@ dev script.
-npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-
-npm ERR! A complete log of this run can be found in:
-npm ERR!     /Users/jameshancock/.npm/_logs/2021-12-20T10_42_27_318Z-debug.log
 ```
 
 **Solution:** Make sure you are running the right node version with 'nvm use' or 'fnm use', then delete the `node_modules` folder and run `npm install` to reinstall Next.js correctly.
