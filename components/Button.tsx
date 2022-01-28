@@ -5,24 +5,16 @@ import styles from '/styles/Button.module.scss';
 type ButtonProps = {
     className?: string;
     url: string;
-    jobs?: number;
+    jobs: number;
     children: React.ReactNode;
 };
 
-export const Button = ({ className, url, jobs, children }: ButtonProps) => (
+export const Button = ({ className, url, jobs = 0, children }: ButtonProps) => (
     <Link href={url}>
-        <a
-            className={
-                className !== undefined
-                    ? `${styles.button} ${className}`
-                    : `${styles.button}`
-            }
-        >
+        <a className={[styles.button, className].join(' ')}>
             {children}
             <ChevronIcon className={styles.chevron} />
-            {jobs !== undefined && jobs > 0 ? (
-                <div className={styles.jobsBadge}>{jobs}</div>
-            ) : null}
+            {jobs > 0 ? <div className={styles.jobsBadge}>{jobs}</div> : null}
         </a>
     </Link>
 );
