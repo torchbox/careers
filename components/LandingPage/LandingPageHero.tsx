@@ -1,4 +1,4 @@
-import styles from '../../styles/Hero.module.scss';
+import styles from '../../styles/LandingPageHero.module.scss';
 import { ImageTypes } from '../../types/Base';
 import { ShardClip } from './ShardClip';
 
@@ -27,7 +27,7 @@ export const LandingPageHero = ({ image, children }: LandingPageHeroProps) => {
                     <br />
                     Torchbox
                 </h1>
-                <div className="subtitle">{children}</div>
+                <div className={styles.subtitle}>{children}</div>
             </div>
         </div>
     );
