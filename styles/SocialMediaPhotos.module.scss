@@ -1,0 +1,32 @@
+.container {
+    display: grid;
+    padding: 0 $grid;
+    grid-template-columns: 1fr 1fr;
+
+    @include media-query(medium) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media-query(large) {
+        padding: 0 $grid * 2;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.image {
+    list-style-type: none;
+    border: 2px solid var(--color--white);
+
+    /* Hide the last two images on mobile */
+    &:nth-child(7n),
+    &:nth-child(8n) {
+        display: none;
+    }
+
+    @include media-query(large) {
+        &:nth-child(7n),
+        &:nth-child(8n) {
+            display: block;
+        }
+    }
+}
