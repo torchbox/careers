@@ -39,7 +39,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 height={landingPageContent.heroImage.height}
             />
             <p>{landingPageContent.ctaTitle}</p>
-            <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
         </div>
 
         <LandingPageHero image={PlaceholderImage}>
