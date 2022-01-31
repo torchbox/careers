@@ -9,6 +9,7 @@ export const ChevronIcon = ({ className }: ChevronIconProps) => (
         width="13"
         height="20"
         fill="none"
+        aria-hidden="true"
     >
         <path
             fill="#fff"
