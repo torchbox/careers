@@ -1,0 +1,214 @@
+.container {
+    background-color: var(--color--light-grey);
+    padding: $grid;
+}
+
+.primaryContent {
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(large) {
+        flex-direction: row;
+    }
+}
+
+.ourLocations {
+    padding-top: $grid * 2;
+    @include media-query(large) {
+        width: 50%;
+        padding: $grid * 2 $grid * 3 0px $grid;
+        position: relative;
+    }
+
+    @include media-query(menu-break) {
+        padding: $grid * 2 $grid * 5 0px 0px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: -105px;
+            width: 2px;
+            height: 262px;
+            background-color: var(--color--dark-indigo);
+            transform: rotate(30deg);
+        }
+    }
+
+    &Heading {
+        font-weight: $weight--extrabold;
+        @include font-size(ml);
+        margin-top: 0;
+    }
+
+    &Location {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &Icon {
+        display: block;
+        width: 32px;
+        margin-right: 5px;
+    }
+
+    &Information {
+        max-width: 90%;
+        // Set to 90% so as to be responsive without the address cropping the SVG icon
+
+        @include media-query(medium) {
+            width: 85%;
+        }
+
+        @include media-query(large) {
+            width: 90%;
+            max-width: 249px;
+        }
+    }
+
+    &Title {
+        @include font-size(xs);
+        font-weight: $weight--bold;
+        color: var(--color--dark-indigo);
+        margin-bottom: 0;
+    }
+
+    &Address {
+        @include font-size(xxs);
+        line-height: 19px;
+        color: var(--color--grey);
+        margin-bottom: $grid * 1.5;
+    }
+
+    &List {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        @include media-query(medium) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+.getInTouch {
+    padding-top: $grid;
+
+    @include media-query(large) {
+        width: 50%;
+        padding: $grid * 2 $grid 0px $grid * 3;
+    }
+
+    @include media-query(menu-break) {
+        padding: $grid * 2 0px 0px 89px;
+    }
+
+    &Title {
+        font-weight: $weight--extrabold;
+        @include font-size(ml);
+        margin-top: 0;
+    }
+
+    &Description {
+        @include font-size(s);
+
+        @include media-query(large) {
+            max-width: 474px;
+        }
+    }
+
+    &Contact {
+        display: flex;
+        flex-direction: row;
+        max-width: 340px;
+    }
+
+    &ContactInformation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &EmailLink {
+        display: block;
+        line-height: 24px;
+        font-weight: $weight--bold;
+        color: var(--color--dark-indigo);
+        text-decoration-line: underline;
+
+        // This follows the designs as the @ doesn't cut through the line
+        text-underline-position: under;
+        // The extra spacing doesn't necessarily look as good.
+        // Maybe we should consider a pseudoelement underscore instead?
+    }
+
+    &PhoneLink {
+        display: block;
+        line-height: 24px;
+        font-weight: $weight--bold;
+        margin-top: 8px;
+    }
+
+    &Image {
+        max-width: 85px;
+        max-height: 85px;
+        border-radius: 85px;
+        overflow: hidden;
+        margin-right: 12px;
+    }
+}
+
+.secondaryContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include media-query(large) {
+        flex-direction: row;
+        padding: $grid * 2 0 $grid $grid * 4;
+    }
+}
+
+.appendix {
+    display: flex;
+    flex-direction: row;
+    order: 2;
+
+    @include media-query(large) {
+        order: 1;
+        width: 50%;
+    }
+
+    &CopyrightNotice {
+        color: var(--color--grey);
+        @include font-size(xxs);
+        margin: 0;
+    }
+
+    &Link {
+        display: block;
+        margin-left: $grid;
+        color: var(--color--dark-indigo);
+        @include font-size(xxs);
+    }
+}
+
+.socialMediaIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    order: 1;
+    margin-bottom: $grid;
+
+    @include media-query(large) {
+        order: 2;
+        margin-bottom: 0;
+        width: 50%;
+        transform: translateX(-20%);
+    }
+
+    &Icon {
+        margin-left: $grid * 1.5;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
