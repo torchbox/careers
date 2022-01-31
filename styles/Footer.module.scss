@@ -16,17 +16,17 @@
     padding-top: $grid * 2;
     @include media-query(large) {
         width: 50%;
-        padding: $grid * 2 $grid * 3 0px $grid;
+        padding: $grid * 2 $grid * 1.5 0px $grid;
         position: relative;
     }
 
     @include media-query(menu-break) {
-        padding: $grid * 2 $grid * 5 0px 0px;
+        padding: $grid * 2 $grid * 1.5 0px 0px;
         &::before {
             content: '';
             position: absolute;
-            top: 25px;
-            left: -105px;
+            top: 18px;
+            left: -108px;
             width: 2px;
             height: 262px;
             background-color: var(--color--dark-indigo);
@@ -38,6 +38,7 @@
         font-weight: $weight--extrabold;
         @include font-size(ml);
         margin-top: 0;
+        margin-bottom: $grid;
     }
 
     &Location {
@@ -98,7 +99,7 @@
     }
 
     @include media-query(menu-break) {
-        padding: $grid * 2 0px 0px 89px;
+        padding: $grid * 2 0px 0px $grid * 3.5;
     }
 
     &Title {
@@ -205,10 +206,19 @@
         transform: translateX(-20%);
     }
 
-    &Icon {
+    &ListItem {
         margin-left: $grid * 1.5;
+
         &:first-child {
             margin-left: 0;
         }
+    }
+
+    &Link:focus path {
+        fill: var(--color--coral-dark);
+    }
+
+    &Icon:hover path {
+        fill: var(--color--coral-dark);
     }
 }

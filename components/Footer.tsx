@@ -94,28 +94,31 @@ const Appendix = () => (
 
 const SocialMediaIcons = () => (
     <ul className={styles.socialMediaIcons}>
-        <li className={styles.socialMediaIconsIcon}>
+        <li className={styles.socialMediaIconsListItem}>
             <a
+                className={styles.socialMediaIconsLink}
                 aria-label="Follow us on Twitter"
                 href="https://twitter.com/torchbox"
             >
-                <TwitterIcon />
+                <TwitterIcon className={styles.socialMediaIconsIcon} />
             </a>
         </li>
-        <li className={styles.socialMediaIconsIcon}>
+        <li className={styles.socialMediaIconsListItem}>
             <a
+                className={styles.socialMediaIconsLink}
                 aria-label="Connect with us on LinkedIn"
                 href="https://www.linkedin.com/company/torchbox"
             >
-                <LinkedInIcon />
+                <LinkedInIcon className={styles.socialMediaIconsIcon} />
             </a>
         </li>
-        <li className={styles.socialMediaIconsIcon}>
+        <li className={styles.socialMediaIconsListItem}>
             <a
+                className={styles.socialMediaIconsLink}
                 aria-label="Follow us on Instagram"
                 href="https://www.instagram.com/torchboxltd/"
             >
-                <InstagramIcon />
+                <InstagramIcon className={styles.socialMediaIconsIcon} />
             </a>
         </li>
     </ul>
