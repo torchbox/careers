@@ -222,3 +222,94 @@
         fill: var(--color--coral-dark);
     }
 }
+
+.email {
+    &Container {
+        background-color: var(--color--dark-indigo);
+        display: flex;
+        flex-direction: column;
+        padding: $grid;
+        text-align: center;
+
+        @include media-query(large) {
+            padding: $grid * 1.5 $grid * 2;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @include media-query(menu-break) {
+            padding: $grid * 1.5 $grid * 4;
+        }
+    }
+
+    &CTA {
+        color: var(--color--white);
+        @include font-size(ml);
+        margin-bottom: $grid * 0.75;
+
+        @include media-query(large) {
+            margin-bottom: 0;
+        }
+    }
+
+    &Label {
+        position: absolute;
+        top: 0;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+    }
+
+    &Input {
+        display: block;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        max-width: 350px;
+
+        @include media-query(medium) {
+            width: 450px;
+            max-width: unset;
+        }
+
+        @include media-query(large) {
+            width: 450px;
+            max-width: unset;
+        }
+    }
+
+    &Form {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include media-query(large) {
+            width: 40%;
+            margin-right: 0;
+            margin-left: auto;
+        }
+    }
+
+    &Button {
+        display: block;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: var(--color--coral);
+        color: var(--color--white);
+        font-weight: $weight--extrabold;
+        cursor: pointer;
+        transition: background-color $transition-quick;
+
+        &:hover,
+        &:focus {
+            background-color: var(--color--coral-dark);
+        }
+    }
+
+    &Bold {
+        font-weight: $weight--extrabold;
+    }
+}
