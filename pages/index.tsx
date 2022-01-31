@@ -38,8 +38,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 width={landingPageContent.heroImage.width}
                 height={landingPageContent.heroImage.height}
             />
-            <p>{landingPageContent.ctaTitle}</p>
-            <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
 
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
