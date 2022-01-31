@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "lib/peopleHR.ts": {
+      "includeFiles": "cachedData/**"
+    }
+  }
+}
