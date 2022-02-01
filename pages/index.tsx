@@ -28,7 +28,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
 }) => (
-    <Layout preview={preview}>
+    <Layout theme={'LIGHT'} preview={preview}>
         <div className={styles.container}>
             <h1 className={styles.title}>{landingPageContent.title}</h1>
             <p>{landingPageContent.metadataDescription}</p>
@@ -38,9 +38,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 width={landingPageContent.heroImage.width}
                 height={landingPageContent.heroImage.height}
             />
-            <p>{landingPageContent.ctaTitle}</p>
-            <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
-
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
                     For over 20 years, we’ve been devoted to delivering

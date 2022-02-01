@@ -38,10 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
             </Head>
 
-            <header>
-                <p>Header here</p>
-            </header>
-
             <main>
                 <Component {...pageProps} />
             </main>
