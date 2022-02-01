@@ -10,7 +10,7 @@ type LandingPageHeroProps = {
 export const LandingPageHero = ({ image, children }: LandingPageHeroProps) => {
     return (
         <>
-            <svg width="0" height="0" viewBox="0 0 1 1">
+            <svg>
                 <defs>
                     <clipPath
                         id="shardClipPath"
