@@ -1,0 +1,19 @@
+.container {
+    height: $gutter * 2 + $grid * 2;
+    // The height of the logo is 40px, aka $grid * 2
+
+    @include media-query(menu-break) {
+        height: unset;
+    }
+}
+
+.torchboxLogo {
+    @include z-index(two);
+    position: absolute;
+    top: $gutter;
+    left: $gutter;
+
+    @include media-query(menu-break) {
+        position: static;
+    }
+}

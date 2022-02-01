@@ -1,0 +1,275 @@
+.menuButton {
+    @include z-index(three);
+    position: absolute;
+    top: $gutter;
+    right: $gutter;
+    width: 45px;
+    height: 45px;
+    display: block;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    background: var(--color--white);
+    border-radius: 50%;
+
+    @include media-query(menu-break) {
+        display: none;
+    }
+
+    span {
+        &:nth-child(1) {
+            transition: all 0.2s ease-in;
+            position: absolute;
+            width: 20px;
+            background-color: var(--color--coral);
+            height: 3px;
+            left: 13px;
+            top: 15px;
+            transform: translateX(0);
+        }
+
+        &:nth-child(2) {
+            transition: all 0.2s ease-in;
+            background-color: var(--color--coral);
+            position: absolute;
+            width: 16px;
+            height: 3px;
+            left: 17px;
+            top: 22px;
+        }
+
+        &:nth-child(3) {
+            transition: all 0.2s ease-in;
+            background-color: var(--color--coral);
+            position: absolute;
+            width: 12px;
+            height: 3px;
+            left: 14px;
+            top: 29px;
+        }
+    }
+
+    // Applied by js
+    .menu-active & {
+        span {
+            &:nth-child(1) {
+                opacity: 0;
+            }
+
+            &:nth-child(2) {
+                background-color: var(--color--coral);
+                transform: rotate(-45deg) scale(2);
+                left: 17px;
+                top: 22px;
+                height: 2px;
+                width: 12px;
+            }
+
+            &:nth-child(3) {
+                background-color: var(--color--coral);
+                transform: rotate(45deg) scale(2);
+                left: 17px;
+                top: 22px;
+                height: 2px;
+                width: 12px;
+            }
+        }
+    }
+}
+.mobileMenuButton {
+    @include z-index(menu-button);
+    position: absolute;
+    top: $gutter;
+    right: $gutter;
+    width: 45px;
+    height: 45px;
+    display: block;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    background: var(--color--white);
+    border-radius: 50%;
+
+    @include media-query(menu-break) {
+        display: none;
+    }
+
+    span {
+        &:nth-child(1) {
+            transition: all 0.2s ease-in;
+            position: absolute;
+            width: 20px;
+            background-color: var(--color--coral);
+            height: 3px;
+            left: 13px;
+            top: 15px;
+            transform: translateX(0);
+        }
+
+        &:nth-child(2) {
+            transition: all 0.2s ease-in;
+            background-color: var(--color--coral);
+            position: absolute;
+            width: 16px;
+            height: 3px;
+            left: 17px;
+            top: 22px;
+        }
+
+        &:nth-child(3) {
+            transition: all 0.2s ease-in;
+            background-color: var(--color--coral);
+            position: absolute;
+            width: 12px;
+            height: 3px;
+            left: 14px;
+            top: 29px;
+        }
+    }
+}
+
+.mobileMenuActive {
+    span {
+        &:nth-child(1) {
+            opacity: 0;
+        }
+
+        &:nth-child(2) {
+            background-color: var(--color--coral);
+            transform: rotate(-45deg) scale(2);
+            left: 17px;
+            top: 22px;
+            height: 2px;
+            width: 12px;
+        }
+
+        &:nth-child(3) {
+            background-color: var(--color--coral);
+            transform: rotate(45deg) scale(2);
+            left: 17px;
+            top: 22px;
+            height: 2px;
+            width: 12px;
+        }
+    }
+}
+
+.mobileNav {
+    &__container {
+        display: block;
+
+        @include media-query(menu-break) {
+            display: none;
+        }
+    }
+
+    &__modal {
+        @include z-index(modal);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-300%);
+        min-height: 100vh;
+        width: 100vw;
+        background-color: var(--color--dark-indigo);
+        overflow-x: hidden;
+        transition: all 0.4s ease-in;
+
+        &::before {
+            @include z-index(modal-controls);
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -50vh;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 100vh 50vh 0 0;
+            border-color: var(--color--dark-indigo) transparent transparent
+                transparent;
+        }
+    }
+
+    &__modalOpen {
+        transform: translateX(0);
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        padding: 90px $variable-gutter--small 0 $variable-gutter--small;
+
+        li {
+            margin-left: 0;
+
+            &:last-child {
+                a {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+.mobileNavItem {
+    border-top: 1px solid hsla(0, 0%, 100%, 0.2);
+
+    &__withBadge {
+        display: flex;
+        align-items: center;
+    }
+
+    &__link {
+        @include font-size(s);
+        display: block;
+        color: var(--color--white);
+        padding: $gutter 0;
+        border: 0;
+        font-weight: $weight--bold;
+
+        &:hover {
+            color: var(--color--white);
+        }
+    }
+
+    &__badgeLink {
+        width: 14px;
+        text-align: center;
+        border-bottom: 0;
+        position: relative;
+        top: -10px;
+        right: -15px;
+    }
+}
+
+.badge {
+    @include font-size(xs);
+    @include z-index(badge);
+    font-weight: $weight--extrabold;
+    line-height: 25px;
+    color: var(--color--dark-indigo);
+    position: relative;
+
+    &:hover,
+    &:focus {
+        color: var(--color--dark-indigo);
+
+        &::before {
+            background-color: var(--color--lagoon);
+        }
+    }
+
+    &::before {
+        @include z-index(under);
+        width: 18px;
+        height: 22px;
+        content: '';
+        background-color: var(--color--coral);
+        position: absolute;
+        transform: translate(-50%, -25%) rotate(30deg);
+        left: 50%;
+        top: 3px;
+        transition: background-color $transition-quick;
+    }
+}
