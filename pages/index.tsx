@@ -28,16 +28,8 @@ const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
 }) => (
-    <Layout theme={'LIGHT'} preview={preview}>
+    <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
         <div className={styles.container}>
-            <h1 className={styles.title}>{landingPageContent.title}</h1>
-            <p>{landingPageContent.metadataDescription}</p>
-            <Image
-                src={landingPageContent.heroImage.url}
-                alt={landingPageContent.heroImage.description}
-                width={landingPageContent.heroImage.width}
-                height={landingPageContent.heroImage.height}
-            />
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
                     For over 20 years, we’ve been devoted to delivering
