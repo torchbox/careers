@@ -5,6 +5,7 @@ import { TorchboxLogo } from './TorchboxLogo';
 import styles from '/styles/Header.module.scss';
 
 import { MobileMenuButton, MobileNav } from './MobileNav';
+import { DesktopNav } from './DesktopNav';
 
 const NAVIGATION_LINKS = [
     {
@@ -35,15 +36,15 @@ const NAVIGATION_LINKS = [
 ];
 
 type HeaderProps = {
-    jobCount?: number;
+    jobsAvailable?: number;
     theme: Theme;
 };
 
-export const Header = ({ theme, jobCount = 8 }: HeaderProps) => {
+export const Header = ({ theme, jobsAvailable = 0 }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const mobileNavRef = useRef<HTMLDivElement>(null);
 
-    function toggleMobileMenu() {
+    const toggleMobileMenu = () => {
         const mobileNav = mobileNavRef.current as HTMLElement;
 
         if (isOpen) {
@@ -53,10 +54,12 @@ export const Header = ({ theme, jobCount = 8 }: HeaderProps) => {
             setIsOpen(true);
             disableBodyScroll(mobileNav);
         }
-    }
+    };
+
+    const themeClass = theme === 'DARK' ? 'themeDark' : 'themeLight';
 
     return (
-        <div className={styles.container}>
+        <div className={[styles.container, themeClass].join(' ')}>
             <a className={styles.torchboxLogo} href="https://torchbox.com">
                 <TorchboxLogo theme={theme} />
             </a>
@@ -68,7 +71,13 @@ export const Header = ({ theme, jobCount = 8 }: HeaderProps) => {
                 isOpen={isOpen}
                 links={NAVIGATION_LINKS}
                 navMenuRef={mobileNavRef}
-                jobCount={jobCount}
+                jobsAvailable={jobsAvailable}
+            />
+            <DesktopNav
+                isOpen={isOpen}
+                links={NAVIGATION_LINKS}
+                toggleMenu={toggleMobileMenu}
+                jobsAvailable={jobsAvailable}
             />
         </div>
     );
