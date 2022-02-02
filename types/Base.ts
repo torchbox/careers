@@ -4,3 +4,8 @@ export type ImageTypes = {
     width: number;
     height: number;
 };
+
+export type VideoTypes = {
+    description: string;
+    url: string;
+};
