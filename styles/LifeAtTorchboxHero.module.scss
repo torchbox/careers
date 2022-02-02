@@ -1,0 +1,226 @@
+.heroContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include media-query(menu-break) {
+        flex-direction: row;
+    }
+}
+
+.textContainer {
+    text-align: left;
+    padding-left: 15px;
+    padding-top: 22px;
+    order: 2;
+
+    @include media-query(large) {
+        padding-left: 30px;
+    }
+
+    @include media-query(menu-break) {
+        order: 1;
+        padding-left: 88px;
+        padding-top: 158px;
+    }
+}
+
+.title {
+    line-height: 60px;
+    color: var(--color--white);
+
+    @include font-size(xxxxl);
+    font-weight: $weight--extrabold;
+
+    @include media-query(medium) {
+        line-height: 70px;
+    }
+
+    @include media-query(large) {
+        line-height: 100px;
+        margin-bottom: $grid * 2;
+    }
+}
+
+.arrow {
+    display: none;
+
+    @include media-query(large) {
+        display: block;
+        margin: $grid * 2.5 0 $grid * 4 $grid * 2;
+    }
+
+    > path {
+        fill: var(--color--lagoon);
+    }
+}
+
+.subtitle {
+    @include font-size(m);
+    line-height: 38.4px;
+    color: var(--color--white);
+    margin-bottom: $grid;
+}
+
+.description {
+    // Todo: Remove color with rich text themed styling
+    color: var(--color--white);
+    margin-bottom: $grid;
+}
+
+.titleAccent {
+    color: var(--color--lagoon);
+}
+
+.mobileImage {
+    clip-path: url(#shardClipPath);
+    width: 375px;
+    height: 375px;
+    margin-left: auto;
+    order: 1;
+
+    @include media-query(medium) {
+        width: 625px;
+        height: 625px;
+        margin-bottom: -$grid * 2;
+    }
+
+    @include media-query(large) {
+        display: none;
+        order: 2;
+        width: 575px;
+        height: 575px;
+        margin-bottom: -$grid * 8;
+    }
+
+    @include media-query(hero-break) {
+        width: 750px;
+        height: 775px;
+    }
+
+    & > span {
+        width: 375px !important;
+        height: 375px !important;
+
+        @include media-query(medium) {
+            width: 625px !important;
+            height: 625px !important;
+        }
+
+        @include media-query(large) {
+            width: 575px !important;
+            height: 575px !important;
+        }
+
+        @include media-query(hero-break) {
+            width: 750px !important;
+            height: 775px !important;
+        }
+
+        & > img {
+            width: 375px !important;
+            height: 375px !important;
+            object-fit: cover !important;
+
+            @include media-query(medium) {
+                width: 625px !important;
+                height: 625px !important;
+            }
+
+            @include media-query(large) {
+                width: 575px !important;
+                height: 575px !important;
+            }
+
+            @include media-query(hero-break) {
+                width: 750px !important;
+                height: 775px !important;
+            }
+        }
+    }
+}
+
+.desktopImage {
+    clip-path: url(#shardClipPath);
+    display: none;
+
+    @include media-query(large) {
+        display: block;
+        order: 2;
+        width: 575px;
+        height: 575px;
+        margin-bottom: -$grid * 8;
+    }
+
+    @include media-query(hero-break) {
+        width: 750px;
+        height: 775px;
+    }
+
+    & > span {
+        @include media-query(large) {
+            width: 575px !important;
+            height: 575px !important;
+        }
+
+        @include media-query(hero-break) {
+            width: 750px !important;
+            height: 775px !important;
+        }
+
+        & > img {
+            @include media-query(large) {
+                width: 575px !important;
+                height: 575px !important;
+            }
+
+            @include media-query(hero-break) {
+                width: 750px !important;
+                height: 775px !important;
+            }
+        }
+    }
+}
+
+.videoContainer {
+    display: none;
+    clip-path: url(#shardClipPath);
+    margin-left: auto;
+    position: relative;
+
+    @include media-query(large) {
+        display: block;
+        order: 2;
+        width: 575px;
+        height: 575px;
+        margin-bottom: -$grid * 8;
+    }
+
+    @include media-query(hero-break) {
+        width: 750px;
+        height: 775px;
+    }
+}
+
+.video {
+    @include z-index(one);
+    height: 100%;
+}
+
+.playPauseButton {
+    @include z-index(two);
+    position: absolute;
+    display: none;
+
+    @include media-query(large) {
+        display: block;
+        top: 55px;
+        left: 238px;
+    }
+
+    @include media-query(hero-break) {
+        top: 75px;
+        left: 315px;
+    }
+}
