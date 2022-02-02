@@ -1,8 +1,6 @@
 import type { NextPage } from 'next';
-import styles from 'styles/Home.module.scss';
 import { getLandingPage } from '../lib/api';
 import Layout from '../components/Layout';
-import Image from 'next/image';
 import { LandingPage } from 'types/LandingPage';
 import LandingPageHero from 'components/LandingPage/LandingPageHero';
 import LifeAsATorchboxer from 'components/LifeAsATorchboxer';
@@ -29,18 +27,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
     landingPageContent,
 }) => (
     <Layout preview={preview}>
-        <div className={styles.container}>
-            <h1 className={styles.title}>{landingPageContent.title}</h1>
-            <p>{landingPageContent.metadataDescription}</p>
-            <Image
-                src={landingPageContent.heroImage.url}
-                alt={landingPageContent.heroImage.description}
-                width={landingPageContent.heroImage.width}
-                height={landingPageContent.heroImage.height}
-            />
-            <p>{landingPageContent.ctaTitle}</p>
-        </div>
-
         <LandingPageHero image={PlaceholderImage}>
             {/* Todo: Replace this with a rich text field component. */}
             <p>
