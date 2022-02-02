@@ -4,7 +4,7 @@ import { getLandingPage } from '../lib/api';
 import Layout from '../components/Layout';
 import Image from 'next/image';
 import { LandingPage } from 'types/LandingPage';
-
+import LandingPageHero from 'components/LandingPage/LandingPageHero';
 import LifeAsATorchboxer from 'components/LifeAsATorchboxer';
 import LandingPageCTA from 'components/LandingPageCTA';
 import LandingPageSubnav from 'components/LandingPageSubnav';
@@ -12,7 +12,7 @@ import SocialMediaPhotos from 'components/SocialMediaPhotos';
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
-    url: 'https://source.unsplash.com/random/750x750/?nature',
+    url: 'https://source.unsplash.com/random/750×750/?nature',
     width: 750,
     height: 750,
 };
@@ -39,7 +39,14 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 height={landingPageContent.heroImage.height}
             />
             <p>{landingPageContent.ctaTitle}</p>
-            <p>{JSON.stringify(landingPageContent.ctaDescription)}</p>
+        </div>
+
+        <LandingPageHero image={PlaceholderImage}>
+            {/* Todo: Replace this with a rich text field component. */}
+            <p>
+                <strong>Glad you asked.</strong> We are not your average digital
+                agency...
+            </p>
 
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
@@ -59,7 +66,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     with:
                 </p>
             </LandingPageSubnav>
-        </div>
+        </LandingPageHero>
 
         <LifeAsATorchboxer>
             <p>
