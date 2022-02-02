@@ -87,19 +87,28 @@
     border: none;
     text-align: center;
     cursor: pointer;
-    background: var(--color--white);
+    background-color: var(--color--white);
     border-radius: 50%;
 
     @include media-query(menu-break) {
         display: none;
     }
 
+    :global .themeDark :local & {
+        background-color: var(--color--dark-indigo);
+    }
+
     span {
+        transition: transform $transition, opacity $transition;
+        position: absolute;
+        background-color: var(--color--coral);
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
+        }
+
         &:nth-child(1) {
-            transition: all 0.2s ease-in;
-            position: absolute;
             width: 20px;
-            background-color: var(--color--coral);
             height: 3px;
             left: 13px;
             top: 15px;
@@ -107,9 +116,6 @@
         }
 
         &:nth-child(2) {
-            transition: all 0.2s ease-in;
-            background-color: var(--color--coral);
-            position: absolute;
             width: 16px;
             height: 3px;
             left: 17px;
@@ -117,9 +123,6 @@
         }
 
         &:nth-child(3) {
-            transition: all 0.2s ease-in;
-            background-color: var(--color--coral);
-            position: absolute;
             width: 12px;
             height: 3px;
             left: 14px;
@@ -135,7 +138,6 @@
         }
 
         &:nth-child(2) {
-            background-color: var(--color--coral);
             transform: rotate(-45deg) scale(2);
             left: 17px;
             top: 22px;
@@ -144,7 +146,6 @@
         }
 
         &:nth-child(3) {
-            background-color: var(--color--coral);
             transform: rotate(45deg) scale(2);
             left: 17px;
             top: 22px;

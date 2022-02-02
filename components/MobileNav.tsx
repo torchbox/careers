@@ -1,18 +1,18 @@
 import Link from 'next/link';
-import { RefObject, useRef } from 'react';
+import { RefObject } from 'react';
 import { NavLink } from 'types/Base';
 import styles from '/styles/MobileNav.module.scss';
 
 type MobileNavItemProps = {
     link: NavLink;
-    jobCount?: number;
+    jobsAvailable?: number;
 };
 
-const MobileNavItem = ({ jobCount = 0, link }: MobileNavItemProps) => (
+const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
     <li
         className={`${styles.mobileNavItem} ${
             link.title === 'Careers' &&
-            jobCount > 0 &&
+            jobsAvailable > 0 &&
             styles.mobileNavItem__withBadge
         }`}
     >
@@ -22,12 +22,12 @@ const MobileNavItem = ({ jobCount = 0, link }: MobileNavItemProps) => (
                     <span className={styles.mobileNavItem__title}>
                         {link.title}
                     </span>
-                    {link.title === 'Careers' && jobCount > 0 && (
+                    {link.title === 'Careers' && jobsAvailable > 0 && (
                         <span
                             className={`${styles.mobileNavItem__badgeLink} ${styles.badge}`}
-                            aria-label={`${jobCount} jobs available`}
+                            aria-label={`${jobsAvailable} jobs available`}
                         >
-                            {jobCount}
+                            {jobsAvailable}
                         </span>
                     )}
                 </a>
@@ -46,17 +46,17 @@ type MobileNavProps = {
     navMenuRef: RefObject<HTMLDivElement>;
     isOpen: boolean;
     links: NavLink[];
-    jobCount?: number;
+    jobsAvailable?: number;
 };
 
 export const MobileNav = ({
     navMenuRef,
     isOpen,
     links,
-    jobCount = 0,
+    jobsAvailable = 0,
 }: MobileNavProps) => {
     const navItems = links.map((link, index) => (
-        <MobileNavItem link={link} jobCount={jobCount} key={index} />
+        <MobileNavItem link={link} jobsAvailable={jobsAvailable} key={index} />
     ));
 
     return (

@@ -4,6 +4,10 @@
 
     @include media-query(menu-break) {
         height: unset;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: $grid * 2 $grid * 4.5;
     }
 }
 

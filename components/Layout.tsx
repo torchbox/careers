@@ -4,14 +4,20 @@ import { Theme } from '../types/Base';
 
 type LayoutProps = {
     theme: Theme;
+    jobsAvailable: number;
     preview: boolean;
     children: React.ReactNode;
 };
 
-export const Layout = ({ theme, preview, children }: LayoutProps) => {
+export const Layout = ({
+    theme,
+    jobsAvailable,
+    preview,
+    children,
+}: LayoutProps) => {
     return (
         <div>
-            <Header theme={theme} />
+            <Header theme={theme} jobsAvailable={jobsAvailable} />
             <Alert preview={preview} />
             <main>{children}</main>
         </div>
