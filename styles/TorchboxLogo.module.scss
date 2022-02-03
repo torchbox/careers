@@ -1,0 +1,15 @@
+.textPath {
+    fill: var(--color--dark-indigo);
+
+    :global .themeDark :local & {
+        fill: var(--color--white);
+    }
+}
+
+.flamePath {
+    fill: var(--color--coral);
+
+    :global .themeDark :local & {
+        fill: var(--color--lagoon);
+    }
+}

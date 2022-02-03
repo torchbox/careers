@@ -40,14 +40,13 @@ const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
 }) => (
-    <Layout preview={preview}>
+    <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
         <LandingPageHero image={PlaceholderImage}>
             {/* Todo: Replace this with a rich text field component. */}
             <p>
                 <strong>Glad you asked.</strong> We are not your average digital
                 agency...
             </p>
-
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
                     For over 20 years, we’ve been devoted to delivering

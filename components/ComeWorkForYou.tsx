@@ -12,7 +12,10 @@ export const ComeWorkForYou = ({ image, children }: ComeWorkForYouProps) => (
     <div className={styles.container}>
         <div className={styles.textContainer}>
             <h2 className={styles.title}>
-                Come work for <span aria-hidden="true" className={styles.strikethrough}>us</span>{' '}
+                Come work for{' '}
+                <span aria-hidden="true" className={styles.strikethrough}>
+                    us
+                </span>{' '}
                 <span className={styles.emphasis}>you</span>.
             </h2>
             <div className={styles.richText}>{children}</div>
