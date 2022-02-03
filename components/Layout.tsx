@@ -1,4 +1,5 @@
 import Alert from '../components/Alert';
+import Footer from './Footer';
 import Header from './Header';
 import { Theme } from '../types/Base';
 
@@ -31,6 +32,7 @@ export const Layout = ({
             <Header jobsAvailable={jobsAvailable} />
             <Alert preview={preview} />
             <main>{children}</main>
+            <Footer />
         </div>
     );
 };

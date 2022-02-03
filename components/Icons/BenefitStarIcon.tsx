@@ -1,12 +1,18 @@
 type BenefitStarIconProps = {
+    width?: number;
+    height?: number;
     className?: string;
 };
 
-export const BenefitStarIcon = ({ className }: BenefitStarIconProps) => (
+export const BenefitStarIcon = ({
+    width = 41,
+    height = 41,
+    className,
+}: BenefitStarIconProps) => (
     <svg
         className={className}
-        width="41"
-        height="41"
+        width={width}
+        height={height}
         viewBox="0 0 41 41"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
