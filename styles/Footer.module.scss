@@ -1,6 +1,11 @@
-.container {
+.banner {
     background-color: var(--color--light-grey);
+}
+
+.container {
     padding: $grid;
+    max-width: $site-width;
+    margin: 0 auto;
 }
 
 .primaryContent {
@@ -215,8 +220,13 @@
 }
 
 .email {
-    &Container {
+    &Banner {
         background-color: var(--color--dark-indigo);
+    }
+
+    &Container {
+        max-width: $site-width;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         padding: $grid;

@@ -125,34 +125,36 @@ const SocialMediaIcons = () => (
 );
 
 const EmailSignup = () => (
-    <div className={styles.emailContainer}>
-        <p className={styles.emailCTA}>
-            Sign up for <span className={styles.emailBold}>news</span>,{' '}
-            <span className={styles.emailBold}>events</span> and{' '}
-            <span className={styles.emailBold}>digital insights</span>
-        </p>
-        <form className={styles.emailForm}>
-            <label className={styles.emailLabel} htmlFor="email">
-                First name:
-            </label>
-            <input
-                className={styles.emailInput}
-                id="email"
-                name="email"
-                type="text"
-                placeholder="yourname@email.com"
-            />
-            <input
-                type="submit"
-                className={styles.emailButton}
-                value="Sign up"
-            />
-        </form>
+    <div className={styles.emailBanner}>
+        <div className={styles.emailContainer}>
+            <p className={styles.emailCTA}>
+                Sign up for <span className={styles.emailBold}>news</span>,{' '}
+                <span className={styles.emailBold}>events</span> and{' '}
+                <span className={styles.emailBold}>digital insights</span>
+            </p>
+            <form className={styles.emailForm}>
+                <label className={styles.emailLabel} htmlFor="email">
+                    First name:
+                </label>
+                <input
+                    className={styles.emailInput}
+                    id="email"
+                    name="email"
+                    type="text"
+                    placeholder="yourname@email.com"
+                />
+                <input
+                    type="submit"
+                    className={styles.emailButton}
+                    value="Sign up"
+                />
+            </form>
+        </div>
     </div>
 );
 
 export const Footer = () => (
-    <>
+    <div className={styles.banner}>
         <EmailSignup />
         <div className={styles.container}>
             <div className={styles.primaryContent}>
@@ -164,7 +166,7 @@ export const Footer = () => (
                 <SocialMediaIcons />
             </div>
         </div>
-    </>
+    </div>
 );
 
 export default Footer;
