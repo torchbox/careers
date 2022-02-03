@@ -7,6 +7,7 @@ import LifeAsATorchboxer from 'components/LifeAsATorchboxer';
 import LandingPageCTA from 'components/LandingPageCTA';
 import LandingPageSubnav from 'components/LandingPageSubnav';
 import SocialMediaPhotos from 'components/SocialMediaPhotos';
+import ComeWorkForYou from 'components/ComeWorkForYou';
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
@@ -53,6 +54,19 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 </p>
             </LandingPageSubnav>
         </LandingPageHero>
+
+        <ComeWorkForYou image={PlaceholderImage}>
+            <strong>
+                No parent company, no shareholders, just a team of equal owners.
+            </strong>
+            <br />
+            <br />
+            <p>
+                100% of our business belongs to our Employee Ownership Trust
+                (EOT). Everyone is included, everyone is updated and everyone
+                belongs.
+            </p>
+        </ComeWorkForYou>
 
         <LifeAsATorchboxer>
             <p>
