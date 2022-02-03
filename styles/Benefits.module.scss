@@ -53,24 +53,29 @@
 }
 
 .benefit {
-    &Item {
+    &__item {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
-    &Icon {
-        padding-right: $grid * 0.5;
-        @include media-query(medium) {
-            padding-right: $grid;
+    &__icon {
+        margin-right: $grid * 0.5;
+
+        @include media-query(large) {
+            margin-right: $grid;
         }
     }
 
-    &Text {
+    &__text {
         text-align: left;
         font-weight: $weight--bold;
         color: var(--color--dark-indigo);
         @include font-size(s);
+
+        @include media-query(medium) {
+            max-width: 80%;
+        }
 
         @include media-query(large) {
             max-width: 180px;

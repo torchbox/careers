@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { BenefitStarIcon } from './BenefitStarIcon';
 import styles from '/styles/Benefits.module.scss';
 
 type BenefitsProps = {
@@ -8,13 +9,9 @@ type BenefitsProps = {
 
 export const Benefits = ({ title, benefits }: BenefitsProps) => {
     const listOfBenefits = benefits.map((benefit) => (
-        <li className={styles.benefitItem} key={benefit}>
-            <img
-                className={styles.benefitIcon}
-                src="images/benefit-star.svg"
-                alt=""
-            />
-            <div className={styles.benefitText}>{benefit}</div>
+        <li className={styles.benefit__item} key={benefit}>
+            <BenefitStarIcon className={styles.benefit__icon} />
+            <div className={styles.benefit__text}>{benefit}</div>
         </li>
     ));
 
