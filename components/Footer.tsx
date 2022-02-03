@@ -16,7 +16,7 @@ const LOCATION_DATA = [
         address: '3rd Floor, 15 Colston Street, Bristol, BS1 5AP, UK',
     },
     {
-        title: 'Manilla',
+        title: 'Manila',
         address:
             'Unit 214 Commercenter Alabang, Commerce Avenue, Filinvest Corporate City, Muntinlupa, Philippines 1780',
     },
