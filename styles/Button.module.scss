@@ -1,0 +1,55 @@
+.button {
+    @include z-index(zero);
+    @include font-size(m);
+    display: block;
+    position: relative;
+    width: max-content;
+    font-weight: $weight--extrabold;
+    color: var(--color--white);
+    padding: 12px 50px 12px 20px;
+    background-color: var(--color--dark-indigo);
+    background: radial-gradient(
+        81.08% 2378.82% at 50% 60%,
+        var(--color--dark-indigo) 0%,
+        var(--color--indigo) 100%
+    );
+    border-radius: 7px;
+
+    &:hover {
+        color: var(--color--white);
+    }
+
+    &:hover > .chevron {
+        transform: translateX(8px);
+    }
+}
+
+.chevron {
+    @include z-index(one);
+    position: absolute;
+    right: 25px;
+    top: 16px;
+    transition: transform $transition-quick;
+}
+
+.jobsBadge {
+    @include z-index(one);
+    @include font-size(xs);
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: -12px;
+    color: var(--color--dark-indigo);
+
+    &::after {
+        @include z-index(under);
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -10%) rotate(27deg);
+        left: 50%;
+        top: 0;
+        background-color: var(--color--coral);
+        width: 21px;
+        height: 27px;
+    }
+}
