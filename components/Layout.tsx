@@ -15,9 +15,20 @@ export const Layout = ({
     preview,
     children,
 }: LayoutProps) => {
+    let themeClass = 'themeLight';
+
+    switch (theme) {
+        case 'DARK':
+            themeClass = 'themeDark';
+            break;
+        case 'INDIGO':
+            themeClass = 'themeIndigo';
+            break;
+    }
+
     return (
-        <div>
-            <Header theme={theme} jobsAvailable={jobsAvailable} />
+        <div className={themeClass}>
+            <Header jobsAvailable={jobsAvailable} />
             <Alert preview={preview} />
             <main>{children}</main>
         </div>

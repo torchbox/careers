@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState } from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { Theme } from 'types/Base';
 import { TorchboxLogo } from './TorchboxLogo';
 import styles from '/styles/Header.module.scss';
 
@@ -37,10 +36,9 @@ const NAVIGATION_LINKS = [
 
 type HeaderProps = {
     jobsAvailable?: number;
-    theme: Theme;
 };
 
-export const Header = ({ theme, jobsAvailable = 0 }: HeaderProps) => {
+export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const mobileNavRef = useRef<HTMLDivElement>(null);
 
@@ -56,12 +54,10 @@ export const Header = ({ theme, jobsAvailable = 0 }: HeaderProps) => {
         }
     };
 
-    const themeClass = theme === 'DARK' ? 'themeDark' : 'themeLight';
-
     return (
-        <div className={[styles.container, themeClass].join(' ')}>
+        <div className={styles.container}>
             <a className={styles.torchboxLogo} href="https://torchbox.com">
-                <TorchboxLogo theme={theme} />
+                <TorchboxLogo />
             </a>
             <MobileMenuButton
                 isOpen={isOpen}

@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 import styles from 'styles/Home.module.scss';
 import { getLandingPage } from '../lib/api';
 import Layout from '../components/Layout';
-import Image from 'next/image';
 import { LandingPage } from 'types/LandingPage';
 
 import LifeAsATorchboxer from 'components/LifeAsATorchboxer';
