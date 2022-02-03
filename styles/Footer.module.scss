@@ -210,6 +210,11 @@
         }
     }
 
+    &Link path,
+    &Icon path {
+        transition: fill $transition-quick;
+    }
+
     &Link:focus path {
         fill: var(--color--coral-dark);
     }
