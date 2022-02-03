@@ -1,13 +1,19 @@
 type InstagramIconProps = {
+    width?: 24;
+    height?: 24;
     className?: string;
 };
 
-export const InstagramIcon = ({ className }: InstagramIconProps) => (
+export const InstagramIcon = ({
+    width = 24,
+    height = 24,
+    className,
+}: InstagramIconProps) => (
     <svg
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width={width}
+        height={height}
         fill="none"
         aria-hidden="true"
     >

@@ -1,13 +1,19 @@
 type LocationIconProps = {
+    width?: number;
+    height?: number;
     className?: string;
 };
 
-export const LocationIcon = ({ className }: LocationIconProps) => (
+export const LocationIcon = ({
+    width = 32,
+    height = 33,
+    className,
+}: LocationIconProps) => (
     <svg
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="33"
+        width={width}
+        height={height}
         fill="none"
         aria-hidden="true"
         viewBox="9.62 5 19.45 28.79"

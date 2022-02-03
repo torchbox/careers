@@ -1,13 +1,19 @@
 type LinkedInIconProps = {
+    width?: number;
+    height?: number;
     className?: string;
 };
 
-export const LinkedInIcon = ({ className }: LinkedInIconProps) => (
+export const LinkedInIcon = ({
+    width = 24,
+    height = 24,
+    className,
+}: LinkedInIconProps) => (
     <svg
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width={width}
+        height={height}
         fill="none"
         aria-hidden="true"
     >

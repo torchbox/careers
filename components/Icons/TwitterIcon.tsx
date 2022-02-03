@@ -1,13 +1,19 @@
 type TwitterIconProps = {
+    width?: number;
+    height?: number;
     className?: string;
 };
 
-export const TwitterIcon = ({ className }: TwitterIconProps) => (
+export const TwitterIcon = ({
+    width = 24,
+    height = 20,
+    className,
+}: TwitterIconProps) => (
     <svg
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="20"
+        width={width}
+        height={height}
         fill="none"
         aria-hidden="true"
     >
