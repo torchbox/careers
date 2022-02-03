@@ -9,6 +9,18 @@ import LandingPageSubnav from 'components/LandingPageSubnav';
 import SocialMediaPhotos from 'components/SocialMediaPhotos';
 import ComeWorkForYou from 'components/ComeWorkForYou';
 import ClientLogos from 'components/ClientLogos';
+import Benefits from 'components/Benefits';
+
+const ExampleBenefits = [
+    'Performance and ownership bonus',
+    '25 days holiday',
+    'Personal development budget',
+    'Private health cover',
+    'Flexible hours',
+    'Regular socials - online and in-person',
+    'Ethical pension',
+    'Fruit!',
+];
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
@@ -70,6 +82,11 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 belongs.
             </p>
         </ComeWorkForYou>
+
+        <Benefits
+            title="Real benefits in touch with real life"
+            benefits={ExampleBenefits}
+        />
 
         <LifeAsATorchboxer>
             <p>

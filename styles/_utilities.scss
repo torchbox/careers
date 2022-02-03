@@ -41,10 +41,6 @@
         transition: width $transition-quick;
     }
 
-    &:hover {
-        color: var(--color--white);
-    }
-
     &::after {
         display: none;
     }
@@ -55,9 +51,5 @@
         &::before {
             width: 100%;
         }
-    }
-
-    &:focus {
-        outline: 4px solid var(--color--white) transparent;
     }
 }
