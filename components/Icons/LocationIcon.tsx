@@ -10,6 +10,7 @@ export const LocationIcon = ({ className }: LocationIconProps) => (
         height="33"
         fill="none"
         aria-hidden="true"
+        viewBox="9.62 5 19.45 28.79"
     >
         <path
             stroke="#FD5765"
@@ -31,6 +32,6 @@ export const LocationIcon = ({ className }: LocationIconProps) => (
             strokeLinecap="round"
             strokeWidth="2"
             transform="rotate(12.265 19.332 16.413)"
-        />
+        ></circle>
     </svg>
 );
