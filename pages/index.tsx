@@ -8,6 +8,7 @@ import LandingPageCTA from 'components/LandingPageCTA';
 import LandingPageSubnav from 'components/LandingPageSubnav';
 import SocialMediaPhotos from 'components/SocialMediaPhotos';
 import ComeWorkForYou from 'components/ComeWorkForYou';
+import ClientLogos from 'components/ClientLogos';
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
@@ -54,6 +55,8 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 </p>
             </LandingPageSubnav>
         </LandingPageHero>
+
+        <ClientLogos logos={ImageArray} />
 
         <ComeWorkForYou image={PlaceholderImage}>
             <strong>
