@@ -1,6 +1,7 @@
 $font--primary: 'Apercu Pro', arial, helvetica, sans-serif;
 
 // Font weights
+$weight--extrabold: 900;
 $weight--heavy: 800;
 $weight--bold: 700;
 $weight--semibold: 600;
@@ -19,7 +20,7 @@ $large-font-sizes: (
     l: 38px,
     m: 24px,
     s: 20px,
-    xs: 15px,
+    xs: 16px,
     xxs: 14px,
     xxxs: 12px,
 );
@@ -32,7 +33,7 @@ $medium-font-sizes: (
     l: 28px,
     m: 22px,
     s: 20px,
-    xs: 15px,
+    xs: 16px,
     xxs: 14px,
     xxxs: 12px,
 );
@@ -45,7 +46,7 @@ $small-font-sizes: (
     l: 26px,
     m: 20px,
     s: 18px,
-    xs: 14px,
+    xs: 16px,
     xxs: 13px,
     xxxs: 12px,
 );
@@ -55,6 +56,7 @@ $breakpoints: (
     'medium' '(min-width: 599px)',
     'large' '(min-width: 1023px)',
     'menu-break' '(min-width: 1255px)',
+    'hero-break' '(min-width: 1350px)',
     'x-large' '(min-width: 1919px)'
 );
 
