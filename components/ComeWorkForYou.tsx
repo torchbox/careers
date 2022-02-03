@@ -17,7 +17,7 @@ export const ComeWorkForYou = ({ image, children }: ComeWorkForYouProps) => (
             </h2>
             <div className={styles.richText}>{children}</div>
             <Link href="/benefits">
-                <a className="underline-link">
+                <a className="underline-link underline-link--white">
                     Benefits of being 100% employee owned
                 </a>
             </Link>
