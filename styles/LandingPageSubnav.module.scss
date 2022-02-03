@@ -1,5 +1,9 @@
 .container {
-    margin-top: $grid * 2;
+    margin-top: $grid * 4;
+
+    @include media-query(large) {
+        margin-top: $grid * 5;
+    }
 }
 
 .navigation {
@@ -106,8 +110,7 @@
 }
 
 .richText {
-    text-align: left;
-    & p {
-        color: var(--color--dark-indigo);
+    @include media-query(large) {
+        margin-right: -$grid * 4;
     }
 }

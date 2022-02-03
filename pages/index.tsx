@@ -1,18 +1,30 @@
 import type { NextPage } from 'next';
-import styles from 'styles/Home.module.scss';
 import { getLandingPage } from '../lib/api';
 import Layout from '../components/Layout';
-import Image from 'next/image';
 import { LandingPage } from 'types/LandingPage';
-
+import LandingPageHero from 'components/LandingPage/LandingPageHero';
 import LifeAsATorchboxer from 'components/LifeAsATorchboxer';
 import LandingPageCTA from 'components/LandingPageCTA';
 import LandingPageSubnav from 'components/LandingPageSubnav';
 import SocialMediaPhotos from 'components/SocialMediaPhotos';
+import ComeWorkForYou from 'components/ComeWorkForYou';
+import ClientLogos from 'components/ClientLogos';
+import Benefits from 'components/Benefits';
+
+const ExampleBenefits = [
+    'Performance and ownership bonus',
+    '25 days holiday',
+    'Personal development budget',
+    'Private health cover',
+    'Flexible hours',
+    'Regular socials - online and in-person',
+    'Ethical pension',
+    'Fruit!',
+];
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
-    url: 'https://source.unsplash.com/random/750x750/?nature',
+    url: 'https://source.unsplash.com/random/750×750/?nature',
     width: 750,
     height: 750,
 };
@@ -28,17 +40,13 @@ const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
 }) => (
-    <Layout preview={preview}>
-        <div className={styles.container}>
-            <h1 className={styles.title}>{landingPageContent.title}</h1>
-            <p>{landingPageContent.metadataDescription}</p>
-            <Image
-                src={landingPageContent.heroImage.url}
-                alt={landingPageContent.heroImage.description}
-                width={landingPageContent.heroImage.width}
-                height={landingPageContent.heroImage.height}
-            />
-
+    <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
+        <LandingPageHero image={PlaceholderImage}>
+            {/* Todo: Replace this with a rich text field component. */}
+            <p>
+                <strong>Glad you asked.</strong> We are not your average digital
+                agency...
+            </p>
             <LandingPageSubnav title="We are on a mission" jobs={3}>
                 <p>
                     For over 20 years, we’ve been devoted to delivering
@@ -57,7 +65,27 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     with:
                 </p>
             </LandingPageSubnav>
-        </div>
+        </LandingPageHero>
+
+        <ClientLogos logos={ImageArray} />
+
+        <ComeWorkForYou image={PlaceholderImage}>
+            <strong>
+                No parent company, no shareholders, just a team of equal owners.
+            </strong>
+            <br />
+            <br />
+            <p>
+                100% of our business belongs to our Employee Ownership Trust
+                (EOT). Everyone is included, everyone is updated and everyone
+                belongs.
+            </p>
+        </ComeWorkForYou>
+
+        <Benefits
+            title="Real benefits in touch with real life"
+            benefits={ExampleBenefits}
+        />
 
         <LifeAsATorchboxer>
             <p>
