@@ -48,18 +48,12 @@
 
     &Icon {
         display: block;
-        width: 32px;
+        min-width: 32px;
         margin-right: 5px;
     }
 
     &Information {
         margin-top: 4px;
-        max-width: 90%;
-        // Set to 90% so as to be responsive without the address cropping the SVG icon
-
-        @include media-query(medium) {
-            width: 85%;
-        }
 
         @include media-query(large) {
             width: 90%;
@@ -135,11 +129,7 @@
         font-weight: $weight--bold;
         color: var(--color--dark-indigo);
         text-decoration-line: underline;
-
-        // This follows the designs as the @ doesn't cut through the line
         text-underline-position: under;
-        // The extra spacing doesn't necessarily look as good.
-        // Maybe we should consider a pseudoelement underscore instead?
     }
 
     &PhoneLink {
@@ -150,8 +140,8 @@
     }
 
     &Image {
-        max-width: 85px;
-        max-height: 85px;
+        width: 85px;
+        height: 85px;
         border-radius: 85px;
         overflow: hidden;
         margin-right: 12px;
@@ -254,11 +244,7 @@
     }
 
     &Label {
-        position: absolute;
-        top: 0;
-        left: -9999px;
-        width: 1px;
-        height: 1px;
+        @include hidden();
     }
 
     &Input {

@@ -10,7 +10,7 @@ export const Image = ({ className = '', ...props }: ImageProps) => {
     }
 
     return (
-        <div className={[styles.container, className].join(' ')}>
+        <div className={`${styles.container} ${className}`}>
             <NextImage className={styles.image} layout="fill" {...props} />
         </div>
     );
