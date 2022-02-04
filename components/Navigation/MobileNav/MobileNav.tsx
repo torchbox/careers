@@ -13,18 +13,18 @@ const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
         className={`${styles.mobileNavItem} ${
             link.title === 'Careers' &&
             jobsAvailable > 0 &&
-            styles.mobileNavItem__withBadge
+            styles.mobileNavItemWithBadge
         }`}
     >
         {link.isCareersSiteInternalLink ? (
             <Link href={link.url}>
-                <a className={styles.mobileNavItem__link}>
-                    <span className={styles.mobileNavItem__title}>
+                <a className={styles.mobileNavItemLink}>
+                    <span className={styles.mobileNavItemTitle}>
                         {link.title}
                     </span>
                     {link.title === 'Careers' && jobsAvailable > 0 && (
                         <span
-                            className={`${styles.mobileNavItem__badgeLink} ${styles.badge}`}
+                            className={`${styles.mobileNavItemBadgeLink} ${styles.badge}`}
                             aria-label={`${jobsAvailable} jobs available`}
                         >
                             {jobsAvailable}
@@ -33,10 +33,8 @@ const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
                 </a>
             </Link>
         ) : (
-            <a className={styles.mobileNavItem__link} href={link.url}>
-                <span className={styles.mobileNavItem__title}>
-                    {link.title}
-                </span>
+            <a className={styles.mobileNavItemLink} href={link.url}>
+                <span className={styles.mobileNavItemTitle}>{link.title}</span>
             </a>
         )}
     </li>
@@ -61,15 +59,15 @@ export const MobileNav = ({
 
     return (
         <div className={styles.mobileNav} ref={navMenuRef}>
-            <div className={styles.mobileNav__container}>
+            <div className={styles.mobileNavontainer}>
                 <nav
-                    className={`${styles.mobileNav__modal} ${
-                        isOpen && styles.mobileNav__modalOpen
+                    className={`${styles.mobileNavModal} ${
+                        isOpen && styles.mobileNavModalOpen
                     }`}
                     aria-label="Mobile navigation"
                     role="navigation"
                 >
-                    <ul className={styles.mobileNav__list}>{navItems}</ul>
+                    <ul className={styles.mobileNavList}>{navItems}</ul>
                 </nav>
             </div>
         </div>

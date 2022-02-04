@@ -9,7 +9,7 @@
     background-color: var(--color--white);
     outline: 5px solid var(--color--coral) transparent;
 
-    &__item {
+    &Item {
         margin-bottom: 22px;
         line-height: 1;
         font-size: 16px;
@@ -19,12 +19,12 @@
         }
     }
 
-    &__itemWithBadge {
+    &ItemWithBadge {
         position: relative;
         height: 20px;
     }
 
-    &__link {
+    &Link {
         @include link-underscore(0);
         font-weight: $weight--bold;
         position: relative;
@@ -46,7 +46,7 @@
         }
     }
 
-    &__badge {
+    &Badge {
         position: relative;
         left: 14px;
         bottom: 10px;

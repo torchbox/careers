@@ -53,13 +53,13 @@
 }
 
 .benefit {
-    &__item {
+    &Item {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
-    &__icon {
+    &Icon {
         margin-right: $grid * 0.5;
 
         @include media-query(large) {
@@ -67,7 +67,7 @@
         }
     }
 
-    &__text {
+    &Text {
         text-align: left;
         font-weight: $weight--bold;
         color: var(--color--dark-indigo);
