@@ -64,7 +64,7 @@
 }
 
 .badge {
-    @include font-size(xs);
+    @include font-size(xxs);
     @include z-index(badge);
     font-weight: $weight--extrabold;
     line-height: 25px;
@@ -78,17 +78,33 @@
     &::before {
         @include z-index(under);
         width: 18px;
-        height: 22px;
+        height: 21px;
         content: '';
         background-color: var(--color--coral);
         position: absolute;
-        transform: translate(-50%, -25%) rotate(30deg);
+        transform: translate(-50%, -35%) rotate(30deg);
         left: 50%;
         top: 3px;
         transition: background-color $transition-quick;
 
         :global .themeDark :local & {
             background-color: var(--color--dark-indigo);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        color: var(--color--coral);
+        :global .themeDark :local & {
+            color: var(--color--dark-indigo);
+        }
+
+        &::before {
+            background-color: var(--color--dark-indigo);
+        }
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
         }
     }
 }
