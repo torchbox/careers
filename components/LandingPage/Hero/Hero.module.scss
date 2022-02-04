@@ -50,6 +50,8 @@
 }
 
 .image {
+    // Prevent image showing in front of menu dropdown
+    @include z-index(under);
     clip-path: url(#shardClipPath);
     width: 375px;
     height: 375px;
