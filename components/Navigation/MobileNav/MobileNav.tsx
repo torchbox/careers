@@ -59,7 +59,7 @@ export const MobileNav = ({
 
     return (
         <div className={styles.mobileNav} ref={navMenuRef}>
-            <div className={styles.mobileNavontainer}>
+            <div className={styles.mobileNavContainer}>
                 <nav
                     className={`${styles.mobileNavModal} ${
                         isOpen && styles.mobileNavModalOpen
