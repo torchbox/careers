@@ -90,21 +90,25 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 </p>
             </ComeWorkForYou>
 
-            <Benefits
-                title="Real benefits in touch with real life"
-                benefits={ExampleBenefits}
-            />
+            <div id="benefits">
+                <Benefits
+                    title="Real benefits in touch with real life"
+                    benefits={ExampleBenefits}
+                />
+            </div>
 
-            <LifeAsATorchboxer>
-                <p>
-                    From Bristol to Texas, we go the extra mile (or 4,813).
-                    We’re remote-first, but always connected, championing unique
-                    people in unique places. <br />
-                    <br />
-                    Find out more about who we are, how we work, what we believe
-                    in and where we’re heading.
-                </p>
-            </LifeAsATorchboxer>
+            <div id="lifeAsATorchboxer">
+                <LifeAsATorchboxer>
+                    <p>
+                        From Bristol to Texas, we go the extra mile (or 4,813).
+                        We’re remote-first, but always connected, championing
+                        unique people in unique places. <br />
+                        <br />
+                        Find out more about who we are, how we work, what we
+                        believe in and where we’re heading.
+                    </p>
+                </LifeAsATorchboxer>
+            </div>
 
             <SocialMediaPhotos photos={ImageArray} />
 
