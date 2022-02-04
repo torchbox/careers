@@ -39,76 +39,86 @@ type LandingPageProps = {
 const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
-}) => (
-    <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
-        <Hero image={PlaceholderImage}>
-            {/* Todo: Replace this with a rich text field component. */}
-            <p>
-                <strong>Glad you asked.</strong> We are not your average digital
-                agency...
-            </p>
-            <PageNav title="We are on a mission" jobs={3}>
+}) => {
+    const clientLogos =
+        landingPageContent.itemsCollection.items[2].clientsCollection.items.map(
+            (item: any) => item.clientLogo,
+        );
+    console.log(clientLogos);
+
+    return (
+        <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
+            <Hero image={PlaceholderImage}>
+                {/* Todo: Replace this with a rich text field component. */}
                 <p>
-                    For over 20 years, we’ve been devoted to delivering
-                    outstanding work, while making a positive impact on society.
+                    <strong>Glad you asked.</strong> We are not your average
+                    digital agency...
                 </p>
+                <PageNav title="We are on a mission" jobs={3}>
+                    <p>
+                        For over 20 years, we’ve been devoted to delivering
+                        outstanding work, while making a positive impact on
+                        society.
+                    </p>
 
-                <p>
-                    We create deeper meaning that joins the dots. Because our
-                    work doesn’t exist in a bubble. It has the potential to
-                    create more opportunities, better lives and deliver lasting
-                    value, for everyone.{' '}
-                </p>
+                    <p>
+                        We create deeper meaning that joins the dots. Because
+                        our work doesn’t exist in a bubble. It has the potential
+                        to create more opportunities, better lives and deliver
+                        lasting value, for everyone.{' '}
+                    </p>
 
-                <p>
-                    Here’s a taste of the incredible organisations we partner
-                    with:
-                </p>
-            </PageNav>
-        </Hero>
+                    <p>
+                        Here’s a taste of the incredible organisations we
+                        partner with:
+                    </p>
+                </PageNav>
+            </Hero>
 
-        <ClientLogos logos={ImageArray} />
+            <ClientLogos logos={clientLogos} />
 
-        <ComeWorkForYou image={PlaceholderImage}>
-            <strong>
-                No parent company, no shareholders, just a team of equal owners.
-            </strong>
-            <br />
-            <br />
-            <p>
-                100% of our business belongs to our Employee Ownership Trust
-                (EOT). Everyone is included, everyone is updated and everyone
-                belongs.
-            </p>
-        </ComeWorkForYou>
-
-        <Benefits
-            title="Real benefits in touch with real life"
-            benefits={ExampleBenefits}
-        />
-
-        <LifeAsATorchboxer>
-            <p>
-                From Bristol to Texas, we go the extra mile (or 4,813). We’re
-                remote-first, but always connected, championing unique people in
-                unique places. <br />
+            <ComeWorkForYou image={PlaceholderImage}>
+                <strong>
+                    No parent company, no shareholders, just a team of equal
+                    owners.
+                </strong>
                 <br />
-                Find out more about who we are, how we work, what we believe in
-                and where we’re heading.
-            </p>
-        </LifeAsATorchboxer>
+                <br />
+                <p>
+                    100% of our business belongs to our Employee Ownership Trust
+                    (EOT). Everyone is included, everyone is updated and
+                    everyone belongs.
+                </p>
+            </ComeWorkForYou>
 
-        <SocialMediaPhotos photos={ImageArray} />
+            <Benefits
+                title="Real benefits in touch with real life"
+                benefits={ExampleBenefits}
+            />
 
-        <CTA jobs={10} title="Ready to make a difference?">
-            <p>
-                We’re always excited about finding new talent and meeting people
-                that are as eager as we are to drive significant positive
-                change.
-            </p>
-        </CTA>
-    </Layout>
-);
+            <LifeAsATorchboxer>
+                <p>
+                    From Bristol to Texas, we go the extra mile (or 4,813).
+                    We’re remote-first, but always connected, championing unique
+                    people in unique places. <br />
+                    <br />
+                    Find out more about who we are, how we work, what we believe
+                    in and where we’re heading.
+                </p>
+            </LifeAsATorchboxer>
+
+            <SocialMediaPhotos photos={ImageArray} />
+
+            <CTA jobs={10} title="Ready to make a difference?">
+                <p>
+                    We’re always excited about finding new talent and meeting
+                    people that are as eager as we are to drive significant
+                    positive change.
+                </p>
+            </CTA>
+        </Layout>
+    );
+};
 
 export default LandingPage;
 
