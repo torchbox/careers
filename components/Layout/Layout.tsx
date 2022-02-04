@@ -1,7 +1,7 @@
-import Alert from '../components/Alert';
-import Footer from './Footer';
-import Header from './Header';
-import { Theme } from '../types/Base';
+import Alert from '../Alert';
+import Footer from '../Footer';
+import Header from '../Header';
+import { Theme } from '../../types/Base';
 
 type LayoutProps = {
     theme: Theme;

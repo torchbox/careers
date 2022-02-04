@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '/styles/LifeAsATorchboxer.module.scss';
+import styles from './LifeAsATorchboxer.module.scss';
 
 type LifeAsATorchboxerProps = {
     children: React.ReactNode;

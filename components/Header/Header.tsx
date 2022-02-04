@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { TorchboxLogo } from './TorchboxLogo';
-import styles from '/styles/Header.module.scss';
+import { TorchboxLogo } from '../Icons/TorchboxLogo';
+import styles from './Header.module.scss';
 
-import { MobileMenuButton, MobileNav } from './MobileNav';
-import { DesktopNav } from './DesktopNav';
+import { MobileMenuButton, MobileNav } from '../Navigation/MobileNav';
+import DesktopNav from '../Navigation/DesktopNav';
 
 const NAVIGATION_LINKS = [
     {

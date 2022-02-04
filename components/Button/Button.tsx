@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { ChevronIcon } from './Icons/ChevronIcon';
-import styles from '/styles/Button.module.scss';
+import { ChevronIcon } from '../Icons/ChevronIcon';
+import styles from './Button.module.scss';
 
 type ButtonProps = {
     className?: string;

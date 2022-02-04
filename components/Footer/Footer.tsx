@@ -1,9 +1,9 @@
-import { Image } from './Image';
-import { LocationIcon } from './Icons/LocationIcon';
-import { LinkedInIcon } from './Icons/LinkedInIcon';
-import { TwitterIcon } from './Icons/TwitterIcon';
-import { InstagramIcon } from './Icons/InstagramIcon';
-import styles from '/styles/Footer.module.scss';
+import { Image } from '../Image/Image';
+import { LocationIcon } from '../Icons/LocationIcon';
+import { LinkedInIcon } from '../Icons/LinkedInIcon';
+import { TwitterIcon } from '../Icons/TwitterIcon';
+import { InstagramIcon } from '../Icons/InstagramIcon';
+import styles from './Footer.module.scss';
 
 const LOCATION_DATA = [
     {

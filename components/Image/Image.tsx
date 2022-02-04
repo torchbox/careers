@@ -1,7 +1,7 @@
 // Code taken from GitHub discussion thread on Next/Image
 // https://github.com/vercel/next.js/discussions/18739
 
-import styles from '/styles/Image.module.scss';
+import styles from './Image.module.scss';
 import NextImage, { ImageProps } from 'next/image';
 
 export const Image = ({ className = '', ...props }: ImageProps) => {

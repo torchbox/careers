@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { RefObject } from 'react';
 import { NavLink } from 'types/Base';
-import styles from '/styles/MobileNav.module.scss';
+import styles from './MobileNav.module.scss';
 
 type MobileNavItemProps = {
     link: NavLink;

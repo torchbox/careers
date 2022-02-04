@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { BenefitStarIcon } from './Icons/BenefitStarIcon';
-import styles from '/styles/Benefits.module.scss';
+import { BenefitStarIcon } from '../Icons/BenefitStarIcon';
+import styles from './Benefits.module.scss';
 
 type BenefitsProps = {
     title: string;

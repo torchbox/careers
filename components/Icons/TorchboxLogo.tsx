@@ -1,4 +1,4 @@
-import styles from '../styles/TorchboxLogo.module.scss';
+import styles from './TorchboxLogo.module.scss';
 
 type TorchboxLogoProps = {
     className?: string;

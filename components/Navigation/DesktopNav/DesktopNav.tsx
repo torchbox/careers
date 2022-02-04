@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { NavLink } from 'types/Base';
-import { Subnav } from './DesktopSubnav';
-import styles from '/styles/DesktopNav.module.scss';
+import DesktopSubnav from '../DesktopSubnav';
+import styles from './DesktopNav.module.scss';
 
 type DesktopNavItemProps = {
     link: NavLink;
@@ -69,7 +69,7 @@ export const DesktopNav = ({
                             </button>
                             {isOpen && (
                                 <>
-                                    <Subnav
+                                    <DesktopSubnav
                                         jobsAvailable={jobsAvailable}
                                         links={links.slice(3, links.length)}
                                         toggleMenu={toggleMenu}

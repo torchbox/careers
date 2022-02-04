@@ -1,4 +1,4 @@
-import styles from 'styles/Alert.module.scss';
+import styles from './Alert.module.scss';
 
 const exitPreview = () => {
     document.location.href = '/api/exit-preview';

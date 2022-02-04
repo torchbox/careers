@@ -1,19 +1,19 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import { NavLink } from 'types/Base';
-import styles from '/styles/DesktopSubnav.module.scss';
+import styles from './DesktopSubnav.module.scss';
 
-type SubnavProps = {
+type DesktopSubnavProps = {
     links: NavLink[];
     jobsAvailable?: number;
     toggleMenu: () => void;
 };
 
-export const Subnav = ({
+export const DesktopSubnav = ({
     links,
     jobsAvailable = 0,
     toggleMenu,
-}: SubnavProps) => {
+}: DesktopSubnavProps) => {
     // Use a ref as we don't need to rerender the component on tab navigation
     const keysPressedRef = useRef(new Array());
 
