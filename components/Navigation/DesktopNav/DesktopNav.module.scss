@@ -1,0 +1,216 @@
+.desktopNav {
+    display: none;
+
+    @include media-query(menu-break) {
+        display: block;
+        padding-top: ($gutter * 0.5);
+    }
+
+    &__list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+    }
+
+    &__dots {
+        position: relative;
+        width: 6px;
+        height: 6px;
+        border-radius: 5px;
+        background-color: var(--color--header-links);
+        color: var(--color--header-links);
+        display: inline-block;
+        margin-left: 20px;
+
+        :global .themeDark :local & {
+            background-color: var(--color--white);
+            color: var(--color--white);
+        }
+
+        &::after,
+        &::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        &::before {
+            left: -10px;
+            background-color: var(--color--header-links);
+            color: var(--color--header-links);
+
+            :global .themeDark :local & {
+                background-color: var(--color--white);
+                color: var(--color--white);
+            }
+        }
+
+        &::after {
+            left: 10px;
+            background-color: var(--color--header-links);
+            color: var(--color--header-links);
+
+            :global .themeDark :local & {
+                background-color: var(--color--white);
+                color: var(--color--white);
+            }
+        }
+    }
+
+    &__moreItem {
+        position: relative;
+        padding-left: 3.5vw;
+        margin-right: 0;
+        display: none;
+        font-weight: $weight--bold;
+
+        //Aligns the more button with the rest of the nav items.
+        margin-bottom: 20px;
+
+        @include media-query(menu-break) {
+            display: block;
+        }
+
+        &::before {
+            content: '';
+            height: 40px;
+            width: 1px;
+            background-color: var(--color--header-links);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.15;
+
+            :global .themeDark :local & {
+                background-color: var(--color--white);
+            }
+        }
+    }
+
+    &__moreButton {
+        //Make the button easier to click
+        //The 20px to the right covers the triple dots
+        padding: 10px 20px 10px 10px;
+        position: relative;
+        background-color: transparent;
+        border: 0;
+        color: var(--color--header-links);
+        display: flex;
+        align-items: center;
+        font-weight: $weight--bold;
+
+        :global .themeDark :local & {
+            color: var(--color--white);
+        }
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.desktopNavItem {
+    margin-right: 5.5vw;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &__title {
+        font-weight: $weight--bold;
+    }
+
+    &__withBadge {
+        position: relative;
+    }
+
+    &__link {
+        @include font-size(s);
+        @include link-underscore(0);
+        display: block;
+        position: relative;
+        line-height: 20px;
+        text-decoration: none;
+        height: 40px;
+        color: var(--color--header-links);
+        border-top: 0;
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding: 0;
+        transition: all $transition-quick;
+
+        &:hover,
+        &:focus,
+        &--active {
+            @include link-underscore(4);
+            color: var(--color--header-links);
+        }
+
+        &:focus {
+            // This only displays for windows high contrast mode
+            outline: 3px solid var(--color--header-links) transparent;
+        }
+
+        :global .themeDark :local & {
+            color: var(--color--white);
+
+            &::after {
+                background-color: var(--color--lagoon);
+            }
+        }
+    }
+
+    &__badgeLink {
+        @include link-underscore(0);
+        border-bottom: 0;
+        position: absolute;
+        right: -25px;
+        top: -15px;
+    }
+}
+
+.backgroundOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.15);
+}
+
+.badge {
+    @include font-size(xs);
+    @include z-index(badge);
+    font-weight: $weight--extrabold;
+    line-height: 25px;
+    color: var(--color--dark-indigo);
+    position: relative;
+
+    :global .themeDark :local & {
+        color: var(--color--white);
+    }
+
+    &::before {
+        @include z-index(under);
+        width: 18px;
+        height: 22px;
+        content: '';
+        background-color: var(--color--coral);
+        position: absolute;
+        transform: translate(-50%, -25%) rotate(30deg);
+        left: 50%;
+        top: 3px;
+        transition: background-color $transition-quick;
+
+        :global .themeDark :local & {
+            background-color: var(--color--dark-indigo);
+        }
+    }
+}

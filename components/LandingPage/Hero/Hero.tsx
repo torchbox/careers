@@ -1,16 +1,16 @@
-import { Image } from 'components/Image';
-import styles from '../../styles/LandingPageHero.module.scss';
-import { ImageTypes } from '../../types/Base';
+import { Image } from 'components/Image/Image';
+import styles from './Hero.module.scss';
+import { ImageTypes } from '../../../types/Base';
 
-type LandingPageHeroProps = {
+type HeroProps = {
     image: ImageTypes;
     children: React.ReactNode;
 };
 
-export const LandingPageHero = ({ image, children }: LandingPageHeroProps) => {
+export const Hero = ({ image, children }: HeroProps) => {
     return (
         <>
-            <svg>
+            <svg height="0">
                 <defs>
                     <clipPath
                         id="shardClipPath"
@@ -40,4 +40,4 @@ export const LandingPageHero = ({ image, children }: LandingPageHeroProps) => {
     );
 };
 
-export default LandingPageHero;
+export default Hero;

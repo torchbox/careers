@@ -1,6 +1,6 @@
 .underline-link {
     @include font-size(s);
-
+    color: var(--color--white);
     font-weight: $weight--bold;
     border-bottom: 0;
     overflow: visible;

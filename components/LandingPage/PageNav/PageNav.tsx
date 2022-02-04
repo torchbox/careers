@@ -1,18 +1,14 @@
 import Link from 'next/link';
-import { ArrowLoopRight } from './ArrowLoopRight';
-import styles from '/styles/LandingPageSubnav.module.scss';
+import { ArrowLoopRight } from '../../Icons/ArrowLoopRight';
+import styles from './PageNav.module.scss';
 
-type LandingPageSubnavProps = {
+type PageNavProps = {
     title: string;
     jobs?: number;
     children: React.ReactNode;
 };
 
-export const LandingPageSubnav = ({
-    title,
-    jobs = 0,
-    children,
-}: LandingPageSubnavProps) => (
+export const PageNav = ({ title, jobs = 0, children }: PageNavProps) => (
     <div className={styles.container}>
         <ul className={styles.navigation}>
             <li className={styles.navItem}>
@@ -42,4 +38,4 @@ export const LandingPageSubnav = ({
     </div>
 );
 
-export default LandingPageSubnav;
+export default PageNav;
