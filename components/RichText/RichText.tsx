@@ -1,7 +1,7 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import React from 'react';
-import styles from 'styles/RichText.module.scss';
+import styles from './RichText.module.scss';
 
 type Theme = 'LIGHT' | 'DARK' | 'INDIGO';
 
@@ -48,13 +48,13 @@ const getRenderOptions = (theme: Theme) => {
     return {
         renderMark: {
             [MARKS.BOLD]: (text: React.ReactNode) => (
-                <span className={styles.bold}>{text}</span>
+                <strong className={styles.bold}>{text}</strong>
             ),
             [MARKS.ITALIC]: (text: React.ReactNode) => (
-                <span className={styles.italic}>{text}</span>
+                <em className={styles.italic}>{text}</em>
             ),
             [MARKS.UNDERLINE]: (text: React.ReactNode) => (
-                <span className={styles.underline}>{text}</span>
+                <u className={styles.underline}>{text}</u>
             ),
         },
         renderNode: {

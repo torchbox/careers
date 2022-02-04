@@ -9,7 +9,7 @@ import LifeAsATorchboxer from 'components/LifeAsATorchboxer';
 import LandingPageCTA from 'components/LandingPageCTA';
 import LandingPageSubnav from 'components/LandingPageSubnav';
 import SocialMediaPhotos from 'components/SocialMediaPhotos';
-import RichText from 'components/RichText';
+import RichText from 'components/RichText/RichText';
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
