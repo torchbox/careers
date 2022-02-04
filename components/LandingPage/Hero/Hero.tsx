@@ -20,6 +20,15 @@ export const Hero = ({ image, children }: HeroProps) => {
                         <path d="M 0.996 0.406 L 0.77 0.79 L 0.967 0.908 L 1.207 0.533 L 1.03 0.429 Z" />
                     </clipPath>
                 </defs>
+                <defs>
+                    <clipPath
+                        id="squareShardClipPath"
+                        clipPathUnits="objectBoundingBox"
+                    >
+                        <path d="M 0.801 0.421 L 0.567 0.768 L 0.759 0.894 L 0.985 0.551 Z " />
+                        <path d="M 0.462 0.007 L 0.81 0.241 L 0.375 0.865 L 0.023 0.63 Z" />
+                    </clipPath>
+                </defs>
             </svg>
             <div className={styles.heroContainer}>
                 <Image

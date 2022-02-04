@@ -1,5 +1,9 @@
 .container {
-    margin-top: $grid * 4;
+    margin-top: $grid * 2;
+
+    @include media-query(medium) {
+        margin-top: $grid * 4;
+    }
 
     @include media-query(large) {
         margin-top: $grid * 5;
@@ -48,10 +52,12 @@
 }
 
 .navLink {
-    color: var(--color--dark-indigo);
+    @include font-size(xs);
+    color: var(--color--indigo);
 }
 
 .jobsLink {
+    @include font-size(xs);
     color: var(--color--dark-indigo);
     font-weight: $weight--extrabold;
     position: relative;
@@ -68,7 +74,6 @@
 .jobsBadge {
     @include z-index(one);
     @include font-size(xs);
-
     display: inline-block;
     position: absolute;
     right: -24px;
@@ -91,11 +96,10 @@
 }
 
 .image {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+    display: none;
 
-    @include media-query(medium) {
+    @include media-query(large) {
+        display: block;
         margin-left: $grid;
     }
 }
@@ -104,7 +108,7 @@
     text-align: left;
     margin-top: $grid * 2;
 
-    @include media-query(large) {
+    @include media-query(medium) {
         margin-top: $grid * 3;
     }
 }

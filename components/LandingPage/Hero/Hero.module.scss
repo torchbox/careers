@@ -11,9 +11,9 @@
 
 .textContainer {
     text-align: left;
-    padding-left: 15px;
     padding-top: 22px;
     order: 2;
+    padding: 0 $grid;
 
     @include media-query(large) {
         padding-left: 30px;
@@ -72,6 +72,10 @@
     @include media-query(hero-break) {
         width: 750px;
         height: 775px;
+    }
+
+    @include media-query(site-width) {
+        clip-path: url(#squareShardClipPath);
     }
 
     & > span {

@@ -10,7 +10,7 @@
     @include media-query(large) {
         flex-direction: row;
         max-width: 1100px;
-        margin-bottom: $grid * 6;
+        margin-bottom: $grid * 4;
     }
 }
 
@@ -25,6 +25,7 @@
 .title {
     @include font-size(l);
     margin-bottom: $grid;
+    margin-top: $grid;
 
     @include media-query(medium) {
         margin-bottom: 2 * $grid;
