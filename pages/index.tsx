@@ -44,7 +44,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
         landingPageContent.itemsCollection.items[2].clientsCollection.items.map(
             (item: any) => item.clientLogo,
         );
-    console.log(clientLogos);
 
     return (
         <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
@@ -54,7 +53,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     <strong>Glad you asked.</strong> We are not your average
                     digital agency...
                 </p>
-                <PageNav title="We are on a mission" jobs={3}>
+                <PageNav title={landingPageContent.missionTitle} jobs={3}>
                     <p>
                         For over 20 years, we’ve been devoted to delivering
                         outstanding work, while making a positive impact on

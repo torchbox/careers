@@ -10,7 +10,7 @@ type HeroProps = {
 export const Hero = ({ image, children }: HeroProps) => {
     return (
         <>
-            <svg height="0">
+            <svg className={styles.svg}>
                 <defs>
                     <clipPath
                         id="shardClipPath"
