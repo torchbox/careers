@@ -61,7 +61,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 </p>
 
                 <p>
-                    Here’s a taste of the incredible organisations we partner
+                    Here’s a taste of the incredible organizations we partner
                     with:
                 </p>
             </PageNav>
