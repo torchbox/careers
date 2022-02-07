@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import { getJobPost, getAllJobSlugs } from 'lib/peopleHR';
 import type { JobPost } from 'lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
 
@@ -18,25 +17,40 @@ const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
 
 export default JobPosting;
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-    const job = await getJobPost(params.slug);
+const requestHeaders: HeadersInit = {
+    'Content-Type': 'application/json',
+    'Authorization': process.env.PEOPLEHR_AUTH_TOKEN as string,
+};
 
-    if (!job)
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+    const apiURL =
+        process.env.NEXT_PUBLIC_FUNCTIONS_BASE_URL + '/api/jobs/' + params.slug;
+
+    try {
+        const job = await fetch(apiURL, { headers: requestHeaders }).then(
+            (res) => res.json(),
+        );
+        return {
+            props: { job },
+            revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
+        };
+    } catch (error) {
         return {
             notFound: true,
         };
-
-    return {
-        props: { job },
-        revalidate: 60 * 60, //After one hour, the cache expires and the page gets rebuilt.
-    };
+    }
 }
 
 export async function getStaticPaths() {
-    const allJobSlugs = await getAllJobSlugs();
+    const apiURL =
+        process.env.NEXT_PUBLIC_FUNCTIONS_BASE_URL + '/api/jobs/slugs';
+    const allJobSlugs = await fetch(apiURL, { headers: requestHeaders }).then(
+        (res) => res.json(),
+    );
+
     if (allJobSlugs) {
         return {
-            paths: allJobSlugs.map((slug) => `/jobs/${slug}`),
+            paths: allJobSlugs.map((slug: string) => `/jobs/${slug}`),
             fallback: 'blocking',
         };
     }

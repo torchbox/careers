@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import { getAllJobSummaries } from '../lib/peopleHR';
 import type { JobSummary } from '../lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
 import Link from 'next/link';
@@ -26,10 +25,26 @@ const Jobs: NextPage<{ jobs: JobSummary[] }> = ({ jobs }) => {
 export default Jobs;
 
 export async function getStaticProps() {
-    const jobs = (await getAllJobSummaries()) ?? [];
+    const apiURL =
+        process.env.NEXT_PUBLIC_FUNCTIONS_BASE_URL + '/api/jobs/summaries';
 
-    return {
-        props: { jobs },
-        revalidate: 60 * 60, //After one hour, the cache expires and the page gets rebuilt.
+    const requestHeaders: HeadersInit = {
+        'Content-Type': 'application/json',
+        'Authorization': process.env.PEOPLEHR_AUTH_TOKEN as string,
     };
+
+    try {
+        const jobs = await fetch(apiURL, { headers: requestHeaders }).then(
+            (res) => res.json(),
+        );
+        return {
+            props: { jobs },
+            revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
+        };
+    } catch (error) {
+        // Todo: Instead of redirecting, show an appropriate error message to the user, telling them to try again later.
+        return {
+            notFound: true,
+        };
+    }
 }
