@@ -10,6 +10,7 @@ import LifeAsATorchboxer from 'components/LandingPage/LifeAsATorchboxer';
 import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
 import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
+import RichText from 'components/RichText/RichText';
 
 const ExampleBenefits = [
     'Performance and ownership bonus',
@@ -40,30 +41,18 @@ const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
 }) => (
-    <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
+    <Layout theme="LIGHT" preview={preview} jobsAvailable={11}>
         <Hero image={PlaceholderImage}>
             {/* Todo: Replace this with a rich text field component. */}
             <p>
                 <strong>Glad you asked.</strong> We are not your average digital
                 agency...
             </p>
-            <PageNav title="We are on a mission" jobs={3}>
-                <p>
-                    For over 20 years, we’ve been devoted to delivering
-                    outstanding work, while making a positive impact on society.
-                </p>
-
-                <p>
-                    We create deeper meaning that joins the dots. Because our
-                    work doesn’t exist in a bubble. It has the potential to
-                    create more opportunities, better lives and deliver lasting
-                    value, for everyone.{' '}
-                </p>
-
-                <p>
-                    Here’s a taste of the incredible organisations we partner
-                    with:
-                </p>
+            <PageNav title={landingPageContent.missionTitle} jobs={3}>
+                <RichText
+                    theme="INDIGO"
+                    content={landingPageContent.missionDescription}
+                />
             </PageNav>
         </Hero>
 
@@ -87,25 +76,32 @@ const LandingPage: NextPage<LandingPageProps> = ({
             benefits={ExampleBenefits}
         />
 
+        {/* Todo: Implement the landing page hero.
+        
+        <h1 className={styles.title}>{landingPageContent.title}</h1>
+        <p>{landingPageContent.metadataDescription}</p>
+        <Image
+            src={landingPageContent.heroImage.url}
+            alt={landingPageContent.heroImage.description}
+            width={landingPageContent.heroImage.width}
+            height={landingPageContent.heroImage.height}
+        />
+        */}
+
         <LifeAsATorchboxer>
-            <p>
-                From Bristol to Texas, we go the extra mile (or 4,813). We’re
-                remote-first, but always connected, championing unique people in
-                unique places. <br />
-                <br />
-                Find out more about who we are, how we work, what we believe in
-                and where we’re heading.
-            </p>
+            <RichText
+                theme="INDIGO"
+                content={landingPageContent.lifeAsATorchboxer}
+            />
         </LifeAsATorchboxer>
 
         <SocialMediaPhotos photos={ImageArray} />
 
-        <CTA jobs={10} title="Ready to make a difference?">
-            <p>
-                We’re always excited about finding new talent and meeting people
-                that are as eager as we are to drive significant positive
-                change.
-            </p>
+        <CTA jobs={10} title={landingPageContent.ctaTitle}>
+            <RichText
+                theme="INDIGO"
+                content={landingPageContent.ctaDescription}
+            />
         </CTA>
     </Layout>
 );
