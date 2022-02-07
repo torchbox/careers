@@ -1,5 +1,13 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
+import {
+    BLOCKS,
+    MARKS,
+    INLINES,
+    Block,
+    Inline,
+    Hyperlink,
+    Document,
+} from '@contentful/rich-text-types';
 import React from 'react';
 import styles from './RichText.module.scss';
 
@@ -7,44 +15,12 @@ type Theme = 'LIGHT' | 'DARK' | 'INDIGO';
 
 type RichTextProps = {
     theme: Theme;
-    content: any;
+    content: {
+        json: Document;
+    };
 };
 
-const renderParagraph = (theme: Theme, children: React.ReactNode) => {
-    switch (theme) {
-        case 'LIGHT':
-            return <p className={styles.paragraphLight}>{children}</p>;
-        case 'DARK':
-            return <p className={styles.paragraphDark}>{children}</p>;
-        case 'INDIGO':
-            return <p className={styles.paragraphIndigo}>{children}</p>;
-    }
-};
-
-const renderLink = (theme: Theme, node: any, children: React.ReactNode) => {
-    switch (theme) {
-        case 'LIGHT':
-            return (
-                <a className={styles.hyperlink} href={node.data.uri}>
-                    {children}
-                </a>
-            );
-        case 'DARK':
-            return (
-                <a className={styles.hyperlinkDark} href={node.data.uri}>
-                    {children}
-                </a>
-            );
-        case 'INDIGO':
-            return (
-                <a className={styles.hyperlink} href={node.data.uri}>
-                    {children}
-                </a>
-            );
-    }
-};
-
-const getRenderOptions = (theme: Theme) => {
+const getRenderOptions = () => {
     return {
         renderMark: {
             [MARKS.BOLD]: (text: React.ReactNode) => (
@@ -61,33 +37,59 @@ const getRenderOptions = (theme: Theme) => {
             // Do not delete the unused Node parameter as this will cause Contentful's React Renderer to crash
             // If only `children` is passed, it attempts to render an object as JSX
             [BLOCKS.HEADING_2]: (
-                node: React.ReactNode,
+                _: React.ReactNode,
                 children: React.ReactNode,
             ) => {
                 return <h2 className={styles.h2}>{children}</h2>;
             },
             [BLOCKS.HEADING_3]: (
-                node: React.ReactNode,
+                _: React.ReactNode,
                 children: React.ReactNode,
             ) => {
                 return <h3 className={styles.h3}>{children}</h3>;
             },
             [BLOCKS.PARAGRAPH]: (
-                node: React.ReactNode,
+                _: React.ReactNode,
                 children: React.ReactNode,
-            ) => renderParagraph(theme, children),
+            ) => {
+                return <p className={styles.paragraph}>{children}</p>;
+            },
             // Note that TypeScript expects this function to return an object with functions that take in `React.ReactNode`s
             // In reality, JSON data is being passed into this function, hence the `:any` type here
-            [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) =>
-                renderLink(theme, node, children),
+            [INLINES.HYPERLINK]: (
+                node: Block | Inline,
+                children: React.ReactNode,
+            ) => {
+                return (
+                    <a
+                        className={styles.hyperlink}
+                        href={(node as Hyperlink).data.uri}
+                    >
+                        {children}
+                    </a>
+                );
+            },
         },
     };
 };
 
 export const RichText = ({ theme, content }: RichTextProps) => {
+    let themeClass = 'themeLight';
+    switch (theme) {
+        case 'LIGHT':
+            themeClass = 'themeLight';
+            break;
+        case 'INDIGO':
+            themeClass = 'themeIndigo';
+            break;
+        case 'DARK':
+            themeClass = 'themeDark';
+            break;
+    }
+
     return (
-        <div className={styles.container}>
-            {documentToReactComponents(content.json, getRenderOptions(theme))}
+        <div className={`${styles.container} ${themeClass}`}>
+            {documentToReactComponents(content.json, getRenderOptions())}
         </div>
     );
 };

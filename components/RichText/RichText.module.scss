@@ -6,22 +6,22 @@
     font-style: italic;
 }
 
-.paragraphLight {
+.paragraph {
+    @include font-size(s);
+    line-height: 30px;
     color: var(--color--grey);
-    @include font-size(s);
-    line-height: 30px;
-}
 
-.paragraphIndigo {
-    color: var(--color--dark-indigo);
-    @include font-size(s);
-    line-height: 30px;
-}
+    :global .themeLight :local & {
+        color: var(--color--grey);
+    }
 
-.paragraphDark {
-    color: var(--color--white);
-    @include font-size(s);
-    line-height: 30px;
+    :global .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
+
+    :global .themeDark :local & {
+        color: var(--color--white);
+    }
 }
 
 .h2 {
@@ -39,45 +39,17 @@
     font-weight: $weight--extrabold;
     position: relative;
     text-decoration: underline;
-
-    // This looks to follow the designs closer than the default
     text-underline-position: under;
 
-    // If we should use a custom position for the underline
-    // (& add any custom hover effects) use the following instead
-    /*
-    &:after {
-        content: "";
-        position: absolute;
-        bottom: -3px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: var(--color--dark-indigo);
+    :global .themeLight :local & {
+        color: var(--color--dark-indigo);
     }
-    */
-}
 
-.hyperlinkDark {
-    color: var(--color--white);
-    font-weight: $weight--extrabold;
-    position: relative;
-    text-decoration: underline;
+    :global .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
 
-    // This looks to follow the designs closer than the default
-    text-underline-position: under;
-
-    // If we should use a custom position for the underline
-    // (& add any custom hover effects) use the following instead
-    /*
-  &:after {
-      content: "";
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: var(--color--coral);
-  }
-  */
+    :global .themeDark :local & {
+        color: var(--color--white);
+    }
 }
