@@ -1,7 +1,4 @@
-import xml2js from 'xml2js';
 import { Window } from 'happy-dom';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import path from 'path';
 
 export interface JobPost {
     title: string;
@@ -37,9 +34,6 @@ const Node: {
     TEXT_NODE: 3,
 };
 
-// One hour, measured in milliseconds
-const CACHE_TTL = 60 * 60 * 1000;
-
 const ALLOWLIST = [
     'H2',
     'H3',
@@ -54,165 +48,7 @@ const ALLOWLIST = [
     'SPAN',
 ] as const;
 
-type ALLOWLIST =
-    | 'H2'
-    | 'H3'
-    | 'H4'
-    | 'H5'
-    | 'P'
-    | 'LI'
-    | 'UL'
-    | 'A'
-    | 'FONT'
-    | 'DIV'
-    | 'SPAN';
-
-/**
- * Gets Torchbox's active job listings from the PeopleHR RSS Feed
- * @returns an XML string, or null if a server error occurs.
- */
-async function fetchPeopleHRFeed(): Promise<string | null> {
-    if (process.env.PEOPLEHR_RSS_FEED_URL)
-        return fetch(process.env.PEOPLEHR_RSS_FEED_URL).then((response) => {
-            if (response.ok) return response.text();
-            console.error(
-                'Error fetching PeopleHR feed: RSS Feed URL not responding',
-            );
-            return null;
-        });
-    console.error(
-        'Error fetching PeopleHR feed: RSS Feed URL not found in .env.local',
-    );
-    return null;
-}
-
-/**
- * Converts XML to JSON using xml2js
- * @param xmlString
- * @returns JSON object
- */
-async function parseXml(xmlString: string): Promise<any> {
-    return await new Promise((resolve) =>
-        xml2js.parseString(xmlString, (err: Error, jsonData: any) => {
-            if (err) {
-                throw err;
-            }
-            resolve(jsonData);
-        }),
-    );
-}
-
-/**
- * Pulls the PeopleHR RSS feed data from the cache,
- * or fetches it from the feed if the cache has expired
- * @returns JSON of the RSS feed
- */
-async function getJobPostingData() {
-    const cacheFilePath = path.join(
-        process.cwd(),
-        'cachedData',
-        'peopleHRcache.json',
-    );
-
-    if (existsSync(cacheFilePath)) {
-        let cacheJSON;
-
-        try {
-            cacheJSON = JSON.parse(readFileSync(cacheFilePath, 'utf8'));
-        } catch (error) {
-            console.error(
-                'Error reading and parsing the PeopleHR cache file: ',
-                error,
-            );
-            cacheJSON.lastUpdated = 0; // Force a rewrite to the cache if the cache has become corrupted
-        }
-
-        if (cacheJSON.lastUpdated + CACHE_TTL < Date.now()) {
-            // The cache has timed out, fetch new data from PeopleHR
-
-            const peopleHRJobPostingsXML = await fetchPeopleHRFeed().catch(
-                function (error) {
-                    console.error('Error fetching data from PeopleHR: ', error);
-                    return null;
-                },
-            );
-
-            if (peopleHRJobPostingsXML === null) {
-                // In the event of a server error, don't update the job listings if we
-                // still have cached listings available to use instead
-
-                if (cacheJSON.jobJSON === undefined) {
-                    return null;
-                }
-
-                const fileData = {
-                    lastUpdated: Date.now(),
-                    jobJSON: cacheJSON.jobJSON,
-                };
-
-                writeFileSync(cacheFilePath, JSON.stringify(fileData));
-
-                return cacheJSON.jobJSON;
-            } else {
-                // If the server responds OK, update according to the feed contents
-                const peopleHRJobPostings = await parseXml(
-                    peopleHRJobPostingsXML,
-                );
-
-                const fileData = {
-                    lastUpdated: Date.now(),
-                    jobJSON: peopleHRJobPostings,
-                };
-
-                try {
-                    writeFileSync(cacheFilePath, JSON.stringify(fileData));
-                } catch (error) {
-                    console.error(
-                        'Error writing to the PeopleHR cache file: ',
-                        error,
-                    );
-                }
-
-                return peopleHRJobPostings;
-            }
-        } else {
-            // The cache has not timed out yet, return the cached JSON
-            return cacheJSON.jobJSON;
-        }
-    } else {
-        // If the cache file doesn't exist, create one
-        const peopleHRJobPostingsXML = await fetchPeopleHRFeed().catch(
-            function (error) {
-                console.error('Error fetching data from PeopleHR: ', error);
-                return null;
-            },
-        );
-
-        if (peopleHRJobPostingsXML === null) {
-            // In the event of a server error, return 404
-            return null;
-        } else {
-            // Create a new file and set the cache
-            const peopleHRJobPostings = await parseXml(peopleHRJobPostingsXML);
-
-            const fileData = {
-                lastUpdated: Date.now(),
-                jobJSON: peopleHRJobPostings,
-            };
-
-            try {
-                writeFileSync(cacheFilePath, JSON.stringify(fileData));
-            } catch (error) {
-                console.error(
-                    'Error writing to the PeopleHR cache file: ',
-                    error,
-                );
-            }
-
-            return peopleHRJobPostings;
-        }
-    }
-}
+type ALLOWLIST = typeof ALLOWLIST[number];
 
 /**
  * This function removes *most* empty elements recursively.
@@ -492,7 +328,7 @@ export function createJobSummaryFromPost(post: JobPost): JobSummary {
  * @param json RSS feed JSON for all job posts
  * @returns Array of JobPost
  */
-function convertJSONToJobPosts(json: any): JobPost[] {
+export function convertJSONToJobPosts(json: any): JobPost[] {
     const jobPostingsJSON = json.rss.channel[0].item;
 
     let jobPosts: JobPost[] = [];
@@ -507,43 +343,4 @@ function convertJSONToJobPosts(json: any): JobPost[] {
     }
 
     return jobPosts;
-}
-
-export async function getAllJobPostings(): Promise<JobPost[] | null> {
-    const jobPostingData = await getJobPostingData();
-    if (jobPostingData === null) return null;
-    return convertJSONToJobPosts(jobPostingData);
-}
-
-/**
- * Used for generating pages in jobs/[slug].tsx
- * @returns an array of URL slugs for all the job posts.
- */
-export async function getAllJobSlugs(): Promise<(string | undefined)[] | null> {
-    const jobPostings: JobPost[] | null = await getAllJobPostings();
-    if (jobPostings === null) return null;
-    return jobPostings.map((post) => post.slug);
-}
-
-/**
- * Used for generating pages in jobs/[slug].tsx
- * @param slug - use a valid slug from getAllJobSlugs
- * @returns JobPost that matches the slug
- */
-export async function getJobPost(
-    slug: string,
-): Promise<JobPost | undefined | null> {
-    const jobPostings: JobPost[] | null = await getAllJobPostings();
-    if (jobPostings === null) return null;
-    return jobPostings.find((post) => post.slug === slug);
-}
-
-/**
- * Gets a condensed description and general information for each job.
- * @returns an array of job summaries.
- */
-export async function getAllJobSummaries() {
-    const jobPostings: JobPost[] | null = await getAllJobPostings();
-    if (jobPostings === null) return null;
-    return jobPostings.map((post) => createJobSummaryFromPost(post));
 }

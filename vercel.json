@@ -1,6 +1,6 @@
 {
   "functions": {
-    "lib/peopleHR.ts": {
+    "pages/api/peopleHR.ts": {
       "includeFiles": "cachedData/**"
     }
   }
