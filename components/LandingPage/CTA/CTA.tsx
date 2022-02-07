@@ -1,17 +1,13 @@
-import { Button } from './Button';
-import styles from '/styles/LandingPageCTA.module.scss';
+import Button from '../../Button/';
+import styles from './CTA.module.scss';
 
-type LandingPageCTAProps = {
+type CTAProps = {
     title: string;
     jobs: number;
     children: React.ReactNode;
 };
 
-export const LandingPageCTA = ({
-    title,
-    jobs,
-    children,
-}: LandingPageCTAProps) => (
+export const CTA = ({ title, jobs, children }: CTAProps) => (
     <div className={styles.container}>
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.richText}>{children}</div>
@@ -21,4 +17,4 @@ export const LandingPageCTA = ({
     </div>
 );
 
-export default LandingPageCTA;
+export default CTA;

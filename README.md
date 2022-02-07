@@ -19,11 +19,10 @@ N.B. Remember to run `npm install` every time you switch development branches. T
 
 Before committing changes, run
 
-``
+```
 npm run format
 npm run lint
-
-````
+```
 
 So your code passes CI.
 
@@ -36,7 +35,10 @@ Log in to Contentful and from Settings > API Keys populate `.env.local` with the
 Restart the development server.
 
 To view the GraphQL API explorer, go to
-`https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }`
+
+```
+https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }
+```
 
 ## Learn More
 
@@ -52,64 +54,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Code Style Decisions
-
-```ts
-type LayoutProps = {
-    preview: boolean;
-    children: React.ReactNode;
-};
-
-export const Layout = ({ preview, children }: LayoutProps) => {
-    return (
-        <div>
-            <Alert preview={preview} />
-            <main>{children}</main>
-        </div>
-    );
-};
-
-export default Layout;
-````
-
-1. Use `type Variable = { ... }`, avoiding `Interface` for consistency across the codebase where possible.
-2. Where components have more than one prop, define the prop types separately (e.g. `LayoutProps`)
-3. Specify children in the props with `React.ReactNode` (avoid `React.FC` to imply children, we should define children explicitly)
-
-```ts
-import { LandingPage } from "types/LandingPage";
-
-type LandingPageProps = {
-    preview: boolean;
-    landingPageContent: LandingPage;
-};
-
-const LandingPage: NextPage<LandingPageProps> = ({
-    preview,
-    landingPageContent,
-}) => ( ... );
-```
-
-4. Define props for Next Pages using the above `NextPage` wrapper.
-5. Define the types for complex data objects in a separate `types/` file.
-
-```ts
-export type LandingPage = {
-  title: string;
-  metadataDescription: string;
-  heroImage: Image;
-  workForYouDescription: any;
-  workForYouImage: Image;
-  lifeAsATorchboxer: any;
-  ctaTitle: string;
-  ctaDescription: any;
-};
-```
-
-6. Where we pull complex unregulated JSON from the Contentful GraphQL Schema, use the `any` type.
-7. Add reusable type definitions to `types/Base.ts`
-
-```
-
-```

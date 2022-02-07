@@ -18,11 +18,12 @@ $large-font-sizes: (
     xxl: 64px,
     xl: 45px,
     l: 38px,
+    ml: 28px,
     m: 24px,
     s: 20px,
-    xs: 16px,
+    xs: 18px,
     xxs: 14px,
-    xxxs: 12px,
+    xxxs: 13px,
 );
 
 $medium-font-sizes: (
@@ -31,11 +32,12 @@ $medium-font-sizes: (
     xxl: 52px,
     xl: 38px,
     l: 28px,
+    ml: 26px,
     m: 22px,
     s: 20px,
-    xs: 16px,
+    xs: 18px,
     xxs: 14px,
-    xxxs: 12px,
+    xxxs: 13px,
 );
 
 $small-font-sizes: (
@@ -44,11 +46,12 @@ $small-font-sizes: (
     xxl: 32px,
     xl: 28px,
     l: 26px,
+    ml: 24px,
     m: 20px,
     s: 18px,
     xs: 16px,
-    xxs: 13px,
-    xxxs: 12px,
+    xxs: 14px,
+    xxxs: 13px,
 );
 
 // --------------------------------- Breakpoints --------------------------------------
@@ -56,6 +59,7 @@ $breakpoints: (
     'medium' '(min-width: 599px)',
     'large' '(min-width: 1023px)',
     'menu-break' '(min-width: 1255px)',
+    'hero-break' '(min-width: 1350px)',
     'x-large' '(min-width: 1919px)'
 );
 
