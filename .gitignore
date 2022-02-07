@@ -38,3 +38,5 @@ yarn-error.log*
 
 # caching data generated when hosted on Vercel
 /cachedData
+
+.vscode/settings.json
