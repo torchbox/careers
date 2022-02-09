@@ -65,7 +65,7 @@
 
     &MoreItem {
         position: relative;
-        padding-left: 3.5vw;
+        padding-left: $grid * 3;
         margin-right: 0;
         display: none;
         font-weight: $weight--bold;
@@ -117,7 +117,7 @@
 }
 
 .desktopNavItem {
-    margin-right: 5.5vw;
+    margin-right: $grid * 3;
 
     &:last-child {
         margin-right: 0;
