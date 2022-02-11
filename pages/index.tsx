@@ -76,18 +76,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
             benefits={ExampleBenefits}
         />
 
-        {/* Todo: Implement the landing page hero.
-        
-        <h1 className={styles.title}>{landingPageContent.title}</h1>
-        <p>{landingPageContent.metadataDescription}</p>
-        <Image
-            src={landingPageContent.heroImage.url}
-            alt={landingPageContent.heroImage.description}
-            width={landingPageContent.heroImage.width}
-            height={landingPageContent.heroImage.height}
-        />
-        */}
-
         <LifeAsATorchboxer>
             <RichText
                 theme="INDIGO"
