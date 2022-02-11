@@ -11,6 +11,7 @@ import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
 import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
 import RichText from 'components/RichText/RichText';
+import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
 
 const ExampleBenefits = [
     'Performance and ownership bonus',
@@ -91,6 +92,13 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 content={landingPageContent.ctaDescription}
             />
         </CTA>
+
+        <MusingsFromTheTeam
+            postData={
+                landingPageContent.itemsCollection.items[3].blogPostsCollection
+                    .items
+            }
+        />
     </Layout>
 );
 

@@ -16,3 +16,16 @@ export type ImageTypes = {
     width: number;
     height: number;
 };
+
+export type Person = {
+    name: string;
+    role: string;
+    image: ImageTypes;
+};
+
+export type BlogPost = {
+    title: string;
+    date: string;
+    slug: string;
+    author: Person;
+};

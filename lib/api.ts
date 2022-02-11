@@ -76,7 +76,40 @@ export async function getLandingPage(preview: boolean) {
                                 benefitSnippet
                             }
                         }
+                    }
+                    ... on Clients {
+                            clientsCollection(limit: 8){
+                              items {
+                                clientName
+                                clientLogo {
+                                  width
+                                  height
+                                  description
+                                  url
+                                }
+                              }
+                            }
+                          }
+
+                    ... on MusingsFromTheTeam {
+                        blogPostsCollection(limit: 3){
+                          items {
+                            title
+                            slug
+                            date
+                            author {
+                              name
+                              role
+                              image {
+                                url
+                                width
+                                height
+                                description
+                              }
+                            }
+                          }
                         }
+                      }
                     }
                 }
                 workForYouDescription {
