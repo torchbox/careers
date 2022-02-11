@@ -60,6 +60,7 @@ $breakpoints: (
     'large' '(min-width: 1023px)',
     'menu-break' '(min-width: 1255px)',
     'hero-break' '(min-width: 1350px)',
+    'site-width' '(min-width: 1441px)',
     'x-large' '(min-width: 1919px)'
 );
 
@@ -93,6 +94,8 @@ $z-index: (
     zero: 0,
     one: 1,
     two: 2,
+    three: 3,
+    four: 4,
     badge: 5,
     base: 10,
     overlap: 20,

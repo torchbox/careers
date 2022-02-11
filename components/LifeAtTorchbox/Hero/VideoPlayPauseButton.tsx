@@ -1,4 +1,4 @@
-import styles from '../../styles/VideoPlayPauseButton.module.scss';
+import styles from './VideoPlayPauseButton.module.scss';
 
 type VideoPlayPauseButtonProps = {
     playing: boolean;

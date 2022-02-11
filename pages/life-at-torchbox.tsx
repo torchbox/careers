@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import styles from 'styles/LifeAtTorchbox.module.scss';
 import Layout from '../components/Layout';
-import LifeAtTorchboxHero from 'components/LifeAtTorchbox/LifeAtTorchboxHero';
+import Hero from 'components/LifeAtTorchbox/Hero';
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
@@ -20,20 +20,18 @@ type LifeAtTorchboxPageProps = {
 };
 
 const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({ preview }) => (
-    <Layout preview={preview}>
-        <div className={styles.container}>
-            <div className={styles.gradientBackground}>
-                <LifeAtTorchboxHero
-                    image={PlaceholderImage}
-                    video={PlaceholderVideo}
-                    subtitle="Remote-first, but always connected, our international team’s a tight-knit bunch."
-                >
-                    Our international clients are just a Zoom call away, and
-                    with a solid team of 80+ permanent staff - spanning four
-                    offices and five continents - we’ve got them covered, no
-                    matter the time zone.
-                </LifeAtTorchboxHero>
-            </div>
+    <Layout theme="DARK" preview={preview} jobsAvailable={8}>
+        <div className={styles.indigoBackground}>
+            <Hero
+                image={PlaceholderImage}
+                video={PlaceholderVideo}
+                subtitle="Remote-first, but always connected, our international team’s a tight-knit bunch."
+            >
+                Our international clients are just a Zoom call away, and with a
+                solid team of 80+ permanent staff - spanning four offices and
+                five continents - we’ve got them covered, no matter the time
+                zone.
+            </Hero>
         </div>
     </Layout>
 );

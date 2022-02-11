@@ -1,15 +1,35 @@
 .heroContainer {
+    max-width: $site-width;
+    margin: 0 auto;
+    @include z-index(zero);
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    @include media-query(menu-break) {
-        flex-direction: row;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color--indigo) 0%,
+        var(--color--dark-indigo) 100%
+    );
+
+    @include media-query(large) {
+        background: none;
     }
 }
 
+.desktopHeroImageBackgroundGradient {
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color--indigo) 0%,
+        var(--color--dark-indigo) 100%
+    );
+}
+
 .textContainer {
+    @include z-index(four);
+    position: relative;
     text-align: left;
     padding-left: 15px;
     padding-top: 22px;
@@ -17,12 +37,15 @@
 
     @include media-query(large) {
         padding-left: 30px;
+        max-width: 500px;
+        padding-top: 80px;
     }
 
     @include media-query(menu-break) {
         order: 1;
         padding-left: 88px;
-        padding-top: 158px;
+        padding-top: 108px;
+        max-width: 600px;
     }
 }
 
@@ -88,15 +111,6 @@
 
     @include media-query(large) {
         display: none;
-        order: 2;
-        width: 575px;
-        height: 575px;
-        margin-bottom: -$grid * 8;
-    }
-
-    @include media-query(hero-break) {
-        width: 750px;
-        height: 775px;
     }
 
     & > span {
@@ -108,16 +122,6 @@
             height: 625px !important;
         }
 
-        @include media-query(large) {
-            width: 575px !important;
-            height: 575px !important;
-        }
-
-        @include media-query(hero-break) {
-            width: 750px !important;
-            height: 775px !important;
-        }
-
         & > img {
             width: 375px !important;
             height: 375px !important;
@@ -126,16 +130,6 @@
             @include media-query(medium) {
                 width: 625px !important;
                 height: 625px !important;
-            }
-
-            @include media-query(large) {
-                width: 575px !important;
-                height: 575px !important;
-            }
-
-            @include media-query(hero-break) {
-                width: 750px !important;
-                height: 775px !important;
             }
         }
     }
@@ -147,10 +141,11 @@
 
     @include media-query(large) {
         display: block;
-        order: 2;
+        position: absolute;
+        top: 0;
+        right: 0;
         width: 575px;
         height: 575px;
-        margin-bottom: -$grid * 8;
     }
 
     @include media-query(hero-break) {
@@ -184,28 +179,97 @@
 }
 
 .videoContainer {
+    @include z-index(one);
     display: none;
-    clip-path: url(#shardClipPath);
-    margin-left: auto;
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
 
     @include media-query(large) {
         display: block;
-        order: 2;
-        width: 575px;
-        height: 575px;
-        margin-bottom: -$grid * 8;
+    }
+}
+
+.videoClip {
+    @include z-index(three);
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    clip-path: url(#inverseShardClipPath);
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color--indigo) 0%,
+        var(--color--dark-indigo) 100%
+    );
+
+    @include media-query(large) {
+        display: block;
+        width: 600px;
+        height: 600px;
     }
 
     @include media-query(hero-break) {
         width: 750px;
-        height: 775px;
+        height: 750px;
+    }
+
+    @include media-query(site-width) {
+        clip-path: url(#inverseShardClipPathLarge);
+        width: 750px;
+        height: 750px;
+    }
+}
+
+.videoOverlay {
+    display: none;
+
+    @include z-index(two);
+    position: absolute;
+    top: 0;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color--indigo) 0%,
+        var(--color--dark-indigo) 100%
+    );
+
+    @include media-query(large) {
+        display: block;
+        right: 600px;
+        width: 600px;
+        height: 600px;
+    }
+
+    @include media-query(hero-break) {
+        right: 750px;
+        width: 750px;
+        height: 750px;
     }
 }
 
 .video {
-    @include z-index(one);
-    height: 100%;
+    height: 600px;
+
+    @include media-query(hero-break) {
+        height: 750px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    // Looks beside the video element to find the SVG button
+    &:hover ~ svg path {
+        // Updates the fill of the background path
+        &:first-child {
+            fill: var(--color--lagoon);
+        }
+
+        // Updates the fill of the icon path
+        &:last-child {
+            fill: var(--color--dark-indigo);
+        }
+    }
 }
 
 .playPauseButton {
@@ -216,11 +280,18 @@
     @include media-query(large) {
         display: block;
         top: 55px;
-        left: 238px;
+        right: 282px;
     }
 
     @include media-query(hero-break) {
-        top: 75px;
-        left: 315px;
+        right: 362px;
     }
+
+    @include media-query(site-width) {
+        right: 345px;
+    }
+}
+
+.svg {
+    @include hidden();
 }
