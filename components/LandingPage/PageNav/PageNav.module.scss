@@ -33,8 +33,6 @@
 }
 
 .jobNavItem {
-    // Prevent job link showing in front of menu dropdown background overlay
-    @include z-index(under);
     position: relative;
 
     @include media-query(medium) {

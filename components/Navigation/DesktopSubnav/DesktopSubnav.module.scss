@@ -1,5 +1,5 @@
 .subnav {
-    @include z-index(two);
+    @include z-index(nav);
     border-radius: 12px;
     position: absolute;
     padding: 31px 20px;
