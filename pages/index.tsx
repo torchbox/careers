@@ -68,7 +68,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     content={landingPageContent.workForYouDescription}
                 />
             </ComeWorkForYou>
-
             <div id="benefits">
                 <Benefits
                     title="Real benefits in touch with real life"
@@ -84,7 +83,6 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     />
                 </LifeAsATorchboxer>
             </div>
-
             <SocialMediaPhotos photos={socialMediaProfilePhotos} />
 
             <CTA
