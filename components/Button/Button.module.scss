@@ -25,8 +25,9 @@
 
 .radialBackground {
     background: radial-gradient(
+        81.08% 2378.82% at 50% 60%,
         var(--color--dark-indigo) 0%,
-        var(--color--indigo) 70%
+        var(--color--indigo) 100%
     );
 }
 
@@ -40,12 +41,12 @@
 
 .jobsBadge {
     @include z-index(one);
-    @include font-size(xs);
+    @include font-size(mxs);
     display: inline-block;
     position: absolute;
     right: 0px;
     top: -12px;
-    color: var(--color--white);
+    color: var(--color--dark-indigo);
 
     &::after {
         @include z-index(under);
@@ -54,7 +55,7 @@
         transform: translate(-50%, -10%) rotate(27deg);
         left: 50%;
         top: 0;
-        background-color: var(--color--coral-dark);
+        background-color: var(--color--coral);
         width: 21px;
         height: 27px;
     }
