@@ -1,0 +1,20 @@
+name: Pa11y
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: ".nvmrc"
+      - id: node-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/.nvmrc') }}-${{ hashFiles('**/package-lock.json') }}
+      - if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install --no-optional --no-audit --no-fund --progress=false
+      - run: npm run dev & sleep 5; npm run pa11y;
