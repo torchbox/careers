@@ -56,7 +56,11 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
 
     return (
         <div className={styles.container}>
-            <a className={styles.torchboxLogo} href="https://torchbox.com">
+            <a
+                className={styles.torchboxLogo}
+                href="https://torchbox.com"
+                aria-label="Home"
+            >
                 <TorchboxLogo />
             </a>
             <MobileMenuButton
