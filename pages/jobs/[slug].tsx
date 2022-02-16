@@ -45,7 +45,10 @@ export async function getStaticPaths() {
     const apiURL = concatenateAPIURL('/api/jobs/slugs');
     console.log('Get static paths - ', apiURL);
     const allJobSlugs = await fetch(apiURL, { headers: requestHeaders }).then(
-        (res) => res.json(),
+        (res) => {
+            console.log(res);
+            return res.json();
+        },
     );
 
     if (allJobSlugs) {
