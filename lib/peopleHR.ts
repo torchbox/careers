@@ -354,7 +354,7 @@ export function concatenateAPIURL(pathname: string): string {
     // If VERCEL_ENV doesn't exist, we're running the site locally using next dev
     if (process.env.VERCEL_ENV) {
         baseUrl = {
-            production: 'https://torchbox.com/careers/',
+            production: 'https://torchbox.com/careers',
             preview: process.env.VERCEL_URL,
             development: 'http://localhost:3000',
         }[process.env.VERCEL_ENV] as string;

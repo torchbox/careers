@@ -43,6 +43,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
 export async function getStaticPaths() {
     const apiURL = concatenateAPIURL('/api/jobs/slugs');
+    console.log('API URL - ', apiURL);
     const allJobSlugs = await fetch(apiURL, { headers: requestHeaders }).then(
         (res) => res.json(),
     );
