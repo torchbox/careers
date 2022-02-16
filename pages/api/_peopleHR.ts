@@ -13,16 +13,16 @@ const CACHE_FILENAME = 'peopleHRcache.json';
 
 /**
  * Converts XML to JSON using xml2js
- * @param xmlString
+ * @param xml
  * @returns JSON object
  */
-async function parseXml(xmlString: string): Promise<any> {
+async function parseXML(xml: string): Promise<any> {
     return await new Promise((resolve) =>
-        xml2js.parseString(xmlString, (err: Error, jsonData: any) => {
+        xml2js.parseString(xml, (err: Error, result: any) => {
             if (err) {
                 throw err;
             }
-            resolve(jsonData);
+            resolve(result);
         }),
     );
 }
@@ -33,17 +33,36 @@ async function parseXml(xmlString: string): Promise<any> {
  */
 async function fetchPeopleHRFeed(): Promise<string | null> {
     if (process.env.PEOPLEHR_RSS_FEED_URL)
-        return fetch(process.env.PEOPLEHR_RSS_FEED_URL).then((response) => {
-            if (response.ok) return response.text();
-            console.error(
-                'Error fetching PeopleHR feed: RSS Feed URL not responding',
-            );
-            return null;
-        });
+        return fetch(process.env.PEOPLEHR_RSS_FEED_URL).then(
+            async (response) => {
+                if (response.ok) return parseXML(await response.text());
+                console.error(
+                    'Error fetching PeopleHR feed: RSS Feed URL not responding',
+                );
+                return null;
+            },
+        );
     console.error(
-        'Error fetching PeopleHR feed: RSS Feed URL not found in .env.local',
+        'Error fetching PeopleHR feed: PEOPLEHR_RSS_FEED_URL is not defined',
     );
     return null;
+}
+
+function writeToCache(
+    cacheFilePath: string,
+    fileData: { lastUpdated: number; jobs: any },
+) {
+    try {
+        // Check if cache folder exists before writing
+        const cacheFileFolder = path.resolve(process.cwd(), CACHE_FOLDER);
+        if (!existsSync(cacheFileFolder)) {
+            mkdirSync(cacheFileFolder);
+        }
+
+        writeFileSync(cacheFilePath, JSON.stringify(fileData));
+    } catch (error) {
+        console.error('Error writing to the PeopleHR cache file: ', error);
+    }
 }
 
 /**
@@ -59,108 +78,80 @@ async function getJobPostingData() {
     );
 
     if (existsSync(cacheFilePath)) {
-        let cacheJSON;
+        let cache = {} as any;
 
         try {
-            cacheJSON = JSON.parse(readFileSync(cacheFilePath, 'utf8'));
+            cache = JSON.parse(readFileSync(cacheFilePath, 'utf8'));
         } catch (error) {
             console.error(
                 'Error reading and parsing the PeopleHR cache file: ',
                 error,
             );
-            cacheJSON.lastUpdated = 0; // Force a rewrite to the cache if the cache has become corrupted
+            cache.lastUpdated = 0; // Force a rewrite to the cache if the cache has become corrupted
         }
 
-        if (cacheJSON.lastUpdated + CACHE_TTL < Date.now()) {
+        if (cache.lastUpdated + CACHE_TTL < Date.now()) {
             // The cache has timed out, fetch new data from PeopleHR
 
-            const peopleHRJobPostingsXML = await fetchPeopleHRFeed().catch(
+            const peopleHRJobPostings = await fetchPeopleHRFeed().catch(
                 function (error) {
                     console.error('Error fetching data from PeopleHR: ', error);
                     return null;
                 },
             );
 
-            if (peopleHRJobPostingsXML === null) {
+            if (!peopleHRJobPostings) {
                 // In the event of a server error, don't update the job listings if we
                 // still have cached listings available to use instead
 
-                if (cacheJSON.jobJSON === undefined) {
+                if (!cache.jobs) {
                     return null;
                 }
 
+                // Refresh the cache timeout with existing data
                 const fileData = {
                     lastUpdated: Date.now(),
-                    jobJSON: cacheJSON.jobJSON,
+                    jobs: cache.jobs,
                 };
 
-                writeFileSync(cacheFilePath, JSON.stringify(fileData));
+                writeToCache(cacheFilePath, fileData);
 
-                return cacheJSON.jobJSON;
+                return cache.jobs;
             } else {
                 // If the server responds OK, update according to the feed contents
-                const peopleHRJobPostings = await parseXml(
-                    peopleHRJobPostingsXML,
-                );
-
                 const fileData = {
                     lastUpdated: Date.now(),
-                    jobJSON: peopleHRJobPostings,
+                    jobs: peopleHRJobPostings,
                 };
 
-                try {
-                    writeFileSync(cacheFilePath, JSON.stringify(fileData));
-                } catch (error) {
-                    console.error(
-                        'Error writing to the PeopleHR cache file: ',
-                        error,
-                    );
-                }
+                writeToCache(cacheFilePath, fileData);
 
                 return peopleHRJobPostings;
             }
         } else {
             // The cache has not timed out yet, return the cached JSON
-            return cacheJSON.jobJSON;
+            return cache.jobs;
         }
     } else {
         // If the cache file doesn't exist, create one
-        const peopleHRJobPostingsXML = await fetchPeopleHRFeed().catch(
-            function (error) {
-                console.error('Error fetching data from PeopleHR: ', error);
-                return null;
-            },
-        );
+        const peopleHRJobPostings = await fetchPeopleHRFeed().catch(function (
+            error,
+        ) {
+            console.error('Error fetching data from PeopleHR: ', error);
+            return null;
+        });
 
-        if (peopleHRJobPostingsXML === null) {
+        if (!peopleHRJobPostings) {
             // In the event of a server error, return 404
             return null;
         } else {
             // Create a new file and set the cache
-            const peopleHRJobPostings = await parseXml(peopleHRJobPostingsXML);
-
             const fileData = {
                 lastUpdated: Date.now(),
-                jobJSON: peopleHRJobPostings,
+                jobs: peopleHRJobPostings,
             };
 
-            try {
-                // Check if cache folder exists before writing
-                const cacheFileFolder = path.resolve(
-                    process.cwd(),
-                    CACHE_FOLDER,
-                );
-                if (!existsSync(cacheFileFolder)) {
-                    mkdirSync(cacheFileFolder);
-                }
-
-                writeFileSync(cacheFilePath, JSON.stringify(fileData));
-            } catch (error) {
-                console.error(
-                    'Error writing to the PeopleHR cache file: ',
-                    error,
-                );
-            }
+            writeToCache(cacheFilePath, fileData);
 
             return peopleHRJobPostings;
         }
