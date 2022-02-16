@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import type { JobSummary } from '../lib/peopleHR';
-import { getAPIBaseURL } from '../lib/peopleHR';
+import { concatenateAPIURL } from '../lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
 import Link from 'next/link';
 
@@ -26,7 +26,7 @@ const Jobs: NextPage<{ jobs: JobSummary[] }> = ({ jobs }) => {
 export default Jobs;
 
 export async function getStaticProps() {
-    const apiURL = getAPIBaseURL() + '/api/jobs/summaries';
+    const apiURL = concatenateAPIURL('/api/jobs/summaries');
 
     const requestHeaders: HeadersInit = {
         'Content-Type': 'application/json',

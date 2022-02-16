@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import type { JobPost } from 'lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
-import { getAPIBaseURL } from 'lib/peopleHR';
+import { concatenateAPIURL } from 'lib/peopleHR';
 
 const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
     return (
@@ -24,7 +24,7 @@ const requestHeaders: HeadersInit = {
 };
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-    const apiURL = getAPIBaseURL() + '/api/jobs/' + params.slug;
+    const apiURL = concatenateAPIURL('/api/jobs/' + params.slug);
 
     try {
         const job = await fetch(apiURL, { headers: requestHeaders }).then(
@@ -42,7 +42,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths() {
-    const apiURL = getAPIBaseURL() + '/api/jobs/slugs';
+    const apiURL = concatenateAPIURL('/api/jobs/slugs');
     const allJobSlugs = await fetch(apiURL, { headers: requestHeaders }).then(
         (res) => res.json(),
     );
