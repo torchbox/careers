@@ -355,7 +355,7 @@ export function concatenateAPIURL(pathname: string): string {
     if (process.env.VERCEL_ENV) {
         baseUrl = {
             production: 'https://torchbox.com/careers',
-            preview: process.env.VERCEL_URL,
+            preview: 'https://' + process.env.VERCEL_URL,
             development: 'http://localhost:3000',
         }[process.env.VERCEL_ENV] as string;
     }
