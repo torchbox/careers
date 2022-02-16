@@ -359,5 +359,6 @@ export function concatenateAPIURL(pathname: string): string {
             development: 'http://localhost:3000',
         }[process.env.VERCEL_ENV] as string;
     }
-    return baseUrl + pathname;
+    const absoluteURL = (baseUrl + pathname) as string;
+    return absoluteURL;
 }
