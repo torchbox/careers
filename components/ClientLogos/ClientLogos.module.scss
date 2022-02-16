@@ -5,6 +5,8 @@
     padding: $grid 0;
     align-items: center;
     justify-items: center;
+    list-style: none;
+    margin-left: 0;
 
     @include media-query(medium) {
         grid-template-columns: repeat(4, 1fr);
