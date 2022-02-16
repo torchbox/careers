@@ -1,0 +1,55 @@
+.bold {
+    font-weight: $weight--bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.paragraph {
+    @include font-size(s);
+    line-height: 30px;
+    color: var(--color--grey);
+
+    :global .themeLight :local & {
+        color: var(--color--grey);
+    }
+
+    :global .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
+
+    :global .themeDark :local & {
+        color: var(--color--white);
+    }
+}
+
+.h2 {
+    line-height: 36px;
+    margin-bottom: 30px;
+}
+
+.h3 {
+    line-height: 34px;
+    margin-bottom: 12px;
+}
+
+.hyperlink {
+    color: var(--color--dark-indigo);
+    font-weight: $weight--extrabold;
+    position: relative;
+    text-decoration: underline;
+    text-underline-position: under;
+
+    :global .themeLight :local & {
+        color: var(--color--dark-indigo);
+    }
+
+    :global .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
+
+    :global .themeDark :local & {
+        color: var(--color--white);
+    }
+}

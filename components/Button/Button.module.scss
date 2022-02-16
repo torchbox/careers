@@ -7,21 +7,28 @@
     font-weight: $weight--extrabold;
     color: var(--color--white);
     padding: 12px 50px 12px 20px;
-    background-color: var(--color--dark-indigo);
+    border-radius: 7px;
+
+    &:hover {
+        color: var(--color--white);
+
+        & > .chevron {
+            transform: translateX(8px);
+        }
+
+        & > .overflowHider > .swishBackground {
+            opacity: 1;
+            animation-play-state: running;
+        }
+    }
+}
+
+.radialBackground {
     background: radial-gradient(
         81.08% 2378.82% at 50% 60%,
         var(--color--dark-indigo) 0%,
         var(--color--indigo) 100%
     );
-    border-radius: 7px;
-
-    &:hover {
-        color: var(--color--white);
-    }
-
-    &:hover > .chevron {
-        transform: translateX(8px);
-    }
 }
 
 .chevron {
@@ -34,7 +41,7 @@
 
 .jobsBadge {
     @include z-index(one);
-    @include font-size(xs);
+    @include font-size(mxs);
     display: inline-block;
     position: absolute;
     right: 0px;
@@ -51,5 +58,48 @@
         background-color: var(--color--coral);
         width: 21px;
         height: 27px;
+    }
+}
+
+.text {
+    pointer-events: none;
+    user-select: none;
+}
+
+.swishBackground {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -200%;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background: linear-gradient(
+        -70deg,
+        rgba(1, 0, 0, 0),
+        rgba(1, 0, 0, 0) 25%,
+        rgba(73, 44, 231, 1) 40%,
+        rgba(1, 0, 0, 0) 55%,
+        rgba(1, 0, 0, 0)
+    );
+    animation: wave 2s linear infinite;
+    animation-play-state: paused;
+    transition: opacity $transition;
+}
+
+.overflowHider {
+    border-radius: 7px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+@keyframes wave {
+    100% {
+        transform: translateX(150%);
     }
 }
