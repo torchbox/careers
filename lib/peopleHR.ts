@@ -344,3 +344,20 @@ export function convertJSONToJobPosts(json: any): JobPost[] {
 
     return jobPosts;
 }
+
+/**
+ * Returns the base url of the current website deployment
+ */
+export function getAPIBaseURL(): string {
+    let baseUrl = 'http://localhost:3000';
+
+    // If VERCEL_ENV doesn't exist, we're running the site locally using next dev
+    if (process.env.VERCEL_ENV) {
+        baseUrl = {
+            production: 'https://torchbox.com/careers/',
+            preview: process.env.VERCEL_URL,
+            development: 'http://localhost:3000',
+        }[process.env.VERCEL_ENV] as string;
+    }
+    return baseUrl;
+}
