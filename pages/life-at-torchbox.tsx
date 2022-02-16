@@ -3,6 +3,20 @@ import styles from 'styles/LifeAtTorchbox.module.scss';
 import Layout from '../components/Layout';
 import { getLifeAtTorchboxPage } from '../lib/api';
 import { LifeAtTorchboxPage } from 'types/LifeAtTorchboxPage';
+import Hero from 'components/LifeAtTorchbox/Hero';
+import RichText from 'components/RichText/RichText';
+
+const PlaceholderImage = {
+    description: 'This is a placeholder',
+    url: 'https://source.unsplash.com/random/750x750/?forest',
+    width: 750,
+    height: 750,
+};
+
+const PlaceholderVideo = {
+    description: 'This is a video',
+    url: 'https://videos.ctfassets.net/j97ble2qvn7g/1NiavumsiPSVMntrkOg4Iz/1c70dc30fc1d13488d9547bad9c96689/video__1_.mp4',
+};
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -15,20 +29,13 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
 }) => (
     <Layout theme="DARK" preview={preview} jobsAvailable={8}>
         <div className={styles.indigoBackground}>
-            <h1>{content.metadataTitle}</h1>
-            <p>{content.metadataDescription}</p>
-
-            {/*
             <Hero
-                image={PlaceholderImage}
-                video={PlaceholderVideo}
-                subtitle="Remote-first, but always connected, our international team’s a tight-knit bunch."
+                image={content.heroImage}
+                video={content.heroVideo}
+                subtitle={content.heroSubtitle}
             >
-                Our international clients are just a Zoom call away, and with a
-                solid team of 80+ permanent staff - spanning four offices and
-                five continents - we’ve got them covered, no matter the time
-                zone.
-          </Hero> */}
+                <RichText theme="DARK" content={content.heroDescription} />
+            </Hero>
         </div>
     </Layout>
 );
