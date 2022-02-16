@@ -1,9 +1,9 @@
 import { ImageTypes } from './Base';
 
 export type LandingPage = {
-    title: string;
+    metadataTitle: string;
     metadataDescription: string;
-    metadataSocialImage: ImageTypes;
+    metadataSocialMediaImage: ImageTypes;
     heroImage: ImageTypes;
     heroTagline: any;
     missionTitle: string;

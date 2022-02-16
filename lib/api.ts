@@ -19,6 +19,46 @@ async function fetchGraphQL(query = '', preview = false) {
     ).then((response) => response.json());
 }
 
+const pageMetadata = `
+    metadataTitle
+    metadataDescription
+    metadataSocialMediaImage {
+        description
+        url
+        width
+        height
+    }
+`;
+
+const benefits = `
+    ... on Benefits {
+        benefitsTitle
+        benefitsIntro
+        benefitsListCollection(limit: 8) {
+            items {
+                benefitName
+                benefitSnippet
+            }
+        }
+    }
+`;
+
+const testimonial = `
+    ... on Testimonial {
+        quote
+        quotee {
+            name
+            role
+            image {
+                url
+                description
+                width
+                height
+            }
+        }
+    }
+`;
+
 export async function getLandingPage(preview: boolean) {
     const landingPageContent = await fetchGraphQL(
         `{
@@ -26,14 +66,7 @@ export async function getLandingPage(preview: boolean) {
             preview +
             `) {
             items {
-                title
-                metadataDescription
-                metadataSocialImage {
-                    description
-                    url
-                    width
-                    height
-                }
+                ${pageMetadata}
                 heroImage {
                     description
                     url
@@ -68,18 +101,9 @@ export async function getLandingPage(preview: boolean) {
                                 }
                               }
                             }
-                            
-                            ... on Benefits {
-                              benefitsTitle
-                              benefitsIntro
-                              benefitsListCollection(limit: 8) {
-                                items {
-                                  benefitName
-                                  benefitSnippet
-                                }
-                              }
-                            }
-                            
+
+                            ${benefits}
+
                             ... on Clients {
                               clientsCollection(limit: 8){
                                 items {
@@ -93,8 +117,10 @@ export async function getLandingPage(preview: boolean) {
                                 }
                               }
                             }
-                          }
-                        }
+
+                    }
+                }
+                      
                 workForYouDescription {
                     json
                 }
@@ -119,4 +145,59 @@ export async function getLandingPage(preview: boolean) {
     );
 
     return landingPageContent.data.landingPageCollection.items[0];
+}
+
+export async function getLifeAtTorchboxPage(preview: boolean) {
+    const lifeAtTorchboxPageContent = await fetchGraphQL(
+        `{
+            lifeAtTorchboxPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+                ${pageMetadata}
+                heroImage {
+                    url
+                    description
+                    width
+                    height
+                  }
+                heroVideo {
+                    url
+                    description
+                }
+                heroSubtitle
+                heroDescription {
+                    json
+                }
+                itemsCollection(limit: 2) {
+                    items {
+                      ${testimonial}
+                      ... on TorchboxValuesCarousel {
+                        valuesCollection(limit: 6) {
+                          items {
+                            valueName
+                            valueSnippet
+                            valueImage {
+                              url
+                              description
+                              width
+                              height
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  valueCarouselTitle
+                  valueCarouselDescription {
+                    json
+                  }
+                }
+            }
+        }
+        `,
+        preview,
+    );
+
+    return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
 }
