@@ -40,7 +40,6 @@ const benefits = `
                 benefitSnippet
             }
         }
-        }
     }
 `;
 
@@ -82,27 +81,46 @@ export async function getLandingPage(preview: boolean) {
                     json
                 }
                 itemsCollection {
-                    items {
-                    __typename
-                    ... on ProfileImages {
-                        imagesCollection(limit: 8) {
                         items {
-                            image {
-                                title
-                                description
-                                contentType
-                                fileName
-                                size
-                                url
-                                width
-                                height
+                            __typename
+                            
+                            ... on ProfileImages {
+                              imagesCollection(limit: 8) {
+                                items {
+                                  image {
+                                    title
+                                    description
+                                    contentType
+                                    fileName
+                                    size
+                                    url
+                                    width
+                                    height
+                                  }
+                                  description
+                                }
+                              }
                             }
-                            description
-                        }
-                        }
+
+                            ${benefits}
+
+                            ... on Clients {
+                              clientsCollection(limit: 8){
+                                items {
+                                  clientName
+                                  clientLogo {
+                                    width
+                                    height
+                                    description
+                                    url
+                                  }
+                                }
+                              }
+                            }
+
                     }
-                    ${benefits}
                 }
+                      
                 workForYouDescription {
                     json
                 }

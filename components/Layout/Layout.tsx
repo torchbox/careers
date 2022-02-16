@@ -1,7 +1,8 @@
+import type { Theme } from '../../types/Base';
 import Alert from '../Alert';
 import Footer from '../Footer';
 import Header from '../Header';
-import { Theme } from '../../types/Base';
+import styles from './Layout.module.scss';
 
 type LayoutProps = {
     theme: Theme;
@@ -31,7 +32,7 @@ export const Layout = ({
         <div className={themeClass}>
             <Header jobsAvailable={jobsAvailable} />
             <Alert preview={preview} />
-            <main>{children}</main>
+            <main className={styles.container}>{children}</main>
             <Footer />
         </div>
     );
