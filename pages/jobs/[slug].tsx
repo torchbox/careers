@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import type { JobPost } from 'lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
-//import { concatenateAPIURL } from 'lib/peopleHR';
 import { getAllJobSlugs } from 'pages/api/jobs/slugs';
 import { getJobPost } from 'pages/api/jobs/[slug]';
 
@@ -20,18 +19,8 @@ const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
 
 export default JobPosting;
 
-const requestHeaders: HeadersInit = {
-    'Content-Type': 'application/json',
-    'Authorization': process.env.PEOPLEHR_AUTH_TOKEN as string,
-};
-
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-    //const apiURL = concatenateAPIURL('/api/jobs/' + params.slug);
-    //console.log('Get job - ', apiURL);
     try {
-        //const job = await fetch(apiURL, { headers: requestHeaders }).then(
-        //    (res) => res.json(),
-        //);
         const job = await getJobPost(params.slug);
         return {
             props: { job },
@@ -45,16 +34,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths() {
-    /*
-    const apiURL = concatenateAPIURL('/api/jobs/slugs');
-    console.log('Get static paths - ', apiURL);
-    const allJobSlugs = await fetch(apiURL, { headers: requestHeaders }).then(
-        (res) => {
-            console.log(res);
-            return res.json();
-        },
-    );
-    */
     const allJobSlugs = await getAllJobSlugs();
 
     if (allJobSlugs) {

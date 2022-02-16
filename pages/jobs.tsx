@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import type { JobSummary } from '../lib/peopleHR';
 import { getAllJobSummaries } from './api/jobs/summaries';
-import { concatenateAPIURL } from '../lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
 import Link from 'next/link';
 
@@ -27,15 +26,6 @@ const Jobs: NextPage<{ jobs: JobSummary[] }> = ({ jobs }) => {
 export default Jobs;
 
 export async function getStaticProps() {
-    /*
-    const apiURL = concatenateAPIURL('/api/jobs/summaries');
-
-    const requestHeaders: HeadersInit = {
-        'Content-Type': 'application/json',
-        'Authorization': process.env.PEOPLEHR_AUTH_TOKEN as string,
-    };
-    */
-
     try {
         const jobs = await getAllJobSummaries();
         return {
