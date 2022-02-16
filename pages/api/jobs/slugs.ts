@@ -9,7 +9,7 @@ import { getAllJobPostings } from '../_peopleHR';
 export async function getAllJobSlugs(): Promise<(string | undefined)[] | null> {
     const jobPostings: JobPost[] | null = await getAllJobPostings();
     if (jobPostings === null) return null;
-    return jobPostings.map((post) => post.slug);
+    return jobPostings.map((post) => `/jobs/${post.slug}`);
 }
 
 export default async function handler(

@@ -1,7 +1,9 @@
 import type { NextPage } from 'next';
 import type { JobPost } from 'lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
-import { concatenateAPIURL } from 'lib/peopleHR';
+//import { concatenateAPIURL } from 'lib/peopleHR';
+import { getAllJobSlugs } from 'pages/api/jobs/slugs';
+import { getJobPost } from 'pages/api/jobs/[slug]';
 
 const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
     return (
@@ -24,12 +26,13 @@ const requestHeaders: HeadersInit = {
 };
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-    const apiURL = concatenateAPIURL('/api/jobs/' + params.slug);
-    console.log('Get job - ', apiURL);
+    //const apiURL = concatenateAPIURL('/api/jobs/' + params.slug);
+    //console.log('Get job - ', apiURL);
     try {
-        const job = await fetch(apiURL, { headers: requestHeaders }).then(
-            (res) => res.json(),
-        );
+        //const job = await fetch(apiURL, { headers: requestHeaders }).then(
+        //    (res) => res.json(),
+        //);
+        const job = await getJobPost(params.slug);
         return {
             props: { job },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
@@ -42,6 +45,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths() {
+    /*
     const apiURL = concatenateAPIURL('/api/jobs/slugs');
     console.log('Get static paths - ', apiURL);
     const allJobSlugs = await fetch(apiURL, { headers: requestHeaders }).then(
@@ -50,10 +54,12 @@ export async function getStaticPaths() {
             return res.json();
         },
     );
+    */
+    const allJobSlugs = await getAllJobSlugs();
 
     if (allJobSlugs) {
         return {
-            paths: allJobSlugs.map((slug: string) => `/jobs/${slug}`),
+            paths: allJobSlugs,
             fallback: 'blocking',
         };
     }
