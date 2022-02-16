@@ -201,6 +201,8 @@
         display: flex;
         flex-direction: column;
         padding: 90px $variable-gutter--small 0 $variable-gutter--small;
+        list-style: none;
+        margin-left: 0;
 
         li {
             margin-left: 0;
