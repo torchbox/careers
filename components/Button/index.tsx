@@ -1,3 +1,3 @@
-import { Button } from './Button';
+import { Button, SwishButton } from './Button';
 
-export default Button;
+export { Button, SwishButton };

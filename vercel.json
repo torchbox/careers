@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "pages/api/peopleHR.ts": {
+      "includeFiles": "cachedData/**"
+    }
+  },
   "github": {
     "silent": true
   }

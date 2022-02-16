@@ -10,26 +10,9 @@ import LifeAsATorchboxer from 'components/LandingPage/LifeAsATorchboxer';
 import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
 import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
+import RichText from 'components/RichText/RichText';
 
-const ExampleBenefits = [
-    'Performance and ownership bonus',
-    '25 days holiday',
-    'Personal development budget',
-    'Private health cover',
-    'Flexible hours',
-    'Regular socials - online and in-person',
-    'Ethical pension',
-    'Fruit!',
-];
-
-const PlaceholderImage = {
-    description: 'This is a placeholder',
-    url: 'https://source.unsplash.com/random/750×750/?nature',
-    width: 750,
-    height: 750,
-};
-
-const ImageArray = [...Array(10)].map((_) => PlaceholderImage);
+const TEMPORARY_JOBS_VARIABLE = 11;
 
 type LandingPageProps = {
     preview: boolean;
@@ -39,76 +22,81 @@ type LandingPageProps = {
 const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
-}) => (
-    <Layout theme={'LIGHT'} preview={preview} jobsAvailable={11}>
-        <Hero image={PlaceholderImage}>
-            {/* Todo: Replace this with a rich text field component. */}
-            <p>
-                <strong>Glad you asked.</strong> We are not your average digital
-                agency...
-            </p>
-            <PageNav title="We are on a mission" jobs={3}>
-                <p>
-                    For over 20 years, we’ve been devoted to delivering
-                    outstanding work, while making a positive impact on society.
-                </p>
+}) => {
+    const clientLogos =
+        landingPageContent.itemsCollection.items[2].clientsCollection.items.map(
+            (item: any) => item.clientLogo,
+        );
 
-                <p>
-                    We create deeper meaning that joins the dots. Because our
-                    work doesn’t exist in a bubble. It has the potential to
-                    create more opportunities, better lives and deliver lasting
-                    value, for everyone.{' '}
-                </p>
+    const benefits =
+        landingPageContent.itemsCollection.items[0].benefitsListCollection.items.map(
+            (item: any) => item.benefitName,
+        );
 
-                <p>
-                    Here’s a taste of the incredible organisations we partner
-                    with:
-                </p>
-            </PageNav>
-        </Hero>
+    const socialMediaProfilePhotos =
+        landingPageContent.itemsCollection.items[1].imagesCollection.items.map(
+            (item: any) => item.image,
+        );
 
-        <ClientLogos logos={ImageArray} />
+    return (
+        <Layout
+            theme={'INDIGO'}
+            preview={preview}
+            jobsAvailable={TEMPORARY_JOBS_VARIABLE}
+        >
+            <Hero image={landingPageContent.heroImage}>
+                <RichText
+                    theme="INDIGO"
+                    content={landingPageContent.heroTagline}
+                />
+                <PageNav
+                    title={landingPageContent.missionTitle}
+                    jobs={TEMPORARY_JOBS_VARIABLE}
+                >
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.missionDescription}
+                    />
+                </PageNav>
+            </Hero>
 
-        <ComeWorkForYou image={PlaceholderImage}>
-            <strong>
-                No parent company, no shareholders, just a team of equal owners.
-            </strong>
-            <br />
-            <br />
-            <p>
-                100% of our business belongs to our Employee Ownership Trust
-                (EOT). Everyone is included, everyone is updated and everyone
-                belongs.
-            </p>
-        </ComeWorkForYou>
+            <ClientLogos logos={clientLogos} />
 
-        <Benefits
-            title="Real benefits in touch with real life"
-            benefits={ExampleBenefits}
-        />
+            <ComeWorkForYou image={landingPageContent.workForYouImage}>
+                <RichText
+                    theme="DARK"
+                    content={landingPageContent.workForYouDescription}
+                />
+            </ComeWorkForYou>
+            <div id="benefits">
+                <Benefits
+                    title="Real benefits in touch with real life"
+                    benefits={benefits}
+                />
+            </div>
 
-        <LifeAsATorchboxer>
-            <p>
-                From Bristol to Texas, we go the extra mile (or 4,813). We’re
-                remote-first, but always connected, championing unique people in
-                unique places. <br />
-                <br />
-                Find out more about who we are, how we work, what we believe in
-                and where we’re heading.
-            </p>
-        </LifeAsATorchboxer>
+            <div id="lifeAsATorchboxer">
+                <LifeAsATorchboxer>
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.lifeAsATorchboxer}
+                    />
+                </LifeAsATorchboxer>
+            </div>
+            <SocialMediaPhotos photos={socialMediaProfilePhotos} />
 
-        <SocialMediaPhotos photos={ImageArray} />
-
-        <CTA jobs={10} title="Ready to make a difference?">
-            <p>
-                We’re always excited about finding new talent and meeting people
-                that are as eager as we are to drive significant positive
-                change.
-            </p>
-        </CTA>
-    </Layout>
-);
+            <CTA
+                jobs={TEMPORARY_JOBS_VARIABLE}
+                title={landingPageContent.ctaTitle}
+            >
+                <RichText
+                    theme="INDIGO"
+                    content={landingPageContent.ctaDescription}
+                />
+            </CTA>
+        </Layout>
+    );
+};
 
 export default LandingPage;
 
