@@ -24,7 +24,7 @@ Takes a job slug as a parameter of the query URL, e.g. `/api/jobs/senior-develop
 
 ## Developing the API
 
-To test this API locally, use the command `npm run vercel` to run the vercel development environment. If you are prompted to sign in, choose the email sign in option, and then select the `Torchbox` account to work from. Link to the project with `Y`, and it will start the dev server locally.
+To test this API locally, use the command `npm run vercel` to run the Vercel development environment. If you are prompted to sign in, choose the email sign in option, and then select the `Torchbox` account to work from. Link to the project with `Y`, and it will start the dev server locally.
 
 ## Processing the PeopleHR Data
 
