@@ -3,6 +3,7 @@ static_compiled
 .next
 
 .git
-.github
 node_modules
 out
+
+files
