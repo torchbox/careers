@@ -8,7 +8,7 @@
     }
 
     @include media-query(large) {
-        padding: $grid * 4;
+        padding: 0 $grid * 4 $grid * 4 $grid * 4;
         flex-direction: row;
     }
 }
@@ -24,6 +24,7 @@
 
     @include media-query(large) {
         max-width: 635px;
+        margin-bottom: 0;
     }
 }
 

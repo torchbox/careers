@@ -17,6 +17,11 @@ export type ImageTypes = {
     height: number;
 };
 
+export type VideoTypes = {
+    description: string;
+    url: string;
+};
+
 export type Person = {
     name: string;
     role: string;

@@ -1,5 +1,5 @@
 .subnav {
-    @include z-index(two);
+    @include z-index(nav);
     border-radius: 12px;
     position: absolute;
     padding: 31px 20px;
@@ -8,8 +8,9 @@
     top: 55px;
     background-color: var(--color--white);
     outline: 5px solid var(--color--coral) transparent;
+    list-style: none;
 
-    &__item {
+    &Item {
         margin-bottom: 22px;
         line-height: 1;
         font-size: 16px;
@@ -19,12 +20,12 @@
         }
     }
 
-    &__itemWithBadge {
+    &ItemWithBadge {
         position: relative;
         height: 20px;
     }
 
-    &__link {
+    &Link {
         @include link-underscore(0);
         font-weight: $weight--bold;
         position: relative;
@@ -46,7 +47,7 @@
         }
     }
 
-    &__badge {
+    &Badge {
         position: relative;
         left: 14px;
         bottom: 10px;
@@ -64,7 +65,7 @@
 }
 
 .badge {
-    @include font-size(xs);
+    @include font-size(xxs);
     @include z-index(badge);
     font-weight: $weight--extrabold;
     line-height: 25px;
@@ -78,17 +79,33 @@
     &::before {
         @include z-index(under);
         width: 18px;
-        height: 22px;
+        height: 21px;
         content: '';
         background-color: var(--color--coral);
         position: absolute;
-        transform: translate(-50%, -25%) rotate(30deg);
+        transform: translate(-50%, -35%) rotate(30deg);
         left: 50%;
         top: 3px;
         transition: background-color $transition-quick;
 
         :global .themeDark :local & {
             background-color: var(--color--dark-indigo);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        color: var(--color--coral);
+        :global .themeDark :local & {
+            color: var(--color--dark-indigo);
+        }
+
+        &::before {
+            background-color: var(--color--dark-indigo);
+        }
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
         }
     }
 }

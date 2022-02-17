@@ -14,17 +14,15 @@ const DesktopNavItem = ({ link }: DesktopNavItemProps) => (
     <li className={styles.desktopNavItem}>
         {link.isCareersSiteInternalLink ? (
             <Link href={link.url}>
-                <a className={styles.desktopNavItem__link}>
-                    <span className={styles.desktopNavItem__title}>
+                <a className={styles.desktopNavItemLink}>
+                    <span className={styles.desktopNavItemTitle}>
                         {link.title}
                     </span>
                 </a>
             </Link>
         ) : (
-            <a className={styles.desktopNavItem__link} href={link.url}>
-                <span className={styles.desktopNavItem__title}>
-                    {link.title}
-                </span>
+            <a className={styles.desktopNavItemLink} href={link.url}>
+                <span className={styles.desktopNavItemTitle}>{link.title}</span>
             </a>
         )}
     </li>
@@ -49,23 +47,23 @@ export const DesktopNav = ({
 
     return (
         <div className={styles.desktopNav}>
-            <div className={styles.desktopNav__container}>
+            <div className={styles.desktopNavontainer}>
                 <nav
-                    className={`${styles.desktopNav__modal} ${
-                        isOpen ? styles.desktopNav__modalOpen : ''
+                    className={`${styles.desktopNavModal} ${
+                        isOpen ? styles.desktopNavModalOpen : ''
                     }`}
                     aria-label="Desktop navigation"
                     role="navigation"
                 >
-                    <ul className={styles.desktopNav__list}>
+                    <ul className={styles.desktopNavList}>
                         {navItems}
-                        <li className={styles.desktopNav__moreItem}>
+                        <li className={styles.desktopNavMoreItem}>
                             <button
-                                className={styles.desktopNav__moreButton}
+                                className={styles.desktopNavMoreButton}
                                 onClick={() => toggleMenu()}
                             >
                                 More
-                                <span className={styles.desktopNav__dots} />
+                                <span className={styles.desktopNavDots} />
                             </button>
                             {isOpen && (
                                 <>
