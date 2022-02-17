@@ -118,6 +118,28 @@ export async function getLandingPage(preview: boolean) {
                               }
                             }
 
+                    ... on MusingsFromTheTeam {
+                        blogPostsCollection(limit: 3){
+                          items {
+                            title
+                            slug
+                            date
+                            author {
+                              name
+                              role
+                              image {
+                                url(transform: {
+                                    width: 100,
+                                    height: 100
+                                })
+                                width
+                                height
+                                description
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                 }
                       
