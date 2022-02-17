@@ -169,6 +169,19 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 heroDescription {
                     json
                 }
+                atWorkDescription {
+                    json
+                  }
+                atPlayDescription {
+                    json
+                }
+                workLocations {
+                    locationListCollection(limit: 4){
+                        items {
+                            locationName
+                        }
+                    }
+                }
                 itemsCollection(limit: 2) {
                     items {
                       ${testimonial}
