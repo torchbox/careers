@@ -26,9 +26,9 @@ export async function getLandingPage(preview: boolean) {
             preview +
             `) {
             items {
-                title
+                metadataTitle
                 metadataDescription
-                metadataSocialImage {
+                metadataSocialMediaImage {
                     description
                     url
                     width
@@ -101,7 +101,10 @@ export async function getLandingPage(preview: boolean) {
                               name
                               role
                               image {
-                                url
+                                url(transform: {
+                                    width: 100,
+                                    height: 100
+                                })
                                 width
                                 height
                                 description
