@@ -41,11 +41,9 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => (
 );
 
 export const MusingsFromTheTeam = ({ postData }: MusingsFromTheTeamProps) => {
-    const posts = postData
-        .slice(0, 3)
-        .map((post, index) => (
-            <BlogPostCard post={post} key={`blog-post-${index}`} />
-        ));
+    const posts = postData.map((post, index) => (
+        <BlogPostCard post={post} key={`blog-post-${index}`} />
+    ));
 
     return (
         <div className={styles.container}>
