@@ -2,3 +2,7 @@
     max-width: $site-width;
     margin: 0 auto;
 }
+
+:global .themeDark :local .background {
+    background-color: var(--color--dark-indigo);
+}

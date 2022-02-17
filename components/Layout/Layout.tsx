@@ -30,10 +30,12 @@ export const Layout = ({
 
     return (
         <div className={themeClass}>
-            <Header jobsAvailable={jobsAvailable} />
-            <Alert preview={preview} />
-            <main className={styles.container}>{children}</main>
-            <Footer />
+            <div className={styles.background}>
+                <Header jobsAvailable={jobsAvailable} />
+                <Alert preview={preview} />
+                <main className={styles.container}>{children}</main>
+                <Footer />
+            </div>
         </div>
     );
 };
