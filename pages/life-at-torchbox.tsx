@@ -5,6 +5,7 @@ import { getLifeAtTorchboxPage } from '../lib/api';
 import { LifeAtTorchboxPage } from 'types/LifeAtTorchboxPage';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import RichText from 'components/RichText/RichText';
+import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
 
 const PlaceholderImage = {
     description: 'This is a placeholder',
@@ -37,6 +38,15 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
                 <RichText theme="DARK" content={content.heroDescription} />
             </Hero>
         </div>
+        <ValuesCarousel
+            title={content.valueCarouselTitle}
+            values={content.itemsCollection.items[1].valuesCollection.items}
+        >
+            <RichText
+                theme="LIGHT"
+                content={content.valueCarouselDescription}
+            />
+        </ValuesCarousel>
     </Layout>
 );
 

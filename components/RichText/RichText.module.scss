@@ -22,6 +22,10 @@
     :global .themeDark :local & {
         color: var(--color--white);
     }
+
+    :global .themeDark .themeLight :local & {
+        color: var(--color--grey);
+    }
 }
 
 .h2 {
@@ -52,4 +56,8 @@
     :global .themeDark :local & {
         color: var(--color--white);
     }
+}
+
+.container > p:last-child {
+    margin-bottom: 0;
 }
