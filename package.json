@@ -13,15 +13,17 @@
     "prod_start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "happy-dom": "^2.24.5",
     "@contentful/rich-text-react-renderer": "^15.11.1",
     "@contentful/rich-text-types": "^15.11.1",
     "@types/body-scroll-lock": "^3.1.0",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "next": "^12.0.9",
+    "happy-dom": "^2.24.5",
+    "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-use": "^17.3.2",
     "sass": "^1.43.4",
+    "swiper": "^8.0.6",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
