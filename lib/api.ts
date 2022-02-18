@@ -236,6 +236,17 @@ export async function getEmployeeOwnedTrustPage(preview: boolean) {
               content {
                 json
                 links {
+                  assets {
+                    block {
+                      sys {
+                        id
+                      }
+                      url
+                      width
+                      height
+                      description
+                    }
+                  }
                   entries {
                     block {
                       __typename
