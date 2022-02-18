@@ -1,0 +1,30 @@
+.textContent {
+    max-width: 725px;
+    margin: 0 auto;
+    padding: $grid;
+
+    @include media-query(medium) {
+        padding: $grid * 4 $grid $grid $grid;
+    }
+
+    @include media-query(large) {
+        padding: $grid * 6 0 $grid 0;
+    }
+}
+
+.title {
+    @include font-size(xxxl);
+    line-height: 1em;
+    font-weight: $weight--extrabold;
+    margin-bottom: $grid * 2;
+}
+
+.subtitle {
+    @include font-size(m);
+    color: var(--color--dark-indigo);
+    line-height: 160%;
+}
+
+.accent {
+    color: var(--color--coral);
+}

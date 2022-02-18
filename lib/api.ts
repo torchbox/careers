@@ -223,3 +223,51 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
 
     return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
 }
+
+export async function getEmployeeOwnedTrustPage(preview: boolean) {
+    const employeeOwnedTrustPageContent = await fetchGraphQL(
+        `{
+          eotPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+          items {
+              ${pageMetadata}
+              subtitle
+              content {
+                json
+                links {
+                  entries {
+                    block {
+                      __typename
+                      sys {
+                        id
+                      }
+                      ... on Quote {
+                        quote
+                        name
+                        role
+                      }
+                    }
+                  }
+                }
+              }
+              itemsCollection(limit: 1) {
+                  items {
+                    ${benefits}
+                    ... on VoiceOfChange {
+                      title
+                      content {
+                        json
+                      }
+                    }
+                  }
+              }
+              }
+          }
+      }
+      `,
+        preview,
+    );
+
+    return employeeOwnedTrustPageContent.data.eotPageCollection.items[0];
+}
