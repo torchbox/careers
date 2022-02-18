@@ -13,7 +13,7 @@
     &:focus {
         color: var(--color--white);
 
-        & > .chevron {
+        & > .endingChevron {
             transform: translateX(8px);
         }
 
@@ -32,7 +32,42 @@
     );
 }
 
-.chevron {
+.chevronButton {
+    cursor: pointer;
+    border: 0;
+    width: 100px;
+    height: 50px;
+    position: relative;
+    background-color: var(--color--indigo);
+
+    &:disabled {
+        background-color: var(--color--dark-indigo);
+    }
+
+    &:not([disabled]):hover {
+        & > .centerChevron {
+            transform: translate(-50%, -50%) translateX(8px);
+        }
+
+        & > .centerChevron.centerChevronFacingLeft {
+            transform: translate(-50%, -50%) rotate(180deg) translateX(8px);
+        }
+    }
+}
+
+.centerChevron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform $transition-quick;
+
+    &FacingLeft {
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+}
+
+.endingChevron {
     @include z-index(one);
     position: absolute;
     right: 25px;
