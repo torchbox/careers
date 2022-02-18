@@ -191,6 +191,12 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 heroDescription {
                     json
                 }
+                mainContentTitleFirstLine
+                mainContentTitleSecondLine
+                mainContentTitleThirdLine
+                mainContent {
+                    json
+                }
                 itemsCollection(limit: 2) {
                     items {
                       ${testimonial}
