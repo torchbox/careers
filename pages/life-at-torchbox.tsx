@@ -5,18 +5,7 @@ import { getLifeAtTorchboxPage } from '../lib/api';
 import { LifeAtTorchboxPage } from 'types/LifeAtTorchboxPage';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import RichText from 'components/RichText/RichText';
-
-const PlaceholderImage = {
-    description: 'This is a placeholder',
-    url: 'https://source.unsplash.com/random/750x750/?forest',
-    width: 750,
-    height: 750,
-};
-
-const PlaceholderVideo = {
-    description: 'This is a video',
-    url: 'https://videos.ctfassets.net/j97ble2qvn7g/1NiavumsiPSVMntrkOg4Iz/1c70dc30fc1d13488d9547bad9c96689/video__1_.mp4',
-};
+import MainContent from 'components/LifeAtTorchbox/MainContent';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -36,6 +25,15 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             >
                 <RichText theme="DARK" content={content.heroDescription} />
             </Hero>
+        </div>
+        <div className={styles.whiteBackground}>
+            <MainContent
+                firstLine={content.mainContentTitleFirstLine}
+                secondLine={content.mainContentTitleSecondLine}
+                thirdLine={content.mainContentTitleThirdLine}
+            >
+                <RichText theme="LIGHT" content={content.mainContent} />
+            </MainContent>
         </div>
     </Layout>
 );
