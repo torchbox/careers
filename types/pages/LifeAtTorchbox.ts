@@ -1,4 +1,5 @@
-import { ImageTypes, VideoTypes } from './Base';
+import { ImageTypes, VideoTypes } from '../Base';
+import { Document } from '@contentful/rich-text-types';
 
 export type LifeAtTorchboxPage = {
     metadataTitle: string;
@@ -7,8 +8,8 @@ export type LifeAtTorchboxPage = {
     heroImage: ImageTypes;
     heroVideo: VideoTypes;
     heroSubtitle: string;
-    heroDescription: any;
+    heroDescription: { json: Document };
     itemsCollection: any;
     valueCarouselTitle: string;
-    valueCarouselDescription: any;
+    valueCarouselDescription: { json: Document };
 };
