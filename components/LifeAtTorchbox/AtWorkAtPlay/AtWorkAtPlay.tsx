@@ -3,12 +3,16 @@ import RichText from 'components/RichText/RichText';
 import styles from './AtWorkAtPlay.module.scss';
 
 type AtWorkAtPlayProps = {
+    atWorkTitle: string;
+    atPlayTitle: string;
     atWorkDescription: any;
     atPlayDescription: any;
     locations: any;
 };
 
 export const AtWorkAtPlay = ({
+    atWorkTitle,
+    atPlayTitle,
     atWorkDescription,
     atPlayDescription,
     locations,
@@ -26,12 +30,12 @@ export const AtWorkAtPlay = ({
     return (
         <div className={styles.container}>
             <div className={styles.atWork}>
-                <h2 className={styles.title}>At work</h2>
+                <h2 className={styles.title}>{atWorkTitle}</h2>
                 <RichText theme="DARK" content={atWorkDescription} />
                 <ul className={styles.officeLocationList}>{workLocations}</ul>
             </div>
             <div className={styles.atPlay}>
-                <h2 className={styles.title}>At play</h2>
+                <h2 className={styles.title}>{atPlayTitle}</h2>
                 <RichText theme="DARK" content={atPlayDescription} />
             </div>
         </div>

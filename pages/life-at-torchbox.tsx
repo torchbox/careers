@@ -25,6 +25,8 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             <RichText theme="DARK" content={content.heroDescription} />
         </Hero>
         <AtWorkAtPlay
+            atWorkTitle={content.atWorkTitle}
+            atPlayTitle={content.atPlayTitle}
             atPlayDescription={content.atPlayDescription}
             atWorkDescription={content.atWorkDescription}
             locations={content.workLocations.locationListCollection.items}
@@ -36,7 +38,6 @@ export default LifeAtTorchboxPage;
 
 export async function getStaticProps({ preview = false }) {
     const content = (await getLifeAtTorchboxPage(preview)) ?? [];
-    console.log(content.workLocations.locationListCollection.items);
     return {
         props: { preview, content },
     };
