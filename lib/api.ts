@@ -223,3 +223,28 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
 
     return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
 }
+
+export async function getJobListingPage(preview: boolean) {
+    const pageContent = await fetchGraphQL(
+        `{
+        jobListingPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+              ${pageMetadata}
+              firstTitleLine
+              secondTitleLine
+              subtitle {
+                json
+              }
+              ctaTitle
+              ctaDescription {
+                json
+              }
+            }
+          }
+        }`,
+        preview,
+    );
+    return pageContent.data.jobListingPageCollection.items[0];
+}
