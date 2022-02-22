@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import FruitBowl from 'components/SVG/FruitBowl';
 import { BenefitStarIcon } from '../Icons/BenefitStarIcon';
 import styles from './Benefits.module.scss';
 
@@ -22,7 +22,7 @@ export const Benefits = ({ title, benefits }: BenefitsProps) => {
                 <ul className={styles.benefitsList}>{listOfBenefits}</ul>
             </div>
             <div className={styles.fruit}>
-                <img src="images/fruit.svg" alt="" />
+                <FruitBowl />
             </div>
         </div>
     );
