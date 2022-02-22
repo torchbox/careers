@@ -14,13 +14,25 @@ export const ChevronIcon = ({
         xmlns="http://www.w3.org/2000/svg"
         width={width}
         height={height}
+        viewBox="0 0 48 48"
         fill="none"
         aria-hidden="true"
     >
         <path
             fill="#fff"
             fillRule="evenodd"
-            d="M4.854 0L0 4.206 4.708 10 0 15.794 4.854 20l8.006-9.853.14-.122-.02-.025.02-.025-.14-.122L4.854 0z"
+            d="M 20.05 0 
+            L 8.4 10.094 
+            L 19.699 24 
+            L 8.4 37.906
+            L 20.05 48
+            l 19.214 -23.647
+            l 0.336 -0.293
+            l -0.048 -0.06
+            l 0.048 -0.06
+            l -0.336 -0.293
+            L 20.05 0
+            z"
             clipRule="evenodd"
         />
     </svg>

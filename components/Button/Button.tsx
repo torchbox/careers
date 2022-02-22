@@ -17,7 +17,7 @@ export const Button = ({ className, url, jobs = 0, children }: ButtonProps) => (
             )}
         >
             {children}
-            <ChevronIcon className={styles.chevron} />
+            <ChevronIcon className={styles.chevron} width={20} height={30} />
             {jobs > 0 && <div className={styles.jobsBadge}>{jobs}</div>}
         </a>
     </Link>
@@ -39,7 +39,7 @@ export const SwishButton = ({
                 <div className={styles.swishBackground} />
             </div>
             <div className={styles.text}>{children}</div>
-            <ChevronIcon className={styles.chevron} />
+            <ChevronIcon className={styles.chevron} width={20} height={30} />
             {jobs > 0 && <div className={styles.jobsBadge}>{jobs}</div>}
         </a>
     </Link>
