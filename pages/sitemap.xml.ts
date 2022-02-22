@@ -4,7 +4,7 @@ function generateSiteMap() {
     let baseUrl = 'http://localhost:3000';
     if (process.env.VERCEL_ENV) {
         baseUrl = {
-            production: 'https://theblackhart.co.uk',
+            production: 'https://torchbox.com/careers',
             preview: process.env.VERCEL_URL,
             development: 'http://localhost:3000',
         }[process.env.VERCEL_ENV] as string;
