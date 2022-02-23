@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { getAllJobSlugs } from './api/jobs/slugs';
 
-function generateSiteMap(jobSlugs: string[] | null) {
+const generateSiteMap = (jobSlugs: string[] | null) => {
     let baseUrl = 'http://localhost:3000';
     if (process.env.VERCEL_ENV) {
         baseUrl = {
@@ -17,10 +17,10 @@ function generateSiteMap(jobSlugs: string[] | null) {
         <loc>${baseUrl}</loc>
       </url>
       <url>
-        <loc>${baseUrl + '/life-at-torchbox/'}</loc>
+        <loc>${baseUrl + '/life-at-torchbox'}</loc>
       </url>
       <url>
-        <loc>${baseUrl + '/jobs/'}</loc>
+        <loc>${baseUrl + '/jobs'}</loc>
       </url>
       ${
           jobSlugs &&
@@ -36,18 +36,18 @@ function generateSiteMap(jobSlugs: string[] | null) {
   `;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     const jobSlugs = await getAllJobSlugs();
     const sitemap = generateSiteMap(jobSlugs);
 
-    context.res.setHeader('Content-Type', 'text/xml');
-    context.res.write(sitemap);
-    context.res.end();
+    res.setHeader('Content-Type', 'text/xml');
+    res.write(sitemap);
+    res.end();
 
     return {
         props: {},
     };
 };
 
-function SiteMap() {}
-export default SiteMap;
+const Sitemap = () => {};
+export default Sitemap;
