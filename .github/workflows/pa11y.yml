@@ -26,6 +26,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version-file: ".nvmrc"
+          node-version-file: '.nvmrc'
       - run: npm install -g pa11y-ci
       - run: pa11y-ci --sitemap ${{ needs.wait_for_vercel.outputs.preview_url }}/sitemap.xml
