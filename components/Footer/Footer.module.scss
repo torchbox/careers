@@ -200,6 +200,8 @@
     align-items: center;
     order: 1;
     margin-bottom: $grid;
+    margin-left: 0;
+    list-style: none;
 
     @include media-query(large) {
         order: 2;

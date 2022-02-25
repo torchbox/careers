@@ -6,7 +6,7 @@
         padding-top: ($gutter * 0.5);
     }
 
-    &__list {
+    &List {
         display: flex;
         list-style: none;
         padding: 0;
@@ -14,7 +14,7 @@
         align-items: center;
     }
 
-    &__dots {
+    &Dots {
         position: relative;
         width: 6px;
         height: 6px;
@@ -63,9 +63,9 @@
         }
     }
 
-    &__moreItem {
+    &MoreItem {
         position: relative;
-        padding-left: 3.5vw;
+        padding-left: $grid * 3;
         margin-right: 0;
         display: none;
         font-weight: $weight--bold;
@@ -93,7 +93,7 @@
         }
     }
 
-    &__moreButton {
+    &MoreButton {
         //Make the button easier to click
         //The 20px to the right covers the triple dots
         padding: 10px 20px 10px 10px;
@@ -117,21 +117,21 @@
 }
 
 .desktopNavItem {
-    margin-right: 5.5vw;
+    margin-right: $grid * 3;
 
     &:last-child {
         margin-right: 0;
     }
 
-    &__title {
+    &Title {
         font-weight: $weight--bold;
     }
 
-    &__withBadge {
+    &WithBadge {
         position: relative;
     }
 
-    &__link {
+    &Link {
         @include font-size(s);
         @include link-underscore(0);
         display: block;
@@ -167,7 +167,7 @@
         }
     }
 
-    &__badgeLink {
+    &BadgeLink {
         @include link-underscore(0);
         border-bottom: 0;
         position: absolute;
@@ -177,6 +177,7 @@
 }
 
 .backgroundOverlay {
+    @include z-index(header);
     position: fixed;
     top: 0;
     bottom: 0;

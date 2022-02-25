@@ -1,0 +1,145 @@
+.container {
+    max-width: $site-width;
+    margin: 0 auto;
+    padding: 0 $grid $grid * 3 $grid;
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(medium) {
+        padding: $grid * 0 $grid * 2 $grid * 4 $grid * 2;
+    }
+
+    @include media-query(large) {
+        padding: $grid * 0 $grid * 4 $grid * 6 $grid * 4;
+    }
+
+    @include media-query(menu-break) {
+        padding: $grid * 0 $grid * 4 $grid * 6 $grid * 4;
+    }
+}
+
+.title {
+    @include font-size(xxxxl);
+    font-weight: $weight--extrabold;
+    line-height: 60px;
+
+    @include media-query(medium) {
+        line-height: 70px;
+    }
+
+    @include media-query(large) {
+        line-height: 100px;
+    }
+
+    &Accent {
+        color: var(--color--coral);
+    }
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: $grid * 2;
+    gap: $grid;
+    list-style: none;
+    margin-left: 0;
+
+    @include media-query(medium) {
+        margin-bottom: $grid * 3;
+    }
+
+    @include media-query(menu-break) {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: $grid * 3;
+        margin-bottom: $grid * 3.5;
+    }
+}
+
+.blogPost {
+    &Link:hover,
+    &Link:focus {
+        & > .blogPostTitle {
+            color: var(--color--coral);
+        }
+    }
+    &:first-child &Title {
+        margin-top: $grid;
+
+        @include media-query(medium) {
+            &:first-child {
+                margin-top: $grid * 2;
+            }
+        }
+    }
+
+    &Title {
+        @include font-size(ml);
+        color: var(--color--dark-indigo);
+        font-weight: $weight--bold;
+        transition: color $transition-quick;
+        margin-top: $grid * 2;
+
+        @include media-query(medium) {
+            margin-bottom: $grid;
+        }
+    }
+}
+
+.author {
+    display: flex;
+    flex-direction: row;
+
+    &Photo {
+        width: 51px;
+        height: 51px;
+        margin-right: 12px;
+
+        & span,
+        & img {
+            border-radius: 50%;
+        }
+    }
+
+    &Details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &Name {
+        @include font-size(xs);
+        margin: 0;
+        color: var(--color--dark-indigo);
+    }
+
+    &Metadata {
+        margin: -5px 0 0 0;
+        white-space: nowrap;
+        // Added otherwise the date text will break over two lines on Safari
+    }
+
+    &Role {
+        @include font-size(xxs);
+        color: var(--color--coral-dark);
+        font-weight: $weight--bold;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    &Date {
+        @include font-size(xxs);
+        color: var(--color--light-grey-accessible);
+        margin-left: 18px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -12px;
+            height: 16px;
+            width: 1px;
+            background-color: var(--color--light-grey);
+        }
+    }
+}

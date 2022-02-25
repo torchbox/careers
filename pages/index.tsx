@@ -11,26 +11,9 @@ import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
 import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
 import RichText from 'components/RichText/RichText';
+import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
 
-const ExampleBenefits = [
-    'Performance and ownership bonus',
-    '25 days holiday',
-    'Personal development budget',
-    'Private health cover',
-    'Flexible hours',
-    'Regular socials - online and in-person',
-    'Ethical pension',
-    'Fruit!',
-];
-
-const PlaceholderImage = {
-    description: 'This is a placeholder',
-    url: 'https://source.unsplash.com/random/750×750/?nature',
-    width: 750,
-    height: 750,
-};
-
-const ImageArray = [...Array(10)].map((_) => PlaceholderImage);
+const TEMPORARY_JOBS_VARIABLE = 11;
 
 type LandingPageProps = {
     preview: boolean;
@@ -40,59 +23,88 @@ type LandingPageProps = {
 const LandingPage: NextPage<LandingPageProps> = ({
     preview,
     landingPageContent,
-}) => (
-    <Layout theme="LIGHT" preview={preview} jobsAvailable={11}>
-        <Hero image={PlaceholderImage}>
-            {/* Todo: Replace this with a rich text field component. */}
-            <p>
-                <strong>Glad you asked.</strong> We are not your average digital
-                agency...
-            </p>
-            <PageNav title={landingPageContent.missionTitle} jobs={3}>
+}) => {
+    const clientLogos =
+        landingPageContent.itemsCollection.items[2].clientsCollection.items.map(
+            (item: any) => item.clientLogo,
+        );
+
+    const benefits =
+        landingPageContent.itemsCollection.items[0].benefitsListCollection.items.map(
+            (item: any) => item.benefitName,
+        );
+
+    const socialMediaProfilePhotos =
+        landingPageContent.itemsCollection.items[1].imagesCollection.items.map(
+            (item: any) => item.image,
+        );
+
+    return (
+        <Layout
+            theme={'INDIGO'}
+            preview={preview}
+            jobsAvailable={TEMPORARY_JOBS_VARIABLE}
+        >
+            <Hero image={landingPageContent.heroImage}>
                 <RichText
                     theme="INDIGO"
-                    content={landingPageContent.missionDescription}
+                    content={landingPageContent.heroTagline}
                 />
-            </PageNav>
-        </Hero>
+                <PageNav
+                    title={landingPageContent.missionTitle}
+                    jobs={TEMPORARY_JOBS_VARIABLE}
+                >
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.missionDescription}
+                    />
+                </PageNav>
+            </Hero>
 
-        <ClientLogos logos={ImageArray} />
+            <ClientLogos logos={clientLogos} />
 
-        <ComeWorkForYou image={PlaceholderImage}>
-            <strong>
-                No parent company, no shareholders, just a team of equal owners.
-            </strong>
-            <br />
-            <br />
-            <p>
-                100% of our business belongs to our Employee Ownership Trust
-                (EOT). Everyone is included, everyone is updated and everyone
-                belongs.
-            </p>
-        </ComeWorkForYou>
+            <ComeWorkForYou image={landingPageContent.workForYouImage}>
+                <RichText
+                    theme="DARK"
+                    content={landingPageContent.workForYouDescription}
+                />
+            </ComeWorkForYou>
+            <div id="benefits">
+                <Benefits
+                    title="Real benefits in touch with real life"
+                    benefits={benefits}
+                />
+            </div>
 
-        <Benefits
-            title="Real benefits in touch with real life"
-            benefits={ExampleBenefits}
-        />
+            <div id="lifeAsATorchboxer">
+                <LifeAsATorchboxer>
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.lifeAsATorchboxer}
+                    />
+                </LifeAsATorchboxer>
+            </div>
+            <SocialMediaPhotos photos={socialMediaProfilePhotos} />
 
-        <LifeAsATorchboxer>
-            <RichText
-                theme="INDIGO"
-                content={landingPageContent.lifeAsATorchboxer}
+            <CTA
+                jobs={TEMPORARY_JOBS_VARIABLE}
+                title={landingPageContent.ctaTitle}
+            >
+                <RichText
+                    theme="INDIGO"
+                    content={landingPageContent.ctaDescription}
+                />
+            </CTA>
+
+            <MusingsFromTheTeam
+                postData={
+                    landingPageContent.itemsCollection.items[3]
+                        .blogPostsCollection.items
+                }
             />
-        </LifeAsATorchboxer>
-
-        <SocialMediaPhotos photos={ImageArray} />
-
-        <CTA jobs={10} title={landingPageContent.ctaTitle}>
-            <RichText
-                theme="INDIGO"
-                content={landingPageContent.ctaDescription}
-            />
-        </CTA>
-    </Layout>
-);
+        </Layout>
+    );
+};
 
 export default LandingPage;
 

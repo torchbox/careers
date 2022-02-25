@@ -61,7 +61,7 @@ export const DesktopSubnav = ({
     const navItems = links.map((link, index) => {
         const careerNavItemClass =
             link.title === 'Careers' && jobsAvailable > 0
-                ? styles.subnav__itemWithBadge
+                ? styles.subnavItemWithBadge
                 : '';
 
         // The first and last nav items need custom keyboard event handlers for tabbing into and out of the menu
@@ -83,7 +83,7 @@ export const DesktopSubnav = ({
         return (
             <li
                 key={index}
-                className={`${styles.subnav__item} ${careerNavItemClass}`}
+                className={`${styles.subnavItem} ${careerNavItemClass}`}
             >
                 {/* Render next.js links with <Link> to preload content */}
                 {link.isCareersSiteInternalLink ? (
@@ -92,7 +92,7 @@ export const DesktopSubnav = ({
                             <a
                                 onKeyUp={handleKeyUp}
                                 onKeyDown={handleCareersKeyDown}
-                                className={styles.subnav__link}
+                                className={styles.subnavLink}
                             >
                                 {link.title}
                             </a>
@@ -102,7 +102,7 @@ export const DesktopSubnav = ({
                                 <a
                                     onKeyUp={handleKeyUp}
                                     onKeyDown={handleBadgeKeyDown}
-                                    className={`${styles.subnav__badge} ${styles.badge}`}
+                                    className={`${styles.subnavBadge} ${styles.badge}`}
                                     aria-label={`${jobsAvailable} jobs available`}
                                 >
                                     {jobsAvailable}
@@ -112,7 +112,7 @@ export const DesktopSubnav = ({
                     </>
                 ) : (
                     <a
-                        className={styles.subnav__link}
+                        className={styles.subnavLink}
                         href={link.url}
                         onKeyUp={handleKeyUp}
                         onKeyDown={handleVariedKeyDown}

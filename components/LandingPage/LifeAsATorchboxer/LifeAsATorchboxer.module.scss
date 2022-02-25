@@ -8,7 +8,7 @@
     }
 
     @include media-query(large) {
-        padding: $grid * 4;
+        padding: 0 $grid * 4 $grid * 4 $grid * 4;
         flex-direction: row;
     }
 }
@@ -24,6 +24,7 @@
 
     @include media-query(large) {
         max-width: 635px;
+        margin-bottom: 0;
     }
 }
 
@@ -39,6 +40,10 @@
     @include media-query(large) {
         line-height: 100px;
     }
+
+    &Accent {
+        color: var(--color--coral);
+    }
 }
 
 .richText {
@@ -53,10 +58,6 @@
     & a:first-child {
         margin-right: $grid * 2;
     }
-}
-
-.titleAccent {
-    color: var(--color--coral);
 }
 
 .image {

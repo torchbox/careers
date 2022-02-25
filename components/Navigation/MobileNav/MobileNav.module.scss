@@ -76,6 +76,7 @@
         }
     }
 }
+
 .mobileMenuButton {
     @include z-index(menu-button);
     position: absolute;
@@ -156,7 +157,7 @@
 }
 
 .mobileNav {
-    &__container {
+    &Container {
         display: block;
 
         @include media-query(menu-break) {
@@ -164,7 +165,7 @@
         }
     }
 
-    &__modal {
+    &Modal {
         @include z-index(modal);
         position: absolute;
         top: 0;
@@ -192,14 +193,16 @@
         }
     }
 
-    &__modalOpen {
+    &ModalOpen {
         transform: translateX(0);
     }
 
-    &__list {
+    &List {
         display: flex;
         flex-direction: column;
         padding: 90px $variable-gutter--small 0 $variable-gutter--small;
+        list-style: none;
+        margin-left: 0;
 
         li {
             margin-left: 0;
@@ -216,12 +219,12 @@
 .mobileNavItem {
     border-top: 1px solid hsla(0, 0%, 100%, 0.2);
 
-    &__withBadge {
+    &WithBadge {
         display: flex;
         align-items: center;
     }
 
-    &__link {
+    &Link {
         @include font-size(s);
         display: block;
         color: var(--color--white);
@@ -234,7 +237,7 @@
         }
     }
 
-    &__badgeLink {
+    &BadgeLink {
         width: 14px;
         text-align: center;
         border-bottom: 0;

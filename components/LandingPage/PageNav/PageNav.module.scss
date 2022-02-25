@@ -1,5 +1,9 @@
 .container {
-    margin-top: $grid * 4;
+    margin-top: $grid * 2;
+
+    @include media-query(medium) {
+        margin-top: $grid * 4;
+    }
 
     @include media-query(large) {
         margin-top: $grid * 5;
@@ -10,6 +14,8 @@
     display: flex;
     flex-direction: row;
     margin-bottom: $grid;
+    list-style: none;
+    margin-left: 0;
 
     @include media-query(medium) {
         margin-bottom: $grid * 2;
@@ -48,10 +54,12 @@
 }
 
 .navLink {
-    color: var(--color--dark-indigo);
+    @include font-size(xs);
+    color: var(--color--indigo);
 }
 
 .jobsLink {
+    @include font-size(xs);
     color: var(--color--dark-indigo);
     font-weight: $weight--extrabold;
     position: relative;
@@ -67,12 +75,11 @@
 
 .jobsBadge {
     @include z-index(one);
-    @include font-size(xs);
-
+    @include font-size(xxs);
     display: inline-block;
     position: absolute;
-    right: -24px;
-    top: -18px;
+    right: -18px;
+    top: -14px;
     color: var(--color--dark-indigo);
     transition: color $transition;
 
@@ -85,17 +92,16 @@
         top: 0;
         background-color: var(--color--coral);
         transition: background-color $transition;
-        width: 21px;
-        height: 27px;
+        width: 15px;
+        height: 21px;
     }
 }
 
 .image {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+    display: none;
 
-    @include media-query(medium) {
+    @include media-query(large) {
+        display: block;
         margin-left: $grid;
     }
 }
@@ -104,7 +110,7 @@
     text-align: left;
     margin-top: $grid * 2;
 
-    @include media-query(large) {
+    @include media-query(medium) {
         margin-top: $grid * 3;
     }
 }
