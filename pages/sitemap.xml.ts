@@ -22,13 +22,19 @@ const generateSiteMap = (jobSlugs: string[] | null) => {
                 'index.tsx',
                 '_app.tsx',
                 '_error.js',
-                '_error.js',
+                '_app.js',
+                '_document.js',
+                'en',
+                'index.js',
                 '.DS_Store',
+                'sitemap.xml.js',
                 'sitemap.xml.ts',
             ].includes(staticPage);
         })
         .map((staticPagePath) => {
-            const path = `${baseUrl}/${staticPagePath}`.replace('.tsx', '');
+            const path = `${baseUrl}/${staticPagePath}`
+                .replace('.tsx', '')
+                .replace('.js', '');
             return path;
         });
 
