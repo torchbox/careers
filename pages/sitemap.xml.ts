@@ -23,6 +23,7 @@ const generateSiteMap = (jobSlugs: string[] | null) => {
                 '_app.tsx',
                 '_error.js',
                 '_error.js',
+                '.DS_Store',
                 'sitemap.xml.ts',
             ].includes(staticPage);
         })
