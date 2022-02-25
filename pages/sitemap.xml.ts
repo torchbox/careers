@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next';
-import { ServerResponse } from 'http';
 import fs from 'fs';
 import { getAllJobSlugs } from './api/jobs/slugs';
 
@@ -23,12 +22,19 @@ const generateSiteMap = (jobSlugs: string[] | null) => {
                 'index.tsx',
                 '_app.tsx',
                 '_error.js',
-                '_error.js',
+                '_app.js',
+                '_document.js',
+                'en',
+                'index.js',
+                '.DS_Store',
+                'sitemap.xml.js',
                 'sitemap.xml.ts',
             ].includes(staticPage);
         })
         .map((staticPagePath) => {
-            const path = `${baseUrl}/${staticPagePath}`.replace('.tsx', '');
+            const path = `${baseUrl}/${staticPagePath}`
+                .replace('.tsx', '')
+                .replace('.js', '');
             return path;
         });
 
