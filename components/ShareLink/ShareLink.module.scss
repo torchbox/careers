@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    @include media-query(medium) {
+        margin-left: $grid * 1.5;
+    }
+
+    &:focus .shareLink,
+    &:hover .shareLink {
+        color: var(--color--coral-dark);
+    }
+
+    &:focus path,
+    &:hover path {
+        fill: var(--color--coral-dark);
+    }
+
+    & path {
+        transition: fill $transition-quick;
+    }
+}
+
+.shareLink {
+    @include font-size(s);
+    color: var(--color--indigo);
+    font-weight: $weight--extrabold;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-position: under;
+    margin: 0 0 0 12px;
+    transition: color $transition-quick;
+}
