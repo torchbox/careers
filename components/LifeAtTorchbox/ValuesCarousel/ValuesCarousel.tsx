@@ -52,15 +52,6 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
                 src={value.valueImage.url}
                 alt={value.valueImage.description}
             />
-            <div className={styles.slideDetails}>
-                <a
-                    className={styles.slideLink}
-                    href={value.valueImage.url}
-                    aria-hidden
-                >
-                    View fullscreen
-                </a>
-            </div>
         </SwiperSlide>
     ));
 

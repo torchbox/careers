@@ -31,19 +31,7 @@
 .title {
     @include font-size(xxxxl);
     font-weight: $weight--extrabold;
-    line-height: 60px;
-
-    @include media-query(medium) {
-        line-height: 70px;
-    }
-
-    @include media-query(large) {
-        line-height: 100px;
-    }
-
-    &Accent {
-        color: var(--color--coral);
-    }
+    line-height: 1;
 }
 
 .image {
@@ -57,11 +45,10 @@
 }
 
 .carouselContainer {
-    padding-bottom: 120px;
-
     @include media-query(medium) {
         margin-left: auto;
         width: 90%;
+        padding-bottom: $grid;
     }
 }
 
@@ -70,51 +57,24 @@
     top: 0;
     left: 0;
     margin-left: auto;
-    padding-bottom: 80px;
-
-    &Slide {
-        display: inline;
-    }
 }
 
-.slide {
-    position: relative;
+.slideImage {
+    width: 100%;
+    cursor: grab;
 
-    &Image {
-        width: 100%;
-        cursor: grab;
-
-        @include media-query(medium) {
-            width: unset;
-        }
-    }
-
-    &Details {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        background-color: var(--color--white-translucent);
-    }
-
-    &Link {
-        @include font-size(s);
-        color: var(--color--indigo);
-        font-weight: $weight--extrabold;
-        text-decoration: underline;
-        text-underline-position: under;
-        margin: $grid 0;
+    @include media-query(medium) {
+        width: unset;
     }
 }
 
 .buttonNavigation {
     display: flex;
-    position: absolute;
+    position: relative;
+    height: 70px;
     left: 50%;
-    bottom: 0px;
+    bottom: -20px;
+    width: max-content;
     transform: translateX(-50%);
 
     @include media-query(medium) {
