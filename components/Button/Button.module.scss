@@ -32,6 +32,10 @@
     );
 }
 
+.coralBackground {
+    background-color: var(--color--coral);
+}
+
 .chevron {
     @include z-index(one);
     position: absolute;
