@@ -4,8 +4,9 @@ import React, { useRef } from 'react';
 import { Keyboard, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ImageTypes } from 'types/Base';
-
+import Image from 'components/Image';
 import styles from './ValuesCarousel.module.scss';
+import 'swiper/css';
 
 type CarouselIntroductionProps = {
     title: string;
@@ -43,16 +44,23 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
     const previousButtonRef = useRef<HTMLButtonElement>(null);
 
     const slides = values.map((value: Value, index: number) => (
-        <SwiperSlide className={styles.carouselSlide} key={index}>
-            {/* Nice to have - refactor to include Next/Image, a lot of CSS overrides required here! */}
-            {/* eslint-disable-next-line @next/next/no-img-element*/}
-            <img
+        <SwiperSlide className={styles.slide} key={index}>
+            <Image
                 className={styles.slideImage}
                 width={value.valueImage.width}
                 height={value.valueImage.height}
                 src={value.valueImage.url}
                 alt={value.valueImage.description}
             />
+            <div className={styles.slideDetails}>
+                <a
+                    className={styles.slideLink}
+                    href={value.valueImage.url}
+                    aria-hidden
+                >
+                    View fullscreen
+                </a>
+            </div>
         </SwiperSlide>
     ));
 
@@ -60,11 +68,12 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
 
     let slidesPerView: number | 'auto' = 'auto';
 
-    if (screen.includes('medium')) slidesPerView = 2;
-    if (screen.includes('large')) slidesPerView = 3.45;
+    if (screen.includes('medium')) slidesPerView = 2.2;
+    if (screen.includes('large')) slidesPerView = 2.8;
+    if (screen.includes('site-width')) slidesPerView = 3;
 
     return (
-        <>
+        <div className={styles.pageContainer}>
             <CarouselIntroduction title={title}>
                 {children}
             </CarouselIntroduction>
@@ -100,7 +109,7 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
                     </div>
                 </Swiper>
             </div>
-        </>
+        </div>
     );
 };
 
