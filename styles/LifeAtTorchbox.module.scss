@@ -6,3 +6,22 @@
 .indigoBackground {
     background-color: var(--color--dark-indigo);
 }
+
+.contentContainer {
+    max-width: 840px;
+    padding: $grid * 2 $grid 0 $grid;
+
+    @include media-query(medium) {
+        margin: 0 auto;
+    }
+
+    @include media-query(large) {
+        padding: 0;
+        margin: 0 auto 0 24%;
+    }
+}
+
+.textContainer {
+    max-width: 755px;
+    margin-right: auto;
+}

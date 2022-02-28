@@ -44,9 +44,14 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
         >
             <RichText
                 theme="LIGHT"
-                content={content.valueCarouselDescription}
+                content={content.valueCarouselIntroduction}
             />
         </ValuesCarousel>
+        <div className={styles.contentContainer}>
+            <div className={styles.textContainer}>
+                <RichText theme="LIGHT" content={content.valuesDescription} />
+            </div>
+        </div>
     </Layout>
 );
 

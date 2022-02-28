@@ -10,5 +10,6 @@ export type LifeAtTorchboxPage = {
     heroDescription: any;
     itemsCollection: any;
     valueCarouselTitle: string;
-    valueCarouselDescription: any;
+    valueCarouselIntroduction: any;
+    valuesDescription: any;
 };
