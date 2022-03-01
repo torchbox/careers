@@ -35,8 +35,10 @@ export const Button = ({
                             className,
                         ].join(' ')}
                     >
-                        {children}
-                        <ChevronIcon className={styles.chevron} />
+                        <div className={styles.textContainer}>
+                            {children}
+                            <ChevronIcon className={styles.chevron} size={18} />
+                        </div>
                         {jobs > 0 && (
                             <div className={styles.jobsBadge}>{jobs}</div>
                         )}
@@ -51,8 +53,10 @@ export const Button = ({
                     target="_blank"
                     rel="noreferrer"
                 >
-                    {children}
-                    <ChevronIcon className={styles.chevron} />
+                    <div className={styles.textContainer}>
+                        {children}
+                        <ChevronIcon className={styles.chevron} size={18} />
+                    </div>
                     {jobs > 0 && <div className={styles.jobsBadge}>{jobs}</div>}
                 </a>
             )}

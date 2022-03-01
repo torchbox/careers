@@ -39,7 +39,7 @@
 .chevron {
     @include z-index(one);
     margin-left: 6px;
-    margin-right: -18px;
+    margin-right: -28px;
     transition: transform $transition-quick;
 }
 

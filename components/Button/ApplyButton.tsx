@@ -17,8 +17,8 @@ export const ApplyButton = ({
 }: ApplyButtonProps) => {
     const screen = useScreen();
     let size = 18;
+    if (screen.includes('large')) size = 22;
     if (screen.includes('large')) size = 24;
-    if (screen.includes('large')) size = 28;
 
     return (
         <a
