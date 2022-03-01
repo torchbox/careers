@@ -68,10 +68,11 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
             <CarouselIntroduction title={title}>
                 {children}
             </CarouselIntroduction>
-            <div
-                className={styles.carouselContainer}
-                aria-label="Decorative carousel element containing images of Torchbox's values"
-            >
+            <p className={styles.screenReaderOnly}>
+                Decorative carousel element containing images of Torchbox&apos;s
+                values
+            </p>
+            <div className={styles.carouselContainer}>
                 <Swiper
                     className={styles.carousel}
                     spaceBetween={10}

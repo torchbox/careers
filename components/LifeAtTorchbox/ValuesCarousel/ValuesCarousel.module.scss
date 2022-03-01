@@ -43,6 +43,10 @@
     }
 }
 
+.screenReaderOnly {
+    @include hidden();
+}
+
 .carouselContainer {
     @include media-query(medium) {
         margin-left: auto;
