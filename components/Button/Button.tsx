@@ -67,7 +67,9 @@ export const CarouselArrowButton = ({
             className={[styles.button, styles.chevronButton, className].join(
                 ' ',
             )}
-            aria-hidden
+            aria-label={
+                leftFacing ? 'Carousel button left' : 'Carousel button right'
+            }
         >
             <ChevronIcon
                 className={`${styles.centerChevron} ${
