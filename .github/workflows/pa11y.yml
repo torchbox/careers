@@ -27,5 +27,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version-file: '.nvmrc'
-      - run: npm install -g pa11y-ci
+      - run: npm install -g pa11y-ci@3.0.1
       - run: pa11y-ci --sitemap ${{ needs.wait_for_vercel.outputs.preview_url }}/sitemap.xml

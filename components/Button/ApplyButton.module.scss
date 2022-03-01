@@ -3,11 +3,20 @@
     @include font-size(m);
     display: block;
     position: relative;
-    width: max-content;
-    font-weight: $weight--extrabold;
+    width: 100%;
     color: var(--color--white);
-    padding: 12px 50px 12px 20px;
+    padding: $grid * 1.5;
     border-radius: 7px;
+    transition: transform $transition-quick;
+    margin-top: $grid * 3;
+
+    @include media-query(medium) {
+        margin-top: $grid * 3;
+    }
+
+    @include media-query(large) {
+        margin: $grid * 4.5 0 $grid * 3 0;
+    }
 
     &:hover,
     &:focus {
@@ -22,6 +31,26 @@
             animation-play-state: running;
         }
     }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:active {
+            transform: scale(1);
+        }
+
+        &:hover,
+        &:focus {
+            & > .overflowHider > .swishBackground {
+                opacity: 0;
+                animation-play-state: paused;
+            }
+
+            outline: 3px solid var(--color--coral);
+        }
+    }
 }
 
 .radialBackground {
@@ -32,14 +61,9 @@
     );
 }
 
-.coralBackground {
-    background-color: var(--color--coral);
-}
-
 .chevron {
     @include z-index(one);
-    margin-left: 6px;
-    margin-right: -18px;
+    margin-left: 8px;
     transition: transform $transition-quick;
 }
 
@@ -65,12 +89,20 @@
     }
 }
 
-.textContainer {
+.title {
+    @include font-size(l);
+    color: var(--color--white);
+    font-weight: $weight--extrabold;
+    margin: 0;
+}
+
+.titleContainer {
     display: flex;
     align-items: baseline;
 }
 
 .text {
+    @include font-size(s);
     pointer-events: none;
     user-select: none;
 }

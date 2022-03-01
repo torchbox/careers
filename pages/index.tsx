@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import type { LandingPage } from 'types/LandingPage';
+import type { LandingPage } from 'types/pages/LandingPage';
 import { getLandingPage } from '../lib/api';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';

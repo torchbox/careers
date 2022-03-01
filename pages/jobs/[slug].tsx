@@ -1,47 +1,98 @@
 import type { NextPage } from 'next';
 import type { JobPost } from 'lib/peopleHR';
-import styles from 'styles/Job.module.scss';
+import type { Job } from 'types/pages/Job';
 import { getAllJobSlugs } from 'pages/api/jobs/slugs';
 import { getJobPost } from 'pages/api/jobs/[slug]';
+import { getJobPage } from 'lib/api';
+import Layout from 'components/Layout';
+import ClientLogos from 'components/ClientLogos';
+import Benefits from 'components/Benefits';
+import RichText from 'components/RichText/RichText';
+import { ApplyButton } from 'components/Button';
 import JobListingHero from 'components/JobListingHero';
+import styles from 'styles/Job.module.scss';
 
-type JobPostingProps = {
+type JobPageProps = {
+    preview: boolean;
     job: JobPost;
+    content: Job;
     sharingURL: string;
 };
 
-const JobPosting: NextPage<JobPostingProps> = ({ job, sharingURL }) => {
-    return (
-        <div className={styles.pageContainer}>
-            <JobListingHero
-                title={job.title}
-                salary={job.salaryRange}
-                location={job.city}
-                applicationLink={job.jobURL}
-                sharingURL={sharingURL}
-            />
+const JobPosting: NextPage<JobPageProps> = ({
+    preview,
+    job,
+    content,
+    sharingURL,
+}) => {
+    const benefits =
+        content.itemsCollection.items[0].benefitsListCollection.items.map(
+            (item: any) => item.benefitName,
+        );
 
-            <div className={styles.contentContainer}>
-                <div className={styles.textContainer}>
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: job.description,
-                        }}
-                    ></div>
+    const clientLogos =
+        content.itemsCollection.items[1].clientsCollection.items.map(
+            (item: any) => item.clientLogo,
+        );
+
+    return (
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+            <div className={styles.pageContainer}>
+                <div className={styles.contentContainer}>
+                    <JobListingHero
+                        title={job.title}
+                        salary={job.salaryRange}
+                        location={job.city}
+                        applicationLink={job.jobURL}
+                        sharingURL={sharingURL}
+                    />
                 </div>
+
+                <Benefits
+                    title={content.itemsCollection.items[0].benefitsTitle}
+                    benefits={benefits}
+                />
+
+                <div className={styles.contentContainer}>
+                    <div className={styles.textContainer}>
+                        <h2 className={styles.hiringPolicyTitle}>
+                            {content.hiringPolicyTitle}
+                        </h2>
+                        <RichText
+                            theme="LIGHT"
+                            content={content.hiringPolicyDescription}
+                        />
+                        <ApplyButton
+                            title="Apply for this job"
+                            url={job.jobURL}
+                        >
+                            Join the team and help make the world a better place
+                        </ApplyButton>
+                    </div>
+                </div>
+
+                <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
+                <ClientLogos logos={clientLogos} />
             </div>
-        </div>
+        </Layout>
     );
 };
 
 export default JobPosting;
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
+export async function getStaticProps({
+    params,
+    preview = false,
+}: {
+    params: { slug: string };
+    preview: boolean;
+}) {
     try {
         const job = await getJobPost(params.slug);
         const sharingURL = params.slug;
+        const content = (await getJobPage(preview)) ?? [];
         return {
-            props: { job, sharingURL },
+            props: { preview, job, content, sharingURL },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {

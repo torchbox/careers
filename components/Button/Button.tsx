@@ -75,8 +75,10 @@ export const SwishButton = ({
             <div className={styles.overflowHider}>
                 <div className={styles.swishBackground} />
             </div>
-            <div className={styles.text}>{children}</div>
-            <ChevronIcon className={styles.chevron} />
+            <div className={styles.textContainer}>
+                <div className={styles.text}>{children}</div>
+                <ChevronIcon className={styles.chevron} size={20} />
+            </div>
             {jobs > 0 && <div className={styles.jobsBadge}>{jobs}</div>}
         </a>
     </Link>
