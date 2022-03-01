@@ -2,10 +2,12 @@ import type { NextPage } from 'next';
 import styles from 'styles/LifeAtTorchbox.module.scss';
 import Layout from '../components/Layout';
 import { getLifeAtTorchboxPage } from '../lib/api';
-import { LifeAtTorchboxPage } from 'types/LifeAtTorchboxPage';
+import Testimonial from 'components/Testimonial';
+import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import RichText from 'components/RichText/RichText';
 import MainContent from 'components/LifeAtTorchbox/MainContent';
+import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -25,16 +27,24 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             >
                 <RichText theme="DARK" content={content.heroDescription} />
             </Hero>
+            <AtWorkAtPlay
+                atWorkTitle={content.atWorkTitle}
+                atPlayTitle={content.atPlayTitle}
+                atPlayDescription={content.atPlayDescription}
+                atWorkDescription={content.atWorkDescription}
+                locations={content.workLocations.locationListCollection.items}
+            />
         </div>
-        <div className={styles.whiteBackground}>
-            <MainContent
-                firstLine={content.mainContentTitleFirstLine}
-                secondLine={content.mainContentTitleSecondLine}
-                thirdLine={content.mainContentTitleThirdLine}
-            >
-                <RichText theme="LIGHT" content={content.mainContent} />
-            </MainContent>
-        </div>
+
+        <Testimonial testimonial={content.itemsCollection.items[0]} />
+
+        <MainContent
+            firstLine={content.mainContentTitleFirstLine}
+            secondLine={content.mainContentTitleSecondLine}
+            thirdLine={content.mainContentTitleThirdLine}
+        >
+            <RichText theme="LIGHT" content={content.mainContent} />
+        </MainContent>
     </Layout>
 );
 

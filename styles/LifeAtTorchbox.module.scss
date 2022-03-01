@@ -4,5 +4,16 @@
 }
 
 .indigoBackground {
-    background-color: var(--color--dark-indigo);
+    position: relative;
+
+    &::before {
+        @include z-index(under);
+        content: '';
+        position: absolute;
+        top: -200px;
+        bottom: 0;
+        left: -2000px;
+        right: -2000px;
+        background-color: var(--color--dark-indigo);
+    }
 }
