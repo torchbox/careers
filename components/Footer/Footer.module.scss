@@ -141,7 +141,13 @@
         display: block;
         line-height: 24px;
         font-weight: $weight--bold;
+        color: var(--color--coral-dark);
         margin-top: 8px;
+
+        &:hover {
+            text-decoration: underline;
+            text-underline-position: under;
+        }
     }
 
     &Image {

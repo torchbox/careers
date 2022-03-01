@@ -262,15 +262,23 @@ function invalidValue(value: any) {
 }
 
 function jobPostingJSONIsValid(json: any) {
-    //To be refactored with neater code and Sentry warnings in a seperate ticket.
-    if (invalidValue(json.title[0])) return false; //throw Error('Job post title undefined.');
-    if (invalidValue(json.description[0])) return false; //throw Error('Job post description undefined.');
-    if (invalidValue(json.link[0])) return false; //throw Error('Job post link undefined.');
-    if (invalidValue(json.JobURL[0])) return false; //throw Error('Job post JobURL (application URL) undefined.');
-    if (invalidValue(json.vacancydescription[0])) return false; //throw Error('Job post vacancy description undefined.');
-    if (invalidValue(json.city[0])) return false; //throw Error('Job post city undefined.');
-    if (invalidValue(json.department[0])) return false; //throw Error('Job post department undefined.');
-    if (invalidValue(json.salaryrange[0])) return false; //throw Error('Job post salary range undefined.');
+    const requiredProperties = [
+        'title',
+        'description',
+        'link',
+        'JobURL',
+        'vacancydescription',
+        'city',
+        'department',
+        'salaryrange',
+    ];
+
+    for (let i = 0; i < requiredProperties.length; i++) {
+        if (!json.hasOwnProperty(requiredProperties[i])) return false;
+        if (invalidValue(json[requiredProperties[i]][0])) return false;
+    }
+
+    // Todo: Add integration with Sentry to alert the issue of missing data.
 
     return true;
 }

@@ -10,4 +10,8 @@ module.exports = {
     images: {
         domains: ['images.ctfassets.net', 'source.unsplash.com'],
     },
+    i18n: {
+        locales: ['en'],
+        defaultLocale: 'en',
+    },
 };

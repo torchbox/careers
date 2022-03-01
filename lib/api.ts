@@ -211,7 +211,7 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                     }
                   }
                   valueCarouselTitle
-                  valueCarouselDescription {
+                  valueCarouselIntroduction {
                     json
                   }
                 }
@@ -225,54 +225,119 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
 }
 
 export async function getEmployeeOwnedTrustPage(preview: boolean) {
-    const employeeOwnedTrustPageContent = await fetchGraphQL(
+    const content = await fetchGraphQL(
         `{
           eotPageCollection(limit: 1, preview: ` +
             preview +
             `) {
-          items {
-              ${pageMetadata}
-              subtitle
-              content {
-                json
-                links {
-                  assets {
-                    block {
-                      sys {
-                        id
-                      }
-                      url
-                      width
-                      height
-                      description
+        items {
+            ${pageMetadata}
+            subtitle
+            content {
+              json
+              links {
+                assets {
+                  block {
+                    sys {
+                      id
                     }
+                    url
+                    width
+                    height
+                    description
                   }
-                  entries {
-                    block {
-                      __typename
-                      sys {
-                        id
-                      }
-                      ... on Quote {
-                        quote
-                        name
-                        role
-                      }
+                }
+                entries {
+                  block {
+                    __typename
+                    sys {
+                      id
+                    }
+                    ... on Quote {
+                      quote
+                      name
+                      role
                     }
                   }
                 }
               }
-              itemsCollection(limit: 1) {
+            }
+            itemsCollection(limit: 1) {
+              items {
+                ${benefits}
+                ... on VoiceOfChange {
+                  title
+                  content {
+                    json
+                  }
+                }
+              }
+          }
+          }
+      }
+  }
+  `,
+        preview,
+    );
+
+    return content.data.eotPageCollection.items[0];
+}
+
+export async function getTorchboxAcademyPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          torchboxAcademyPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+          items {
+              ${pageMetadata}
+              heroImage {
+                  url
+                  description
+                  width
+                  height
+                }
+              heroSubtitle {
+                json
+              }
+              reasonsToJoinTitle
+              reasonsToJoinContent {
+                json
+              }
+              meetOurGraduatesTitle
+              meetOurGraduatesIntroduction {
+                json
+              }
+              applicationsOpenTitleIntro
+              applicationsOpenTitleEmphasis
+              applicationsOpenDescription {
+                json
+              }
+
+              itemsCollection(limit: 2) {
                   items {
-                    ${benefits}
-                    ... on VoiceOfChange {
-                      title
-                      content {
-                        json
+                    ... on GraduateTestimonials {
+                      testimonialsCollection(limit: 6) {
+                        items {
+                          ${testimonial}
+                        }
+                      }
+                    }
+                    ... on Academies {
+                      academiesCollection(limit: 6) {
+                        items {
+                          title
+                          subtitle
+                          description {
+                            json
+                          }
+                          applicationLink
+                        }
+
                       }
                     }
                   }
-              }
+                }
               }
           }
       }
@@ -280,5 +345,5 @@ export async function getEmployeeOwnedTrustPage(preview: boolean) {
         preview,
     );
 
-    return employeeOwnedTrustPageContent.data.eotPageCollection.items[0];
+    return content.data.torchboxAcademyPageCollection.items[0];
 }
