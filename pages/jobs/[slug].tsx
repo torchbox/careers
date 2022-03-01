@@ -16,14 +16,14 @@ type JobPageProps = {
     preview: boolean;
     job: JobPost;
     content: Job;
-    sharingURL: string;
+    jobSlug: string;
 };
 
 const JobPosting: NextPage<JobPageProps> = ({
     preview,
     job,
     content,
-    sharingURL,
+    jobSlug,
 }) => {
     const benefits =
         content.itemsCollection.items[0].benefitsListCollection.items.map(
@@ -35,6 +35,8 @@ const JobPosting: NextPage<JobPageProps> = ({
             (item: any) => item.clientLogo,
         );
 
+    const jobURL = 'https://torchbox.com/careers/jobs/' + jobSlug;
+
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
             <div className={styles.pageContainer}>
@@ -43,7 +45,8 @@ const JobPosting: NextPage<JobPageProps> = ({
                     salary={job.salaryRange}
                     location={job.city}
                     applicationLink={job.jobURL}
-                    sharingURL={sharingURL}
+                    description={job.vacancyDescription}
+                    sharingURL={jobURL}
                 />
                 <div className={styles.contentContainer}>
                     <div className={styles.textContainer}>
@@ -96,10 +99,10 @@ export async function getStaticProps({
 }) {
     try {
         const job = await getJobPost(params.slug);
-        const sharingURL = params.slug;
+        const jobSlug = params.slug;
         const content = (await getJobPage(preview)) ?? [];
         return {
-            props: { preview, job, content, sharingURL },
+            props: { preview, job, content, jobSlug },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {

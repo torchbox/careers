@@ -30,7 +30,13 @@ export const ShareLink = ({
                 text: description,
             });
         } else {
-            window.location.href = 'mailto:?subject' + title;
+            window.location.href =
+                'mailto:?subject=' +
+                title +
+                '&body=' +
+                description +
+                `%0D%0A%0D%0ARead more at ` +
+                url;
         }
     };
 

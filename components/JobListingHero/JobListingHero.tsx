@@ -8,6 +8,7 @@ type JobListingHeroProps = {
     location: string;
     salary: string;
     applicationLink: string;
+    description: string;
     sharingURL: string;
 };
 
@@ -16,6 +17,7 @@ export const JobListingHero = ({
     location,
     salary,
     applicationLink,
+    description,
     sharingURL,
 }: JobListingHeroProps) => (
     <div className={styles.contentContainer}>
@@ -51,6 +53,7 @@ export const JobListingHero = ({
                 <ShareLink
                     url={sharingURL}
                     title={title + ' | Torchbox Careers'}
+                    description={description}
                 />
             </div>
         </div>
