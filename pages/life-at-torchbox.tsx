@@ -25,8 +25,8 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             >
                 <RichText theme="DARK" content={content.heroDescription} />
             </Hero>
-            <Testimonial testimonial={content.itemsCollection.items[0]} />
         </div>
+        <Testimonial testimonial={content.itemsCollection.items[0]} />
     </Layout>
 );
 

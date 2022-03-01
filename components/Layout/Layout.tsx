@@ -42,7 +42,7 @@ export const Layout = ({
             </svg>
             <Alert preview={preview} />
             <Header jobsAvailable={jobsAvailable} />
-            <main>{children}</main>
+            <div className={styles.container}>{children}</div>
             <Footer />
         </div>
     );
