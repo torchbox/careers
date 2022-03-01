@@ -8,7 +8,10 @@ import {
     Hyperlink,
     Document,
 } from '@contentful/rich-text-types';
+import Image from 'components/Image';
+import Quote from 'components/Quote';
 import React from 'react';
+import { ImageTypes } from 'types/Base';
 import styles from './RichText.module.scss';
 
 type Theme = 'LIGHT' | 'DARK' | 'INDIGO';
@@ -17,10 +20,11 @@ type RichTextProps = {
     theme: Theme;
     content: {
         json: Document;
+        links?: any;
     };
 };
 
-const getRenderOptions = () => {
+const getRenderOptions = (links?: any) => {
     return {
         renderMark: {
             [MARKS.BOLD]: (text: React.ReactNode) => (
@@ -34,8 +38,6 @@ const getRenderOptions = () => {
             ),
         },
         renderNode: {
-            // Do not delete the unused Node parameter as this will cause Contentful's React Renderer to crash
-            // If only `children` is passed, it attempts to render an object as JSX
             [BLOCKS.HEADING_2]: (
                 _: React.ReactNode,
                 children: React.ReactNode,
@@ -54,8 +56,6 @@ const getRenderOptions = () => {
             ) => {
                 return <p className={styles.paragraph}>{children}</p>;
             },
-            // Note that TypeScript expects this function to return an object with functions that take in `React.ReactNode`s
-            // In reality, JSON data is being passed into this function, hence the `:any` type here
             [INLINES.HYPERLINK]: (
                 node: Block | Inline,
                 children: React.ReactNode,
@@ -68,6 +68,56 @@ const getRenderOptions = () => {
                         {children}
                     </a>
                 );
+            },
+            [BLOCKS.EMBEDDED_ENTRY]: (
+                node: Block | Inline,
+                children: React.ReactNode,
+            ) => {
+                if (links) {
+                    const entryMap = new Map();
+                    for (const entry of links.entries.block) {
+                        entryMap.set(entry.sys.id, entry);
+                    }
+
+                    const entry = entryMap.get(node.data.target.sys.id);
+
+                    if (entry.__typename === 'Quote') {
+                        return (
+                            <Quote name={entry.name} role={entry.role}>
+                                {entry.quote}
+                            </Quote>
+                        );
+                    }
+                } else {
+                    return <p>Embedded content not found.</p>;
+                }
+            },
+            [BLOCKS.EMBEDDED_ASSET]: (
+                node: Block | Inline,
+                children: React.ReactNode,
+            ) => {
+                if (links) {
+                    const assetMap = new Map();
+                    for (const asset of links.assets.block) {
+                        assetMap.set(asset.sys.id, asset);
+                    }
+
+                    const asset = assetMap.get(node.data.target.sys.id);
+                    const { url, width, height, description } =
+                        asset as ImageTypes;
+
+                    return (
+                        <Image
+                            className={styles.image}
+                            src={url}
+                            width={width}
+                            height={height}
+                            alt={description}
+                        />
+                    );
+                } else {
+                    return <p>Embedded image not found.</p>;
+                }
             },
         },
     };
@@ -89,7 +139,10 @@ export const RichText = ({ theme, content }: RichTextProps) => {
 
     return (
         <div className={`${styles.container} ${themeClass}`}>
-            {documentToReactComponents(content.json, getRenderOptions())}
+            {documentToReactComponents(
+                content.json,
+                getRenderOptions(content.links),
+            )}
         </div>
     );
 };

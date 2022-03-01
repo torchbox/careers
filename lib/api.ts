@@ -224,6 +224,65 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
     return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
 }
 
+export async function getEmployeeOwnedTrustPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          eotPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+        items {
+            ${pageMetadata}
+            subtitle
+            content {
+              json
+              links {
+                assets {
+                  block {
+                    sys {
+                      id
+                    }
+                    url
+                    width
+                    height
+                    description
+                  }
+                }
+                entries {
+                  block {
+                    __typename
+                    sys {
+                      id
+                    }
+                    ... on Quote {
+                      quote
+                      name
+                      role
+                    }
+                  }
+                }
+              }
+            }
+            itemsCollection(limit: 1) {
+              items {
+                ${benefits}
+                ... on VoiceOfChange {
+                  title
+                  content {
+                    json
+                  }
+                }
+              }
+          }
+          }
+      }
+  }
+  `,
+        preview,
+    );
+
+    return content.data.eotPageCollection.items[0];
+}
+
 export async function getTorchboxAcademyPage(preview: boolean) {
     const content = await fetchGraphQL(
         `{
@@ -274,6 +333,7 @@ export async function getTorchboxAcademyPage(preview: boolean) {
                           }
                           applicationLink
                         }
+
                       }
                     }
                   }
