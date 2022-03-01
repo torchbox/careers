@@ -8,6 +8,11 @@ export type LifeAtTorchboxPage = {
     heroImage: ImageTypes;
     heroVideo: VideoTypes;
     heroSubtitle: string;
+    atWorkTitle: string;
+    atPlayTitle: string;
+    atWorkDescription: { json: Document };
+    atPlayDescription: { json: Document };
+    workLocations: any;
     heroDescription: { json: Document };
     itemsCollection: any;
     valueCarouselTitle: string;

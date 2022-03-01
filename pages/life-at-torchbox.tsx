@@ -6,6 +6,7 @@ import Testimonial from 'components/Testimonial';
 import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import RichText from 'components/RichText/RichText';
+import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -25,6 +26,13 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             >
                 <RichText theme="DARK" content={content.heroDescription} />
             </Hero>
+            <AtWorkAtPlay
+                atWorkTitle={content.atWorkTitle}
+                atPlayTitle={content.atPlayTitle}
+                atPlayDescription={content.atPlayDescription}
+                atWorkDescription={content.atWorkDescription}
+                locations={content.workLocations.locationListCollection.items}
+            />
         </div>
         <Testimonial testimonial={content.itemsCollection.items[0]} />
     </Layout>
