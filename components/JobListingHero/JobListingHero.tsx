@@ -1,4 +1,4 @@
-import { Button } from 'components/Button';
+import Button from 'components/Button';
 import { LocationIcon } from 'components/Icons/LocationIcon';
 import ShareLink from 'components/ShareLink';
 import styles from './JobListingHero.module.scss';

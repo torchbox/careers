@@ -38,14 +38,21 @@ const JobPosting: NextPage<JobPageProps> = ({
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
             <div className={styles.pageContainer}>
+                <JobListingHero
+                    title={job.title}
+                    salary={job.salaryRange}
+                    location={job.city}
+                    applicationLink={job.jobURL}
+                    sharingURL={sharingURL}
+                />
                 <div className={styles.contentContainer}>
-                    <JobListingHero
-                        title={job.title}
-                        salary={job.salaryRange}
-                        location={job.city}
-                        applicationLink={job.jobURL}
-                        sharingURL={sharingURL}
-                    />
+                    <div className={styles.textContainer}>
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: job.description,
+                            }}
+                        ></div>
+                    </div>
                 </div>
 
                 <Benefits
