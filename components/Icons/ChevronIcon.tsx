@@ -1,19 +1,16 @@
 type ChevronIconProps = {
     width?: number;
     height?: number;
+    size?: number;
     className?: string;
 };
 
-export const ChevronIcon = ({
-    width = 13,
-    height = 20,
-    className,
-}: ChevronIconProps) => (
+export const ChevronIcon = ({ size = 20, className }: ChevronIconProps) => (
     <svg
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
+        width={size}
+        height={size}
         viewBox="0 0 48 48"
         fill="none"
         aria-hidden="true"

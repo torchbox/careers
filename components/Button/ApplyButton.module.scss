@@ -54,10 +54,7 @@
 
 .chevron {
     @include z-index(one);
-    position: relative;
-    top: 5px;
-    right: 0px;
-
+    margin-left: 8px;
     transition: transform $transition-quick;
 }
 
@@ -85,7 +82,14 @@
 
 .title {
     @include font-size(l);
+    color: var(--color--white);
     font-weight: $weight--extrabold;
+    margin: 0;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: baseline;
 }
 
 .text {

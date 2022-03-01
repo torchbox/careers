@@ -13,20 +13,24 @@ export const ApplyButton = ({
     url,
     title,
     children,
-}: ApplyButtonProps) => (
-    <a
-        href={url}
-        className={[styles.button, styles.radialBackground, className].join(
-            ' ',
-        )}
-    >
-        <div className={styles.overflowHider}>
-            <div className={styles.swishBackground} />
-        </div>
-        <div className={styles.title}>
-            {title}{' '}
-            <ChevronIcon className={styles.chevron} width={28} height={40} />
-        </div>
-        <div className={styles.text}>{children}</div>
-    </a>
-);
+}: ApplyButtonProps) => {
+    const size = 22;
+
+    return (
+        <a
+            href={url}
+            className={[styles.button, styles.radialBackground, className].join(
+                ' ',
+            )}
+        >
+            <div className={styles.overflowHider}>
+                <div className={styles.swishBackground} />
+            </div>
+            <div className={styles.titleContainer}>
+                <p className={styles.title}>{title}</p>
+                <ChevronIcon className={styles.chevron} size={size} />
+            </div>
+            <div className={styles.text}>{children}</div>
+        </a>
+    );
+};
