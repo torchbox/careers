@@ -1,3 +1,7 @@
+.svg {
+    @include hidden();
+}
+
 .container {
     max-width: $site-width;
     margin: 0 auto;

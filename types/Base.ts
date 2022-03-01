@@ -28,6 +28,11 @@ export type Person = {
     image: ImageTypes;
 };
 
+export type TestimonialTypes = {
+    quote: string;
+    quotee: Person;
+};
+
 export type BlogPost = {
     title: string;
     date: string;
