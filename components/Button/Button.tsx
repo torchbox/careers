@@ -50,25 +50,16 @@ export const SwishButton = ({
 );
 
 type CarouselArrowButtonProps = {
-    direction: 'LEFT' | 'RIGHT';
+    leftFacing?: boolean;
     carouselButtonRef: React.RefObject<HTMLButtonElement>;
     className?: string;
 };
 
 export const CarouselArrowButton = ({
-    direction,
+    leftFacing = false,
     carouselButtonRef,
     className,
 }: CarouselArrowButtonProps) => {
-    const chevron =
-        direction === 'LEFT' ? (
-            <ChevronIcon
-                className={`${styles.centerChevron} ${styles.centerChevronFacingLeft}`}
-            />
-        ) : (
-            <ChevronIcon className={styles.centerChevron} />
-        );
-
     return (
         <button
             type="button"
@@ -78,7 +69,11 @@ export const CarouselArrowButton = ({
             )}
             aria-hidden
         >
-            {chevron}
+            <ChevronIcon
+                className={`${styles.centerChevron} ${
+                    leftFacing ? styles.centerChevronFacingLeft : ''
+                }`}
+            />
         </button>
     );
 };

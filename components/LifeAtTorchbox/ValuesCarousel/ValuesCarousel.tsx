@@ -90,12 +90,11 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
                     <div className={styles.buttonNavigation}>
                         <CarouselArrowButton
                             carouselButtonRef={previousButtonRef}
-                            direction="LEFT"
                             className={styles.leftButton}
+                            leftFacing
                         />
                         <CarouselArrowButton
                             carouselButtonRef={nextButtonRef}
-                            direction="RIGHT"
                         />
                     </div>
                 </Swiper>
