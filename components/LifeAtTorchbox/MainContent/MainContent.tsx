@@ -19,9 +19,7 @@ export const MainContent = ({
                 <div className={styles.titleContainer}>
                     <h2 className={styles.title}>
                         {firstLine}
-                        <br aria-hidden="true" />
                         <span className={styles.accent}>{secondLine}</span>
-                        <br aria-hidden="true" />
                         {thirdLine}
                     </h2>
                 </div>

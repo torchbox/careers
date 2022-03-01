@@ -30,16 +30,23 @@
 }
 
 .title {
+    display: flex;
+    flex-direction: column;
     @include font-size(xxxxl);
-    line-height: 70px;
-
-    @include media-query(large) {
-        line-height: 100px;
-    }
-
+    line-height: 1;
     color: var(--color--dark-indigo);
 }
 
 .accent {
+    width: max-content;
+    margin: 8px 0 8px -8px;
+    padding: 6px 8px 0 8px;
     color: var(--color--lagoon);
+    background-color: var(--color--dark-indigo);
+    border-radius: 5px;
+
+    @include media-query(large) {
+        margin: 15px 0 15px -15px;
+        padding: 12px 12px 0 15px;
+    }
 }
