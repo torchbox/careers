@@ -2,7 +2,8 @@ import type { NextPage } from 'next';
 import styles from 'styles/LifeAtTorchbox.module.scss';
 import Layout from '../components/Layout';
 import { getLifeAtTorchboxPage } from '../lib/api';
-import { LifeAtTorchboxPage } from 'types/LifeAtTorchboxPage';
+import Testimonial from 'components/Testimonial';
+import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import RichText from 'components/RichText/RichText';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
@@ -17,20 +18,23 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
     content,
 }) => (
     <Layout theme="DARK" preview={preview} jobsAvailable={8}>
-        <Hero
-            image={content.heroImage}
-            video={content.heroVideo}
-            subtitle={content.heroSubtitle}
-        >
-            <RichText theme="DARK" content={content.heroDescription} />
-        </Hero>
-        <AtWorkAtPlay
-            atWorkTitle={content.atWorkTitle}
-            atPlayTitle={content.atPlayTitle}
-            atPlayDescription={content.atPlayDescription}
-            atWorkDescription={content.atWorkDescription}
-            locations={content.workLocations.locationListCollection.items}
-        />
+        <div className={styles.indigoBackground}>
+            <Hero
+                image={content.heroImage}
+                video={content.heroVideo}
+                subtitle={content.heroSubtitle}
+            >
+                <RichText theme="DARK" content={content.heroDescription} />
+            </Hero>
+            <AtWorkAtPlay
+                atWorkTitle={content.atWorkTitle}
+                atPlayTitle={content.atPlayTitle}
+                atPlayDescription={content.atPlayDescription}
+                atWorkDescription={content.atWorkDescription}
+                locations={content.workLocations.locationListCollection.items}
+            />
+        </div>
+        <Testimonial testimonial={content.itemsCollection.items[0]} />
     </Layout>
 );
 

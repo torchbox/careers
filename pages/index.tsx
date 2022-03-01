@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import type { LandingPage } from 'types/LandingPage';
+import type { LandingPage } from 'types/pages/LandingPage';
 import { getLandingPage } from '../lib/api';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
@@ -11,6 +11,7 @@ import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
 import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
 import RichText from 'components/RichText/RichText';
+import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
 
 const TEMPORARY_JOBS_VARIABLE = 11;
 
@@ -94,6 +95,13 @@ const LandingPage: NextPage<LandingPageProps> = ({
                     content={landingPageContent.ctaDescription}
                 />
             </CTA>
+
+            <MusingsFromTheTeam
+                postData={
+                    landingPageContent.itemsCollection.items[3]
+                        .blogPostsCollection.items
+                }
+            />
         </Layout>
     );
 };

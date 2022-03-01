@@ -40,6 +40,10 @@
     @include media-query(large) {
         line-height: 100px;
     }
+
+    &Accent {
+        color: var(--color--coral);
+    }
 }
 
 .richText {
@@ -54,10 +58,6 @@
     & a:first-child {
         margin-right: $grid * 2;
     }
-}
-
-.titleAccent {
-    color: var(--color--coral);
 }
 
 .image {

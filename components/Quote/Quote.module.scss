@@ -1,0 +1,60 @@
+.container {
+    position: relative;
+    padding-top: $grid * 2;
+    margin-top: $grid * 5;
+
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+        background-color: var(--color--coral);
+        transform: rotate(30deg);
+    }
+
+    &:before {
+        top: -85px;
+        left: 80px;
+        width: 36px;
+        height: 108px;
+    }
+
+    &:after {
+        top: -35px;
+        left: 10px;
+        width: 22px;
+        height: 56px;
+    }
+
+    @include media-query(large) {
+        padding-top: $grid * 5;
+        padding-bottom: $grid * 1.5;
+        margin-top: 0;
+
+        &:before {
+            top: 30px;
+            left: -65px;
+        }
+
+        &:after {
+            top: 80px;
+            left: -135px;
+        }
+    }
+}
+
+.quote {
+    @include font-size(m);
+    color: var(--color--dark-indigo);
+    font-weight: $weight--bold;
+    line-height: 38px;
+    margin-bottom: $grid;
+}
+
+.quotee {
+    @include font-size(xxxs);
+    color: var(--color--coral-dark);
+    text-transform: uppercase;
+    font-weight: $weight--bold;
+    letter-spacing: 0.15em;
+    margin: 0;
+}
