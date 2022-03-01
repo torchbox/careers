@@ -1,0 +1,31 @@
+# Based on the CI script from the following blog
+# https://harrisonpim.com/blog/automating-tests-with-vercel-and-github-actions
+
+name: Pa11y
+on:
+  pull_request:
+jobs:
+  wait_for_vercel:
+    name: Wait for Vercel Deployment
+    runs-on: ubuntu-latest
+    outputs:
+      preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
+    steps:
+      - name: Wait for Vercel preview deployment to be ready
+        uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+        id: waitForVercelPreviewDeployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 120
+
+  pa11y:
+    name: Pa11y Accessibility Tests
+    needs: wait_for_vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm install -g pa11y-ci@3.0.1
+      - run: pa11y-ci --sitemap ${{ needs.wait_for_vercel.outputs.preview_url }}/sitemap.xml

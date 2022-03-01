@@ -9,10 +9,11 @@
     padding: 12px 50px 12px 20px;
     border-radius: 7px;
 
-    &:hover {
+    &:hover,
+    &:focus {
         color: var(--color--white);
 
-        & > .chevron {
+        & .chevron {
             transform: translateX(8px);
         }
 
@@ -33,9 +34,8 @@
 
 .chevron {
     @include z-index(one);
-    position: absolute;
-    right: 25px;
-    top: 16px;
+    margin-left: 6px;
+    margin-right: -18px;
     transition: transform $transition-quick;
 }
 
@@ -59,6 +59,11 @@
         width: 21px;
         height: 27px;
     }
+}
+
+.textContainer {
+    display: flex;
+    align-items: baseline;
 }
 
 .text {

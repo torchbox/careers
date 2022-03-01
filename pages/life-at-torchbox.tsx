@@ -2,8 +2,10 @@ import type { NextPage } from 'next';
 import styles from 'styles/LifeAtTorchbox.module.scss';
 import Layout from '../components/Layout';
 import { getLifeAtTorchboxPage } from '../lib/api';
-import { LifeAtTorchboxPage } from 'types/LifeAtTorchboxPage';
 import Testimonial from 'components/Testimonial';
+import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
+import Hero from 'components/LifeAtTorchbox/Hero';
+import RichText from 'components/RichText/RichText';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -16,8 +18,13 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
 }) => (
     <Layout theme="DARK" preview={preview} jobsAvailable={8}>
         <div className={styles.indigoBackground}>
-            <h1>{content.metadataTitle}</h1>
-            <p>{content.metadataDescription}</p>
+            <Hero
+                image={content.heroImage}
+                video={content.heroVideo}
+                subtitle={content.heroSubtitle}
+            >
+                <RichText theme="DARK" content={content.heroDescription} />
+            </Hero>
             <Testimonial testimonial={content.itemsCollection.items[0]} />
         </div>
     </Layout>

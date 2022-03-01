@@ -1,0 +1,137 @@
+.button {
+    @include z-index(zero);
+    @include font-size(m);
+    display: block;
+    position: relative;
+    width: 100%;
+    color: var(--color--white);
+    padding: $grid * 1.5;
+    border-radius: 7px;
+    transition: transform $transition-quick;
+
+    &:hover,
+    &:focus {
+        color: var(--color--white);
+
+        & .chevron {
+            transform: translateX(8px);
+        }
+
+        & > .overflowHider > .swishBackground {
+            opacity: 1;
+            animation-play-state: running;
+        }
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:active {
+            transform: scale(1);
+        }
+
+        &:hover,
+        &:focus {
+            & > .overflowHider > .swishBackground {
+                opacity: 0;
+                animation-play-state: paused;
+            }
+
+            outline: 3px solid var(--color--coral);
+        }
+    }
+}
+
+.radialBackground {
+    background: radial-gradient(
+        81.08% 2378.82% at 50% 60%,
+        var(--color--dark-indigo) 0%,
+        var(--color--indigo) 100%
+    );
+}
+
+.chevron {
+    @include z-index(one);
+    margin-left: 8px;
+    transition: transform $transition-quick;
+}
+
+.jobsBadge {
+    @include z-index(one);
+    @include font-size(mxs);
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: -12px;
+    color: var(--color--dark-indigo);
+
+    &::after {
+        @include z-index(under);
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -10%) rotate(27deg);
+        left: 50%;
+        top: 0;
+        background-color: var(--color--coral);
+        width: 21px;
+        height: 27px;
+    }
+}
+
+.title {
+    @include font-size(l);
+    color: var(--color--white);
+    font-weight: $weight--extrabold;
+    margin: 0;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: baseline;
+}
+
+.text {
+    @include font-size(s);
+    pointer-events: none;
+    user-select: none;
+}
+
+.swishBackground {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -200%;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background: linear-gradient(
+        -70deg,
+        rgba(1, 0, 0, 0),
+        rgba(1, 0, 0, 0) 25%,
+        rgba(73, 44, 231, 1) 40%,
+        rgba(1, 0, 0, 0) 55%,
+        rgba(1, 0, 0, 0)
+    );
+    animation: wave 2s linear infinite;
+    animation-play-state: paused;
+    transition: opacity $transition;
+}
+
+.overflowHider {
+    border-radius: 7px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+@keyframes wave {
+    100% {
+        transform: translateX(150%);
+    }
+}

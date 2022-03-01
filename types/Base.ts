@@ -17,6 +17,11 @@ export type ImageTypes = {
     height: number;
 };
 
+export type VideoTypes = {
+    description: string;
+    url: string;
+};
+
 export type Person = {
     name: string;
     role: string;
@@ -26,4 +31,11 @@ export type Person = {
 export type TestimonialTypes = {
     quote: string;
     quotee: Person;
+};
+
+export type BlogPost = {
+    title: string;
+    date: string;
+    slug: string;
+    author: Person;
 };

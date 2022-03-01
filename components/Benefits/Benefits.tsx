@@ -9,9 +9,9 @@ type BenefitsProps = {
 
 export const Benefits = ({ title, benefits }: BenefitsProps) => {
     const listOfBenefits = benefits.map((benefit) => (
-        <li className={styles.benefit__item} key={benefit}>
-            <BenefitStarIcon className={styles.benefit__icon} />
-            <div className={styles.benefit__text}>{benefit}</div>
+        <li className={styles.benefitItem} key={benefit}>
+            <BenefitStarIcon className={styles.benefitIcon} />
+            <div className={styles.benefitText}>{benefit}</div>
         </li>
     ));
 

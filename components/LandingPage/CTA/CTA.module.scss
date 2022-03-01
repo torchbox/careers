@@ -1,9 +1,14 @@
 .container {
     margin: $grid;
     text-align: left;
+    margin-bottom: $grid * 2;
+
+    @include media-query(medium) {
+        margin: $grid $grid * 2 $grid * 3 $grid * 2;
+    }
 
     @include media-query(large) {
-        margin: $grid auto;
+        margin: $grid * 4 auto $grid * 6 auto;
         max-width: 930px; // Following design
     }
 }

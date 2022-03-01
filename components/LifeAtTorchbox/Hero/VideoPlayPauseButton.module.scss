@@ -1,0 +1,19 @@
+.button {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        .background {
+            fill: var(--color--lagoon);
+        }
+
+        .icon {
+            fill: var(--color--dark-indigo);
+        }
+    }
+}
+
+.background,
+.icon {
+    transition: fill $transition;
+}

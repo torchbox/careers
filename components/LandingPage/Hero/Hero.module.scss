@@ -11,9 +11,9 @@
 
 .textContainer {
     text-align: left;
-    padding-left: 15px;
     padding-top: 22px;
     order: 2;
+    padding: 0 $grid;
 
     @include media-query(large) {
         padding-left: 30px;
@@ -50,6 +50,8 @@
 }
 
 .image {
+    // Prevent image showing in front of menu dropdown
+    @include z-index(under);
     clip-path: url(#shardClipPath);
     width: 375px;
     height: 375px;
@@ -72,6 +74,10 @@
     @include media-query(hero-break) {
         width: 750px;
         height: 775px;
+    }
+
+    @include media-query(site-width) {
+        clip-path: url(#squareShardClipPath);
     }
 
     & > span {
@@ -114,4 +120,8 @@
             }
         }
     }
+}
+
+.svg {
+    @include hidden();
 }

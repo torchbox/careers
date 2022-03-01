@@ -8,9 +8,9 @@ type ClientLogosProps = {
 
 export const ClientLogos = ({ logos }: ClientLogosProps) => {
     // Slice used to cap number of logos at 8, but this is also restricted to 8 items in Contentful
-    const listOfClientLogos = logos.slice(0, 8).map((logo) => (
-        <li className={styles.logo} key={logo.description}>
-            <Image layout="fill" src={logo.url} alt={logo.description} />
+    const listOfClientLogos = logos.slice(0, 8).map((logo, index) => (
+        <li className={styles.logo} key={index}>
+            <Image src={logo.url} alt={logo.description} />
         </li>
     ));
 
