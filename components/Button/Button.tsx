@@ -48,6 +48,8 @@ export const Button = ({
                         ' ',
                     )}
                     href={url}
+                    target="_blank"
+                    rel="noreferrer"
                 >
                     {children}
                     <ChevronIcon className={styles.chevron} />
