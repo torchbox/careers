@@ -49,17 +49,21 @@ const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
 
                 <div className={styles.contentContainer}>
                     <div className={styles.textContainer}>
-                        <h2>{content.hiringPolicyTitle}</h2>
+                        <h2 className={styles.hiringPolicyTitle}>
+                            {content.hiringPolicyTitle}
+                        </h2>
                         <RichText
                             theme="LIGHT"
                             content={content.hiringPolicyDescription}
                         />
+                        <ApplyButton
+                            title="Apply for this job"
+                            url={job.jobURL}
+                        >
+                            Join the team and help make the world a better place
+                        </ApplyButton>
                     </div>
                 </div>
-
-                <ApplyButton title="Apply for this job" url={job.jobURL}>
-                    Join the team and help make the world a better place
-                </ApplyButton>
 
                 <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
                 <ClientLogos logos={clientLogos} />
