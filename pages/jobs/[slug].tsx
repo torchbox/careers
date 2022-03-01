@@ -9,6 +9,7 @@ import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText/RichText';
+import { ApplyButton } from 'components/Button';
 
 type JobPageProps = {
     preview: boolean;
@@ -55,6 +56,10 @@ const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
                         />
                     </div>
                 </div>
+
+                <ApplyButton title="Apply for this job" url={job.jobURL}>
+                    Join the team and help make the world a better place
+                </ApplyButton>
 
                 <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
                 <ClientLogos logos={clientLogos} />

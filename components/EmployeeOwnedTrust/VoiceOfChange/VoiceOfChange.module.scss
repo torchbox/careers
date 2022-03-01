@@ -1,0 +1,21 @@
+.container {
+    max-width: 725px;
+    margin: 0 auto;
+    padding: $grid;
+
+    @include media-query(medium) {
+        padding-bottom: $grid;
+    }
+
+    @include media-query(large) {
+        padding: $grid * 3 0 $grid * 5 0;
+    }
+}
+
+.title {
+    line-height: 1em;
+
+    @include media-query(large) {
+        margin-bottom: $grid * 2;
+    }
+}

@@ -1,0 +1,142 @@
+.container {
+    max-width: $site-width;
+    margin: 0 auto;
+    padding: 0 $grid $grid * 2 $grid;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color--indigo) 0%,
+        var(--color--dark-indigo) 100%
+    );
+
+    @include media-query(medium) {
+        padding: 0 $grid * 2 $grid * 2 $grid * 2;
+    }
+
+    @include media-query(large) {
+        flex-direction: row;
+    }
+
+    @include media-query(hero-break) {
+        padding: 0 $grid * 4 $grid * 2 $grid * 4;
+    }
+}
+
+.atWork,
+.atPlay {
+    @include media-query(medium) {
+        max-width: 600px;
+    }
+}
+
+.atWork {
+    @include media-query(large) {
+        width: 50%;
+    }
+    @include media-query(hero-break) {
+        max-width: 480px;
+    }
+
+    & .title {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @include media-query(large) {
+            margin-bottom: $grid;
+            margin-top: 0;
+        }
+    }
+}
+
+.atPlay {
+    position: relative;
+    @include media-query(medium) {
+        align-self: flex-end;
+    }
+
+    @include media-query(large) {
+        align-self: flex-start;
+        width: 50%;
+        margin-left: $grid * 4;
+    }
+
+    @include media-query(hero-break) {
+        max-width: 630px;
+        margin-left: auto;
+        align-self: flex-end;
+    }
+
+    & .title {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @include media-query(large) {
+            margin-bottom: $grid;
+        }
+    }
+
+    @include media-query(hero-break) {
+        &::before {
+            content: '';
+            position: absolute;
+            top: -180px;
+            left: -100px;
+            width: 4px;
+            height: 420px;
+            transform: rotate(30deg);
+            background-color: var(--color--lagoon);
+        }
+    }
+}
+
+.title {
+    @include font-size(xxxl);
+    color: var(--color--white);
+    font-weight: $weight--extrabold;
+
+    @include media-query(large) {
+        line-height: 70px;
+    }
+}
+
+.officeLocationList {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 0;
+    list-style: none;
+
+    @include media-query(medium) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-query(large) {
+        margin-top: $grid * 2;
+    }
+
+    @include media-query(hero-break) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.officeLocation {
+    @include font-size(ml);
+    color: var(--color--white);
+    font-weight: $weight--bold;
+    margin-bottom: $grid;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.locationIcon {
+    position: relative;
+    top: -5px;
+    margin-right: 3px;
+    & path,
+    & circle {
+        stroke: var(--color--lagoon);
+        stroke-width: 2.5px;
+    }
+}

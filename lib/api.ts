@@ -194,6 +194,21 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 heroDescription {
                     json
                 }
+                atWorkTitle
+                atPlayTitle
+                atWorkDescription {
+                    json
+                  }
+                atPlayDescription {
+                    json
+                }
+                workLocations {
+                    locationListCollection(limit: 4){
+                        items {
+                            locationName
+                        }
+                    }
+                }
                 itemsCollection(limit: 2) {
                     items {
                       ${testimonial}
@@ -214,7 +229,7 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                     }
                   }
                   valueCarouselTitle
-                  valueCarouselDescription {
+                  valueCarouselIntroduction {
                     json
                   }
                 }
@@ -251,4 +266,128 @@ export async function getJobPage(preview: boolean) {
         preview,
     );
     return pageContent.data.jobPageCollection.items[0];
+}
+
+export async function getEmployeeOwnedTrustPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          eotPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+        items {
+            ${pageMetadata}
+            subtitle
+            content {
+              json
+              links {
+                assets {
+                  block {
+                    sys {
+                      id
+                    }
+                    url
+                    width
+                    height
+                    description
+                  }
+                }
+                entries {
+                  block {
+                    __typename
+                    sys {
+                      id
+                    }
+                    ... on Quote {
+                      quote
+                      name
+                      role
+                    }
+                  }
+                }
+              }
+            }
+            itemsCollection(limit: 1) {
+              items {
+                ${benefits}
+                ... on VoiceOfChange {
+                  title
+                  content {
+                    json
+                  }
+                }
+              }
+          }
+          }
+      }
+  }
+  `,
+        preview,
+    );
+
+    return content.data.eotPageCollection.items[0];
+}
+
+export async function getTorchboxAcademyPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          torchboxAcademyPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+          items {
+              ${pageMetadata}
+              heroImage {
+                  url
+                  description
+                  width
+                  height
+                }
+              heroSubtitle {
+                json
+              }
+              reasonsToJoinTitle
+              reasonsToJoinContent {
+                json
+              }
+              meetOurGraduatesTitle
+              meetOurGraduatesIntroduction {
+                json
+              }
+              applicationsOpenTitleIntro
+              applicationsOpenTitleEmphasis
+              applicationsOpenDescription {
+                json
+              }
+
+              itemsCollection(limit: 2) {
+                  items {
+                    ... on GraduateTestimonials {
+                      testimonialsCollection(limit: 6) {
+                        items {
+                          ${testimonial}
+                        }
+                      }
+                    }
+                    ... on Academies {
+                      academiesCollection(limit: 6) {
+                        items {
+                          title
+                          subtitle
+                          description {
+                            json
+                          }
+                          applicationLink
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+          }
+      }
+      `,
+        preview,
+    );
+
+    return content.data.torchboxAcademyPageCollection.items[0];
 }
