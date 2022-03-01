@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { ChevronIcon } from 'components/Icons/ChevronIcon';
 import { useScreen } from 'hooks/useScreen';
 import styles from './ApplyButton.module.scss';
@@ -15,10 +16,13 @@ export const ApplyButton = ({
     title,
     children,
 }: ApplyButtonProps) => {
+    const [chevronSize, setChevronSize] = useState(18);
     const screen = useScreen();
-    let size = 18;
-    if (screen.includes('large')) size = 22;
-    if (screen.includes('large')) size = 24;
+
+    useEffect(() => {
+        if (screen.includes('medium')) setChevronSize(22);
+        if (screen.includes('large')) setChevronSize(24);
+    }, [screen]);
 
     return (
         <a
@@ -32,7 +36,7 @@ export const ApplyButton = ({
             </div>
             <div className={styles.titleContainer}>
                 <p className={styles.title}>{title}</p>
-                <ChevronIcon className={styles.chevron} size={size} />
+                <ChevronIcon className={styles.chevron} size={chevronSize} />
             </div>
             <div className={styles.text}>{children}</div>
         </a>
