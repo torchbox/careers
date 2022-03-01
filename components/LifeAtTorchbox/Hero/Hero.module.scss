@@ -15,7 +15,7 @@
     );
 
     @include media-query(large) {
-        background: none;
+        background: var(--color--dark-indigo);
     }
 }
 
@@ -35,8 +35,12 @@
     padding-top: 22px;
     order: 2;
 
+    @include media-query(medium) {
+        padding: $grid $grid * 2 0 $grid * 2;
+    }
+
     @include media-query(large) {
-        padding-left: 30px;
+        padding-left: $grid * 2;
         max-width: 500px;
         padding-top: 80px;
     }
@@ -71,7 +75,7 @@
 
     @include media-query(large) {
         display: block;
-        margin: $grid * 2.5 0 $grid * 4 $grid * 2;
+        margin: $grid * 2.5 0 $grid * 3 $grid * 2;
     }
 
     > path {

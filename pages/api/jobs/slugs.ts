@@ -6,7 +6,7 @@ import { getAllJobPostings } from '../_peopleHR';
  * Used for generating pages in jobs/[slug].tsx
  * @returns an array of URL slugs for all the job posts.
  */
-export async function getAllJobSlugs(): Promise<(string | undefined)[] | null> {
+export async function getAllJobSlugs(): Promise<string[] | null> {
     const jobPostings: JobPost[] | null = await getAllJobPostings();
     if (jobPostings === null) return null;
     return jobPostings.map((post) => `/jobs/${post.slug}`);

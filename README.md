@@ -22,6 +22,7 @@ Before committing changes, run
 ```
 npm run format
 npm run lint
+npm run pa11y
 ```
 
 So your code passes CI.
