@@ -277,6 +277,9 @@ function jobPostingJSONIsValid(json: any) {
         if (!json.hasOwnProperty(requiredProperties[i])) return false;
         if (invalidValue(json[requiredProperties[i]][0])) return false;
     }
+
+    // Todo: Add integration with Sentry to alert the issue of missing data.
+
     return true;
 }
 
