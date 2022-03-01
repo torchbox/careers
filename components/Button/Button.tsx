@@ -16,8 +16,10 @@ export const Button = ({ className, url, jobs = 0, children }: ButtonProps) => (
                 ' ',
             )}
         >
-            {children}
-            <ChevronIcon className={styles.endingChevron} />
+            <div className={styles.textContainer}>
+                {children}
+                <ChevronIcon className={styles.endingChevron} size={20} />
+            </div>
             {jobs > 0 && <div className={styles.jobsBadge}>{jobs}</div>}
         </a>
     </Link>
@@ -38,8 +40,10 @@ export const SwishButton = ({
             <div className={styles.overflowHider}>
                 <div className={styles.swishBackground} />
             </div>
-            <div className={styles.text}>{children}</div>
-            <ChevronIcon className={styles.endingChevron} />
+            <div className={styles.textContainer}>
+                <div className={styles.text}>{children}</div>
+                <ChevronIcon className={styles.endingChevron} size={20} />
+            </div>
             {jobs > 0 && <div className={styles.jobsBadge}>{jobs}</div>}
         </a>
     </Link>

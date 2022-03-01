@@ -3,23 +3,43 @@
     @include font-size(m);
     display: block;
     position: relative;
-    width: max-content;
-    font-weight: $weight--extrabold;
+    width: 100%;
     color: var(--color--white);
-    padding: 12px 50px 12px 20px;
+    padding: $grid * 1.5;
     border-radius: 7px;
+    transition: transform $transition-quick;
 
     &:hover,
     &:focus {
         color: var(--color--white);
 
-        & .endingChevron {
+        & .chevron {
             transform: translateX(8px);
         }
 
         & > .overflowHider > .swishBackground {
             opacity: 1;
             animation-play-state: running;
+        }
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:active {
+            transform: scale(1);
+        }
+
+        &:hover,
+        &:focus {
+            & > .overflowHider > .swishBackground {
+                opacity: 0;
+                animation-play-state: paused;
+            }
+
+            outline: 3px solid var(--color--coral);
         }
     }
 }
@@ -32,45 +52,9 @@
     );
 }
 
-.chevronButton {
-    cursor: pointer;
-    border: 0;
-    width: 100px;
-    height: 50px;
-    position: relative;
-    background-color: var(--color--indigo);
-
-    &:disabled {
-        background-color: var(--color--dark-indigo);
-    }
-
-    &:not([disabled]):hover {
-        & > .centerChevron {
-            transform: translate(-50%, -50%) translateX(8px);
-        }
-
-        & > .centerChevron.centerChevronFacingLeft {
-            transform: translate(-50%, -50%) rotate(180deg) translateX(8px);
-        }
-    }
-}
-
-.centerChevron {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform $transition-quick;
-
-    &FacingLeft {
-        transform: translate(-50%, -50%) rotate(180deg);
-    }
-}
-
-.endingChevron {
+.chevron {
     @include z-index(one);
-    margin-left: 6px;
-    margin-right: -18px;
+    margin-left: 8px;
     transition: transform $transition-quick;
 }
 
@@ -96,12 +80,20 @@
     }
 }
 
-.textContainer {
+.title {
+    @include font-size(l);
+    color: var(--color--white);
+    font-weight: $weight--extrabold;
+    margin: 0;
+}
+
+.titleContainer {
     display: flex;
     align-items: baseline;
 }
 
 .text {
+    @include font-size(s);
     pointer-events: none;
     user-select: none;
 }
