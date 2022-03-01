@@ -3,16 +3,23 @@ import type { JobPost } from 'lib/peopleHR';
 import styles from 'styles/Jobs.module.scss';
 import { getAllJobSlugs } from 'pages/api/jobs/slugs';
 import { getJobPost } from 'pages/api/jobs/[slug]';
+import { ApplyButton } from 'components/Button';
 
 const JobPosting: NextPage<{ job: JobPost }> = ({ job }) => {
     return (
         <div className={styles.container}>
-            <h1>{job.title}</h1>
-            <div
-                dangerouslySetInnerHTML={{
-                    __html: job.description,
-                }}
-            ></div>
+            <div className={styles.textContainer}>
+                <h1>{job.title}</h1>
+                <div
+                    dangerouslySetInnerHTML={{
+                        __html: job.description,
+                    }}
+                ></div>
+
+                <ApplyButton title="Apply for this job" url={job.jobURL}>
+                    Join the team and help make the world a better place
+                </ApplyButton>
+            </div>
         </div>
     );
 };
