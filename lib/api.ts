@@ -223,3 +223,67 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
 
     return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
 }
+
+export async function getTorchboxAcademyPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          torchboxAcademyPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+          items {
+              ${pageMetadata}
+              heroImage {
+                  url
+                  description
+                  width
+                  height
+                }
+              heroSubtitle {
+                json
+              }
+              reasonsToJoinTitle
+              reasonsToJoinContent {
+                json
+              }
+              meetOurGraduatesTitle
+              meetOurGraduatesIntroduction {
+                json
+              }
+              applicationsOpenTitleIntro
+              applicationsOpenTitleEmphasis
+              applicationsOpenDescription {
+                json
+              }
+
+              itemsCollection(limit: 2) {
+                  items {
+                    ... on GraduateTestimonials {
+                      testimonialsCollection(limit: 6) {
+                        items {
+                          ${testimonial}
+                        }
+                      }
+                    }
+                    ... on Academies {
+                      academiesCollection(limit: 6) {
+                        items {
+                          title
+                          subtitle
+                          description {
+                            json
+                          }
+                          applicationLink
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+          }
+      }
+      `,
+        preview,
+    );
+
+    return content.data.torchboxAcademyPageCollection.items[0];
+}
