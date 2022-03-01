@@ -1,4 +1,5 @@
 import { ChevronIcon } from 'components/Icons/ChevronIcon';
+import { useScreen } from 'hooks/useScreen';
 import styles from './ApplyButton.module.scss';
 
 type ApplyButtonProps = {
@@ -14,7 +15,9 @@ export const ApplyButton = ({
     title,
     children,
 }: ApplyButtonProps) => {
-    const size = 22;
+    const screen = useScreen();
+    let size = 22;
+    if (screen.includes('medium')) size = 28;
 
     return (
         <a
