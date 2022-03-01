@@ -14,9 +14,7 @@ export const ShareLink = ({
     description,
     linkText = 'Share',
 }: ShareLinkProps) => {
-    const handleKeydown = (
-        event: React.KeyboardEvent<HTMLParagraphElement>,
-    ) => {
+    const handleKeydown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
         if (event.key === 'Enter') {
             openShareMenu();
         }
@@ -41,14 +39,13 @@ export const ShareLink = ({
     };
 
     return (
-        <div
+        <button
             className={styles.container}
             onKeyDown={handleKeydown}
             onClick={openShareMenu}
-            tabIndex={0}
         >
             <ShareIcon /> <p className={styles.shareLink}>{linkText}</p>
-        </div>
+        </button>
     );
 };
 
