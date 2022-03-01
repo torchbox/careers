@@ -15,7 +15,7 @@
     );
 
     @include media-query(large) {
-        background: none;
+        background: var(--color--dark-indigo);
     }
 }
 
