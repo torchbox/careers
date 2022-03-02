@@ -14,6 +14,10 @@
         row-gap: 180px;
         grid-template-columns: 1fr 1fr;
     }
+
+    @include media-query(site-width) {
+        position: unset;
+    }
 }
 
 .womanLeanIn {
@@ -25,6 +29,11 @@
         bottom: unset;
         top: 580px;
         width: 390px;
+    }
+
+    @include media-query(site-width) {
+        // Todo: This will need correcting with the final polishing of the page.
+        top: 800px;
     }
 }
 
