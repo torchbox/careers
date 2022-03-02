@@ -22,6 +22,11 @@
     :global .themeDark :local & {
         color: var(--color--white);
     }
+
+    // Used on the Torchbox Academy page
+    :global .themeIndigo .themeLight :local & {
+        color: var(--color--grey);
+    }
 }
 
 .h2 {
@@ -30,7 +35,9 @@
 }
 
 .h3 {
-    line-height: 34px;
+    @include font-size(l);
+    font-weight: $weight--extrabold;
+    line-height: 1;
     margin-bottom: 12px;
 }
 
