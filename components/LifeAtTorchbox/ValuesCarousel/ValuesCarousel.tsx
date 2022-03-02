@@ -23,6 +23,7 @@ const CarouselIntroduction = ({
             <div className={styles.description}>{children}</div>
         </div>
         <div className={styles.image}>
+            {/* Todo: Refactor to use SVG component (see polishing ticket) */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="images/arrow-loop-left.svg" alt="" />
         </div>
@@ -68,41 +69,42 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
             <CarouselIntroduction title={title}>
                 {children}
             </CarouselIntroduction>
-            <p className={styles.screenReaderOnly}>
-                Decorative carousel element containing images of Torchbox&apos;s
-                values
-            </p>
-            <div className={styles.carouselContainer}>
-                <Swiper
-                    className={styles.carousel}
-                    spaceBetween={10}
-                    slidesPerView={slidesPerView}
-                    modules={[Keyboard, Navigation]}
-                    keyboard
-                    onBeforeInit={(swiper) => {
-                        if (
-                            swiper.params.navigation &&
-                            typeof swiper.params.navigation !== 'boolean'
-                        ) {
-                            const { navigation } = swiper.params;
-                            navigation.nextEl = nextButtonRef.current;
-                            navigation.prevEl = previousButtonRef.current;
-                        }
-                    }}
-                >
-                    {slides}
-                    <div className={styles.buttonNavigation}>
-                        <CarouselArrowButton
-                            carouselButtonRef={previousButtonRef}
-                            className={styles.leftButton}
-                            leftFacing
-                        />
-                        <CarouselArrowButton
-                            carouselButtonRef={nextButtonRef}
-                        />
-                    </div>
-                </Swiper>
-            </div>
+            <section
+                aria-label="Decorative carousel element containing images of Torchbox's
+                values"
+            >
+                <div className={styles.carouselContainer}>
+                    <Swiper
+                        className={styles.carousel}
+                        spaceBetween={10}
+                        slidesPerView={slidesPerView}
+                        modules={[Keyboard, Navigation]}
+                        keyboard
+                        onBeforeInit={(swiper) => {
+                            if (
+                                swiper.params.navigation &&
+                                typeof swiper.params.navigation !== 'boolean'
+                            ) {
+                                const { navigation } = swiper.params;
+                                navigation.nextEl = nextButtonRef.current;
+                                navigation.prevEl = previousButtonRef.current;
+                            }
+                        }}
+                    >
+                        {slides}
+                        <div className={styles.buttonNavigation}>
+                            <CarouselArrowButton
+                                carouselButtonRef={previousButtonRef}
+                                className={styles.leftButton}
+                                leftFacing
+                            />
+                            <CarouselArrowButton
+                                carouselButtonRef={nextButtonRef}
+                            />
+                        </div>
+                    </Swiper>
+                </div>
+            </section>
         </div>
     );
 };
