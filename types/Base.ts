@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types';
+
 export type Theme = 'LIGHT' | 'DARK' | 'INDIGO';
 
 // Light theme used on the EOT and Jobs page
@@ -38,4 +40,11 @@ export type BlogPost = {
     date: string;
     slug: string;
     author: Person;
+};
+
+export type Academy = {
+    title: string;
+    subtitle: string;
+    description: { json: Document };
+    applicationLink: string;
 };
