@@ -2,8 +2,7 @@ import type { NextPage } from 'next';
 import Layout from '../components/Layout';
 import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
-import RichText from 'components/RichText/RichText';
-import Image from 'components/Image';
+import Academies from 'components/TorchboxAcademy/Academies';
 
 type TorchboxAcademyPageProps = {
     preview: boolean;
@@ -13,16 +12,20 @@ type TorchboxAcademyPageProps = {
 const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     preview,
     content,
-}) => (
-    <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
-        <h1>Torchbox Academy</h1>
-        <RichText theme="INDIGO" content={content.heroSubtitle} />
-        <Image
-            src={content.heroImage.url}
-            alt={content.heroImage.description}
-        />
-    </Layout>
-);
+}) => {
+    const academyCollectionItem = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Academies',
+    );
+
+    const academies = academyCollectionItem.academiesCollection.items;
+
+    return (
+        <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+            <h1>Torchbox Academy</h1>
+            <Academies academies={academies} />
+        </Layout>
+    );
+};
 
 export default TorchboxAcademyPage;
 
