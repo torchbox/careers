@@ -15,6 +15,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     content,
 }) => (
     <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+        <h1>Torchbox Academy</h1>
         <ReasonsToJoin title={content.reasonsToJoinTitle}>
             <RichText theme="LIGHT" content={content.reasonsToJoinContent} />
         </ReasonsToJoin>
