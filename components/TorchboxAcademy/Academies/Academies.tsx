@@ -1,10 +1,10 @@
 import RichText from 'components/RichText';
 import WomanLeanIn from 'components/SVG/WomanLeanIn';
-import type { Academy } from 'types/Base';
+import type { AcademyTypes } from 'types/Base';
 import styles from './Academies.module.scss';
 
 type AcademyProps = {
-    academy: Academy;
+    academy: AcademyTypes;
 };
 
 const Academy = ({ academy }: AcademyProps) => (
@@ -24,7 +24,7 @@ const Academy = ({ academy }: AcademyProps) => (
 );
 
 type AcademiesProps = {
-    academies: Academy[];
+    academies: AcademyTypes[];
 };
 
 export const Academies = ({ academies }: AcademiesProps) => {

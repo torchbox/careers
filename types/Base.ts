@@ -42,7 +42,7 @@ export type BlogPost = {
     author: Person;
 };
 
-export type Academy = {
+export type AcademyTypes = {
     title: string;
     subtitle: string;
     description: { json: Document };
