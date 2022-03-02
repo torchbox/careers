@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
 import RichText from 'components/RichText/RichText';
-import Image from 'components/Image';
+import Hero from 'components/TorchboxAcademy/Hero';
 
 type TorchboxAcademyPageProps = {
     preview: boolean;
@@ -15,12 +15,9 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     content,
 }) => (
     <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
-        <h1>Torchbox Academy</h1>
-        <RichText theme="INDIGO" content={content.heroSubtitle} />
-        <Image
-            src={content.heroImage.url}
-            alt={content.heroImage.description}
-        />
+        <Hero image={content.heroImage}>
+            <RichText theme="INDIGO" content={content.heroSubtitle} />
+        </Hero>
     </Layout>
 );
 
