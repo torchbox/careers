@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-unused-vars: "off" */
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import {
     BLOCKS,
@@ -71,7 +72,7 @@ const getRenderOptions = (links?: any) => {
             },
             [BLOCKS.EMBEDDED_ENTRY]: (
                 node: Block | Inline,
-                children: React.ReactNode,
+                _: React.ReactNode,
             ) => {
                 if (links) {
                     const entryMap = new Map();
@@ -88,13 +89,13 @@ const getRenderOptions = (links?: any) => {
                             </Quote>
                         );
                     }
-                } else {
-                    return <p>Embedded content not found.</p>;
                 }
+
+                return <p>Embedded content not found.</p>;
             },
             [BLOCKS.EMBEDDED_ASSET]: (
                 node: Block | Inline,
-                children: React.ReactNode,
+                _: React.ReactNode,
             ) => {
                 if (links) {
                     const assetMap = new Map();
@@ -115,15 +116,15 @@ const getRenderOptions = (links?: any) => {
                             alt={description}
                         />
                     );
-                } else {
-                    return <p>Embedded image not found.</p>;
                 }
+
+                return <p>Embedded image not found.</p>;
             },
         },
     };
 };
 
-export const RichText = ({ theme, content }: RichTextProps) => {
+const RichText = ({ theme, content }: RichTextProps) => {
     let themeClass = 'themeLight';
     switch (theme) {
         case 'LIGHT':
