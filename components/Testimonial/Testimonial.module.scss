@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 $grid;
+
+    @include media-query(medium) {
+        flex-direction: row;
+    }
+
+    @include media-query(large) {
+        padding: 0;
+    }
+}
+
+.quoteContainer {
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(medium) {
+        justify-content: flex-end;
+    }
+}
+
+.quote {
+    @include font-size(ml);
+    font-weight: $weight--bold;
+    color: var(--color--dark-indigo);
+    margin-top: $grid;
+
+    @include media-query(medium) {
+        margin-top: 0;
+    }
+}
+
+.quotee {
+    @include font-size(xxxs);
+    font-weight: $weight--bold;
+    color: var(--color--coral-dark);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.image {
+    clip-path: url(#testimonialClipPath);
+    width: 300px;
+    height: 300px;
+
+    & span,
+    & img {
+        width: 300px !important;
+        height: 300px !important;
+    }
+}
+
+.imageContainer {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin-top: -$grid * 2;
+
+    &::after {
+        @include z-index(two);
+        content: '';
+        position: absolute;
+        top: 110px;
+        right: 42px;
+        width: 29px;
+        height: 87px;
+        background-color: var(--color--coral);
+        transform: rotate(27deg);
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
+        }
+    }
+
+    &::before {
+        @include z-index(two);
+        content: '';
+        position: absolute;
+        top: 150px;
+        right: 105px;
+        width: 18px;
+        height: 45px;
+        background-color: var(--color--coral);
+        transform: rotate(27deg);
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
+        }
+    }
+}
