@@ -4,7 +4,7 @@ import styles from 'styles/EmployeeOwnedTrust.module.scss';
 import VoiceOfChange from 'components/EmployeeOwnedTrust/VoiceOfChange';
 import { getEmployeeOwnedTrustPage } from '../lib/api';
 import { EmployeeOwnedTrustPage } from 'types/pages/EmployeeOwnedTrust';
-import RichText from 'components/RichText/RichText';
+import RichText from 'components/RichText';
 import Benefits from 'components/Benefits';
 
 const Title = () => (

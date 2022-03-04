@@ -1,5 +1,5 @@
 import { LocationIcon } from 'components/Icons/LocationIcon';
-import RichText from 'components/RichText/RichText';
+import RichText from 'components/RichText';
 import styles from './AtWorkAtPlay.module.scss';
 
 type AtWorkAtPlayProps = {

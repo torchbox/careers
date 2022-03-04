@@ -360,6 +360,7 @@ export async function getTorchboxAcademyPage(preview: boolean) {
 
               itemsCollection(limit: 2) {
                   items {
+                    __typename
                     ... on GraduateTestimonials {
                       testimonialsCollection(limit: 6) {
                         items {
