@@ -59,6 +59,21 @@ const testimonial = `
     }
 `;
 
+const clients = `
+... on Clients {
+  clientsCollection(limit: 8){
+    items {
+      clientName
+      clientLogo {
+        width
+        height
+        description
+        url
+      }
+    }
+  }
+}`;
+
 export async function getLandingPage(preview: boolean) {
     const landingPageContent = await fetchGraphQL(
         `{
@@ -104,19 +119,7 @@ export async function getLandingPage(preview: boolean) {
 
                             ${benefits}
 
-                            ... on Clients {
-                              clientsCollection(limit: 8){
-                                items {
-                                  clientName
-                                  clientLogo {
-                                    width
-                                    height
-                                    description
-                                    url
-                                  }
-                                }
-                              }
-                            }
+                            ${clients}
 
                     ... on MusingsFromTheTeam {
                         blogPostsCollection(limit: 3){
@@ -242,6 +245,57 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
     return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
 }
 
+export async function getJobListingPage(preview: boolean) {
+    const pageContent = await fetchGraphQL(
+        `{
+        jobListingPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+              ${pageMetadata}
+              firstTitleLine
+              secondTitleLine
+              subtitle {
+                json
+              }
+              ctaTitle
+              ctaDescription {
+                json
+              }
+            }
+          }
+        }`,
+        preview,
+    );
+    return pageContent.data.jobListingPageCollection.items[0];
+}
+
+export async function getJobPage(preview: boolean) {
+    const pageContent = await fetchGraphQL(
+        `{
+          jobPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+              items {
+                ${pageMetadata}
+                hiringPolicyTitle
+                hiringPolicyDescription {
+                  json
+                }
+                itemsCollection {
+                  items {
+                    ${benefits}
+                    ${clients}
+                  }
+                }
+              }
+            }
+          }`,
+        preview,
+    );
+    return pageContent.data.jobPageCollection.items[0];
+}
+
 export async function getEmployeeOwnedTrustPage(preview: boolean) {
     const content = await fetchGraphQL(
         `{
@@ -334,6 +388,7 @@ export async function getTorchboxAcademyPage(preview: boolean) {
 
               itemsCollection(limit: 2) {
                   items {
+                    __typename
                     ... on GraduateTestimonials {
                       testimonialsCollection(limit: 6) {
                         items {

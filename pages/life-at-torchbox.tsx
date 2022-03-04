@@ -5,8 +5,8 @@ import { getLifeAtTorchboxPage } from '../lib/api';
 import Testimonial from 'components/Testimonial';
 import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
 import Hero from 'components/LifeAtTorchbox/Hero';
-import RichText from 'components/RichText/RichText';
 import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
+import RichText from 'components/RichText';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
 
 type LifeAtTorchboxPageProps = {

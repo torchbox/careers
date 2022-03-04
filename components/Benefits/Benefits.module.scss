@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    margin: $grid;
+    margin: 0;
 
     @include media-query(medium) {
         margin: 2 * $grid auto;
@@ -41,6 +41,7 @@
     display: grid;
     gap: $grid;
     grid-template-columns: 1fr;
+    margin-left: 0;
 
     @include media-query(medium) {
         gap: $grid * 1.5;
@@ -62,6 +63,7 @@
 
     &Icon {
         margin-right: $grid * 0.5;
+        flex-shrink: 0;
 
         @include media-query(large) {
             margin-right: $grid;

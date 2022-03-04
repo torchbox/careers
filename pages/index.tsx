@@ -10,7 +10,7 @@ import LifeAsATorchboxer from 'components/LandingPage/LifeAsATorchboxer';
 import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
 import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
-import RichText from 'components/RichText/RichText';
+import RichText from 'components/RichText';
 import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
 
 const TEMPORARY_JOBS_VARIABLE = 11;
