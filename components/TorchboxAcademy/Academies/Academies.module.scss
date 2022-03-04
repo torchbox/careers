@@ -1,0 +1,63 @@
+.container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: $grid $grid $grid * 12 $grid;
+
+    @include media-query(medium) {
+        padding: $grid $grid * 2 $grid * 12 $grid * 2;
+    }
+
+    @include media-query(menu-break) {
+        padding: $grid * 2 180px $grid * 12 90px;
+        column-gap: 90px;
+        row-gap: 180px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-query(site-width) {
+        position: unset;
+    }
+}
+
+.womanLeanIn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    @include media-query(menu-break) {
+        bottom: unset;
+        top: 580px;
+        width: 390px;
+    }
+
+    @include media-query(site-width) {
+        // Todo: This will need correcting with the final polishing of the page.
+        top: 800px;
+    }
+}
+
+.academy {
+    &Title {
+        @include font-size(mxl);
+        line-height: 1;
+        font-weight: $weight--extrabold;
+
+        @include media-query(menu-break) {
+            max-width: 460px;
+        }
+    }
+
+    &Subtitle {
+        @include font-size(m);
+        color: var(--color--coral);
+        margin-bottom: 15px;
+    }
+
+    &Description {
+        margin-bottom: $grid;
+        & p:first-child {
+            margin-top: 0;
+        }
+    }
+}

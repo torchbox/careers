@@ -1,0 +1,9 @@
+.title {
+    @include font-size(xxxl);
+    line-height: 1em;
+    font-weight: $weight--extrabold;
+}
+
+.accent {
+    color: var(--color--coral);
+}
