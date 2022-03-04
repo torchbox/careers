@@ -4,6 +4,7 @@ import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
 import Academies from 'components/TorchboxAcademy/Academies';
 import type { AcademyTypes } from 'types/Base';
+import Metadata from 'components/Metadata';
 
 type AcademyItemCollection = {
     __typename: string;
@@ -29,6 +30,12 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 
     return (
         <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="torchbox-academy"
+                image={content.metadataSocialMediaImage}
+            />
             <h1>Torchbox Academy</h1>
             {academies && <Academies academies={academies} />}
         </Layout>

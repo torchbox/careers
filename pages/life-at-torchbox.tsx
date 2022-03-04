@@ -8,6 +8,7 @@ import Hero from 'components/LifeAtTorchbox/Hero';
 import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
 import RichText from 'components/RichText';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
+import Metadata from 'components/Metadata';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -19,6 +20,12 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
     content,
 }) => (
     <Layout theme="DARK" preview={preview} jobsAvailable={8}>
+        <Metadata
+            title={content.metadataTitle}
+            description={content.metadataDescription}
+            slug="life-at-torchbox"
+            image={content.metadataSocialMediaImage}
+        />
         <div className={styles.indigoBackground}>
             <Hero
                 image={content.heroImage}

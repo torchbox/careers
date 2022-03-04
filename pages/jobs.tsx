@@ -13,6 +13,7 @@ import WomanLeanIn from 'components/SVG/WomanLeanIn';
 import { LocationIcon } from 'components/Icons/LocationIcon';
 import { useState } from 'react';
 import Select from 'components/Select';
+import Metadata from 'components/Metadata';
 
 type JobEntryProps = {
     job: JobSummary;
@@ -130,6 +131,12 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
 
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="jobs"
+                image={content.metadataSocialMediaImage}
+            />
             <div className={styles.pageContainer}>
                 <div className={styles.contentContainer}>
                     <Title

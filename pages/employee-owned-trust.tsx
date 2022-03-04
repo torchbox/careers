@@ -6,6 +6,7 @@ import { getEmployeeOwnedTrustPage } from '../lib/api';
 import { EmployeeOwnedTrustPage } from 'types/pages/EmployeeOwnedTrust';
 import RichText from 'components/RichText';
 import Benefits from 'components/Benefits';
+import Metadata from 'components/Metadata';
 
 const Title = () => (
     <h1 className={styles.title}>
@@ -30,6 +31,12 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
 
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="employee-owned-trust"
+                image={content.metadataSocialMediaImage}
+            />
             <div className={styles.textContent}>
                 <Title />
                 <p className={styles.subtitle}>{content.subtitle}</p>

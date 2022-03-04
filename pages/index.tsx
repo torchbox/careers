@@ -12,6 +12,7 @@ import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
 import RichText from 'components/RichText';
 import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
+import Metadata from 'components/Metadata';
 
 const TEMPORARY_JOBS_VARIABLE = 11;
 
@@ -45,6 +46,12 @@ const LandingPage: NextPage<LandingPageProps> = ({
             preview={preview}
             jobsAvailable={TEMPORARY_JOBS_VARIABLE}
         >
+            <Metadata
+                title={landingPageContent.metadataTitle}
+                description={landingPageContent.metadataDescription}
+                slug=""
+                image={landingPageContent.metadataSocialMediaImage}
+            />
             <Hero image={landingPageContent.heroImage}>
                 <RichText
                     theme="INDIGO"

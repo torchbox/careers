@@ -10,6 +10,7 @@ import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
+import Metadata from 'components/Metadata';
 
 type JobPageProps = {
     preview: boolean;
@@ -30,6 +31,12 @@ const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
 
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug={`jobs/${job.slug}`}
+                image={content.metadataSocialMediaImage}
+            />
             <div className={styles.pageContainer}>
                 <div className={styles.contentContainer}>
                     <h1>{job.title}</h1>
