@@ -24,7 +24,7 @@
 
     @include media-query(large) {
         max-width: 635px;
-        margin-bottom: 0;
+        margin-bottom: $grid * 4;
     }
 }
 
@@ -32,14 +32,17 @@
     @include font-size(xxxxl);
     font-weight: $weight--extrabold;
     line-height: 1;
+    margin-bottom: $grid * 1.5;
 }
 
 .image {
     display: none;
     @include media-query(large) {
         display: block;
+        position: relative;
         order: 1;
-        margin: auto $grid * 2 $grid * 2 auto;
+        margin: auto $grid * 3 $grid * 2 auto;
+        bottom: -60px;
     }
 }
 

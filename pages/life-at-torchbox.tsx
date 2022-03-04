@@ -43,7 +43,7 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             values={content.itemsCollection.items[1].valuesCollection.items}
         >
             <RichText
-                theme="LIGHT"
+                theme="INDIGO"
                 content={content.valueCarouselIntroduction}
             />
         </ValuesCarousel>
