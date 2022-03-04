@@ -29,7 +29,7 @@ type AcademiesProps = {
 
 export const Academies = ({ academies }: AcademiesProps) => {
     const academyComponents = academies.map((academy, index) => (
-        <Academy academy={academy} key={index} />
+        <Academy academy={academy} key={`Academy ${index}`} />
     ));
 
     return (
