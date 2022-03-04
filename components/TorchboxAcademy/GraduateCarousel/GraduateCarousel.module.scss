@@ -62,6 +62,11 @@
         width: 90%;
         padding-bottom: $grid;
     }
+
+    :global .swiper-slide,
+    :global .swiper-container {
+        height: auto !important;
+    }
 }
 
 .carousel {
@@ -77,7 +82,7 @@
 
     &Content {
         padding: $grid * 2;
-        height: 300px;
+        height: auto;
     }
 
     &Image {
