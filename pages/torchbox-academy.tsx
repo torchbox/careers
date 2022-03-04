@@ -45,7 +45,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 export default TorchboxAcademyPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getTorchboxAcademyPage(preview)) ?? [];
+    const content = await getTorchboxAcademyPage(preview);
     return {
         props: { preview, content },
     };
