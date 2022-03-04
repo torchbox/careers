@@ -7,9 +7,9 @@ import Link from 'next/link';
 import Title from 'components/Title';
 import Layout from 'components/Layout';
 import { getJobListingPage } from 'lib/api';
-import RichText from 'components/RichText/RichText';
+import RichText from 'components/RichText';
 import { SwishButton } from 'components/Button/Button';
-import { WomanLeanIn } from 'components/Icons/WomanLeanIn';
+import WomanLeanIn from 'components/SVG/WomanLeanIn';
 import { LocationIcon } from 'components/Icons/LocationIcon';
 import { useState } from 'react';
 import Select from 'components/Select';
@@ -45,12 +45,12 @@ const JobEntry = ({ job }: JobEntryProps) => (
     </>
 );
 
-type CTAProps = {
+type JobCTAProps = {
     title: string;
     children: React.ReactNode;
 };
 
-const CTA = ({ title, children }: CTAProps) => (
+const JobCTA = ({ title, children }: JobCTAProps) => (
     <>
         <h2 className={styles.ctaTitle}>{title}</h2>
         <div className={styles.ctaDescription}>{children}</div>
@@ -66,11 +66,14 @@ type JobsPageProps = {
     content: Jobs;
 };
 
+const LOCATIONS = 'Locations';
+const DEPARTMENTS = 'Departments';
+
 const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
     const jobsAvailable = jobs && jobs.length > 0;
 
-    const [location, setLocation] = useState('Locations');
-    const [department, setDepartment] = useState('Departments');
+    const [location, setLocation] = useState(LOCATIONS);
+    const [department, setDepartment] = useState(DEPARTMENTS);
 
     const locations = jobs.reduce(
         (acc: string[], job: JobSummary) => {
@@ -79,7 +82,7 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
             }
             return acc;
         },
-        ['Locations'],
+        [LOCATIONS],
     );
     const departments = jobs.reduce(
         (acc: string[], job: JobSummary) => {
@@ -88,13 +91,13 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
             }
             return acc;
         },
-        ['Departments'],
+        [DEPARTMENTS],
     );
 
-    if (location !== 'Locations') {
+    if (location !== LOCATIONS) {
         jobs = jobs.filter((job) => job.city === location);
     }
-    if (department !== 'Departments') {
+    if (department !== DEPARTMENTS) {
         jobs = jobs.filter((job) => job.department === department);
     }
 
@@ -111,8 +114,8 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
     };
 
     const resetFilter = () => {
-        setLocation('Locations');
-        setDepartment('Departments');
+        setLocation(LOCATIONS);
+        setDepartment(DEPARTMENTS);
     };
 
     const handleLocationChange = (event: React.FormEvent) => {
@@ -140,12 +143,14 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
                             <>
                                 <div className={styles.filter}>
                                     <Select
+                                        label="Filter by locations"
                                         options={locations}
                                         value={location}
                                         handleChange={handleLocationChange}
                                         className={styles.filterSelect}
                                     />
                                     <Select
+                                        label="Filter by departments"
                                         options={departments}
                                         value={department}
                                         handleChange={handleDepartmentChange}
@@ -189,12 +194,12 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
 
                         <WomanLeanIn className={styles.womanSVG} />
 
-                        <CTA title={content.ctaTitle}>
+                        <JobCTA title={content.ctaTitle}>
                             <RichText
                                 theme="INDIGO"
                                 content={content.ctaDescription}
                             />
-                        </CTA>
+                        </JobCTA>
                     </div>
                 </div>
             </div>

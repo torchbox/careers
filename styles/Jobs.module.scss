@@ -155,8 +155,9 @@
     @include media-query(menu-break) {
         display: block;
         position: absolute;
-        right: 0;
+        right: -10px;
         transform: translateY(100px);
+        width: 418px;
     }
 }
 
@@ -168,13 +169,4 @@
     @include media-query(large) {
         margin: $grid * 3 0 0 0;
     }
-}
-
-.textContainer {
-    margin: 0 auto;
-    max-width: 755px;
-}
-
-.divider {
-    margin: $grid * 1.5 0;
 }
