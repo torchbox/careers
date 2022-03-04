@@ -49,7 +49,8 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
             {academies && <Academies academies={academies} />}
 
             <GraduateCarousel
-                title={content.meetOurGraduatesTitle}
+                titleFirstLine={content.meetOurGraduatesTitleFirstLine}
+                titleSecondLine={content.meetOurGraduatesTitleSecondLine}
                 graduates={graduateTestimonials}
             >
                 <RichText

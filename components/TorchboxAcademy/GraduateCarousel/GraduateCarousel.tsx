@@ -5,21 +5,27 @@ import { Keyboard, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TestimonialTypes } from 'types/Base';
 import Image from 'components/Image';
+import { CarouselArrowButton } from 'components/Button/Button';
 import styles from './GraduateCarousel.module.scss';
 import 'swiper/css';
 
 type CarouselIntroductionProps = {
-    title: string;
+    titleFirstLine: string;
+    titleSecondLine: string;
     children: React.ReactNode;
 };
 
 const CarouselIntroduction = ({
-    title,
+    titleFirstLine,
+    titleSecondLine,
     children,
 }: CarouselIntroductionProps) => (
     <div className={styles.container}>
         <div className={styles.textContainer}>
-            <h2 className={styles.title}>{title}</h2>
+            <h2 className={styles.title}>
+                {titleFirstLine}
+                <span className={styles.emphasis}>{titleSecondLine}</span>
+            </h2>
             <div className={styles.description}>{children}</div>
         </div>
         <div className={styles.image}>
@@ -31,13 +37,15 @@ const CarouselIntroduction = ({
 );
 
 type GraduateCarouselProps = {
-    title: string;
+    titleFirstLine: string;
+    titleSecondLine: string;
     graduates: TestimonialTypes[];
     children: React.ReactNode;
 };
 
 const GraduateCarousel = ({
-    title,
+    titleFirstLine,
+    titleSecondLine,
     graduates,
     children,
 }: GraduateCarouselProps) => {
@@ -74,7 +82,10 @@ const GraduateCarousel = ({
 
     return (
         <div className={styles.pageContainer}>
-            <CarouselIntroduction title={title}>
+            <CarouselIntroduction
+                titleFirstLine={titleFirstLine}
+                titleSecondLine={titleSecondLine}
+            >
                 {children}
             </CarouselIntroduction>
             <div className={styles.carouselContainer}>
@@ -96,16 +107,6 @@ const GraduateCarousel = ({
                     }}
                 >
                     {slides}
-                </Swiper>
-            </div>
-        </div>
-    );
-};
-
-export default GraduateCarousel;
-
-/*
-
                     <div className={styles.buttonNavigation}>
                         <CarouselArrowButton
                             carouselButtonRef={previousButtonRef}
@@ -116,5 +117,10 @@ export default GraduateCarousel;
                             carouselButtonRef={nextButtonRef}
                         />
                     </div>
+                </Swiper>
+            </div>
+        </div>
+    );
+};
 
-*/
+export default GraduateCarousel;
