@@ -1,6 +1,7 @@
 import styles from './Select.module.scss';
 
 type SelectProps = {
+    label: string;
     value: string;
     options: string[];
     handleChange: (event: React.FormEvent) => void;
@@ -8,6 +9,7 @@ type SelectProps = {
 };
 
 export const Select = ({
+    label,
     value,
     options,
     handleChange,
@@ -18,6 +20,7 @@ export const Select = ({
     ));
     return (
         <select
+            aria-label={label}
             value={value}
             onChange={handleChange}
             className={[styles.button, className].join(' ')}
