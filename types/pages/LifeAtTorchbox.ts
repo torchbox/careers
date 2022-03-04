@@ -16,5 +16,6 @@ export type LifeAtTorchboxPage = {
     heroDescription: { json: Document };
     itemsCollection: any;
     valueCarouselTitle: string;
-    valueCarouselDescription: { json: Document };
+    valueCarouselIntroduction: { json: Document };
+    valuesDescription: { json: Document };
 };

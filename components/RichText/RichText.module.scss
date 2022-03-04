@@ -22,6 +22,14 @@
     :global .themeDark :local & {
         color: var(--color--white);
     }
+
+    :global .themeDark .themeLight :local & {
+        color: var(--color--grey);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
 }
 
 .h2 {
@@ -52,4 +60,16 @@
     :global .themeDark :local & {
         color: var(--color--white);
     }
+
+    :global .themeDark .themeLight :local & {
+        color: var(--color--indigo);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
+}
+
+.container > p:last-child {
+    margin-bottom: 0;
 }

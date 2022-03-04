@@ -232,6 +232,9 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                   valueCarouselIntroduction {
                     json
                   }
+                  valuesDescription {
+                    json
+                  }
                 }
             }
         }
