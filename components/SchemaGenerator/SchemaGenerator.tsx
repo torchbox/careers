@@ -2,8 +2,13 @@ import Head from 'next/head';
 import type { JobPost } from 'lib/peopleHR';
 
 export const SchemaGenerator = ({ job }: { job: JobPost }) => {
-    const minSalary = job.salaryRange.split(' - ')[0];
-    const maxSalary = job.salaryRange.split(' - ')[1];
+    let splittingString = ' - ';
+    if (job.salaryRange.includes(' to ')) {
+        splittingString = ' to ';
+    }
+
+    const minSalary = job.salaryRange.split(splittingString)[0];
+    const maxSalary = job.salaryRange.split(splittingString)[1];
     const datePosted = new Date().toISOString();
 
     const schema = `
