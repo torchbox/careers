@@ -15,4 +15,5 @@ export type TorchboxAcademy = {
     applicationsOpenTitleIntro: string;
     applicationsOpenTitleEmphasis: string;
     applicationsOpenDescription: { json: Document };
+    applicationsOpenImage: ImageTypes;
 };
