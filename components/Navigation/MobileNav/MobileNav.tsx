@@ -17,7 +17,7 @@ const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
         }`}
     >
         {link.isCareersSiteInternalLink ? (
-            <Link href={link.url}>
+            <Link href={link.url} scroll={false}>
                 <a className={styles.mobileNavItemLink}>
                     <span className={styles.mobileNavItemTitle}>
                         {link.title}

@@ -10,7 +10,7 @@ type ButtonProps = {
 };
 
 export const Button = ({ className, url, jobs = 0, children }: ButtonProps) => (
-    <Link href={url}>
+    <Link href={url} scroll={false}>
         <a
             className={[styles.button, styles.radialBackground, className].join(
                 ' ',
@@ -31,7 +31,7 @@ export const SwishButton = ({
     jobs = 0,
     children,
 }: ButtonProps) => (
-    <Link href={url}>
+    <Link href={url} scroll={false}>
         <a
             className={[styles.button, styles.radialBackground, className].join(
                 ' ',
