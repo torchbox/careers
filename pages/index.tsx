@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import type { LandingPage } from 'types/pages/LandingPage';
-import { getLandingPage } from '../lib/api';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
+import { getLandingPage } from 'lib/api';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
@@ -13,15 +14,15 @@ import CTA from 'components/LandingPage/CTA';
 import RichText from 'components/RichText';
 import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
 
-const TEMPORARY_JOBS_VARIABLE = 11;
-
 type LandingPageProps = {
     preview: boolean;
+    jobsAvailable: number;
     landingPageContent: LandingPage;
 };
 
 const LandingPage: NextPage<LandingPageProps> = ({
     preview,
+    jobsAvailable,
     landingPageContent,
 }) => {
     const clientLogos =
@@ -43,7 +44,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
         <Layout
             theme={'INDIGO'}
             preview={preview}
-            jobsAvailable={TEMPORARY_JOBS_VARIABLE}
+            jobsAvailable={jobsAvailable}
         >
             <Hero image={landingPageContent.heroImage}>
                 <RichText
@@ -52,7 +53,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 />
                 <PageNav
                     title={landingPageContent.missionTitle}
-                    jobs={TEMPORARY_JOBS_VARIABLE}
+                    jobs={jobsAvailable}
                 >
                     <RichText
                         theme="INDIGO"
@@ -86,10 +87,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
             </div>
             <SocialMediaPhotos photos={socialMediaProfilePhotos} />
 
-            <CTA
-                jobs={TEMPORARY_JOBS_VARIABLE}
-                title={landingPageContent.ctaTitle}
-            >
+            <CTA jobs={jobsAvailable} title={landingPageContent.ctaTitle}>
                 <RichText
                     theme="INDIGO"
                     content={landingPageContent.ctaDescription}
@@ -109,8 +107,9 @@ const LandingPage: NextPage<LandingPageProps> = ({
 export default LandingPage;
 
 export async function getStaticProps({ preview = false }) {
-    const landingPageContent = (await getLandingPage(preview)) ?? [];
+    const landingPageContent = await getLandingPage(preview);
+    const jobsAvailable = await getNumberOfActiveRoles();
     return {
-        props: { preview, landingPageContent },
+        props: { preview, jobsAvailable, landingPageContent },
     };
 }
