@@ -50,7 +50,7 @@ export const SchemaGenerator = ({ job }: { job: JobPost }) => {
                     "postalCode": "BS1 5AP",
                     "addressCountry": "UK"
                 }
-            }
+            },
             {
                 "@type": "Place",
                 "address": {
@@ -61,7 +61,7 @@ export const SchemaGenerator = ({ job }: { job: JobPost }) => {
                 }
             }
         ],
-        "jobLocationType" : "TELECOMMUTE",
+        "jobLocationType" : "TELECOMMUTE"
     }`;
 
     return (
