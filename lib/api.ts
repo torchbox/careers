@@ -376,7 +376,8 @@ export async function getTorchboxAcademyPage(preview: boolean) {
               reasonsToJoinContent {
                 json
               }
-              meetOurGraduatesTitle
+              meetOurGraduatesTitleFirstLine
+              meetOurGraduatesTitleSecondLine
               meetOurGraduatesIntroduction {
                 json
               }
