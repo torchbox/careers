@@ -28,6 +28,9 @@ export const SchemaGenerator = ({ job }: { job: JobPost }) => {
             "@type": "Organization",
             "name": "Torchbox Limited"
         },
+        "employerOverview": "Torchbox is the agency partner for socially progressive organisations with ambitious digital ideas. Services include UX Design, Website Development, Custom Web Apps, PPC & SEO, Google Analytics, Wagtail Development and Social Media Marketing.",
+        "incentiveCompensation": "Torchbox is an employee owned company, with proceeds from profits awarded to employees twice a year. Performance related bonuses are also awarded.",
+        "ownershipFundingInfo: "https://torchbox.com/careers/employee-owned-trust/",
         "jobLocation": [
             {
                 "@type": "Place",
@@ -58,7 +61,8 @@ export const SchemaGenerator = ({ job }: { job: JobPost }) => {
                     "addressCountry": "Worldwide"
                 }
             }
-        },
+        ],
+        "jobLocationType" : "TELECOMMUTE",
     }`;
 
     return (
