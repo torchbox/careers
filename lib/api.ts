@@ -376,7 +376,8 @@ export async function getTorchboxAcademyPage(preview: boolean) {
               reasonsToJoinContent {
                 json
               }
-              meetOurGraduatesTitle
+              meetOurGraduatesTitleFirstLine
+              meetOurGraduatesTitleSecondLine
               meetOurGraduatesIntroduction {
                 json
               }
@@ -385,7 +386,12 @@ export async function getTorchboxAcademyPage(preview: boolean) {
               applicationsOpenDescription {
                 json
               }
-
+              applicationsOpenImage {
+                url
+                description
+                width
+                height
+              }
               itemsCollection(limit: 2) {
                   items {
                     __typename
