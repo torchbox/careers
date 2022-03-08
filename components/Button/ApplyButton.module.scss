@@ -65,6 +65,16 @@
     @include z-index(one);
     margin-left: 8px;
     transition: transform $transition-quick;
+    height: 18px;
+    width: auto;
+
+    @include media-query(medium) {
+        height: 22px;
+    }
+
+    @include media-query(large) {
+        height: 24px;
+    }
 }
 
 .jobsBadge {
