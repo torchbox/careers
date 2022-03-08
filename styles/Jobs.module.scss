@@ -77,6 +77,7 @@
         }
 
         &:after {
+            @include z-index(under);
             content: '';
             position: absolute;
             width: 100%;
@@ -86,7 +87,6 @@
             transform: scaleY(0);
             transform-origin: bottom;
             background-color: var(--color--underline);
-            mix-blend-mode: darken;
             transition: transform 0.2s ease;
         }
     }
