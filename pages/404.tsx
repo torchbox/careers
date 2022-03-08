@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
+import redirect from 'nextjs-redirect';
 
-const NotFound: NextPage = () => {
-    if (typeof window !== 'undefined')
-        window.location.href = 'https://torchbox.com/404/';
-    return null;
-};
+const Redirect = redirect('https://torchbox.com/404/');
+
+const NotFound: NextPage = () => <Redirect />;
 
 export default NotFound;
