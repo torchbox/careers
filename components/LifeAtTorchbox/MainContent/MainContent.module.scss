@@ -4,7 +4,7 @@
     padding: 0 $grid $grid * 2 $grid;
 
     @include media-query(large) {
-        padding-top: $grid * 4;
+        padding-top: $grid * 8;
     }
 }
 
@@ -19,7 +19,7 @@
         &::before {
             content: '';
             position: absolute;
-            top: -70px;
+            top: -80px;
             left: -180px;
             width: 580px;
             height: 3px;
