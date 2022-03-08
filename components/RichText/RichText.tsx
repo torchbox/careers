@@ -138,7 +138,7 @@ export const RichText = ({ theme, content }: RichTextProps) => {
     }
 
     return (
-        <div className={`${styles.container} ${themeClass}`}>
+        <div className={themeClass}>
             {documentToReactComponents(
                 content.json,
                 getRenderOptions(content.links),
