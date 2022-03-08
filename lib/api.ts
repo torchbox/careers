@@ -194,6 +194,12 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 heroDescription {
                     json
                 }
+                mainContentTitleFirstLine
+                mainContentTitleSecondLine
+                mainContentTitleThirdLine
+                mainContent {
+                    json
+                }
                 atWorkTitle
                 atPlayTitle
                 atWorkDescription {
