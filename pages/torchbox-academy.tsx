@@ -2,8 +2,13 @@ import type { NextPage } from 'next';
 import Layout from '../components/Layout';
 import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
-import RichText from 'components/RichText/RichText';
-import Image from 'components/Image';
+import Academies from 'components/TorchboxAcademy/Academies';
+import type { AcademyTypes } from 'types/Base';
+
+type AcademyItemCollection = {
+    __typename: string;
+    academiesCollection: { items: AcademyTypes[] };
+};
 
 type TorchboxAcademyPageProps = {
     preview: boolean;
@@ -13,16 +18,22 @@ type TorchboxAcademyPageProps = {
 const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     preview,
     content,
-}) => (
-    <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
-        <h1>Torchbox Academy</h1>
-        <RichText theme="INDIGO" content={content.heroSubtitle} />
-        <Image
-            src={content.heroImage.url}
-            alt={content.heroImage.description}
-        />
-    </Layout>
-);
+}) => {
+    const academyCollectionItem = content.itemsCollection.items.find(
+        (obj: AcademyItemCollection) => obj.__typename === 'Academies',
+    );
+
+    let academies = undefined;
+    if (academyCollectionItem)
+        academies = academyCollectionItem.academiesCollection.items;
+
+    return (
+        <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+            <h1>Torchbox Academy</h1>
+            {academies && <Academies academies={academies} />}
+        </Layout>
+    );
+};
 
 export default TorchboxAcademyPage;
 

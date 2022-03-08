@@ -7,7 +7,7 @@ import { getJobPage } from 'lib/api';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
-import RichText from 'components/RichText/RichText';
+import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
 import JobListingHero from 'components/JobListingHero';
 import styles from 'styles/Job.module.scss';

@@ -194,6 +194,12 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 heroDescription {
                     json
                 }
+                mainContentTitleFirstLine
+                mainContentTitleSecondLine
+                mainContentTitleThirdLine
+                mainContent {
+                    json
+                }
                 atWorkTitle
                 atPlayTitle
                 atWorkDescription {
@@ -232,6 +238,9 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                   valueCarouselIntroduction {
                     json
                   }
+                  valuesDescription {
+                    json
+                  }
                 }
             }
         }
@@ -240,6 +249,31 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
     );
 
     return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
+}
+
+export async function getJobListingPage(preview: boolean) {
+    const pageContent = await fetchGraphQL(
+        `{
+        jobListingPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+              ${pageMetadata}
+              firstTitleLine
+              secondTitleLine
+              subtitle {
+                json
+              }
+              ctaTitle
+              ctaDescription {
+                json
+              }
+            }
+          }
+        }`,
+        preview,
+    );
+    return pageContent.data.jobListingPageCollection.items[0];
 }
 
 export async function getJobPage(preview: boolean) {
@@ -348,7 +382,8 @@ export async function getTorchboxAcademyPage(preview: boolean) {
               reasonsToJoinContent {
                 json
               }
-              meetOurGraduatesTitle
+              meetOurGraduatesTitleFirstLine
+              meetOurGraduatesTitleSecondLine
               meetOurGraduatesIntroduction {
                 json
               }
@@ -360,6 +395,7 @@ export async function getTorchboxAcademyPage(preview: boolean) {
 
               itemsCollection(limit: 2) {
                   items {
+                    __typename
                     ... on GraduateTestimonials {
                       testimonialsCollection(limit: 6) {
                         items {
