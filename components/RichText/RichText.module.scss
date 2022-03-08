@@ -26,6 +26,10 @@
     :global .themeDark .themeLight :local & {
         color: var(--color--grey);
     }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
 }
 
 .h2 {
@@ -65,5 +69,9 @@
 
     :global .themeDark .themeLight :local & {
         color: var(--color--indigo);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
     }
 }

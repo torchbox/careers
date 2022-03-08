@@ -8,6 +8,15 @@
     padding: $grid * 1.5;
     border-radius: 7px;
     transition: transform $transition-quick;
+    margin-top: $grid * 3;
+
+    @include media-query(medium) {
+        margin-top: $grid * 3;
+    }
+
+    @include media-query(large) {
+        margin: $grid * 4.5 0 $grid * 3 0;
+    }
 
     &:hover,
     &:focus {

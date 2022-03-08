@@ -20,5 +20,6 @@ export type LifeAtTorchboxPage = {
     mainContent: any;
     itemsCollection: any;
     valueCarouselTitle: string;
-    valueCarouselDescription: { json: Document };
+    valueCarouselIntroduction: { json: Document };
+    valuesDescription: { json: Document };
 };
