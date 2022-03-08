@@ -35,3 +35,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# caching data generated when hosted on Vercel
+/cachedData
+
+.vscode/settings.json

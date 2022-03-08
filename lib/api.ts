@@ -1,0 +1,423 @@
+// Following the code from the Contentful Vercel demonstration library
+// https://github.com/vercel/next.js/blob/41f87abdf7be4519e7d928bbed4dec314fcd7851/examples/cms-contentful/lib/api.js#L46
+
+async function fetchGraphQL(query = '', preview = false) {
+    return fetch(
+        `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_API_URL}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${
+                    preview
+                        ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+                        : process.env.CONTENTFUL_ACCESS_TOKEN
+                }`,
+            },
+            body: JSON.stringify({ query }),
+        },
+    ).then((response) => response.json());
+}
+
+const pageMetadata = `
+    metadataTitle
+    metadataDescription
+    metadataSocialMediaImage {
+        description
+        url
+        width
+        height
+    }
+`;
+
+const benefits = `
+    ... on Benefits {
+        benefitsTitle
+        benefitsIntro
+        benefitsListCollection(limit: 8) {
+            items {
+                benefitName
+                benefitSnippet
+            }
+        }
+    }
+`;
+
+const testimonial = `
+    ... on Testimonial {
+        quote
+        quotee {
+            name
+            role
+            image {
+                url
+                description
+                width
+                height
+            }
+        }
+    }
+`;
+
+const clients = `
+... on Clients {
+  clientsCollection(limit: 8){
+    items {
+      clientName
+      clientLogo {
+        width
+        height
+        description
+        url
+      }
+    }
+  }
+}`;
+
+export async function getLandingPage(preview: boolean) {
+    const landingPageContent = await fetchGraphQL(
+        `{
+            landingPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+                ${pageMetadata}
+                heroImage {
+                    description
+                    url
+                    width
+                    height
+                }
+                heroTagline {
+                    json
+                }
+                missionTitle
+                missionDescription {
+                    json
+                }
+                itemsCollection {
+                        items {
+                            __typename
+                            
+                            ... on ProfileImages {
+                              imagesCollection(limit: 8) {
+                                items {
+                                  image {
+                                    title
+                                    description
+                                    contentType
+                                    fileName
+                                    size
+                                    url
+                                    width
+                                    height
+                                  }
+                                  description
+                                }
+                              }
+                            }
+
+                            ${benefits}
+
+                            ${clients}
+
+                    ... on MusingsFromTheTeam {
+                        blogPostsCollection(limit: 3){
+                          items {
+                            title
+                            slug
+                            date
+                            author {
+                              name
+                              role
+                              image {
+                                url(transform: {
+                                    width: 100,
+                                    height: 100
+                                })
+                                width
+                                height
+                                description
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                }
+                      
+                workForYouDescription {
+                    json
+                }
+                workForYouImage {
+                    description
+                    url
+                    width
+                    height
+                }
+                lifeAsATorchboxer {
+                    json
+                }
+                ctaTitle
+                ctaDescription {
+                    json
+                }
+                }
+            }
+        }
+        `,
+        preview,
+    );
+
+    return landingPageContent.data.landingPageCollection.items[0];
+}
+
+export async function getLifeAtTorchboxPage(preview: boolean) {
+    const lifeAtTorchboxPageContent = await fetchGraphQL(
+        `{
+            lifeAtTorchboxPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+                ${pageMetadata}
+                heroImage {
+                    url
+                    description
+                    width
+                    height
+                  }
+                heroVideo {
+                    url
+                    description
+                }
+                heroSubtitle
+                heroDescription {
+                    json
+                }
+                atWorkTitle
+                atPlayTitle
+                atWorkDescription {
+                    json
+                  }
+                atPlayDescription {
+                    json
+                }
+                workLocations {
+                    locationListCollection(limit: 4){
+                        items {
+                            locationName
+                        }
+                    }
+                }
+                itemsCollection(limit: 2) {
+                    items {
+                      ${testimonial}
+                      ... on TorchboxValuesCarousel {
+                        valuesCollection(limit: 6) {
+                          items {
+                            valueName
+                            valueSnippet
+                            valueImage {
+                              url
+                              description
+                              width
+                              height
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  valueCarouselTitle
+                  valueCarouselIntroduction {
+                    json
+                  }
+                  valuesDescription {
+                    json
+                  }
+                }
+            }
+        }
+        `,
+        preview,
+    );
+
+    return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
+}
+
+export async function getJobListingPage(preview: boolean) {
+    const pageContent = await fetchGraphQL(
+        `{
+        jobListingPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+            items {
+              ${pageMetadata}
+              firstTitleLine
+              secondTitleLine
+              subtitle {
+                json
+              }
+              ctaTitle
+              ctaDescription {
+                json
+              }
+            }
+          }
+        }`,
+        preview,
+    );
+    return pageContent.data.jobListingPageCollection.items[0];
+}
+
+export async function getJobPage(preview: boolean) {
+    const pageContent = await fetchGraphQL(
+        `{
+          jobPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+              items {
+                ${pageMetadata}
+                hiringPolicyTitle
+                hiringPolicyDescription {
+                  json
+                }
+                itemsCollection {
+                  items {
+                    ${benefits}
+                    ${clients}
+                  }
+                }
+              }
+            }
+          }`,
+        preview,
+    );
+    return pageContent.data.jobPageCollection.items[0];
+}
+
+export async function getEmployeeOwnedTrustPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          eotPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+        items {
+            ${pageMetadata}
+            subtitle
+            content {
+              json
+              links {
+                assets {
+                  block {
+                    sys {
+                      id
+                    }
+                    url
+                    width
+                    height
+                    description
+                  }
+                }
+                entries {
+                  block {
+                    __typename
+                    sys {
+                      id
+                    }
+                    ... on Quote {
+                      quote
+                      name
+                      role
+                    }
+                  }
+                }
+              }
+            }
+            itemsCollection(limit: 1) {
+              items {
+                ${benefits}
+                ... on VoiceOfChange {
+                  title
+                  content {
+                    json
+                  }
+                }
+              }
+          }
+          }
+      }
+  }
+  `,
+        preview,
+    );
+
+    return content.data.eotPageCollection.items[0];
+}
+
+export async function getTorchboxAcademyPage(preview: boolean) {
+    const content = await fetchGraphQL(
+        `{
+          torchboxAcademyPageCollection(limit: 1, preview: ` +
+            preview +
+            `) {
+          items {
+              ${pageMetadata}
+              heroImage {
+                  url
+                  description
+                  width
+                  height
+                }
+              heroSubtitle {
+                json
+              }
+              reasonsToJoinTitle
+              reasonsToJoinContent {
+                json
+              }
+              meetOurGraduatesTitleFirstLine
+              meetOurGraduatesTitleSecondLine
+              meetOurGraduatesIntroduction {
+                json
+              }
+              applicationsOpenTitleIntro
+              applicationsOpenTitleEmphasis
+              applicationsOpenDescription {
+                json
+              }
+
+              itemsCollection(limit: 2) {
+                  items {
+                    __typename
+                    ... on GraduateTestimonials {
+                      testimonialsCollection(limit: 6) {
+                        items {
+                          ${testimonial}
+                        }
+                      }
+                    }
+                    ... on Academies {
+                      academiesCollection(limit: 6) {
+                        items {
+                          title
+                          subtitle
+                          description {
+                            json
+                          }
+                          applicationLink
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+          }
+      }
+      `,
+        preview,
+    );
+
+    return content.data.torchboxAcademyPageCollection.items[0];
+}

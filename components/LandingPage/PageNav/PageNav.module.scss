@@ -1,0 +1,122 @@
+.container {
+    margin-top: $grid * 2;
+
+    @include media-query(medium) {
+        margin-top: $grid * 4;
+    }
+
+    @include media-query(large) {
+        margin-top: $grid * 5;
+    }
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $grid;
+    list-style: none;
+    margin-left: 0;
+
+    @include media-query(medium) {
+        margin-bottom: $grid * 2;
+    }
+
+    @include media-query(large) {
+        margin-bottom: $grid * 2.5;
+    }
+}
+
+.navItem {
+    margin-right: $grid;
+
+    @include media-query(medium) {
+        margin-right: $grid * 2;
+    }
+}
+
+.jobNavItem {
+    position: relative;
+
+    @include media-query(medium) {
+        margin-left: $grid * 1.5;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -33px;
+            width: 1px;
+            height: 39px;
+            background: var(--color--black);
+            opacity: 0.1;
+        }
+    }
+}
+
+.navLink {
+    @include font-size(xs);
+    color: var(--color--indigo);
+}
+
+.jobsLink {
+    @include font-size(xs);
+    color: var(--color--dark-indigo);
+    font-weight: $weight--extrabold;
+    position: relative;
+
+    &:hover > .jobsBadge {
+        color: var(--color--coral);
+
+        &::after {
+            background-color: var(--color--dark-indigo);
+        }
+    }
+}
+
+.jobsBadge {
+    @include z-index(one);
+    @include font-size(xxs);
+    display: inline-block;
+    position: absolute;
+    right: -18px;
+    top: -14px;
+    color: var(--color--dark-indigo);
+    transition: color $transition;
+
+    &::after {
+        @include z-index(under);
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -10%) rotate(27deg);
+        left: 50%;
+        top: 0;
+        background-color: var(--color--coral);
+        transition: background-color $transition;
+        width: 15px;
+        height: 21px;
+    }
+}
+
+.image {
+    display: none;
+
+    @include media-query(large) {
+        display: block;
+        margin-left: $grid;
+    }
+}
+
+.title {
+    text-align: left;
+    margin-top: $grid * 2;
+
+    @include media-query(medium) {
+        margin-top: $grid * 3;
+    }
+}
+
+.richText {
+    @include media-query(large) {
+        margin-right: -$grid * 4;
+    }
+}

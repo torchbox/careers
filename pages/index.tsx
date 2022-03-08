@@ -1,43 +1,116 @@
 import type { NextPage } from 'next';
-import styles from 'styles/Home.module.scss';
+import type { LandingPage } from 'types/pages/LandingPage';
+import { getLandingPage } from '../lib/api';
+import Layout from 'components/Layout';
+import ClientLogos from 'components/ClientLogos';
+import Benefits from 'components/Benefits';
+import Hero from 'components/LandingPage/Hero';
+import PageNav from 'components/LandingPage/PageNav';
+import LifeAsATorchboxer from 'components/LandingPage/LifeAsATorchboxer';
+import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
+import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
+import CTA from 'components/LandingPage/CTA';
+import RichText from 'components/RichText';
+import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
 
-import HomepageSubnav from 'components/HomepageSubnav';
-import SocialMediaPhotos from 'components/SocialMediaPhotos';
+const TEMPORARY_JOBS_VARIABLE = 11;
 
-const PlaceholderImage = {
-    description: 'This is a placeholder',
-    url: 'https://source.unsplash.com/random/750x750/?nature',
-    width: 750,
-    height: 750,
+type LandingPageProps = {
+    preview: boolean;
+    landingPageContent: LandingPage;
 };
 
-const ImageArray = [...Array(10)].map((_) => PlaceholderImage);
+const LandingPage: NextPage<LandingPageProps> = ({
+    preview,
+    landingPageContent,
+}) => {
+    const clientLogos =
+        landingPageContent.itemsCollection.items[2].clientsCollection.items.map(
+            (item: any) => item.clientLogo,
+        );
 
-const Home: NextPage = () => {
+    const benefits =
+        landingPageContent.itemsCollection.items[0].benefitsListCollection.items.map(
+            (item: any) => item.benefitName,
+        );
+
+    const socialMediaProfilePhotos =
+        landingPageContent.itemsCollection.items[1].imagesCollection.items.map(
+            (item: any) => item.image,
+        );
+
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>Vercel Setup</h1>
-            <HomepageSubnav title="We are on a mission" jobs={3}>
-                <p>
-                    For over 20 years, we’ve been devoted to delivering
-                    outstanding work, while making a positive impact on society.
-                </p>
+        <Layout
+            theme={'INDIGO'}
+            preview={preview}
+            jobsAvailable={TEMPORARY_JOBS_VARIABLE}
+        >
+            <Hero image={landingPageContent.heroImage}>
+                <RichText
+                    theme="INDIGO"
+                    content={landingPageContent.heroTagline}
+                />
+                <PageNav
+                    title={landingPageContent.missionTitle}
+                    jobs={TEMPORARY_JOBS_VARIABLE}
+                >
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.missionDescription}
+                    />
+                </PageNav>
+            </Hero>
 
-                <p>
-                    We create deeper meaning that joins the dots. Because our
-                    work doesn’t exist in a bubble. It has the potential to
-                    create more opportunities, better lives and deliver lasting
-                    value, for everyone.{' '}
-                </p>
+            <ClientLogos logos={clientLogos} />
 
-                <p>
-                    Here’s a taste of the incredible organisations we partner
-                    with:
-                </p>
-            </HomepageSubnav>
-            <SocialMediaPhotos photos={ImageArray} />
-        </div>
+            <ComeWorkForYou image={landingPageContent.workForYouImage}>
+                <RichText
+                    theme="DARK"
+                    content={landingPageContent.workForYouDescription}
+                />
+            </ComeWorkForYou>
+            <div id="benefits">
+                <Benefits
+                    title="Real benefits in touch with real life"
+                    benefits={benefits}
+                />
+            </div>
+
+            <div id="lifeAsATorchboxer">
+                <LifeAsATorchboxer>
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.lifeAsATorchboxer}
+                    />
+                </LifeAsATorchboxer>
+            </div>
+            <SocialMediaPhotos photos={socialMediaProfilePhotos} />
+
+            <CTA
+                jobs={TEMPORARY_JOBS_VARIABLE}
+                title={landingPageContent.ctaTitle}
+            >
+                <RichText
+                    theme="INDIGO"
+                    content={landingPageContent.ctaDescription}
+                />
+            </CTA>
+
+            <MusingsFromTheTeam
+                postData={
+                    landingPageContent.itemsCollection.items[3]
+                        .blogPostsCollection.items
+                }
+            />
+        </Layout>
     );
 };
 
-export default Home;
+export default LandingPage;
+
+export async function getStaticProps({ preview = false }) {
+    const landingPageContent = (await getLandingPage(preview)) ?? [];
+    return {
+        props: { preview, landingPageContent },
+    };
+}

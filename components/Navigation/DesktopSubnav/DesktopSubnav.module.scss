@@ -1,0 +1,111 @@
+.subnav {
+    @include z-index(nav);
+    border-radius: 12px;
+    position: absolute;
+    padding: 31px 20px;
+    min-width: 186px;
+    left: 10px;
+    top: 55px;
+    background-color: var(--color--white);
+    outline: 5px solid var(--color--coral) transparent;
+    list-style: none;
+
+    &Item {
+        margin-bottom: 22px;
+        line-height: 1;
+        font-size: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &ItemWithBadge {
+        position: relative;
+        height: 20px;
+    }
+
+    &Link {
+        @include link-underscore(0);
+        font-weight: $weight--bold;
+        position: relative;
+        border-bottom: 0;
+        transition: all $transition-quick;
+        color: var(--color--dark-indigo);
+        display: inline-block;
+        padding-bottom: 2px;
+
+        &:hover,
+        &:focus,
+        &--active {
+            @include link-underscore(2);
+            color: var(--color--dark-indigo);
+        }
+
+        :global .themeDark :local &::after {
+            background-color: var(--color--dark-indigo);
+        }
+    }
+
+    &Badge {
+        position: relative;
+        left: 14px;
+        bottom: 10px;
+        border-bottom: 0;
+
+        // Don't change badge colours on hover
+        &:hover {
+            color: var(--color--dark-indigo);
+
+            :global .themeDark :local & {
+                color: var(--color--white);
+            }
+        }
+    }
+}
+
+.badge {
+    @include font-size(xxs);
+    @include z-index(badge);
+    font-weight: $weight--extrabold;
+    line-height: 25px;
+    color: var(--color--dark-indigo);
+    position: relative;
+
+    :global .themeDark :local & {
+        color: var(--color--white);
+    }
+
+    &::before {
+        @include z-index(under);
+        width: 18px;
+        height: 21px;
+        content: '';
+        background-color: var(--color--coral);
+        position: absolute;
+        transform: translate(-50%, -35%) rotate(30deg);
+        left: 50%;
+        top: 3px;
+        transition: background-color $transition-quick;
+
+        :global .themeDark :local & {
+            background-color: var(--color--dark-indigo);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        color: var(--color--coral);
+        :global .themeDark :local & {
+            color: var(--color--dark-indigo);
+        }
+
+        &::before {
+            background-color: var(--color--dark-indigo);
+        }
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
+        }
+    }
+}

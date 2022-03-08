@@ -19,10 +19,10 @@ N.B. Remember to run `npm install` every time you switch development branches. T
 
 Before committing changes, run
 
-``
+```
 npm run format
 npm run lint
-
+npm run pa11y
 ```
 
 So your code passes CI.
@@ -34,6 +34,16 @@ Copy `env.local.example` and create an `.env.local` file in the root of the proj
 Log in to Contentful and from Settings > API Keys populate `.env.local` with the Space ID and Content Delivery access token.
 
 Restart the development server.
+
+## Pulling data from PeopleHR
+
+Update the `.env.local` using the RSS feed URL, as found on the password manager.
+
+To view the GraphQL API explorer, go to
+
+```
+https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }
+```
 
 ## Learn More
 
@@ -49,4 +59,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Common Errors
+
+### Next: Commmand not found
+
+When running `npm run dev` or similar.
+
+```bash
+> careers@ dev /Users/jameshancock/Documents/GitHub/careers
+> next dev
+
+sh: next: command not found
 ```
+
+**Solution:** Make sure you are running the right node version with 'nvm use' or 'fnm use', then delete the `node_modules` folder and run `npm install` to reinstall Next.js correctly.

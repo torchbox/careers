@@ -1,0 +1,325 @@
+.banner {
+    background-color: var(--color--light-grey);
+}
+
+.container {
+    padding: $grid;
+    max-width: $site-width;
+    margin: 0 auto;
+}
+
+.primaryContent {
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(large) {
+        flex-direction: row;
+    }
+}
+
+.ourLocations {
+    padding-top: $grid * 2;
+    @include media-query(large) {
+        width: 50%;
+        padding: $grid * 2 $grid * 1.5 0px $grid;
+        position: relative;
+    }
+
+    @include media-query(menu-break) {
+        padding: $grid * 2 $grid * 1.5 0px 0px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: -108px;
+            width: 2px;
+            height: 262px;
+            background-color: var(--color--dark-indigo);
+            transform: rotate(30deg);
+        }
+    }
+
+    &Heading {
+        font-weight: $weight--extrabold;
+        @include font-size(ml);
+        margin-top: 0;
+        margin-bottom: $grid;
+    }
+
+    &Location {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &Icon {
+        display: block;
+        min-width: 32px;
+        margin-right: 5px;
+    }
+
+    &Information {
+        margin-top: 4px;
+
+        @include media-query(large) {
+            width: 90%;
+            max-width: 249px;
+        }
+    }
+
+    &Title {
+        @include font-size(xs);
+        font-weight: $weight--bold;
+        color: var(--color--dark-indigo);
+        margin-bottom: 0;
+    }
+
+    &Address {
+        @include font-size(xxs);
+        line-height: 19px;
+        color: var(--color--grey);
+        margin-bottom: $grid * 1.5;
+    }
+
+    &List {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        @include media-query(medium) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+.getInTouch {
+    padding-top: $grid;
+
+    @include media-query(large) {
+        width: 50%;
+        padding: $grid * 2 $grid 0px $grid * 3;
+    }
+
+    @include media-query(menu-break) {
+        padding: $grid * 2 0px 0px $grid * 3.5;
+    }
+
+    &Title {
+        font-weight: $weight--extrabold;
+        @include font-size(ml);
+        margin-top: 0;
+    }
+
+    &Description {
+        @include font-size(s);
+
+        @include media-query(large) {
+            max-width: 474px;
+        }
+    }
+
+    &Contact {
+        display: flex;
+        flex-direction: row;
+        max-width: 340px;
+    }
+
+    &ContactInformation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &EmailLink {
+        display: block;
+        line-height: 24px;
+        font-weight: $weight--bold;
+        color: var(--color--dark-indigo);
+        text-decoration-line: underline;
+        text-underline-position: under;
+    }
+
+    &PhoneLink {
+        display: block;
+        line-height: 24px;
+        font-weight: $weight--bold;
+        color: var(--color--coral-dark);
+        margin-top: 8px;
+
+        &:hover {
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+    }
+
+    &Image {
+        width: 85px;
+        height: 85px;
+        border-radius: 85px;
+        overflow: hidden;
+        margin-right: 12px;
+    }
+}
+
+.secondaryContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include media-query(large) {
+        flex-direction: row;
+        padding: $grid * 2 0 $grid $grid * 4;
+    }
+}
+
+.appendix {
+    display: flex;
+    flex-direction: row;
+    order: 2;
+
+    @include media-query(large) {
+        order: 1;
+        width: 50%;
+    }
+
+    &CopyrightNotice {
+        color: var(--color--grey);
+        @include font-size(xxs);
+        margin: 0;
+    }
+
+    &Link {
+        display: block;
+        margin-left: $grid;
+        color: var(--color--dark-indigo);
+        @include font-size(xxs);
+    }
+}
+
+.socialMediaIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    order: 1;
+    margin-bottom: $grid;
+    margin-left: 0;
+    list-style: none;
+
+    @include media-query(large) {
+        order: 2;
+        margin-bottom: 0;
+        width: 50%;
+        transform: translateX(-20%);
+    }
+
+    &ListItem {
+        margin-left: $grid * 1.5;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    &Link path,
+    &Icon path {
+        transition: fill $transition-quick;
+    }
+
+    &Link:focus path {
+        fill: var(--color--coral-dark);
+    }
+
+    &Icon:hover path {
+        fill: var(--color--coral-dark);
+    }
+}
+
+.email {
+    &Banner {
+        background-color: var(--color--dark-indigo);
+    }
+
+    &Container {
+        max-width: $site-width;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: $grid;
+        text-align: center;
+
+        @include media-query(large) {
+            padding: $grid * 1.5 $grid * 2;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @include media-query(menu-break) {
+            padding: $grid * 1.5 $grid * 4;
+        }
+    }
+
+    &CTA {
+        color: var(--color--white);
+        @include font-size(ml);
+        margin-bottom: $grid * 0.75;
+
+        @include media-query(large) {
+            margin-bottom: 0;
+        }
+    }
+
+    &Label {
+        @include hidden();
+    }
+
+    &Input {
+        display: block;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        max-width: 350px;
+
+        @include media-query(medium) {
+            width: 450px;
+            max-width: unset;
+        }
+
+        @include media-query(large) {
+            width: 450px;
+            max-width: unset;
+        }
+    }
+
+    &Form {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include media-query(large) {
+            width: 40%;
+            margin-right: 0;
+            margin-left: auto;
+        }
+    }
+
+    &Button {
+        display: block;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: var(--color--coral);
+        color: var(--color--white);
+        font-weight: $weight--extrabold;
+        cursor: pointer;
+        transition: background-color $transition-quick;
+
+        &:hover,
+        &:focus {
+            background-color: var(--color--coral-dark);
+        }
+    }
+
+    &Bold {
+        font-weight: $weight--extrabold;
+    }
+}

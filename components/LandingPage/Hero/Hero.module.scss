@@ -1,0 +1,127 @@
+.heroContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include media-query(menu-break) {
+        flex-direction: row;
+    }
+}
+
+.textContainer {
+    text-align: left;
+    padding-top: 22px;
+    order: 2;
+    padding: 0 $grid;
+
+    @include media-query(large) {
+        padding-left: 30px;
+    }
+
+    @include media-query(menu-break) {
+        order: 1;
+        padding-left: 88px;
+        padding-top: 158px;
+    }
+}
+
+.title {
+    line-height: 60px;
+
+    @include font-size(xxxxl);
+    font-weight: $weight--extrabold;
+
+    @include media-query(medium) {
+        line-height: 70px;
+    }
+
+    @include media-query(large) {
+        line-height: 100px;
+    }
+}
+
+.subtitle {
+    @include font-size(m);
+}
+
+.titleAccent {
+    color: var(--color--coral);
+}
+
+.image {
+    // Prevent image showing in front of menu dropdown
+    @include z-index(under);
+    clip-path: url(#shardClipPath);
+    width: 375px;
+    height: 375px;
+    margin-left: auto;
+    order: 1;
+
+    @include media-query(medium) {
+        width: 625px;
+        height: 625px;
+        margin-bottom: -$grid * 2;
+    }
+
+    @include media-query(large) {
+        order: 2;
+        width: 575px;
+        height: 575px;
+        margin-bottom: -$grid * 8;
+    }
+
+    @include media-query(hero-break) {
+        width: 750px;
+        height: 775px;
+    }
+
+    @include media-query(site-width) {
+        clip-path: url(#squareShardClipPath);
+    }
+
+    & > span {
+        width: 375px !important;
+        height: 375px !important;
+
+        @include media-query(medium) {
+            width: 625px !important;
+            height: 625px !important;
+        }
+
+        @include media-query(large) {
+            width: 575px !important;
+            height: 575px !important;
+        }
+
+        @include media-query(hero-break) {
+            width: 750px !important;
+            height: 775px !important;
+        }
+
+        & > img {
+            width: 375px !important;
+            height: 375px !important;
+            object-fit: cover !important;
+
+            @include media-query(medium) {
+                width: 625px !important;
+                height: 625px !important;
+            }
+
+            @include media-query(large) {
+                width: 575px !important;
+                height: 575px !important;
+            }
+
+            @include media-query(hero-break) {
+                width: 750px !important;
+                height: 775px !important;
+            }
+        }
+    }
+}
+
+.svg {
+    @include hidden();
+}
