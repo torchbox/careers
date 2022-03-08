@@ -19,30 +19,30 @@ type JobEntryProps = {
 };
 
 const JobEntry = ({ job }: JobEntryProps) => (
-    <>
-        <Link href={'/jobs/' + job.slug}>
-            <a className={styles.jobTitle}>{job.title}</a>
-        </Link>
-        <p className={styles.jobDescription}>{job.description}</p>
-        <div className={styles.jobMetadataItems}>
-            <div className={styles.jobMetadata}>
-                <LocationIcon
-                    width={22}
-                    height={23}
-                    className={styles.jobMetadataIcon}
-                />{' '}
-                {job.department}
+    <Link href={'/jobs/' + job.slug}>
+        <a className={styles.jobCard}>
+            <p className={styles.jobTitle}>{job.title}</p>
+            <p className={styles.jobDescription}>{job.description}</p>
+            <div className={styles.jobMetadataItems}>
+                <div className={styles.jobMetadata}>
+                    <LocationIcon
+                        width={22}
+                        height={23}
+                        className={styles.jobMetadataIcon}
+                    />{' '}
+                    {job.department}
+                </div>
+                <div className={styles.jobMetadata}>
+                    <LocationIcon
+                        width={22}
+                        height={23}
+                        className={styles.jobMetadataIcon}
+                    />{' '}
+                    <div>{job.city}</div>
+                </div>
             </div>
-            <div className={styles.jobMetadata}>
-                <LocationIcon
-                    width={22}
-                    height={23}
-                    className={styles.jobMetadataIcon}
-                />{' '}
-                <div>{job.city}</div>
-            </div>
-        </div>
-    </>
+        </a>
+    </Link>
 );
 
 type JobCTAProps = {
