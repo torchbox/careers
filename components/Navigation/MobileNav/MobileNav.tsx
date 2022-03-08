@@ -83,7 +83,7 @@ export const MobileMenuButton = ({
     isOpen,
     toggleMobileMenu,
 }: MobileMenuButtonProps) => (
-    <a
+    <button
         className={`${styles.mobileMenuButton} ${
             isOpen && styles.mobileMenuActive
         }`}
@@ -93,5 +93,5 @@ export const MobileMenuButton = ({
         <span></span>
         <span></span>
         <span></span>
-    </a>
+    </button>
 );
