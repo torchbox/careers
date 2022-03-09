@@ -14,25 +14,25 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <link rel="icon" href="/favicon.ico" />
                 <link
                     rel="preload"
-                    href="/fonts/apercu/apercu-light-pro.woff2"
+                    href="/careers/fonts/apercu/apercu-light-pro.woff2"
                     as="font"
                     crossOrigin=""
                 />
                 <link
                     rel="preload"
-                    href="/fonts/apercu/apercu-regular-pro.woff2"
+                    href="/careers/fonts/apercu/apercu-regular-pro.woff2"
                     as="font"
                     crossOrigin=""
                 />
                 <link
                     rel="preload"
-                    href="/fonts/apercu/apercu-bold-pro.woff2"
+                    href="/careers/fonts/apercu/apercu-bold-pro.woff2"
                     as="font"
                     crossOrigin=""
                 />
                 <link
                     rel="preload"
-                    href="/fonts/apercu/apercu-black-pro.woff2"
+                    href="/careers/fonts/apercu/apercu-black-pro.woff2"
                     as="font"
                     crossOrigin=""
                 />
