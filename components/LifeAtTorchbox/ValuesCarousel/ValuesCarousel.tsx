@@ -45,8 +45,6 @@ const ValuesCarousel = ({ title, values, children }: ValuesCarouselProps) => {
         <SwiperSlide className={styles.slide} key={index}>
             <Image
                 className={styles.slideImage}
-                width={value.valueImage.width}
-                height={value.valueImage.height}
                 src={value.valueImage.url}
                 alt={value.valueImage.description}
             />
