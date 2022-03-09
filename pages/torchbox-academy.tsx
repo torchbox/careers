@@ -6,6 +6,7 @@ import ReasonsToJoin from 'components/TorchboxAcademy/ReasonsToJoin';
 import RichText from 'components/RichText';
 import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
 import Academies from 'components/TorchboxAcademy/Academies';
+import ApplicationDeadline from 'components/TorchboxAcademy/ApplicationDeadline';
 import type { AcademyTypes, TestimonialTypes } from 'types/Base';
 
 type AcademyItemCollection = {
@@ -49,6 +50,17 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 
             {academies && <Academies academies={academies} />}
 
+            <ApplicationDeadline
+                titleIntro={content.applicationsOpenTitleIntro}
+                titleEmphasis={content.applicationsOpenTitleEmphasis}
+                image={content.applicationsOpenImage}
+            >
+                <RichText
+                    theme="DARK"
+                    content={content.applicationsOpenDescription}
+                />
+            </ApplicationDeadline>
+
             <GraduateCarousel
                 titleFirstLine={content.meetOurGraduatesTitleFirstLine}
                 titleSecondLine={content.meetOurGraduatesTitleSecondLine}
@@ -59,6 +71,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                     content={content.meetOurGraduatesIntroduction}
                 />
             </GraduateCarousel>
+
             <ReasonsToJoin title={content.reasonsToJoinTitle}>
                 <RichText
                     theme="LIGHT"

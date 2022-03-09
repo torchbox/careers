@@ -1,6 +1,6 @@
 .container {
     position: relative;
-    margin-bottom: $grid * 2;
+    margin-bottom: $grid * 10;
     overflow: hidden;
 
     @include media-query(medium) {
@@ -17,38 +17,20 @@
 }
 
 .title {
-    @include font-size(xxxxl);
+    font-size: 56px;
     color: var(--color--white);
     line-height: 1;
-    padding-right: $grid * 2;
-    padding-top: $grid * 3;
-    max-width: 360px;
+    max-width: 400px;
+    padding-top: $grid * 3.5;
 
     @include media-query(medium) {
+        @include font-size(xxxxl);
         max-width: 480px;
-        padding-right: 0;
     }
 
     @include media-query(large) {
         padding-top: 0;
         max-width: 540px;
-    }
-}
-
-.strikethrough {
-    position: relative;
-
-    &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 8px;
-        border-radius: 10px;
-        background-color: var(--color--coral);
-        top: 50%;
-        left: 0;
-        right: 0;
-        transform: rotate(-2deg);
     }
 }
 
@@ -58,7 +40,6 @@
 
 .richText {
     color: var(--color--white);
-    margin-bottom: $grid;
 
     & p {
         color: var(--color--white);
@@ -74,7 +55,7 @@
 .textContainer {
     @include z-index(under);
     text-align: left;
-    padding: $grid * 4 $grid $grid * 19 $grid * 1.5;
+    padding: $grid * 4 $grid $grid * 19 $grid;
     position: relative;
     overflow: hidden;
 
@@ -133,12 +114,12 @@
     @include media-query(medium) {
         @include z-index(under);
         position: absolute;
-        right: 0;
-        left: 0;
-        bottom: $grid;
         width: unset;
         height: unset;
         clip-path: none;
+        right: 0;
+        left: 0;
+        bottom: $grid;
         margin-top: 0;
     }
 
