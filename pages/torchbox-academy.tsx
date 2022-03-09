@@ -8,6 +8,7 @@ import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
 import Academies from 'components/TorchboxAcademy/Academies';
 import ApplicationDeadline from 'components/TorchboxAcademy/ApplicationDeadline';
 import type { AcademyTypes, TestimonialTypes } from 'types/Base';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 type AcademyItemCollection = {
     __typename: string;
@@ -21,11 +22,13 @@ type TestimonialItemCollection = {
 
 type TorchboxAcademyPageProps = {
     preview: boolean;
+    jobsAvailable: number;
     content: TorchboxAcademy;
 };
 
 const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     preview,
+    jobsAvailable,
     content,
 }) => {
     const graduateTestimonialCollection = content.itemsCollection.items.find(
@@ -45,7 +48,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
         academies = academyCollectionItem.academiesCollection.items;
 
     return (
-        <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+        <Layout theme="INDIGO" preview={preview} jobsAvailable={jobsAvailable}>
             <h1>Torchbox Academy</h1>
 
             {academies && <Academies academies={academies} />}
@@ -85,8 +88,9 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 export default TorchboxAcademyPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getTorchboxAcademyPage(preview)) ?? [];
+    const content = await getTorchboxAcademyPage(preview);
+    const jobsAvailable = await getNumberOfActiveRoles();
     return {
-        props: { preview, content },
+        props: { preview, jobsAvailable, content },
     };
 }

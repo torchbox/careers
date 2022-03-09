@@ -10,14 +10,21 @@ import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
+import { getNumberOfActiveRoles } from 'pages/api/_peopleHR';
 
 type JobPageProps = {
     preview: boolean;
     job: JobPost;
+    jobsAvailable: number;
     content: Job;
 };
 
-const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
+const JobPosting: NextPage<JobPageProps> = ({
+    preview,
+    job,
+    jobsAvailable,
+    content,
+}) => {
     const benefits =
         content.itemsCollection.items[0].benefitsListCollection.items.map(
             (item: any) => item.benefitName,
@@ -29,7 +36,7 @@ const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
         );
 
     return (
-        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
             <div className={styles.pageContainer}>
                 <div className={styles.contentContainer}>
                     <h1>{job.title}</h1>
@@ -83,12 +90,13 @@ export async function getStaticProps({
 }) {
     try {
         const job = await getJobPost(params.slug);
+        const jobsAvailable = await getNumberOfActiveRoles();
         const content = await getJobPage(preview);
         if (!job) {
             return { notFound: true };
         }
         return {
-            props: { preview, job, content },
+            props: { preview, job, jobsAvailable, content },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {

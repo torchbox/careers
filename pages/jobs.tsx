@@ -129,7 +129,7 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
     };
 
     return (
-        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={jobs.length}>
             <div className={styles.pageContainer}>
                 <div className={styles.contentContainer}>
                     <Title

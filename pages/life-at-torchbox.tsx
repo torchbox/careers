@@ -9,17 +9,20 @@ import MainContent from 'components/LifeAtTorchbox/MainContent';
 import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
 import RichText from 'components/RichText';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
+    jobsAvailable: number;
     content: LifeAtTorchboxPage;
 };
 
 const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
     preview,
+    jobsAvailable,
     content,
 }) => (
-    <Layout theme="DARK" preview={preview} jobsAvailable={8}>
+    <Layout theme="DARK" preview={preview} jobsAvailable={jobsAvailable}>
         <div className={styles.indigoBackground}>
             <Hero
                 image={content.heroImage}
@@ -64,8 +67,9 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
 export default LifeAtTorchboxPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getLifeAtTorchboxPage(preview)) ?? [];
+    const content = await getLifeAtTorchboxPage(preview);
+    const jobsAvailable = await getNumberOfActiveRoles();
     return {
-        props: { preview, content },
+        props: { preview, jobsAvailable, content },
     };
 }

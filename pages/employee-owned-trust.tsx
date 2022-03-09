@@ -6,6 +6,7 @@ import { getEmployeeOwnedTrustPage } from '../lib/api';
 import { EmployeeOwnedTrustPage } from 'types/pages/EmployeeOwnedTrust';
 import RichText from 'components/RichText';
 import Benefits from 'components/Benefits';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 const Title = () => (
     <h1 className={styles.title}>
@@ -16,11 +17,13 @@ const Title = () => (
 
 type EmployeeOwnedTrustPageProps = {
     preview: boolean;
+    jobsAvailable: number;
     content: EmployeeOwnedTrustPage;
 };
 
 const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
     preview,
+    jobsAvailable,
     content,
 }) => {
     const benefits =
@@ -29,7 +32,7 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
         );
 
     return (
-        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
             <div className={styles.textContent}>
                 <Title />
                 <p className={styles.subtitle}>{content.subtitle}</p>
@@ -62,8 +65,9 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
 export default EmployeeOwnedTrustPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getEmployeeOwnedTrustPage(preview)) ?? [];
+    const content = await getEmployeeOwnedTrustPage(preview);
+    const jobsAvailable = await getNumberOfActiveRoles();
     return {
-        props: { preview, content },
+        props: { preview, jobsAvailable, content },
     };
 }
