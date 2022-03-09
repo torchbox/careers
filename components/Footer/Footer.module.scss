@@ -232,6 +232,11 @@
     }
 }
 
+.emptyEmailBanner {
+    background-color: var(--color--dark-indigo);
+    height: 80px;
+}
+
 .email {
     &Banner {
         background-color: var(--color--dark-indigo);
