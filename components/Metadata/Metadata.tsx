@@ -9,10 +9,10 @@ type MetadataProps = {
 };
 
 export const Metadata = ({
-    title,
-    description,
+    title = 'Torchbox Careers',
+    description = "Are you a talented digital designer, UX consultant, Django engineer, search specialist or digital marketer? Then check out our jobs - we'd love to hear from you! Oxford, Bristol or remote.",
     image,
-    slug,
+    slug = '',
 }: MetadataProps) => (
     <Head>
         <meta charSet="utf-8" />
