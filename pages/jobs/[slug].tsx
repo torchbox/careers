@@ -8,7 +8,7 @@ import { getJobPage } from 'lib/api';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
-import RichText from 'components/RichText/RichText';
+import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
 
 type JobPageProps = {
@@ -83,7 +83,10 @@ export async function getStaticProps({
 }) {
     try {
         const job = await getJobPost(params.slug);
-        const content = (await getJobPage(preview)) ?? [];
+        const content = await getJobPage(preview);
+        if (!job) {
+            return { notFound: true };
+        }
         return {
             props: { preview, job, content },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.

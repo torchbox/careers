@@ -23,9 +23,12 @@
         color: var(--color--white);
     }
 
-    // Used on the Torchbox Academy page
-    :global .themeIndigo .themeLight :local & {
+    :global .themeDark .themeLight :local & {
         color: var(--color--grey);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
     }
 }
 
@@ -35,10 +38,14 @@
 }
 
 .h3 {
-    @include font-size(l);
-    font-weight: $weight--extrabold;
+    @include font-size(ml);
+    margin-top: $grid * 2.5;
     line-height: 1;
     margin-bottom: 12px;
+
+    @include media-query(large) {
+        margin-top: $grid * 3.5;
+    }
 }
 
 .hyperlink {
@@ -58,5 +65,13 @@
 
     :global .themeDark :local & {
         color: var(--color--white);
+    }
+
+    :global .themeDark .themeLight :local & {
+        color: var(--color--indigo);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
     }
 }

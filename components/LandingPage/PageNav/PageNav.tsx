@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLoopRight } from '../../Icons/ArrowLoopRight';
+import { ArrowLoopRight } from '../../SVG/ArrowLoop/ArrowLoopRight';
 import styles from './PageNav.module.scss';
 
 type PageNavProps = {
