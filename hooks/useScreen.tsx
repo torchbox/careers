@@ -16,11 +16,11 @@ import useMedia from 'react-use/lib/useMedia';
  * }
  */
 export const useScreen = () => {
-    const medium = useMedia('(min-width: 599px)');
-    const large = useMedia('(min-width: 1023px)');
-    const menuBreak = useMedia('(min-width: 1255px)');
-    const heroBreak = useMedia('(min-width: 1350px)');
-    const siteWidth = useMedia('(min-width: 1441px)');
+    const medium = useMedia('(min-width: 599px)', true);
+    const large = useMedia('(min-width: 1023px)', true);
+    const menuBreak = useMedia('(min-width: 1255px)', true);
+    const heroBreak = useMedia('(min-width: 1350px)', true);
+    const siteWidth = useMedia('(min-width: 1441px)', true);
 
     const screens = [];
 
