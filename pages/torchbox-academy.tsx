@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Layout from '../components/Layout';
 import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
+import ReasonsToJoin from 'components/TorchboxAcademy/ReasonsToJoin';
 import RichText from 'components/RichText';
 import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
 import Academies from 'components/TorchboxAcademy/Academies';
@@ -58,6 +59,12 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                     content={content.meetOurGraduatesIntroduction}
                 />
             </GraduateCarousel>
+            <ReasonsToJoin title={content.reasonsToJoinTitle}>
+                <RichText
+                    theme="LIGHT"
+                    content={content.reasonsToJoinContent}
+                />
+            </ReasonsToJoin>
         </Layout>
     );
 };

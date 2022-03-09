@@ -40,7 +40,7 @@
 .h3 {
     @include font-size(ml);
     margin-top: $grid * 2.5;
-    line-height: 34px;
+    line-height: 1;
     margin-bottom: 12px;
 
     @include media-query(large) {
