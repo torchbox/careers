@@ -19,7 +19,7 @@ export const ComeWorkForYou = ({ image, children }: ComeWorkForYouProps) => (
                 <span className={styles.emphasis}>you</span>.
             </h2>
             <div className={styles.richText}>{children}</div>
-            <Link href="/employee-owned-trust" scroll={false}>
+            <Link href="/employee-owned-trust">
                 <a className="underline-link underline-link--white">
                     Benefits of being 100% employee owned
                 </a>

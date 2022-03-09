@@ -88,7 +88,7 @@ export const DesktopSubnav = ({
                 {/* Render next.js links with <Link> to preload content */}
                 {link.isCareersSiteInternalLink ? (
                     <>
-                        <Link href={link.url} scroll={false}>
+                        <Link href={link.url}>
                             <a
                                 onKeyUp={handleKeyUp}
                                 onKeyDown={handleCareersKeyDown}
@@ -98,7 +98,7 @@ export const DesktopSubnav = ({
                             </a>
                         </Link>
                         {link.title === 'Careers' && jobsAvailable > 0 && (
-                            <Link href="/jobs/" scroll={false}>
+                            <Link href="/jobs/">
                                 <a
                                     onKeyUp={handleKeyUp}
                                     onKeyDown={handleBadgeKeyDown}

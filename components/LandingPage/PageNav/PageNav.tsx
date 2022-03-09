@@ -22,7 +22,7 @@ export const PageNav = ({ title, jobs = 0, children }: PageNavProps) => (
                 </a>
             </li>
             <li className={styles.jobNavItem}>
-                <Link href="/jobs" scroll={false}>
+                <Link href="/jobs">
                     <a className={styles.jobsLink}>
                         Jobs
                         {jobs > 0 ? (

@@ -20,7 +20,7 @@ type JobEntryProps = {
 
 const JobEntry = ({ job }: JobEntryProps) => (
     <>
-        <Link href={'/jobs/' + job.slug} scroll={false}>
+        <Link href={'/jobs/' + job.slug}>
             <a className={styles.jobTitle}>{job.title}</a>
         </Link>
         <p className={styles.jobDescription}>{job.description}</p>
