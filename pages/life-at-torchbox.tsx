@@ -5,9 +5,10 @@ import { getLifeAtTorchboxPage } from '../lib/api';
 import Testimonial from 'components/Testimonial';
 import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
 import Hero from 'components/LifeAtTorchbox/Hero';
+import MainContent from 'components/LifeAtTorchbox/MainContent';
 import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
-import RichText from 'components/RichText';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
+import RichText from 'components/RichText';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -35,9 +36,14 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
                 locations={content.workLocations.locationListCollection.items}
             />
         </div>
-
         <Testimonial testimonial={content.itemsCollection.items[0]} />
-
+        <MainContent
+            firstLine={content.mainContentTitleFirstLine}
+            secondLine={content.mainContentTitleSecondLine}
+            thirdLine={content.mainContentTitleThirdLine}
+        >
+            <RichText theme="LIGHT" content={content.mainContent} />
+        </MainContent>
         <ValuesCarousel
             title={content.valueCarouselTitle}
             values={content.itemsCollection.items[1].valuesCollection.items}

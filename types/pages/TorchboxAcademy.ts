@@ -10,7 +10,8 @@ export type TorchboxAcademy = {
     reasonsToJoinTitle: string;
     reasonsToJoinContent: { json: Document };
     itemsCollection: any;
-    meetOurGraduatesTitle: string;
+    meetOurGraduatesTitleFirstLine: string;
+    meetOurGraduatesTitleSecondLine: string;
     meetOurGraduatesIntroduction: { json: Document };
     applicationsOpenTitleIntro: string;
     applicationsOpenTitleEmphasis: string;
