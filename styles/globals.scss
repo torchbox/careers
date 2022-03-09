@@ -46,14 +46,14 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: math.div(map-get($small-font-sizes, xs), 16px) * 100%;
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
 
     @include media-query(medium) {
         font-size: math.div(map-get($medium-font-sizes, xs), 16px) * 100%;
     }
 
     @media (prefers-reduced-motion: reduce) {
-        scroll-behavior: auto;
+        scroll-behavior: auto !important;
     }
 }
 
