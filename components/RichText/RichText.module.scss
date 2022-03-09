@@ -38,8 +38,14 @@
 }
 
 .h3 {
-    line-height: 34px;
+    @include font-size(ml);
+    margin-top: $grid * 2.5;
+    line-height: 1;
     margin-bottom: 12px;
+
+    @include media-query(large) {
+        margin-top: $grid * 3.5;
+    }
 }
 
 .hyperlink {

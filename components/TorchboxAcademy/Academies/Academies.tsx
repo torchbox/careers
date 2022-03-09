@@ -15,7 +15,7 @@ const Academy = ({ academy }: AcademyProps) => (
             <RichText theme="INDIGO" content={academy.description} />
         </div>
         <a
-            className="underline-link underline-link--indigo underline-link--extrabold"
+            className="underline-link underline-link--indigo"
             href={academy.applicationLink}
         >
             Apply now

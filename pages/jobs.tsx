@@ -218,7 +218,6 @@ export async function getStaticProps({ preview = false }) {
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {
-        // Todo: Instead of redirecting, show an appropriate error message to the user, telling them to try again later.
         return {
             notFound: true,
         };

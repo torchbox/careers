@@ -1,0 +1,23 @@
+.container {
+    padding: $grid * 3 $grid;
+
+    @include media-query(medium) {
+        padding: $grid * 3 $grid * 3;
+    }
+
+    @include media-query(large) {
+        padding: $grid * 5 0 $grid * 4 16.4%;
+    }
+}
+
+.textContainer {
+    max-width: 725px;
+    margin-right: auto;
+}
+
+.title {
+    @include font-size(xxxxl);
+    font-weight: $weight--extrabold;
+    line-height: 1;
+    margin-top: 0;
+}
