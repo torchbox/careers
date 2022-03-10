@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout';
-import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
+import { getTorchboxAcademyPage } from 'lib/api';
+import Layout from 'components/Layout';
 import RichText from 'components/RichText/RichText';
 import Image from 'components/Image';
 

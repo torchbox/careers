@@ -1,4 +1,4 @@
-import { SwishButton } from '../../Button';
+import { SwishButton } from 'components/Button';
 import styles from './CTA.module.scss';
 
 type CTAProps = {

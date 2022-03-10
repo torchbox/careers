@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
-import styles from 'styles/LifeAtTorchbox.module.scss';
-import Layout from '../components/Layout';
-import { getLifeAtTorchboxPage } from '../lib/api';
-import Testimonial from 'components/Testimonial';
 import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
+import { getLifeAtTorchboxPage } from 'lib/api';
+import Layout from 'components/Layout';
+import Testimonial from 'components/Testimonial';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import RichText from 'components/RichText/RichText';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
+import styles from './LifeAtTorchbox.module.scss';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;

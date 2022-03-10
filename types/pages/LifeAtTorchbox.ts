@@ -1,5 +1,5 @@
-import { ImageTypes, VideoTypes } from '../Base';
 import { Document } from '@contentful/rich-text-types';
+import { ImageTypes, VideoTypes } from 'types/Base';
 
 export type LifeAtTorchboxPage = {
     metadataTitle: string;

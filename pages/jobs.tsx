@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import type { JobSummary } from '../lib/peopleHR';
-import { getAllJobSummaries } from './api/jobs/summaries';
-import styles from 'styles/Jobs.module.scss';
 import Link from 'next/link';
+import type { JobSummary } from 'lib/peopleHR';
+import { getAllJobSummaries } from 'pages/api/jobs/summaries';
+import styles from './Jobs.module.scss';
 
 const Jobs: NextPage<{ jobs: JobSummary[] }> = ({ jobs }) => {
     return (

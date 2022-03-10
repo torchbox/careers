@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
+import { ImageTypes, VideoTypes } from 'types/Base';
 import { ArrowLoopRight } from 'components/Icons/ArrowLoopRight';
 import Image from 'components/Image';
-import { ImageTypes, VideoTypes } from '../../../types/Base';
 import { VideoPlayPauseButton } from './VideoPlayPauseButton';
 import styles from './Hero.module.scss';
 

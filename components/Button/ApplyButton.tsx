@@ -1,5 +1,5 @@
-import { ChevronIcon } from 'components/Icons/ChevronIcon';
 import { useScreen } from 'hooks/useScreen';
+import { ChevronIcon } from 'components/Icons/ChevronIcon';
 import styles from './ApplyButton.module.scss';
 
 type ApplyButtonProps = {

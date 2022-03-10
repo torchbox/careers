@@ -1,6 +1,6 @@
 import { Image } from 'components/Image/Image';
+import { ImageTypes } from 'types/Base';
 import styles from './Hero.module.scss';
-import { ImageTypes } from '../../../types/Base';
 
 type HeroProps = {
     image: ImageTypes;

@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import type { JobPost } from 'lib/peopleHR';
 import type { Job } from 'types/pages/Job';
-import styles from 'styles/Job.module.scss';
 import { getAllJobSlugs } from 'pages/api/jobs/slugs';
 import { getJobPost } from 'pages/api/jobs/[slug]';
 import { getJobPage } from 'lib/api';
@@ -10,6 +9,7 @@ import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText/RichText';
 import { ApplyButton } from 'components/Button';
+import styles from './Job.module.scss';
 
 type JobPageProps = {
     preview: boolean;

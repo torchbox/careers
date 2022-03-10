@@ -21,7 +21,6 @@
     "default-case": "off",
     "func-names": "off",
     "import/no-named-as-default": "off",
-    "import/order": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/label-has-associated-control": "off",

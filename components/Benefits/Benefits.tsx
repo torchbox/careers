@@ -1,6 +1,6 @@
 import FruitBowl from 'components/SVG/FruitBowl';
 import { useScreen } from 'hooks/useScreen';
-import { BenefitStarIcon } from '../Icons/BenefitStarIcon';
+import { BenefitStarIcon } from 'components/Icons/BenefitStarIcon';
 import styles from './Benefits.module.scss';
 
 type BenefitsProps = {

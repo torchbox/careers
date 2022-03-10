@@ -1,4 +1,5 @@
 /* eslint @typescript-eslint/no-unused-vars: "off" */
+import React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import {
     BLOCKS,
@@ -11,7 +12,6 @@ import {
 } from '@contentful/rich-text-types';
 import Image from 'components/Image';
 import Quote from 'components/Quote';
-import React from 'react';
 import { ImageTypes } from 'types/Base';
 import styles from './RichText.module.scss';
 
