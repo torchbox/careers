@@ -6,6 +6,7 @@ import ReasonsToJoin from 'components/TorchboxAcademy/ReasonsToJoin';
 import RichText from 'components/RichText';
 import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
 import Academies from 'components/TorchboxAcademy/Academies';
+import Metadata from 'components/Metadata';
 import ApplicationDeadline from 'components/TorchboxAcademy/ApplicationDeadline';
 import type { AcademyTypes, TestimonialTypes } from 'types/Base';
 
@@ -46,6 +47,12 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 
     return (
         <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="torchbox-academy"
+                image={content.metadataSocialMediaImage}
+            />
             <h1>Torchbox Academy</h1>
 
             {academies && <Academies academies={academies} />}
@@ -85,7 +92,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 export default TorchboxAcademyPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getTorchboxAcademyPage(preview)) ?? [];
+    const content = await getTorchboxAcademyPage(preview);
     return {
         props: { preview, content },
     };
