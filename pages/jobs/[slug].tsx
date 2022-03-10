@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import type { JobPost } from 'lib/peopleHR';
 import type { Job } from 'types/pages/Job';
-import styles from 'styles/Job.module.scss';
 import { getAllJobSlugs } from 'pages/api/jobs/slugs';
 import { getJobPost } from 'pages/api/jobs/[slug]';
 import { getJobPage } from 'lib/api';
@@ -10,14 +9,22 @@ import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
+import JobListingHero from 'components/JobListingHero';
+import styles from 'styles/Job.module.scss';
 
 type JobPageProps = {
     preview: boolean;
     job: JobPost;
     content: Job;
+    jobSlug: string;
 };
 
-const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
+const JobPosting: NextPage<JobPageProps> = ({
+    preview,
+    job,
+    content,
+    jobSlug,
+}) => {
     const benefits =
         content.itemsCollection.items[0].benefitsListCollection.items.map(
             (item: any) => item.benefitName,
@@ -28,11 +35,20 @@ const JobPosting: NextPage<JobPageProps> = ({ preview, job, content }) => {
             (item: any) => item.clientLogo,
         );
 
+    const jobURL = 'https://torchbox.com/careers/jobs/' + jobSlug;
+
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
             <div className={styles.pageContainer}>
+                <JobListingHero
+                    title={job.title}
+                    salary={job.salaryRange}
+                    location={job.city}
+                    applicationLink={job.jobURL}
+                    description={job.vacancyDescription}
+                    sharingURL={jobURL}
+                />
                 <div className={styles.contentContainer}>
-                    <h1>{job.title}</h1>
                     <div className={styles.textContainer}>
                         <div
                             dangerouslySetInnerHTML={{
@@ -83,12 +99,14 @@ export async function getStaticProps({
 }) {
     try {
         const job = await getJobPost(params.slug);
+        const jobSlug = params.slug;
         const content = await getJobPage(preview);
         if (!job) {
             return { notFound: true };
         }
+
         return {
-            props: { preview, job, content },
+            props: { preview, job, content, jobSlug },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {
