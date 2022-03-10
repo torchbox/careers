@@ -94,7 +94,7 @@ async function getJobPostingData() {
             // The cache has timed out, fetch new data from PeopleHR
 
             const peopleHRJobPostings = await fetchPeopleHRFeed().catch(
-                function (error) {
+                (error) => {
                     console.error('Error fetching data from PeopleHR: ', error);
                     return null;
                 },
@@ -135,9 +135,7 @@ async function getJobPostingData() {
     }
 
     // If the cache file doesn't exist, create one
-    const peopleHRJobPostings = await fetchPeopleHRFeed().catch(function (
-        error,
-    ) {
+    const peopleHRJobPostings = await fetchPeopleHRFeed().catch((error) => {
         console.error('Error fetching data from PeopleHR: ', error);
         return null;
     });

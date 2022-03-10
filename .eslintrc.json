@@ -19,7 +19,6 @@
     "arrow-body-style": "off",
     "consistent-return": "off",
     "default-case": "off",
-    "func-names": "off",
     "import/no-named-as-default": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/click-events-have-key-events": "off",
