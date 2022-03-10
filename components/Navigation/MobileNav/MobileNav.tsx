@@ -11,7 +11,7 @@ type MobileNavItemProps = {
 const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
     <li
         className={`${styles.mobileNavItem} ${
-            link.title === 'Careers' &&
+            link.title === 'Jobs' &&
             jobsAvailable > 0 &&
             styles.mobileNavItemWithBadge
         }`}
@@ -22,7 +22,7 @@ const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
                     <span className={styles.mobileNavItemTitle}>
                         {link.title}
                     </span>
-                    {link.title === 'Careers' && jobsAvailable > 0 && (
+                    {link.title === 'Jobs' && jobsAvailable > 0 && (
                         <span
                             className={`${styles.mobileNavItemBadgeLink} ${styles.badge}`}
                             aria-label={`${jobsAvailable} jobs available`}
