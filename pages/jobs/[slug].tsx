@@ -9,6 +9,7 @@ import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
+import { getNumberOfActiveRoles } from 'pages/api/_peopleHR';
 import Metadata from 'components/Metadata';
 import JobListingHero from 'components/JobListingHero';
 import styles from 'styles/Job.module.scss';
@@ -16,6 +17,7 @@ import styles from 'styles/Job.module.scss';
 type JobPageProps = {
     preview: boolean;
     job: JobPost;
+    jobsAvailable: number;
     content: Job;
     jobSlug: string;
 };
@@ -23,6 +25,7 @@ type JobPageProps = {
 const JobPosting: NextPage<JobPageProps> = ({
     preview,
     job,
+    jobsAvailable,
     content,
     jobSlug,
 }) => {
@@ -39,7 +42,7 @@ const JobPosting: NextPage<JobPageProps> = ({
     const jobURL = 'https://torchbox.com/careers/jobs/' + jobSlug;
 
     return (
-        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
             <Metadata
                 title={content.metadataTitle}
                 description={content.metadataDescription}
@@ -106,6 +109,7 @@ export async function getStaticProps({
 }) {
     try {
         const job = await getJobPost(params.slug);
+        const jobsAvailable = await getNumberOfActiveRoles();
         const jobSlug = params.slug;
         const content = await getJobPage(preview);
         if (!job) {
@@ -113,7 +117,7 @@ export async function getStaticProps({
         }
 
         return {
-            props: { preview, job, content, jobSlug },
+            props: { preview, job, jobsAvailable, content, jobSlug },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {

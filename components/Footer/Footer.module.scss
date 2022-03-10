@@ -232,6 +232,15 @@
     }
 }
 
+.emptyEmailBanner {
+    background-color: var(--color--dark-indigo);
+    height: 60px;
+
+    @include media-query(medium) {
+        height: 80px;
+    }
+}
+
 .email {
     &Banner {
         background-color: var(--color--dark-indigo);
