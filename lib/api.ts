@@ -194,6 +194,12 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 heroDescription {
                     json
                 }
+                mainContentTitleFirstLine
+                mainContentTitleSecondLine
+                mainContentTitleThirdLine
+                mainContent {
+                    json
+                }
                 atWorkTitle
                 atPlayTitle
                 atWorkDescription {
@@ -386,7 +392,12 @@ export async function getTorchboxAcademyPage(preview: boolean) {
               applicationsOpenDescription {
                 json
               }
-
+              applicationsOpenImage {
+                url
+                description
+                width
+                height
+              }
               itemsCollection(limit: 2) {
                   items {
                     __typename

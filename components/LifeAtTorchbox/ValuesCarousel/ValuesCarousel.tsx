@@ -7,6 +7,7 @@ import { ImageTypes } from 'types/Base';
 import Image from 'components/Image';
 import styles from './ValuesCarousel.module.scss';
 import 'swiper/css';
+import ArrowLoopLeft from 'components/SVG/ArrowLoop/ArrowLoopLeft';
 
 type CarouselIntroductionProps = {
     title: string;
@@ -22,11 +23,7 @@ const CarouselIntroduction = ({
             <h2 className={styles.title}>{title}</h2>
             <div className={styles.description}>{children}</div>
         </div>
-        <div className={styles.image}>
-            {/* Todo: Refactor to use SVG component (see polishing ticket) */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="images/arrow-loop-left.svg" alt="" />
-        </div>
+        <ArrowLoopLeft className={styles.image} />
     </div>
 );
 

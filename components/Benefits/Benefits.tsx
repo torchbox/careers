@@ -1,5 +1,4 @@
 import FruitBowl from 'components/SVG/FruitBowl';
-import { useScreen } from 'hooks/useScreen';
 import { BenefitStarIcon } from '../Icons/BenefitStarIcon';
 import styles from './Benefits.module.scss';
 
@@ -16,19 +15,14 @@ export const Benefits = ({ title, benefits }: BenefitsProps) => {
         </li>
     ));
 
-    const screen = useScreen();
-    let bowlSize = 208;
-    if (screen.includes('medium')) bowlSize = 238;
-    if (screen.includes('large')) bowlSize = 285;
-
     return (
         <div className={styles.container}>
             <div className={styles.textContainer}>
                 <h2 className={styles.title}>{title}</h2>
                 <ul className={styles.benefitsList}>{listOfBenefits}</ul>
             </div>
-            <div className={styles.fruit}>
-                <FruitBowl size={bowlSize} />
+            <div className={styles.decoration}>
+                <FruitBowl className={styles.fruitBowl} />
             </div>
         </div>
     );

@@ -21,7 +21,7 @@ type JobEntryProps = {
 
 const JobEntry = ({ job }: JobEntryProps) => (
     <>
-        <Link href={'/jobs/' + job.slug}>
+        <Link href={'/jobs/' + job.slug} scroll={false}>
             <a className={styles.jobTitle}>{job.title}</a>
         </Link>
         <p className={styles.jobDescription}>{job.description}</p>
@@ -225,7 +225,6 @@ export async function getStaticProps({ preview = false }) {
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {
-        // Todo: Instead of redirecting, show an appropriate error message to the user, telling them to try again later.
         return {
             notFound: true,
         };

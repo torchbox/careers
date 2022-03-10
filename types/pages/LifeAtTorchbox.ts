@@ -14,6 +14,10 @@ export type LifeAtTorchboxPage = {
     atPlayDescription: { json: Document };
     workLocations: any;
     heroDescription: { json: Document };
+    mainContentTitleFirstLine: string;
+    mainContentTitleSecondLine: string;
+    mainContentTitleThirdLine: string;
+    mainContent: any;
     itemsCollection: any;
     valueCarouselTitle: string;
     valueCarouselIntroduction: { json: Document };
