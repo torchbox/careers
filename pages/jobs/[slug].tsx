@@ -100,7 +100,11 @@ export async function getStaticProps({
     try {
         const job = await getJobPost(params.slug);
         const jobSlug = params.slug;
-        const content = (await getJobPage(preview)) ?? [];
+        const content = await getJobPage(preview);
+        if (!job) {
+            return { notFound: true };
+        }
+
         return {
             props: { preview, job, content, jobSlug },
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.

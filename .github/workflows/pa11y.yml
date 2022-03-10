@@ -17,6 +17,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           max_timeout: 120
+          path: /careers
 
   pa11y:
     name: Pa11y Accessibility Tests
@@ -28,4 +29,4 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: npm install -g pa11y-ci@3.0.1
-      - run: pa11y-ci --sitemap ${{ needs.wait_for_vercel.outputs.preview_url }}/sitemap.xml
+      - run: pa11y-ci --sitemap ${{ needs.wait_for_vercel.outputs.preview_url }}/careers/sitemap.xml
