@@ -6,6 +6,7 @@ import ReasonsToJoin from 'components/TorchboxAcademy/ReasonsToJoin';
 import RichText from 'components/RichText';
 import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
 import Academies from 'components/TorchboxAcademy/Academies';
+import Metadata from 'components/Metadata';
 import ApplicationDeadline from 'components/TorchboxAcademy/ApplicationDeadline';
 import type { AcademyTypes, TestimonialTypes } from 'types/Base';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
@@ -49,6 +50,12 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 
     return (
         <Layout theme="INDIGO" preview={preview} jobsAvailable={jobsAvailable}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="torchbox-academy"
+                image={content.metadataSocialMediaImage}
+            />
             <h1>Torchbox Academy</h1>
 
             {academies && <Academies academies={academies} />}
@@ -90,6 +97,7 @@ export default TorchboxAcademyPage;
 export async function getStaticProps({ preview = false }) {
     const content = await getTorchboxAcademyPage(preview);
     const jobsAvailable = await getNumberOfActiveRoles();
+
     return {
         props: { preview, jobsAvailable, content },
     };
