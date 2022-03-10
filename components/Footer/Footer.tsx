@@ -124,7 +124,7 @@ const SocialMediaIcons = () => (
     </ul>
 );
 
-const Banner = () => <div className={styles.emptyEmailBanner}></div>;
+const FooterBanner = () => <div className={styles.emptyEmailBanner}></div>;
 
 const EmailSignup = () => (
     <div className={styles.emailBanner}>
@@ -157,7 +157,7 @@ const EmailSignup = () => (
 
 export const Footer = () => (
     <div className={styles.banner}>
-        <Banner />
+        <FooterBanner />
         <div className={styles.container}>
             <div className={styles.primaryContent}>
                 <GetInTouch />
