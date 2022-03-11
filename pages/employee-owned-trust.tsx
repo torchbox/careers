@@ -7,7 +7,7 @@ import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
 import { getEmployeeOwnedTrustPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
-import styles from './EmployeeOwnedTrust.module.scss';
+import styles from '../styles/pages/EmployeeOwnedTrust.module.scss';
 
 const Title = () => (
     <h1 className={styles.title}>

@@ -12,7 +12,7 @@ import { ApplyButton } from 'components/Button';
 import { getNumberOfActiveRoles } from 'pages/api/_peopleHR';
 import Metadata from 'components/Metadata';
 import JobListingHero from 'components/JobListingHero';
-import styles from './Job.module.scss';
+import styles from '../../styles/pages/Job.module.scss';
 
 type JobPageProps = {
     preview: boolean;

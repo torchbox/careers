@@ -10,7 +10,7 @@ import Metadata from 'components/Metadata';
 import RichText from 'components/RichText';
 import { getLifeAtTorchboxPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
-import styles from './LifeAtTorchbox.module.scss';
+import styles from '../styles/pages/LifeAtTorchbox.module.scss';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
