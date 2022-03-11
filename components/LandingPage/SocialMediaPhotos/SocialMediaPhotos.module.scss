@@ -2,6 +2,7 @@
     display: grid;
     padding: 0 $grid;
     grid-template-columns: 1fr 1fr;
+    margin-left: 0;
 
     @include media-query(medium) {
         grid-template-columns: repeat(3, 1fr);

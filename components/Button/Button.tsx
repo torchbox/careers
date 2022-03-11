@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ChevronIcon } from '../Icons/ChevronIcon';
+import { ChevronIcon } from 'components/Icons/ChevronIcon';
 import styles from './Button.module.scss';
 
 type ButtonTheme = 'INDIGO' | 'CORAL';

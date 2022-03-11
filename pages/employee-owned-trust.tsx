@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout';
-import styles from 'styles/EmployeeOwnedTrust.module.scss';
+import type { EmployeeOwnedTrustPage } from 'types/pages/EmployeeOwnedTrust';
+import Layout from 'components/Layout';
 import VoiceOfChange from 'components/EmployeeOwnedTrust/VoiceOfChange';
-import { getEmployeeOwnedTrustPage } from '../lib/api';
-import { EmployeeOwnedTrustPage } from 'types/pages/EmployeeOwnedTrust';
-import RichText from 'components/RichText';
 import Benefits from 'components/Benefits';
-import { getNumberOfActiveRoles } from './api/_peopleHR';
+import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
+import { getEmployeeOwnedTrustPage } from 'lib/api';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
+import styles from './EmployeeOwnedTrust.module.scss';
 
 const Title = () => (
     <h1 className={styles.title}>

@@ -1,6 +1,6 @@
 import type { TestimonialTypes } from 'types/Base';
+import Image from 'components/Image';
 import styles from './Testimonial.module.scss';
-import Image from '../Image';
 
 type TestimonialProps = {
     testimonial: TestimonialTypes;

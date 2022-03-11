@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout';
-import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
+import { getTorchboxAcademyPage } from 'lib/api';
+import Layout from 'components/Layout';
 import ReasonsToJoin from 'components/TorchboxAcademy/ReasonsToJoin';
 import RichText from 'components/RichText';
 import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
@@ -44,7 +44,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
         (obj: AcademyItemCollection) => obj.__typename === 'Academies',
     );
 
-    let academies = undefined;
+    let academies;
     if (academyCollectionItem)
         academies = academyCollectionItem.academiesCollection.items;
 

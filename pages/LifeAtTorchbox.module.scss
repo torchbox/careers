@@ -3,6 +3,20 @@
     margin: 0 auto;
 }
 
+.textContainer {
+    margin: 0 auto $grid * 3 auto;
+    max-width: 755px;
+    padding: 0 $grid;
+
+    @include media-query(medium) {
+        margin: 0 auto $grid * 4 auto;
+    }
+
+    @include media-query(large) {
+        padding: 0;
+    }
+}
+
 .indigoBackground {
     position: relative;
 
@@ -16,23 +30,4 @@
         right: -2000px;
         background-color: var(--color--dark-indigo);
     }
-}
-
-.contentContainer {
-    max-width: 840px;
-    padding: $grid * 2 $grid 0 $grid;
-
-    @include media-query(medium) {
-        margin: 0 auto;
-    }
-
-    @include media-query(large) {
-        padding: 0;
-        margin: 0 auto $grid * 6 24%;
-    }
-}
-
-.textContainer {
-    max-width: 755px;
-    margin-right: auto;
 }

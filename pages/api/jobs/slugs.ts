@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { JobPost } from 'lib/peopleHR';
-import { getAllJobPostings } from '../_peopleHR';
+import { getAllJobPostings } from 'pages/api/_peopleHR';
 
 /**
  * Used for generating pages in jobs/[slug].tsx
