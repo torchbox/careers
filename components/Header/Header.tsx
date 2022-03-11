@@ -18,7 +18,12 @@ const NAVIGATION_LINKS = [
         title: 'Digital marketing',
         url: 'https://torchbox.com/digital-marketing/',
     },
-    { title: 'Careers', url: '/careers/', isCareersSiteInternalLink: true },
+    { title: 'Jobs', url: '/jobs/', isCareersSiteInternalLink: true },
+    {
+        title: 'Life at Torchbox',
+        url: '/life-at-torchbox/',
+        isCareersSiteInternalLink: true,
+    },
     {
         title: 'Blog',
         url: 'https://torchbox.com/blog/',

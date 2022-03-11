@@ -162,9 +162,9 @@ export async function getAllJobPostings(): Promise<JobPost[] | null> {
     return convertJSONToJobPosts(jobPostingData);
 }
 
-export async function getNumberOfActiveRoles(): Promise<number | undefined> {
+export async function getNumberOfActiveRoles(): Promise<number> {
     const allJobPosts = await getAllJobPostings();
-    if (!allJobPosts) {
+    if (!allJobPosts || !allJobPosts.length) {
         return 0;
     }
     return allJobPosts?.length;

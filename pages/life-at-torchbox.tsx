@@ -58,10 +58,12 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             title={content.valueCarouselTitle}
             values={content.itemsCollection.items[1].valuesCollection.items}
         >
-            <RichText
-                theme="INDIGO"
-                content={content.valueCarouselIntroduction}
-            />
+            {content.valueCarouselIntroduction && (
+                <RichText
+                    theme="INDIGO"
+                    content={content.valueCarouselIntroduction}
+                />
+            )}
         </ValuesCarousel>
         <div className={styles.contentContainer}>
             <div className={styles.textContainer}>
