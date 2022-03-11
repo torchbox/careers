@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { JobPost, createJobSummaryFromPost } from 'lib/peopleHR';
-import { getAllJobPostings } from '../_peopleHR';
+import { getAllJobPostings } from 'pages/api/_peopleHR';
 
 /**
  * Gets a condensed description and general information for each job.

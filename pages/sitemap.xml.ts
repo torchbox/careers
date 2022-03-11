@@ -3,12 +3,12 @@ import fs from 'fs';
 import { getAllJobSlugs } from './api/jobs/slugs';
 
 const generateSiteMap = (jobSlugs: string[] | null) => {
-    let baseUrl = 'http://localhost:3000';
+    let baseUrl = 'http://localhost:3000/careers';
     if (process.env.VERCEL_ENV) {
         baseUrl = {
             production: 'https://torchbox.com/careers',
-            preview: process.env.VERCEL_URL,
-            development: 'http://localhost:3000',
+            preview: process.env.VERCEL_URL + '/careers',
+            development: 'http://localhost:3000/careers',
         }[process.env.VERCEL_ENV] as string;
     }
 

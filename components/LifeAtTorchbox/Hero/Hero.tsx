@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import { ArrowLoopRight } from 'components/Icons/ArrowLoopRight';
+import { ImageTypes, VideoTypes } from 'types/Base';
+import { ArrowLoopRight } from 'components/SVG/ArrowLoop/ArrowLoopRight';
 import Image from 'components/Image';
-import { ImageTypes, VideoTypes } from '../../../types/Base';
 import { VideoPlayPauseButton } from './VideoPlayPauseButton';
 import styles from './Hero.module.scss';
 
@@ -61,6 +61,7 @@ export const Hero = ({ image, video, subtitle, children }: HeroProps) => {
                     src={image.url}
                     alt={image.description}
                     className={styles.mobileImage}
+                    priority
                 />
                 {video ? (
                     <>
@@ -88,6 +89,7 @@ export const Hero = ({ image, video, subtitle, children }: HeroProps) => {
                         src={image.url}
                         alt={image.description}
                         className={styles.desktopImage}
+                        priority
                     />
                 )}
                 <div className={styles.textContainer}>

@@ -12,7 +12,7 @@ export const FruitBowl = ({ size = 208, className }: FruitBowlProps) => (
         viewBox="0 0 101.85 89.03"
         fill="none"
     >
-        <g transform="rotate(-15 0.516602 66.8606) translate(4 8)">
+        <g transform="rotate(-15 0.516602 66.8606) translate(5.5 8)">
             <circle cx="22.44" cy="33.04" r="16.41" fill="#3beccd" />
             <path
                 fill="#2f128d"

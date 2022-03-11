@@ -94,7 +94,7 @@ async function getJobPostingData() {
             // The cache has timed out, fetch new data from PeopleHR
 
             const peopleHRJobPostings = await fetchPeopleHRFeed().catch(
-                function (error) {
+                (error) => {
                     console.error('Error fetching data from PeopleHR: ', error);
                     return null;
                 },
@@ -117,35 +117,9 @@ async function getJobPostingData() {
                 writeToCache(cacheFilePath, fileData);
 
                 return cache.jobs;
-            } else {
-                // If the server responds OK, update according to the feed contents
-                const fileData = {
-                    lastUpdated: Date.now(),
-                    jobs: peopleHRJobPostings,
-                };
-
-                writeToCache(cacheFilePath, fileData);
-
-                return peopleHRJobPostings;
             }
-        } else {
-            // The cache has not timed out yet, return the cached JSON
-            return cache.jobs;
-        }
-    } else {
-        // If the cache file doesn't exist, create one
-        const peopleHRJobPostings = await fetchPeopleHRFeed().catch(function (
-            error,
-        ) {
-            console.error('Error fetching data from PeopleHR: ', error);
-            return null;
-        });
 
-        if (!peopleHRJobPostings) {
-            // In the event of a server error, return 404
-            return null;
-        } else {
-            // Create a new file and set the cache
+            // If the server responds OK, update according to the feed contents
             const fileData = {
                 lastUpdated: Date.now(),
                 jobs: peopleHRJobPostings,
@@ -155,11 +129,43 @@ async function getJobPostingData() {
 
             return peopleHRJobPostings;
         }
+
+        // The cache has not timed out yet, return the cached JSON
+        return cache.jobs;
     }
+
+    // If the cache file doesn't exist, create one
+    const peopleHRJobPostings = await fetchPeopleHRFeed().catch((error) => {
+        console.error('Error fetching data from PeopleHR: ', error);
+        return null;
+    });
+
+    if (!peopleHRJobPostings) {
+        // In the event of a server error, return 404
+        return null;
+    }
+
+    // Create a new file and set the cache
+    const fileData = {
+        lastUpdated: Date.now(),
+        jobs: peopleHRJobPostings,
+    };
+
+    writeToCache(cacheFilePath, fileData);
+
+    return peopleHRJobPostings;
 }
 
 export async function getAllJobPostings(): Promise<JobPost[] | null> {
     const jobPostingData = await getJobPostingData();
     if (jobPostingData === null) return null;
     return convertJSONToJobPosts(jobPostingData);
+}
+
+export async function getNumberOfActiveRoles(): Promise<number | undefined> {
+    const allJobPosts = await getAllJobPostings();
+    if (!allJobPosts) {
+        return 0;
+    }
+    return allJobPosts?.length;
 }
