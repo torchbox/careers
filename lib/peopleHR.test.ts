@@ -1,3 +1,5 @@
+import { Window } from 'happy-dom';
+
 import {
     convertTitleToSlug,
     processPeopleHRDescription,
@@ -16,8 +18,6 @@ import {
     illegalElementDescription,
     illegalElementFormattedDescription,
 } from './peopleHRTestData';
-
-import { Window } from 'happy-dom';
 
 test('converts job title to URL slug', () => {
     expect(convertTitleToSlug('Senior Python Developer')).toBe(

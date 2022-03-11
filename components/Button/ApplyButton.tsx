@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import { ChevronIcon } from 'components/Icons/ChevronIcon';
-import { useScreen } from 'hooks/useScreen';
 import styles from './ApplyButton.module.scss';
 
 type ApplyButtonProps = {

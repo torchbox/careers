@@ -1,7 +1,7 @@
 import { ImageTypes } from 'types/Base';
 import Link from 'next/link';
+import { Image } from 'components/Image/Image';
 import styles from './ComeWorkForYou.module.scss';
-import { Image } from '../../Image/Image';
 
 type ComeWorkForYouProps = {
     image: ImageTypes;

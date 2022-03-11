@@ -1,5 +1,5 @@
 import { Document } from '@contentful/rich-text-types';
-import { ImageTypes } from '../Base';
+import { ImageTypes } from 'types/Base';
 
 export type EmployeeOwnedTrustPage = {
     metadataTitle: string;

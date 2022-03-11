@@ -12,7 +12,7 @@ export const VideoPlayPauseButton = ({
     playing,
 }: VideoPlayPauseButtonProps) => {
     const handleKeyboardEvent = (event: React.KeyboardEvent<SVGSVGElement>) => {
-        //Arrow keys can be used to scroll the webpage.
+        // Arrow keys can be used to scroll the webpage.
         if (!['Tab', 'Shift', 'ArrowDown', 'ArrowUp'].includes(event.key)) {
             toggleVideoPlaying();
         }

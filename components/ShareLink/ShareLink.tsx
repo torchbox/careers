@@ -14,12 +14,6 @@ export const ShareLink = ({
     description,
     linkText = 'Share',
 }: ShareLinkProps) => {
-    const handleKeydown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-        if (event.key === 'Enter') {
-            openShareMenu();
-        }
-    };
-
     const openShareMenu = () => {
         if (navigator.share) {
             navigator.share({
@@ -35,6 +29,12 @@ export const ShareLink = ({
                 description +
                 `%0D%0A%0D%0ARead more at ` +
                 url;
+        }
+    };
+
+    const handleKeydown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (event.key === 'Enter') {
+            openShareMenu();
         }
     };
 

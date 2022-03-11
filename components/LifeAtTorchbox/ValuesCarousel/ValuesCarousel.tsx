@@ -1,13 +1,13 @@
-import { CarouselArrowButton } from 'components/Button/Button';
-import { useScreen } from 'hooks/useScreen';
-import React, { useRef } from 'react';
 import { Keyboard, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useScreen } from 'hooks/useScreen';
+import React, { useRef } from 'react';
+import { CarouselArrowButton } from 'components/Button/Button';
 import { ImageTypes } from 'types/Base';
 import Image from 'components/Image';
+import ArrowLoopLeft from 'components/SVG/ArrowLoop/ArrowLoopLeft';
 import styles from './ValuesCarousel.module.scss';
 import 'swiper/css';
-import ArrowLoopLeft from 'components/SVG/ArrowLoop/ArrowLoopLeft';
 
 type CarouselIntroductionProps = {
     title: string;

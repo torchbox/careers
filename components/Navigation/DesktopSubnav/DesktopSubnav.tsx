@@ -15,7 +15,7 @@ export const DesktopSubnav = ({
     toggleMenu,
 }: DesktopSubnavProps) => {
     // Use a ref as we don't need to rerender the component on tab navigation
-    const keysPressedRef = useRef(new Array());
+    const keysPressedRef = useRef<Array<string>>([]);
 
     const handleFirstItemKeyDown = (
         event: React.KeyboardEvent<HTMLAnchorElement>,

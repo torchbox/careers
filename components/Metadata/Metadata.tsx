@@ -1,3 +1,4 @@
+/* eslint-disable react/no-invalid-html-attribute */
 import Head from 'next/head';
 import { ImageTypes } from 'types/Base';
 

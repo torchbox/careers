@@ -1,8 +1,8 @@
-import { Image } from '../Image/Image';
-import { LocationIcon } from '../Icons/LocationIcon';
-import { LinkedInIcon } from '../Icons/LinkedInIcon';
-import { TwitterIcon } from '../Icons/TwitterIcon';
-import { InstagramIcon } from '../Icons/InstagramIcon';
+import { Image } from 'components/Image/Image';
+import { LocationIcon } from 'components/Icons/LocationIcon';
+import { LinkedInIcon } from 'components/Icons/LinkedInIcon';
+import { TwitterIcon } from 'components/Icons/TwitterIcon';
+import { InstagramIcon } from 'components/Icons/InstagramIcon';
 import styles from './Footer.module.scss';
 
 const LOCATION_DATA = [
@@ -126,6 +126,7 @@ const SocialMediaIcons = () => (
 
 const FooterBanner = () => <div className={styles.emptyEmailBanner}></div>;
 
+/*
 const EmailSignup = () => (
     <div className={styles.emailBanner}>
         <div className={styles.emailContainer}>
@@ -154,6 +155,7 @@ const EmailSignup = () => (
         </div>
     </div>
 );
+*/
 
 export const Footer = () => (
     <div className={styles.banner}>

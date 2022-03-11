@@ -1,5 +1,5 @@
-import { ImageTypes } from '../Base';
 import { Document } from '@contentful/rich-text-types';
+import { ImageTypes } from 'types/Base';
 
 export type LandingPage = {
     metadataTitle: string;
