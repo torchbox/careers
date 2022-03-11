@@ -104,6 +104,7 @@ export const DesktopSubnav = ({
                                     onKeyDown={handleBadgeKeyDown}
                                     className={`${styles.subnavBadge} ${styles.badge}`}
                                     aria-label={`${jobsAvailable} jobs available`}
+                                    tabIndex={-1}
                                 >
                                     {jobsAvailable}
                                 </a>
