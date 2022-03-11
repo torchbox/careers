@@ -126,6 +126,7 @@ const SocialMediaIcons = () => (
 
 const FooterBanner = () => <div className={styles.emptyEmailBanner}></div>;
 
+/*
 const EmailSignup = () => (
     <div className={styles.emailBanner}>
         <div className={styles.emailContainer}>
@@ -154,6 +155,7 @@ const EmailSignup = () => (
         </div>
     </div>
 );
+*/
 
 export const Footer = () => (
     <div className={styles.banner}>

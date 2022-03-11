@@ -9,10 +9,10 @@ import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
 import RichText from 'components/RichText';
 import { ApplyButton } from 'components/Button';
-import styles from './Job.module.scss';
 import { getNumberOfActiveRoles } from 'pages/api/_peopleHR';
 import Metadata from 'components/Metadata';
 import JobListingHero from 'components/JobListingHero';
+import styles from './Job.module.scss';
 
 type JobPageProps = {
     preview: boolean;

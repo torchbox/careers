@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import Link from 'next/link';
 import { ArrowLoopRight } from '../../SVG/ArrowLoop/ArrowLoopRight';
 import styles from './PageNav.module.scss';

@@ -44,7 +44,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
         (obj: AcademyItemCollection) => obj.__typename === 'Academies',
     );
 
-    let academies = undefined;
+    let academies;
     if (academyCollectionItem)
         academies = academyCollectionItem.academiesCollection.items;
 

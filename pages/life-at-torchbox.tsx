@@ -1,16 +1,16 @@
 import type { NextPage } from 'next';
-import { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
-import { getLifeAtTorchboxPage } from 'lib/api';
+import type { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
 import Layout from 'components/Layout';
 import Testimonial from 'components/Testimonial';
 import Hero from 'components/LifeAtTorchbox/Hero';
 import MainContent from 'components/LifeAtTorchbox/MainContent';
 import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
 import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
-import styles from './LifeAtTorchbox.module.scss';
 import Metadata from 'components/Metadata';
 import RichText from 'components/RichText';
+import { getLifeAtTorchboxPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
+import styles from './LifeAtTorchbox.module.scss';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
