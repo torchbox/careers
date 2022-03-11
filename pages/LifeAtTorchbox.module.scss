@@ -3,6 +3,20 @@
     margin: 0 auto;
 }
 
+.textContainer {
+    margin: 0 auto $grid * 3 auto;
+    max-width: 755px;
+    padding: 0 $grid;
+
+    @include media-query(medium) {
+        margin: 0 auto $grid * 4 auto;
+    }
+
+    @include media-query(large) {
+        padding: 0;
+    }
+}
+
 .indigoBackground {
     position: relative;
 
