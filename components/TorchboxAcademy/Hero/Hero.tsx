@@ -1,7 +1,7 @@
 import Image from 'components/Image';
-import styles from './Hero.module.scss';
 import { ImageTypes } from '../../../types/Base';
 import { ArrowLoopRight } from 'components/Icons/ArrowLoopRight';
+import styles from './Hero.module.scss';
 
 type HeroProps = {
     image: ImageTypes;
