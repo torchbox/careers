@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import Link from 'next/link';
 import { ArrowLoopRight } from '../../SVG/ArrowLoop/ArrowLoopRight';
 import styles from './PageNav.module.scss';
 
@@ -9,6 +8,7 @@ type PageNavProps = {
     children: React.ReactNode;
 };
 
+/*
 const AnchorLinks = ({ jobs = 0 }: { jobs: number }) => {
     const smoothScrollToElement = (id: string) => {
         const element = document.querySelector(id);
@@ -70,8 +70,9 @@ const AnchorLinks = ({ jobs = 0 }: { jobs: number }) => {
         </ul>
     );
 };
+*/
 
-export const PageNav = ({ title, jobs = 0, children }: PageNavProps) => {
+export const PageNav = ({ title, children }: PageNavProps) => {
     return (
         <div className={styles.container}>
             <ArrowLoopRight className={styles.image} />
