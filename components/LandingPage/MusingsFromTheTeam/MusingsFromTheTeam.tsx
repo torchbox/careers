@@ -58,7 +58,7 @@ export const MusingsFromTheTeam = ({ postData }: MusingsFromTheTeamProps) => {
             <div className={styles.link}>
                 <a
                     href="https://torchbox.com/blog/"
-                    className="underline-link underline-link--dark-indigo"
+                    className="underline-link underline-link--indigo"
                 >
                     See more posts
                 </a>
