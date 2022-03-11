@@ -29,15 +29,21 @@ const JobPosting: NextPage<JobPageProps> = ({
     content,
     jobSlug,
 }) => {
-    const benefits =
-        content.itemsCollection.items[0].benefitsListCollection.items.map(
-            (item: any) => item.benefitName,
-        );
+    const benefitCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Benefits',
+    );
 
-    const clientLogos =
-        content.itemsCollection.items[1].clientsCollection.items.map(
-            (item: any) => item.clientLogo,
-        );
+    const clientLogoCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Clients',
+    );
+
+    const benefits = benefitCollection.benefitsListCollection.items.map(
+        (item: any) => item.benefitName,
+    );
+
+    const clientLogos = clientLogoCollection.clientsCollection.items.map(
+        (item: any) => item.clientLogo,
+    );
 
     const jobURL = 'https://torchbox.com/careers/jobs/' + jobSlug;
 
