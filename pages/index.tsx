@@ -79,7 +79,10 @@ const LandingPage: NextPage<LandingPageProps> = ({
             </ComeWorkForYou>
             <div id="benefits">
                 <Benefits
-                    title="Real benefits in touch with real life"
+                    title={
+                        landingPageContent.itemsCollection.items[0]
+                            .benefitsTitle
+                    }
                     benefits={benefits}
                 />
             </div>
