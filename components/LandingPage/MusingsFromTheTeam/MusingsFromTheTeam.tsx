@@ -1,6 +1,6 @@
-import styles from './MusingsFromTheTeam.module.scss';
 import type { BlogPost } from 'types/Base';
-import Image from '../../Image';
+import Image from 'components/Image';
+import styles from './MusingsFromTheTeam.module.scss';
 
 type MusingsFromTheTeamProps = {
     postData: BlogPost[];

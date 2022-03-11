@@ -22,16 +22,32 @@
     :global .themeDark :local & {
         color: var(--color--white);
     }
+
+    :global .themeDark .themeLight :local & {
+        color: var(--color--grey);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
+    }
 }
 
 .h2 {
-    line-height: 36px;
+    @include font-size(l);
+    font-weight: $weight--extrabold;
+    line-height: 1;
     margin-bottom: 30px;
 }
 
 .h3 {
-    line-height: 34px;
+    @include font-size(ml);
+    margin-top: $grid * 2.5;
+    line-height: 1;
     margin-bottom: 12px;
+
+    @include media-query(large) {
+        margin-top: $grid * 3.5;
+    }
 }
 
 .hyperlink {
@@ -51,5 +67,13 @@
 
     :global .themeDark :local & {
         color: var(--color--white);
+    }
+
+    :global .themeDark .themeLight :local & {
+        color: var(--color--indigo);
+    }
+
+    :global .themeDark .themeIndigo :local & {
+        color: var(--color--dark-indigo);
     }
 }

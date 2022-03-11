@@ -1,0 +1,19 @@
+.button {
+    @include font-size(s);
+    line-height: 30px;
+    font-weight: $weight--extrabold;
+    color: var(--color--dark-indigo);
+    border: 2px solid var(--color--dark-indigo);
+    border-radius: 5px;
+    padding: $grid * 0.5 $grid;
+    appearance: none;
+    background: url("data:image/svg+xml,%3Csvg width='9' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.565.5H1.102C.878.5.752.736.892.898l3.731 4.327a.284.284 0 0 0 .42 0L8.775.898C8.914.736 8.79.5 8.565.5Z' fill='%23251657'/%3E%3C/svg%3E")
+        no-repeat right;
+    padding-right: $grid * 2;
+    background-position-x: calc(100% - 20px);
+
+    &:focus {
+        outline: 4px solid var(--color--coral);
+        border-color: var(--color--coral);
+    }
+}

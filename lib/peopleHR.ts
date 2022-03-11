@@ -58,16 +58,16 @@ type ALLOWLIST = typeof ALLOWLIST[number];
 function recursivelyRemoveEmptyElements(element: Element) {
     const elements = element.querySelectorAll('*');
 
-    let removeList = [];
+    const removeList = [];
 
-    for (var i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i += 1) {
         if (elements[i].innerHTML === '') {
             removeList.push(elements[i]);
         }
     }
 
     removeList.forEach((element) => {
-        const parentNode = element.parentNode;
+        const { parentNode } = element;
         element.remove();
         if (parentNode !== null)
             recursivelyRemoveEmptyElements(parentNode as Element);
@@ -79,10 +79,9 @@ export function removeAllElementsNotInAllowlist(
     element: Element,
 ) {
     const elements = element.querySelectorAll('*');
+    const removeList = [];
 
-    let removeList = [];
-
-    for (let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i += 1) {
         if (ALLOWLIST.includes(elements[i].tagName as ALLOWLIST) === false) {
             if (['B', 'STRONG', 'EM', 'I'].includes(elements[i].tagName)) {
                 // Replace all the styling elements with spans
@@ -144,9 +143,9 @@ function setChildStylesDependingOnElement(
  * @returns processed element
  */
 export function removeUnnecessaryElementAttributes(element: Element) {
-    let attributeNameList = [];
+    const attributeNameList = [];
 
-    for (let i = 0; i < element.attributes.length; i++) {
+    for (let i = 0; i < element.attributes.length; i += 1) {
         attributeNameList.push(element.attributes[i].name);
     }
 
@@ -179,21 +178,22 @@ function recursivelyReplaceFontStyling(
     element: any,
     childStyles: RecursiveStyling,
 ) {
+    let styles = childStyles;
     // Check if this element has bold or italic modifiers to pass on to its children
-    childStyles = setChildStylesDependingOnElement(element, childStyles);
+    styles = setChildStylesDependingOnElement(element, childStyles);
 
     // Remove all the style rules and unnecessary attributes from this element
     element = removeUnnecessaryElementAttributes(element);
 
-    for (let i = 0; i < element.childNodes.length; i++) {
+    for (let i = 0; i < element.childNodes.length; i += 1) {
         // Recursively call this function on child elements
         // to propagate the style changes throughout the DOM tree
         if (element.childNodes[i].nodeType === Node.ELEMENT_NODE) {
             // Create unique styles object for each element
             // or else elements will refer to another elements styles
             const newChildStyles = {
-                bold: childStyles.bold,
-                italic: childStyles.italic,
+                bold: styles.bold,
+                italic: styles.italic,
             };
 
             const resultElement = recursivelyReplaceFontStyling(
@@ -209,15 +209,15 @@ function recursivelyReplaceFontStyling(
             // Apply the inherited styles to a child text node by wrapping
             // the node in a <span> with the appropriate classes
             if (element.childNodes[i].nodeType === Node.TEXT_NODE) {
-                if (childStyles.bold || childStyles.italic) {
+                if (styles.bold || styles.italic) {
                     const newElement = document.createElement('SPAN');
                     newElement.innerHTML = element.innerHTML;
 
-                    if (childStyles.bold) {
+                    if (styles.bold) {
                         newElement.classList.add('rich-text--bold');
                     }
 
-                    if (childStyles.italic) {
+                    if (styles.italic) {
                         newElement.classList.add('rich-text--italic');
                     }
 
@@ -237,12 +237,12 @@ function recursivelyReplaceFontStyling(
  */
 export function processPeopleHRDescription(text: string) {
     const window = new Window();
-    const document = window.document;
+    const { document } = window;
 
-    //Remove any zero-width spaces from the description
-    text = text.replace(/\u200B/g, '');
+    // Remove any zero-width spaces from the description
+    let newText = text.replace(/\u200B/g, '');
 
-    document.body.innerHTML = text;
+    document.body.innerHTML = newText;
 
     let newBody = recursivelyReplaceFontStyling(document, document.body, {
         bold: false,
@@ -273,12 +273,10 @@ function jobPostingJSONIsValid(json: any) {
         'salaryrange',
     ];
 
-    for (let i = 0; i < requiredProperties.length; i++) {
+    for (let i = 0; i < requiredProperties.length; i += 1) {
         if (!json.hasOwnProperty(requiredProperties[i])) return false;
         if (invalidValue(json[requiredProperties[i]][0])) return false;
     }
-
-    // Todo: Add integration with Sentry to alert the issue of missing data.
 
     return true;
 }
@@ -289,9 +287,9 @@ function jobPostingJSONIsValid(json: any) {
  * @returns a formatted slug
  */
 export function convertTitleToSlug(title: string): string {
-    title = title.toLowerCase();
-    title = title.replace(/[^a-zA-Z0-9]+/g, '-');
-    return title;
+    let newTitle = title.toLowerCase();
+    newTitle = newTitle.replace(/[^a-zA-Z0-9]+/g, '-');
+    return newTitle;
 }
 
 /**
@@ -316,9 +314,9 @@ export function createJobPostFromJSON(json: any) {
         };
 
         return job;
-    } else {
-        return undefined;
     }
+
+    return undefined;
 }
 
 export function createJobSummaryFromPost(post: JobPost): JobSummary {
@@ -339,10 +337,10 @@ export function createJobSummaryFromPost(post: JobPost): JobSummary {
 export function convertJSONToJobPosts(json: any): JobPost[] {
     const jobPostingsJSON = json.rss.channel[0].item;
 
-    let jobPosts: JobPost[] = [];
+    const jobPosts: JobPost[] = [];
 
-    for (let i = 0; i < jobPostingsJSON.length; i++) {
-        let job: JobPost | undefined = createJobPostFromJSON(
+    for (let i = 0; i < jobPostingsJSON.length; i += 1) {
+        const job: JobPost | undefined = createJobPostFromJSON(
             jobPostingsJSON[i],
         );
         if (job) {

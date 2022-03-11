@@ -4,8 +4,8 @@
     position: absolute;
     padding: 31px 20px;
     min-width: 186px;
-    left: 10px;
-    top: 55px;
+    left: -20px;
+    top: 60px;
     background-color: var(--color--white);
     outline: 5px solid var(--color--coral) transparent;
     list-style: none;
@@ -102,10 +102,10 @@
 
         &::before {
             background-color: var(--color--dark-indigo);
-        }
 
-        :global .themeDark :local & {
-            background-color: var(--color--lagoon);
+            :global .themeDark :local & {
+                background-color: var(--color--lagoon);
+            }
         }
     }
 }

@@ -1,0 +1,94 @@
+.container {
+    padding: $grid;
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(medium) {
+        padding: $grid * 2;
+    }
+
+    @include media-query(large) {
+        padding: 0 $grid * 4 $grid * 4 $grid * 4;
+        flex-direction: row;
+    }
+}
+
+.textContainer {
+    text-align: left;
+    margin-bottom: $grid;
+    order: 1;
+
+    @include media-query(medium) {
+        order: 2;
+    }
+
+    @include media-query(large) {
+        max-width: 635px;
+        margin-bottom: $grid * 4;
+    }
+}
+
+.title {
+    @include font-size(xxxxl);
+    font-weight: $weight--extrabold;
+    line-height: 1;
+    margin-bottom: $grid * 1.5;
+}
+
+.image {
+    display: none;
+    @include media-query(large) {
+        display: block;
+        position: relative;
+        order: 1;
+        margin: auto $grid * 2 $grid * 2 auto;
+        bottom: -60px;
+    }
+}
+
+.screenReaderOnly {
+    @include hidden();
+}
+
+.carouselContainer {
+    @include media-query(medium) {
+        margin-left: auto;
+        width: 90%;
+        padding-bottom: $grid;
+    }
+}
+
+.carousel {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: auto;
+}
+
+.slideImage {
+    width: 100%;
+    cursor: grab;
+
+    @include media-query(medium) {
+        width: unset;
+    }
+}
+
+.buttonNavigation {
+    display: flex;
+    position: relative;
+    height: 70px;
+    left: 50%;
+    bottom: -20px;
+    width: max-content;
+    transform: translateX(-50%);
+
+    @include media-query(medium) {
+        left: 0;
+        transform: unset;
+    }
+}
+
+.leftButton {
+    margin-right: $grid;
+}

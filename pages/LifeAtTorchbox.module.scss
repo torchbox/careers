@@ -1,0 +1,33 @@
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.textContainer {
+    margin: 0 auto $grid * 3 auto;
+    max-width: 755px;
+    padding: 0 $grid;
+
+    @include media-query(medium) {
+        margin: 0 auto $grid * 4 auto;
+    }
+
+    @include media-query(large) {
+        padding: 0;
+    }
+}
+
+.indigoBackground {
+    position: relative;
+
+    &::before {
+        @include z-index(under);
+        content: '';
+        position: absolute;
+        top: -200px;
+        bottom: 0;
+        left: -2000px;
+        right: -2000px;
+        background-color: var(--color--dark-indigo);
+    }
+}

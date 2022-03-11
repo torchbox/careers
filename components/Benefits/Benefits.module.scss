@@ -86,7 +86,7 @@
     }
 }
 
-.fruit {
+.decoration {
     margin-left: auto;
     margin-right: $grid * 2;
     width: 200px;
@@ -111,19 +111,33 @@
         height: 3px;
 
         width: 280px;
-        bottom: 12px;
+        bottom: 15px;
         right: -10px;
         transform: rotate(-10deg);
 
         @include media-query(medium) {
             width: 400px;
+            bottom: 12px;
         }
 
         @include media-query(large) {
             width: 1050px;
-            bottom: -10px;
+            bottom: -5px;
             right: -50px;
             transform: rotate(-6deg);
         }
+    }
+}
+
+.fruitBowl {
+    width: 208px;
+    height: auto;
+
+    @include media-query(medium) {
+        width: 238px;
+    }
+
+    @include media-query(large) {
+        width: 300px;
     }
 }

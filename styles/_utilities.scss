@@ -1,16 +1,32 @@
 .underline-link {
-    @include font-size(s);
+    font-size: 20px;
     color: var(--color--white);
-    font-weight: $weight--bold;
+    font-weight: $weight--extrabold;
     border-bottom: 0;
     overflow: visible;
     position: relative;
+
+    @include media-query(medium) {
+        font-size: 22px;
+    }
 
     &--white {
         color: var(--color--white);
 
         &:hover {
             color: var(--color--white);
+        }
+
+        &:focus {
+            outline: 4px solid var(--color--coral) transparent;
+        }
+    }
+
+    &--indigo {
+        color: var(--color--indigo);
+
+        &:hover {
+            color: var(--color--indigo);
         }
 
         &:focus {
@@ -33,9 +49,9 @@
     &::before {
         content: '';
         position: absolute;
-        width: 25%;
+        width: 65px;
         height: 6px;
-        bottom: -7px;
+        bottom: -3px;
         left: 0;
         background-color: var(--color--coral);
         transition: width $transition-quick;

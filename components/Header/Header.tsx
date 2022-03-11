@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { TorchboxLogo } from '../Icons/TorchboxLogo';
+import { TorchboxLogo } from 'components/Icons/TorchboxLogo';
+import { MobileMenuButton, MobileNav } from 'components/Navigation/MobileNav';
+import DesktopNav from 'components/Navigation/DesktopNav';
 import styles from './Header.module.scss';
-
-import { MobileMenuButton, MobileNav } from '../Navigation/MobileNav';
-import DesktopNav from '../Navigation/DesktopNav';
 
 const NAVIGATION_LINKS = [
     {
@@ -19,7 +18,12 @@ const NAVIGATION_LINKS = [
         title: 'Digital marketing',
         url: 'https://torchbox.com/digital-marketing/',
     },
-    { title: 'Careers', url: '/careers/', isCareersSiteInternalLink: true },
+    { title: 'Jobs', url: '/jobs/', isCareersSiteInternalLink: true },
+    {
+        title: 'Life at Torchbox',
+        url: '/life-at-torchbox/',
+        isCareersSiteInternalLink: true,
+    },
     {
         title: 'Blog',
         url: 'https://torchbox.com/blog/',

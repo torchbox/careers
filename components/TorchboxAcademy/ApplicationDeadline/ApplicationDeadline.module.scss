@@ -1,0 +1,137 @@
+.container {
+    position: relative;
+    margin-bottom: $grid * 10;
+    overflow: hidden;
+
+    @include media-query(medium) {
+        margin-bottom: 0;
+        padding-bottom: $grid * 2;
+        overflow: visible;
+    }
+
+    @include media-query(large) {
+        margin-top: $grid * 16;
+        margin-bottom: $grid * 20;
+        padding-bottom: 0;
+    }
+}
+
+.title {
+    font-size: 56px;
+    color: var(--color--white);
+    line-height: 1;
+    max-width: 400px;
+    padding-top: $grid * 3.5;
+
+    @include media-query(medium) {
+        @include font-size(xxxxl);
+        max-width: 480px;
+    }
+
+    @include media-query(large) {
+        padding-top: 0;
+        max-width: 540px;
+    }
+}
+
+.emphasis {
+    color: var(--color--coral);
+}
+
+.richText {
+    color: var(--color--white);
+
+    & p {
+        color: var(--color--white);
+    }
+
+    max-width: 315px;
+
+    @include media-query(large) {
+        max-width: 415px;
+    }
+}
+
+.textContainer {
+    @include z-index(under);
+    text-align: left;
+    padding: $grid * 4 $grid $grid * 19 $grid;
+    position: relative;
+    overflow: hidden;
+
+    @include media-query(medium) {
+        @include z-index(two);
+        overflow: visible;
+        padding-top: $grid * 3;
+        padding-left: $grid * 2;
+    }
+
+    @include media-query(large) {
+        padding-left: 90px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+
+.background {
+    @include z-index(under);
+    content: '';
+    position: absolute;
+    background: radial-gradient(50% 50% at 50% 50%, #2f128d 0%, #251657 100%);
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 600px;
+
+    clip-path: url('#topCornerClipPath');
+
+    @include media-query(medium) {
+        transform: rotate(30deg);
+        height: 630px;
+        width: 600px;
+        left: -90px;
+        top: 80px;
+        clip-path: none;
+    }
+
+    @include media-query(large) {
+        transform: rotate(30deg);
+        top: -$grid * 11;
+        left: -$grid * 2.5;
+        width: 762px;
+        height: 828px;
+    }
+}
+
+.image {
+    @include z-index(two);
+    clip-path: url('#bottomSliceClipPath');
+    margin-top: -320px;
+    width: 800px;
+    height: 500px;
+
+    @include media-query(medium) {
+        @include z-index(under);
+        position: absolute;
+        width: unset;
+        height: unset;
+        clip-path: none;
+        right: 0;
+        left: 0;
+        bottom: $grid;
+        margin-top: 0;
+    }
+
+    @include media-query(large) {
+        left: unset;
+        bottom: unset;
+        top: -$grid * 6;
+        width: 1100px;
+        height: 700px;
+    }
+
+    @include media-query(menu-break) {
+        right: $grid * 2;
+    }
+}

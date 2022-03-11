@@ -1,0 +1,195 @@
+.pageContainer {
+    max-width: $site-width;
+    margin: 0 auto;
+
+    @include media-query(large) {
+        padding: $grid * 5 0 $grid * 2 0;
+    }
+}
+
+.contentContainer {
+    max-width: 840px;
+    padding: $grid * 2 $grid $grid * 3 $grid;
+
+    @include media-query(medium) {
+        margin: 0 auto;
+        padding-bottom: $grid * 5;
+    }
+
+    @include media-query(large) {
+        padding: 0 0 $grid * 8 0;
+        margin: 0 auto 0 24%;
+    }
+}
+
+.textContainer {
+    padding-top: $grid * 2;
+    max-width: 755px;
+    margin-right: auto;
+}
+
+.title {
+    line-height: 1em;
+
+    @include media-query(large) {
+        margin-bottom: $grid * 2;
+    }
+}
+
+.cta {
+    &Title {
+        margin-bottom: 0;
+        font-weight: $weight--extrabold;
+
+        @include media-query(medium) {
+            margin-top: $grid * 4;
+        }
+        @include media-query(large) {
+            margin-top: $grid * 7;
+        }
+    }
+
+    &Description {
+        max-width: 525px;
+    }
+}
+
+.job {
+    &Card {
+        &:hover {
+            > .jobTitle:after {
+                transform: scaleY(100%);
+            }
+        }
+    }
+
+    &Title {
+        @include font-size(ml);
+        font-weight: $weight--extrabold;
+        color: var(--color--indigo);
+        display: inline-block;
+        margin-bottom: 6px;
+        margin-top: $grid * 2;
+        position: relative;
+
+        @include media-query(medium) {
+            margin-top: $grid * 3;
+        }
+
+        &:after {
+            @include z-index(under);
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            bottom: 5px;
+            left: 0;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            background-color: var(--color--underline);
+            transition: transform 0.2s ease;
+        }
+    }
+
+    &Description {
+        @include font-size(xs);
+        margin-bottom: 15px;
+    }
+
+    &MetadataItems {
+        display: flex;
+        flex-direction: column;
+
+        @include media-query(large) {
+            flex-direction: row;
+        }
+    }
+
+    &Metadata {
+        @include font-size(xxxs);
+        font-weight: $weight--bold;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-right: $grid;
+        margin-bottom: 5px;
+        color: var(--color--grey);
+        display: flex;
+        flex-direction: row;
+
+        &Icon {
+            min-width: 22px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(large) {
+        flex-direction: row;
+    }
+
+    &Select {
+        width: 260px;
+
+        &:first-child {
+            margin-bottom: $grid;
+
+            @include media-query(large) {
+                margin-bottom: 0;
+                margin-right: $grid;
+            }
+        }
+    }
+
+    &NoResults {
+        @include font-size(m);
+        padding-top: $grid * 3;
+
+        @include media-query(large) {
+            padding-top: $grid * 3;
+        }
+
+        &Message {
+            color: var(--color--dark-indigo);
+            margin: 0 0 $grid 0;
+        }
+    }
+
+    &Reset {
+        color: var(--color--coral);
+        font-weight: $weight--bold;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-position: under;
+        margin-bottom: 0;
+
+        &:hover {
+            color: var(--color--coral-dark);
+        }
+    }
+}
+
+.womanSVG {
+    display: none;
+
+    @include media-query(menu-break) {
+        display: block;
+        position: absolute;
+        right: -10px;
+        transform: translateY(100px);
+        width: 418px;
+    }
+}
+
+.noPositionsAvailable {
+    @include font-size(m);
+    color: var(--color--dark-indigo);
+    margin: $grid 0 0 0;
+
+    @include media-query(large) {
+        margin: $grid * 3 0 0 0;
+    }
+}

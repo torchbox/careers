@@ -1,6 +1,6 @@
-import { Image } from 'components/Image/Image';
+import { ImageTypes } from 'types/Base';
+import Image from 'components/Image';
 import styles from './Hero.module.scss';
-import { ImageTypes } from '../../../types/Base';
 
 type HeroProps = {
     image: ImageTypes;
@@ -35,6 +35,7 @@ export const Hero = ({ image, children }: HeroProps) => {
                     src={image.url}
                     alt={image.description}
                     className={styles.image}
+                    priority
                 />
                 <div className={styles.textContainer}>
                     <h1 className={styles.title}>

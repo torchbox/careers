@@ -1,3 +1,4 @@
+import ArrowLoopLeft from 'components/SVG/ArrowLoop/ArrowLoopLeft';
 import Link from 'next/link';
 import styles from './LifeAsATorchboxer.module.scss';
 
@@ -15,22 +16,20 @@ export const LifeAsATorchboxer = ({ children }: LifeAsATorchboxerProps) => (
             </h2>
             <div className={styles.richText}>{children}</div>
             <div className={styles.links}>
-                <Link href="/life/">
-                    <a className="underline-link underline-link--dark-indigo">
+                <Link href="/life-at-torchbox">
+                    <a className="underline-link underline-link--indigo">
                         Life at Torchbox
                     </a>
                 </Link>
                 <a
                     href="https://torchbox.com/team/"
-                    className="underline-link underline-link--dark-indigo"
+                    className="underline-link underline-link--indigo"
                 >
                     Meet the team
                 </a>
             </div>
         </div>
-        <div className={styles.image}>
-            <img src="images/arrow-loop-left.svg" alt="" />
-        </div>
+        <ArrowLoopLeft className={styles.image} />
     </div>
 );
 
