@@ -55,6 +55,14 @@
 }
 
 .job {
+    &Card {
+        &:hover {
+            > .jobTitle:after {
+                transform: scaleY(100%);
+            }
+        }
+    }
+
     &Title {
         @include font-size(ml);
         font-weight: $weight--extrabold;
@@ -62,9 +70,24 @@
         display: inline-block;
         margin-bottom: 6px;
         margin-top: $grid * 2;
+        position: relative;
 
         @include media-query(medium) {
             margin-top: $grid * 3;
+        }
+
+        &:after {
+            @include z-index(under);
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            bottom: 5px;
+            left: 0;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            background-color: var(--color--underline);
+            transition: transform 0.2s ease;
         }
     }
 
@@ -89,7 +112,7 @@
         letter-spacing: 0.15em;
         margin-right: $grid;
         margin-bottom: 5px;
-
+        color: var(--color--grey);
         display: flex;
         flex-direction: row;
 
