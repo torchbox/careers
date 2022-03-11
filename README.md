@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/careers](http://localhost:3000/careers) with your browser to see the result.
 
 N.B. Remember to run `npm install` every time you switch development branches. This triggers a refresh of Prettier, so if you have the Prettier VSCode extension installed, it will correctly format files on save.
 

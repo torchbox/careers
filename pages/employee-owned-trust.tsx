@@ -3,9 +3,11 @@ import { EmployeeOwnedTrustPage } from 'types/pages/EmployeeOwnedTrust';
 import { getEmployeeOwnedTrustPage } from 'lib/api';
 import Layout from 'components/Layout';
 import VoiceOfChange from 'components/EmployeeOwnedTrust/VoiceOfChange';
-import RichText from 'components/RichText/RichText';
 import Benefits from 'components/Benefits';
 import styles from './EmployeeOwnedTrust.module.scss';
+import RichText from 'components/RichText';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
+import Metadata from 'components/Metadata';
 
 const Title = () => (
     <h1 className={styles.title}>
@@ -16,11 +18,13 @@ const Title = () => (
 
 type EmployeeOwnedTrustPageProps = {
     preview: boolean;
+    jobsAvailable: number;
     content: EmployeeOwnedTrustPage;
 };
 
 const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
     preview,
+    jobsAvailable,
     content,
 }) => {
     const benefits =
@@ -29,7 +33,14 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
         );
 
     return (
-        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="employee-owned-trust"
+                image={content.metadataSocialMediaImage}
+            />
+
             <div className={styles.textContent}>
                 <Title />
                 <p className={styles.subtitle}>{content.subtitle}</p>
@@ -62,8 +73,9 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
 export default EmployeeOwnedTrustPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getEmployeeOwnedTrustPage(preview)) ?? [];
+    const content = await getEmployeeOwnedTrustPage(preview);
+    const jobsAvailable = await getNumberOfActiveRoles();
     return {
-        props: { preview, content },
+        props: { preview, jobsAvailable, content },
     };
 }

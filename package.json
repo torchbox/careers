@@ -8,7 +8,7 @@
     "start": "next start",
     "format": "prettier --write '**/?(.)*.{md,css,scss,js,ts,tsx,json,yaml,yml}'",
     "lint": "next lint && prettier --check '**/?(.)*.{md,css,scss,js,ts,tsx,json,yaml,yml}'",
-    "pa11y": "pa11y-ci --sitemap http://localhost:3000/sitemap.xml",
+    "pa11y": "pa11y-ci --sitemap http://localhost:3000/careers/sitemap.xml",
     "test": "jest",
     "test:watch": "jest --watch",
     "prod_start": "NODE_ENV=production node server.js"
@@ -20,10 +20,12 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "happy-dom": "^2.41.0",
     "next": "^12.1.0",
+    "nextjs-redirect": "^5.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-use": "^17.3.2",
     "sass": "^1.43.4",
+    "swiper": "^8.0.6",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
