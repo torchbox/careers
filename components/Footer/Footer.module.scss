@@ -176,7 +176,7 @@
     width: 100%;
     order: 2;
 
-    @include media-query(large){
+    @include media-query(large) {
         margin-top: -$grid * 0.5;
         margin-left: $grid * 3.5;
     }
@@ -204,11 +204,11 @@
         align-items: center;
         margin-bottom: $grid;
 
-        @include media-query(large){
+        @include media-query(large) {
             margin-bottom: $grid * 1.5;
         }
 
-        @include media-query(menu-break){
+        @include media-query(menu-break) {
             margin-bottom: 0;
         }
     }
