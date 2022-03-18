@@ -84,7 +84,10 @@ export async function getLandingPage(preview: boolean) {
                 ${pageMetadata}
                 heroImage {
                     description
-                    url
+                    url(transform: {
+                      width: 1400,
+                      height: 1000
+                    })
                     width
                     height
                 }
@@ -108,7 +111,10 @@ export async function getLandingPage(preview: boolean) {
                                     contentType
                                     fileName
                                     size
-                                    url
+                                    url(transform: {
+                                      width: 800,
+                                      height: 800
+                                    })
                                     width
                                     height
                                   }
@@ -151,7 +157,10 @@ export async function getLandingPage(preview: boolean) {
                 }
                 workForYouImage {
                     description
-                    url
+                    url(transform: {
+                      width: 2000,
+                      height: 1200
+                    })
                     width
                     height
                 }
@@ -181,7 +190,10 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
             items {
                 ${pageMetadata}
                 heroImage {
-                    url
+                    url(transform: {
+                        width: 1000,
+                        height: 1000
+                    })
                     description
                     width
                     height
@@ -217,6 +229,7 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 }
                 itemsCollection(limit: 2) {
                     items {
+                      __typename
                       ${testimonial}
                       ... on TorchboxValuesCarousel {
                         valuesCollection(limit: 6) {
@@ -224,7 +237,10 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                             valueName
                             valueSnippet
                             valueImage {
-                              url
+                              url(transform: {
+                                width: 1000,
+                                height: 1000
+                              })
                               description
                               width
                               height
@@ -290,6 +306,7 @@ export async function getJobPage(preview: boolean) {
                 }
                 itemsCollection {
                   items {
+                    __typename
                     ${benefits}
                     ${clients}
                   }
@@ -340,8 +357,9 @@ export async function getEmployeeOwnedTrustPage(preview: boolean) {
                 }
               }
             }
-            itemsCollection(limit: 1) {
+            itemsCollection(limit: 2) {
               items {
+                __typename
                 ${benefits}
                 ... on VoiceOfChange {
                   title

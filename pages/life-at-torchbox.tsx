@@ -10,7 +10,7 @@ import Metadata from 'components/Metadata';
 import RichText from 'components/RichText';
 import { getLifeAtTorchboxPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
-import styles from './LifeAtTorchbox.module.scss';
+import styles from '../styles/pages/LifeAtTorchbox.module.scss';
 
 type LifeAtTorchboxPageProps = {
     preview: boolean;
@@ -22,56 +22,71 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
     preview,
     jobsAvailable,
     content,
-}) => (
-    <Layout theme="DARK" preview={preview} jobsAvailable={jobsAvailable}>
-        <Metadata
-            title={content.metadataTitle}
-            description={content.metadataDescription}
-            slug="life-at-torchbox"
-            image={content.metadataSocialMediaImage}
-        />
-        <div className={styles.indigoBackground}>
-            <Hero
-                image={content.heroImage}
-                video={content.heroVideo}
-                subtitle={content.heroSubtitle}
-            >
-                <RichText theme="DARK" content={content.heroDescription} />
-            </Hero>
-            <AtWorkAtPlay
-                atWorkTitle={content.atWorkTitle}
-                atPlayTitle={content.atPlayTitle}
-                atPlayDescription={content.atPlayDescription}
-                atWorkDescription={content.atWorkDescription}
-                locations={content.workLocations.locationListCollection.items}
+}) => {
+    const TestimonialItems = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Testimonial',
+    );
+
+    const TorchboxValuesCarouselItems = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'TorchboxValuesCarousel',
+    );
+
+    return (
+        <Layout theme="DARK" preview={preview} jobsAvailable={jobsAvailable}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="life-at-torchbox"
+                image={content.metadataSocialMediaImage}
             />
-        </div>
-        <Testimonial testimonial={content.itemsCollection.items[0]} />
-        <MainContent
-            firstLine={content.mainContentTitleFirstLine}
-            secondLine={content.mainContentTitleSecondLine}
-            thirdLine={content.mainContentTitleThirdLine}
-        >
-            <RichText theme="LIGHT" content={content.mainContent} />
-        </MainContent>
-        <ValuesCarousel
-            title={content.valueCarouselTitle}
-            values={content.itemsCollection.items[1].valuesCollection.items}
-        >
-            {content.valueCarouselIntroduction && (
-                <RichText
-                    theme="INDIGO"
-                    content={content.valueCarouselIntroduction}
+            <div className={styles.indigoBackground}>
+                <Hero
+                    image={content.heroImage}
+                    video={content.heroVideo}
+                    subtitle={content.heroSubtitle}
+                >
+                    <RichText theme="DARK" content={content.heroDescription} />
+                </Hero>
+                <AtWorkAtPlay
+                    atWorkTitle={content.atWorkTitle}
+                    atPlayTitle={content.atPlayTitle}
+                    atPlayDescription={content.atPlayDescription}
+                    atWorkDescription={content.atWorkDescription}
+                    locations={
+                        content.workLocations.locationListCollection.items
+                    }
                 />
-            )}
-        </ValuesCarousel>
-        <div className={styles.contentContainer}>
-            <div className={styles.textContainer}>
-                <RichText theme="LIGHT" content={content.valuesDescription} />
             </div>
-        </div>
-    </Layout>
-);
+            <Testimonial testimonial={TestimonialItems} />
+            <MainContent
+                firstLine={content.mainContentTitleFirstLine}
+                secondLine={content.mainContentTitleSecondLine}
+                thirdLine={content.mainContentTitleThirdLine}
+            >
+                <RichText theme="LIGHT" content={content.mainContent} />
+            </MainContent>
+            <ValuesCarousel
+                title={content.valueCarouselTitle}
+                values={TorchboxValuesCarouselItems.valuesCollection.items}
+            >
+                {content.valueCarouselIntroduction && (
+                    <RichText
+                        theme="INDIGO"
+                        content={content.valueCarouselIntroduction}
+                    />
+                )}
+            </ValuesCarousel>
+            <div className={styles.contentContainer}>
+                <div className={styles.textContainer}>
+                    <RichText
+                        theme="LIGHT"
+                        content={content.valuesDescription}
+                    />
+                </div>
+            </div>
+        </Layout>
+    );
+};
 
 export default LifeAtTorchboxPage;
 
