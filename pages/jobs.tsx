@@ -1,48 +1,49 @@
-import type { NextPage } from 'next';
-import type { JobSummary } from '../lib/peopleHR';
-import type { Jobs } from 'types/pages/Jobs';
-import { getAllJobSummaries } from './api/jobs/summaries';
-import styles from 'styles/Jobs.module.scss';
+import { useState } from 'react';
 import Link from 'next/link';
+import { getAllJobSummaries } from 'pages/api/jobs/summaries';
+import { getJobListingPage } from 'lib/api';
+import type { NextPage } from 'next';
+import type { Jobs } from 'types/pages/Jobs';
 import Title from 'components/Title';
 import Layout from 'components/Layout';
-import { getJobListingPage } from 'lib/api';
 import RichText from 'components/RichText';
 import { SwishButton } from 'components/Button/Button';
 import WomanLeanIn from 'components/SVG/WomanLeanIn';
 import { LocationIcon } from 'components/Icons/LocationIcon';
-import { useState } from 'react';
 import Select from 'components/Select';
+import Metadata from 'components/Metadata';
+import type { JobSummary } from '../lib/peopleHR';
+import styles from './Jobs.module.scss';
 
 type JobEntryProps = {
     job: JobSummary;
 };
 
 const JobEntry = ({ job }: JobEntryProps) => (
-    <>
-        <Link href={'/jobs/' + job.slug} scroll={false}>
-            <a className={styles.jobTitle}>{job.title}</a>
-        </Link>
-        <p className={styles.jobDescription}>{job.description}</p>
-        <div className={styles.jobMetadataItems}>
-            <div className={styles.jobMetadata}>
-                <LocationIcon
-                    width={22}
-                    height={23}
-                    className={styles.jobMetadataIcon}
-                />{' '}
-                {job.department}
+    <Link href={'/jobs/' + job.slug}>
+        <a className={styles.jobCard}>
+            <p className={styles.jobTitle}>{job.title}</p>
+            <p className={styles.jobDescription}>{job.description}</p>
+            <div className={styles.jobMetadataItems}>
+                <div className={styles.jobMetadata}>
+                    <LocationIcon
+                        width={22}
+                        height={23}
+                        className={styles.jobMetadataIcon}
+                    />{' '}
+                    {job.department}
+                </div>
+                <div className={styles.jobMetadata}>
+                    <LocationIcon
+                        width={22}
+                        height={23}
+                        className={styles.jobMetadataIcon}
+                    />{' '}
+                    <div>{job.city}</div>
+                </div>
             </div>
-            <div className={styles.jobMetadata}>
-                <LocationIcon
-                    width={22}
-                    height={23}
-                    className={styles.jobMetadataIcon}
-                />{' '}
-                <div>{job.city}</div>
-            </div>
-        </div>
-    </>
+        </a>
+    </Link>
 );
 
 type JobCTAProps = {
@@ -105,17 +106,17 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
         <JobEntry job={job} key={index} />
     ));
 
+    const resetFilter = () => {
+        setLocation(LOCATIONS);
+        setDepartment(DEPARTMENTS);
+    };
+
     const resetFilterKeyDownHandler = (
-        event: React.KeyboardEvent<HTMLParagraphElement>,
+        event: React.KeyboardEvent<HTMLButtonElement>,
     ) => {
         if (!['Tab', 'Shift', 'ArrowDown', 'ArrowUp'].includes(event.key)) {
             resetFilter();
         }
-    };
-
-    const resetFilter = () => {
-        setLocation(LOCATIONS);
-        setDepartment(DEPARTMENTS);
     };
 
     const handleLocationChange = (event: React.FormEvent) => {
@@ -129,7 +130,13 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
     };
 
     return (
-        <Layout theme="LIGHT" preview={preview} jobsAvailable={8}>
+        <Layout theme="LIGHT" preview={preview} jobsAvailable={jobs.length}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="jobs"
+                image={content.metadataSocialMediaImage}
+            />
             <div className={styles.pageContainer}>
                 <div className={styles.contentContainer}>
                     <Title
@@ -169,7 +176,7 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
                                             No jobs found for these filter
                                             options.
                                         </p>
-                                        <p
+                                        <button
                                             className={styles.filterReset}
                                             onClick={resetFilter}
                                             onKeyDown={
@@ -178,7 +185,7 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
                                             tabIndex={0}
                                         >
                                             Click here to reset the filter.
-                                        </p>
+                                        </button>
                                     </div>
                                 )}{' '}
                             </>

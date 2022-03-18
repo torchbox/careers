@@ -61,17 +61,11 @@
 }
 
 .image {
-    transform: rotate(-20deg);
-    order: 2;
-    margin-right: auto;
-    margin-left: $grid * 2;
-
-    @include media-query(medium) {
-        margin-left: $grid * 3;
-    }
+    display: none;
 
     @include media-query(large) {
         order: 1;
+        display: block;
         margin: auto $grid * 2 0 auto;
         transform: rotate(0deg);
     }

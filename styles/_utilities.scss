@@ -1,10 +1,14 @@
 .underline-link {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--color--white);
     font-weight: $weight--extrabold;
     border-bottom: 0;
     overflow: visible;
     position: relative;
+
+    @include media-query(medium) {
+        font-size: 22px;
+    }
 
     &--white {
         color: var(--color--white);

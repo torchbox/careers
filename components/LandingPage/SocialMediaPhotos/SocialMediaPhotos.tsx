@@ -1,6 +1,6 @@
-import { Image } from '../../Image/Image';
-import styles from './SocialMediaPhotos.module.scss';
 import { ImageTypes } from 'types/Base';
+import { Image } from 'components/Image/Image';
+import styles from './SocialMediaPhotos.module.scss';
 
 type SocialMediaPhotosProps = {
     photos: ImageTypes[];

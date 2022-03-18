@@ -1,6 +1,6 @@
 import { ImageTypes } from 'types/Base';
+import Image from 'components/Image';
 import styles from './ClientLogos.module.scss';
-import Image from '../Image';
 
 type ClientLogosProps = {
     logos: ImageTypes[];

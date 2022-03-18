@@ -1,7 +1,5 @@
 import type { NextPage } from 'next';
 import type { LandingPage } from 'types/pages/LandingPage';
-import { getNumberOfActiveRoles } from './api/_peopleHR';
-import { getLandingPage } from 'lib/api';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
@@ -13,6 +11,9 @@ import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
 import CTA from 'components/LandingPage/CTA';
 import RichText from 'components/RichText';
 import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
+import Metadata from 'components/Metadata';
+import { getLandingPage } from 'lib/api';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 type LandingPageProps = {
     preview: boolean;
@@ -46,6 +47,12 @@ const LandingPage: NextPage<LandingPageProps> = ({
             preview={preview}
             jobsAvailable={jobsAvailable}
         >
+            <Metadata
+                title={landingPageContent.metadataTitle}
+                description={landingPageContent.metadataDescription}
+                slug=""
+                image={landingPageContent.metadataSocialMediaImage}
+            />
             <Hero image={landingPageContent.heroImage}>
                 <RichText
                     theme="INDIGO"
@@ -72,7 +79,10 @@ const LandingPage: NextPage<LandingPageProps> = ({
             </ComeWorkForYou>
             <div id="benefits">
                 <Benefits
-                    title="Real benefits in touch with real life"
+                    title={
+                        landingPageContent.itemsCollection.items[0]
+                            .benefitsTitle
+                    }
                     benefits={benefits}
                 />
             </div>

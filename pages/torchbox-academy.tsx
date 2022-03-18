@@ -1,13 +1,15 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout';
-import { getTorchboxAcademyPage } from '../lib/api';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
+import { getTorchboxAcademyPage } from 'lib/api';
+import Layout from 'components/Layout';
 import ReasonsToJoin from 'components/TorchboxAcademy/ReasonsToJoin';
 import RichText from 'components/RichText';
 import GraduateCarousel from 'components/TorchboxAcademy/GraduateCarousel';
 import Academies from 'components/TorchboxAcademy/Academies';
+import Metadata from 'components/Metadata';
 import ApplicationDeadline from 'components/TorchboxAcademy/ApplicationDeadline';
 import type { AcademyTypes, TestimonialTypes } from 'types/Base';
+import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 type AcademyItemCollection = {
     __typename: string;
@@ -21,11 +23,13 @@ type TestimonialItemCollection = {
 
 type TorchboxAcademyPageProps = {
     preview: boolean;
+    jobsAvailable: number;
     content: TorchboxAcademy;
 };
 
 const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     preview,
+    jobsAvailable,
     content,
 }) => {
     const graduateTestimonialCollection = content.itemsCollection.items.find(
@@ -40,12 +44,18 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
         (obj: AcademyItemCollection) => obj.__typename === 'Academies',
     );
 
-    let academies = undefined;
+    let academies;
     if (academyCollectionItem)
         academies = academyCollectionItem.academiesCollection.items;
 
     return (
-        <Layout theme="INDIGO" preview={preview} jobsAvailable={8}>
+        <Layout theme="INDIGO" preview={preview} jobsAvailable={jobsAvailable}>
+            <Metadata
+                title={content.metadataTitle}
+                description={content.metadataDescription}
+                slug="torchbox-academy"
+                image={content.metadataSocialMediaImage}
+            />
             <h1>Torchbox Academy</h1>
 
             {academies && <Academies academies={academies} />}
@@ -85,8 +95,10 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
 export default TorchboxAcademyPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = (await getTorchboxAcademyPage(preview)) ?? [];
+    const content = await getTorchboxAcademyPage(preview);
+    const jobsAvailable = await getNumberOfActiveRoles();
+
     return {
-        props: { preview, content },
+        props: { preview, jobsAvailable, content },
     };
 }

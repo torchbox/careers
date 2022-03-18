@@ -33,7 +33,9 @@
 }
 
 .h2 {
-    line-height: 36px;
+    @include font-size(l);
+    font-weight: $weight--extrabold;
+    line-height: 1;
     margin-bottom: 30px;
 }
 

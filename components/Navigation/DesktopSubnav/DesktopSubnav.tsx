@@ -15,7 +15,7 @@ export const DesktopSubnav = ({
     toggleMenu,
 }: DesktopSubnavProps) => {
     // Use a ref as we don't need to rerender the component on tab navigation
-    const keysPressedRef = useRef(new Array());
+    const keysPressedRef = useRef<Array<string>>([]);
 
     const handleFirstItemKeyDown = (
         event: React.KeyboardEvent<HTMLAnchorElement>,
@@ -60,7 +60,7 @@ export const DesktopSubnav = ({
 
     const navItems = links.map((link, index) => {
         const careerNavItemClass =
-            link.title === 'Careers' && jobsAvailable > 0
+            link.title === 'Jobs' && jobsAvailable > 0
                 ? styles.subnavItemWithBadge
                 : '';
 
@@ -97,7 +97,7 @@ export const DesktopSubnav = ({
                                 {link.title}
                             </a>
                         </Link>
-                        {link.title === 'Careers' && jobsAvailable > 0 && (
+                        {link.title === 'Jobs' && jobsAvailable > 0 && (
                             <Link href="/jobs/" scroll={false}>
                                 <a
                                     onKeyUp={handleKeyUp}

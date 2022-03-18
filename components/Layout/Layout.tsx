@@ -1,7 +1,7 @@
-import Alert from '../Alert';
-import Footer from '../Footer';
-import Header from '../Header';
-import { Theme } from '../../types/Base';
+import { Theme } from 'types/Base';
+import Alert from 'components/Alert';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 import styles from './Layout.module.scss';
 import { useEffect } from 'react';
 

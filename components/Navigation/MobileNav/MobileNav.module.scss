@@ -275,5 +275,9 @@
         left: 50%;
         top: 3px;
         transition: background-color $transition-quick;
+
+        :global .themeDark :local & {
+            background-color: var(--color--lagoon);
+        }
     }
 }
