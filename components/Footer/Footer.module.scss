@@ -164,7 +164,7 @@
     flex-direction: column;
     align-items: center;
 
-    @include media-query(large) {
+    @include media-query(menu-break) {
         flex-direction: row;
         padding: $grid * 2 0 $grid $grid * 4;
     }
@@ -172,22 +172,47 @@
 
 .appendix {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
     order: 2;
 
-    @include media-query(large) {
+    @include media-query(large){
+        margin-left: $grid * 3.5;
+    }
+
+    @include media-query(menu-break) {
+        flex-direction: row;
         order: 1;
         width: 50%;
+        margin-left: 0;
     }
 
     &CopyrightNotice {
         color: var(--color--grey);
         @include font-size(xxs);
-        margin: 0;
+        margin: $grid 0 0 $grid;
+
+        @include media-query(menu-break) {
+            margin: 6px $grid 0 0;
+            align-self: center;
+        }
+    }
+
+    &Links {
+        flex-direction: row;
+        align-items: center;
+
+        @include media-query(large){
+            margin-bottom: $grid * 2;
+        }
+
+        @include media-query(menu-break){
+            margin-bottom: 0;
+        }
     }
 
     &Link {
-        display: block;
+        display: inline-block;
         margin-left: $grid;
         color: var(--color--dark-indigo);
         @include font-size(xxs);
@@ -203,7 +228,7 @@
     margin-left: 0;
     list-style: none;
 
-    @include media-query(large) {
+    @include media-query(menu-break) {
         order: 2;
         margin-bottom: 0;
         width: 50%;
