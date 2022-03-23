@@ -1,3 +1,3 @@
-import { SchemaGenerator } from './SchemaGenerator';
+import { JobPostingSchemaGenerator } from './JobPostingSchemaGenerator';
 
-export default SchemaGenerator;
+export default JobPostingSchemaGenerator;

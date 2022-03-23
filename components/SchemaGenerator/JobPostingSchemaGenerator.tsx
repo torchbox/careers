@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { JobPost } from 'lib/peopleHR';
 
-export const SchemaGenerator = ({ job }: { job: JobPost }) => {
+export const JobPostingSchemaGenerator = ({ job }: { job: JobPost }) => {
     let splittingString = ' - ';
 
     if (job.salaryRange.includes(' to ')) {
