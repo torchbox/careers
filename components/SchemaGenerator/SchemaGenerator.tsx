@@ -3,29 +3,39 @@ import type { JobPost } from 'lib/peopleHR';
 
 export const SchemaGenerator = ({ job }: { job: JobPost }) => {
     let splittingString = ' - ';
+
     if (job.salaryRange.includes(' to ')) {
         splittingString = ' to ';
     }
 
     const minSalary = job.salaryRange.split(splittingString)[0];
     const maxSalary = job.salaryRange.split(splittingString)[1];
+
     const datePosted = new Date().toISOString();
+
+    let estimatedSalary = '';
+    // Only include an estimated salary if we can guarantee the correct currency type
+    if (!!maxSalary && job.salaryRange.includes('£')) {
+        // remove special characters from min and maxValue
+        estimatedSalary = `"estimatedSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "GBP",
+            "value": {
+                "@type": "QuantitativeValue",
+                "minValue": "${minSalary.replace(/[^\d.]/g, '')}",
+                "maxValue": "${maxSalary.replace(/[^\d.]/g, '')}",
+                "unitText": "YEAR"
+            }
+        },`;
+    }
 
     const schema = `
     {
         "@context": "http://schema.org",
         "@type": "JobPosting",
-        "estimatedSalary": {
-            "@type": "MonetaryAmount",
-            "currency": "GBP",
-            "value": {
-                "@type": "QuantitativeValue",
-                "minValue": "${minSalary}",
-                "maxValue": "${maxSalary}",
-                "unitText": "YEAR"
-            }
-        },
+        ${estimatedSalary && estimatedSalary}
         "datePosted": "${datePosted}",
+        ${job.department && '"employmentUnit":"' + job.department + '",'}
         "description": "${job.vacancyDescription}",
         "title": "${job.title}",
         "employmentType": "FULL_TIME",
