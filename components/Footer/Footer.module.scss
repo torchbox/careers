@@ -3,9 +3,17 @@
 }
 
 .container {
-    padding: $grid;
+    padding: $grid * 2.5 $grid * 1.5 $grid * 1.5 $grid * 1.5;
     max-width: $site-width;
     margin: 0 auto;
+
+    @include media-query(medium) {
+        padding: $grid * 3 $grid * 2 $grid * 2 $grid * 2;
+    }
+
+    @include media-query(large) {
+        padding: $grid * 3 $grid * 2 $grid * 1 $grid * 1;
+    }
 }
 
 .primaryContent {
@@ -271,15 +279,6 @@
 
     &Icon:hover path {
         fill: var(--color--coral-dark);
-    }
-}
-
-.emptyEmailBanner {
-    background-color: var(--color--dark-indigo);
-    height: 60px;
-
-    @include media-query(medium) {
-        height: 80px;
     }
 }
 
