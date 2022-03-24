@@ -78,14 +78,28 @@
         line-height: 19px;
         color: var(--color--grey);
         margin-bottom: $grid * 1.5;
+
+        @include media-query(medium) {
+            padding-right: $grid;
+        }
+
+        @include media-query(large) {
+            padding: 0;
+        }
     }
 
     &List {
         display: grid;
         grid-template-columns: 1fr;
+        margin-left: 0;
+        margin-bottom: $grid;
 
         @include media-query(medium) {
             grid-template-columns: 1fr 1fr;
+        }
+
+        @include media-query(menu-break) {
+            margin-bottom: 0;
         }
     }
 }
@@ -99,7 +113,8 @@
     }
 
     @include media-query(menu-break) {
-        padding: $grid * 2 0px 0px $grid * 3.5;
+        width: 65%;
+        padding: $grid * 2 0px 0px $grid * 3;
     }
 
     &Title {
