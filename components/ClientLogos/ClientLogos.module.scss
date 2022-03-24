@@ -20,7 +20,7 @@
         padding: $grid * 2 $grid * 4 $grid * 4 $grid * 4;
     }
 
-    @include media-query(menu-break){
+    @include media-query(menu-break) {
         gap: $grid * 2;
     }
 }
@@ -29,16 +29,16 @@
     max-width: 131px;
     width: 100%;
 
-    &:nth-child(odd){
+    &:nth-child(odd) {
         justify-self: right;
     }
 
-    &:nth-child(even){
+    &:nth-child(even) {
         justify-self: left;
     }
 
-    @include media-query(medium){
-        &:nth-child(n){
+    @include media-query(medium) {
+        &:nth-child(n) {
             justify-self: unset;
         }
     }
