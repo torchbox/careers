@@ -12,7 +12,7 @@ import { ApplyButton } from 'components/Button';
 import { getNumberOfActiveRoles } from 'pages/api/_peopleHR';
 import Metadata from 'components/Metadata';
 import JobListingHero from 'components/JobListingHero';
-import styles from './Job.module.scss';
+import styles from '../../styles/pages/Job.module.scss';
 
 type JobPageProps = {
     preview: boolean;
@@ -29,15 +29,21 @@ const JobPosting: NextPage<JobPageProps> = ({
     content,
     jobSlug,
 }) => {
-    const benefits =
-        content.itemsCollection.items[0].benefitsListCollection.items.map(
-            (item: any) => item.benefitName,
-        );
+    const benefitCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Benefits',
+    );
 
-    const clientLogos =
-        content.itemsCollection.items[1].clientsCollection.items.map(
-            (item: any) => item.clientLogo,
-        );
+    const clientLogoCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Clients',
+    );
+
+    const benefits = benefitCollection.benefitsListCollection.items.map(
+        (item: any) => item.benefitName,
+    );
+
+    const clientLogos = clientLogoCollection.clientsCollection.items.map(
+        (item: any) => item.clientLogo,
+    );
 
     const jobURL = 'https://torchbox.com/careers/jobs/' + jobSlug;
 

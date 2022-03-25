@@ -26,18 +26,33 @@ const LandingPage: NextPage<LandingPageProps> = ({
     jobsAvailable,
     landingPageContent,
 }) => {
-    const clientLogos =
-        landingPageContent.itemsCollection.items[2].clientsCollection.items.map(
-            (item: any) => item.clientLogo,
+    const benefitCollection = landingPageContent.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Benefits',
+    );
+
+    const clientLogoCollection = landingPageContent.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Clients',
+    );
+
+    const socialImagesCollection =
+        landingPageContent.itemsCollection.items.find(
+            (obj: any) => obj.__typename === 'ProfileImages',
         );
 
-    const benefits =
-        landingPageContent.itemsCollection.items[0].benefitsListCollection.items.map(
-            (item: any) => item.benefitName,
-        );
+    const blogPostsCollection = landingPageContent.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'MusingsFromTheTeam',
+    );
+
+    const benefits = benefitCollection.benefitsListCollection.items.map(
+        (item: any) => item.benefitName,
+    );
+
+    const clientLogos = clientLogoCollection.clientsCollection.items.map(
+        (item: any) => item.clientLogo,
+    );
 
     const socialMediaProfilePhotos =
-        landingPageContent.itemsCollection.items[1].imagesCollection.items.map(
+        socialImagesCollection.imagesCollection.items.map(
             (item: any) => item.image,
         );
 
@@ -79,10 +94,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
             </ComeWorkForYou>
             <div id="benefits">
                 <Benefits
-                    title={
-                        landingPageContent.itemsCollection.items[0]
-                            .benefitsTitle
-                    }
+                    title={benefitCollection.benefitsTitle}
                     benefits={benefits}
                 />
             </div>
@@ -105,10 +117,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
             </CTA>
 
             <MusingsFromTheTeam
-                postData={
-                    landingPageContent.itemsCollection.items[3]
-                        .blogPostsCollection.items
-                }
+                postData={blogPostsCollection.blogPostsCollection.items}
             />
         </Layout>
     );

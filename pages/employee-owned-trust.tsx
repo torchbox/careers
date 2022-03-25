@@ -7,7 +7,7 @@ import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
 import { getEmployeeOwnedTrustPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
-import styles from './EmployeeOwnedTrust.module.scss';
+import styles from '../styles/pages/EmployeeOwnedTrust.module.scss';
 
 const Title = () => (
     <h1 className={styles.title}>
@@ -27,10 +27,17 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
     jobsAvailable,
     content,
 }) => {
-    const benefits =
-        content.itemsCollection.items[0].benefitsListCollection.items.map(
-            (item: any) => item.benefitName,
-        );
+    const benefitCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'Benefits',
+    );
+
+    const benefits = benefitCollection.benefitsListCollection.items.map(
+        (item: any) => item.benefitName,
+    );
+
+    const voiceOfChangeCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'VoiceOfChange',
+    );
 
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
@@ -48,23 +55,15 @@ const EmployeeOwnedTrustPage: NextPage<EmployeeOwnedTrustPageProps> = ({
             </div>
 
             <Benefits
-                title="Real benefits in touch with real life"
+                title={benefitCollection.benefitsTitle}
                 benefits={benefits}
             />
 
-            <VoiceOfChange title="Be the voice of change">
-                <p>
-                    Our work has a shared purpose, but we wanted a way to share
-                    our opinions, commit to initiatives that matter to us, and
-                    work towards common goals across all aspects of Torchbox.
-                </p>
-                <p>
-                    Our Voice Groups help shape our future priorities and
-                    actions – from climate action to wellbeing and diversity –
-                    each group has the authority to decide on new actions and
-                    priorities and has access to a fund that they can decide on
-                    how to use. Check out what we’ve achieved so far.
-                </p>
+            <VoiceOfChange title={voiceOfChangeCollection.title}>
+                <RichText
+                    theme={'LIGHT'}
+                    content={voiceOfChangeCollection.content}
+                />
             </VoiceOfChange>
         </Layout>
     );

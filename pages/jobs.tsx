@@ -13,7 +13,7 @@ import { LocationIcon } from 'components/Icons/LocationIcon';
 import Select from 'components/Select';
 import Metadata from 'components/Metadata';
 import type { JobSummary } from '../lib/peopleHR';
-import styles from './Jobs.module.scss';
+import styles from '../styles/pages/Jobs.module.scss';
 
 type JobEntryProps = {
     job: JobSummary;
@@ -144,7 +144,12 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
                         secondLine={content.secondTitleLine}
                     />
                     <div className={styles.textContainer}>
-                        <RichText theme="INDIGO" content={content.subtitle} />
+                        {content.subtitle && (
+                            <RichText
+                                theme="INDIGO"
+                                content={content.subtitle}
+                            />
+                        )}
 
                         {jobsAvailable ? (
                             <>
