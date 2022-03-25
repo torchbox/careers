@@ -11,20 +11,20 @@ type SocialMediaPhotosProps = {
 
 export const SocialMediaPhotos = ({ photos }: SocialMediaPhotosProps) => {
     const SocialMediaPhotos = photos.slice(0, 8).map((photo, index) => (
-        <a
-            href={photo.instagramLink}
-            key={`social-media-image-${index}`}
-            target="_blank"
-            rel="noreferrer"
-        >
-            <li className={styles.image}>
+        <li className={styles.image} key={`social-media-image-${index}`}>
+            <a
+                href={photo.instagramLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Go to this photo on Instagram"
+            >
                 <Image
                     layout="fill"
                     src={photo.image.url}
                     alt={photo.image.description}
                 />
-            </li>
-        </a>
+            </a>
+        </li>
     ));
 
     return <ul className={styles.container}>{SocialMediaPhotos}</ul>;
