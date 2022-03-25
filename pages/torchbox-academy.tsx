@@ -27,14 +27,9 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                 image={content.metadataSocialMediaImage}
             />
 
-            <Hero image={content.heroImage}>
+            <Hero image={content.heroImage} subtitle={content.heroSubtitle}>
                 <RichText theme="INDIGO" content={content.heroDescription} />
             </Hero>
-            <h1>Torchbox Academy</h1>
-            <p>
-                <strong>{content.heroSubtitle}</strong>
-            </p>
-            <RichText theme="INDIGO" content={content.heroDescription} />
         </Layout>
     );
 };

@@ -1,14 +1,14 @@
 import Image from 'components/Image';
-import { ArrowLoopRight } from 'components/Icons/ArrowLoopRight';
 import { ImageTypes } from '../../../types/Base';
 import styles from './Hero.module.scss';
 
 type HeroProps = {
     image: ImageTypes;
+    subtitle: string;
     children: React.ReactNode;
 };
 
-export const Hero = ({ image, children }: HeroProps) => {
+export const Hero = ({ image, subtitle, children }: HeroProps) => {
     return (
         <>
             <svg className={styles.svg}>
@@ -26,8 +26,8 @@ export const Hero = ({ image, children }: HeroProps) => {
                         id="squareShardClipPath"
                         clipPathUnits="objectBoundingBox"
                     >
-                        <path d="M 0.801 0.421 L 0.567 0.768 L 0.759 0.894 L 0.985 0.551 Z " />
-                        <path d="M 0.462 0.007 L 0.81 0.241 L 0.375 0.865 L 0.023 0.63 Z" />
+                        <path d="M 0.841 0.421 L 0.64 0.72 L 0.81 0.828 L 1 0.531 Z " />
+                        <path d="M 0.452 0 L 0.87 0.28 L 0.44 0.925 L 0.023 0.63 Z" />
                     </clipPath>
                 </defs>
             </svg>
@@ -43,25 +43,8 @@ export const Hero = ({ image, children }: HeroProps) => {
                         <br />
                         <span className={styles.titleAccent}>Academy</span>
                     </h1>
-                    <div className={styles.subtitle}>{children}</div>
-                    <ul className={styles.navigation}>
-                        <li className={styles.navItem}>
-                            <a className={styles.navLink} href="#academies">
-                                Academies
-                            </a>
-                        </li>
-                        <li className={styles.navItem}>
-                            <a className={styles.navLink} href="#reasons">
-                                Reasons to join
-                            </a>
-                        </li>
-                        <li className={styles.navItem}>
-                            <a className={styles.navLink} href="#graduates">
-                                Meet the graduates
-                            </a>
-                        </li>
-                    </ul>
-                    <ArrowLoopRight className={styles.arrow} />
+                    <p className={styles.subtitle}>{subtitle}</p>
+                    <div className={styles.description}>{children}</div>
                 </div>
             </div>
         </>
