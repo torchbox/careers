@@ -1,0 +1,49 @@
+.container {
+    max-width: $site-width;
+    margin: 0 auto;
+}
+
+.textContainer {
+    margin: 0 auto $grid * 3 auto;
+    max-width: $content--narrow;
+    padding: 0 $grid;
+
+    @include media-query(medium) {
+        margin: 0 auto $grid * 4 auto;
+    }
+
+    @include media-query(large) {
+        padding: 0;
+    }
+}
+
+.mainContentContainer {
+    margin: 0 auto $grid * 3 auto;
+    max-width: $content--narrow + 29px;
+    padding: 0 $grid * 1.5;
+
+    @include media-query(medium) {
+        padding: 0 $grid * 2;
+    }
+
+    @include media-query(large) {
+        margin: 0 auto $grid * 4 18%;
+        padding: 0;
+    }
+}
+
+.secondaryTitle {
+    @include font-size(xxxl);
+    font-weight: $weight--extrabold;
+    line-height: 1;
+    margin-bottom: 35px;
+    max-width: 350px;
+
+    @include media-query(medium) {
+        max-width: 500px;
+    }
+
+    @include media-query(large) {
+        max-width: unset;
+    }
+}
