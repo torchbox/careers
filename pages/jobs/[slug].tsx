@@ -12,6 +12,7 @@ import { ApplyButton } from 'components/Button';
 import { getNumberOfActiveRoles } from 'pages/api/_peopleHR';
 import Metadata from 'components/Metadata';
 import JobListingHero from 'components/JobListingHero';
+import JobPostingSchemaGenerator from 'components/SchemaGenerator';
 import styles from '../../styles/pages/Job.module.scss';
 
 type JobPageProps = {
@@ -55,6 +56,7 @@ const JobPosting: NextPage<JobPageProps> = ({
                 slug={`jobs/${job.slug}`}
                 image={content.metadataSocialMediaImage}
             />
+            <JobPostingSchemaGenerator job={job} />
             <div className={styles.pageContainer}>
                 <JobListingHero
                     title={job.title}
