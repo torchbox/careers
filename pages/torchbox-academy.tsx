@@ -4,6 +4,7 @@ import { getTorchboxAcademyPage } from 'lib/api';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
+import Introduction from 'components/TorchboxAcademy/Introduction';
 import styles from 'styles/pages/TorchboxAcademy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
@@ -27,10 +28,12 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                 image={content.metadataSocialMediaImage}
             />
             <h1>Torchbox Academy</h1>
-            <p>
-                <strong>{content.heroSubtitle}</strong>
-            </p>
-            <RichText theme="INDIGO" content={content.heroDescription} />
+
+            <Introduction
+                title={content.introductionTitle}
+                content={content.introductionContent}
+                image={content.introductionPhoto}
+            />
 
             <div className={styles.container}>
                 <div className={styles.mainContentContainer}>
