@@ -1,11 +1,11 @@
 .container {
-    max-width: 1440px;
+    max-width: $site-width;
     margin: 0 auto;
 }
 
 .textContainer {
     margin: 0 auto $grid * 3 auto;
-    max-width: 755px;
+    max-width: $content--narrow;
     padding: 0 $grid;
 
     @include media-query(medium) {
@@ -19,7 +19,7 @@
 
 .mainContentContainer {
     margin: 0 auto $grid * 3 auto;
-    max-width: 784px;
+    max-width: $content--narrow + 29px;
     padding: 0 $grid * 1.5;
 
     @include media-query(medium) {
