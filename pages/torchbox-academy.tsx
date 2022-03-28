@@ -4,6 +4,8 @@ import { getTorchboxAcademyPage } from 'lib/api';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
+import { CharacterType } from 'types/Base';
+import AcademyDayCards from 'components/TorchboxAcademy/AcademyDayCards';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 type TorchboxAcademyPageProps = {
@@ -17,6 +19,18 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     jobsAvailable,
     content,
 }) => {
+    const academyDays = content.academyDaysCollection.items.map(
+        (card, index) => {
+            return {
+                title: card.title,
+                content: card.description,
+                link: card.applicationLink,
+                character: (index === 0
+                    ? 'MICROPHONE'
+                    : 'COFFEE') as CharacterType,
+            };
+        },
+    );
     return (
         <Layout theme="INDIGO" preview={preview} jobsAvailable={jobsAvailable}>
             <Metadata
@@ -30,6 +44,7 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                 <strong>{content.heroSubtitle}</strong>
             </p>
             <RichText theme="INDIGO" content={content.heroDescription} />
+            <AcademyDayCards academyDays={academyDays} />
         </Layout>
     );
 };

@@ -20,7 +20,7 @@ export type TorchboxAcademy = {
             title: string;
             description: { json: Document };
             applicationLink: string;
-        };
+        }[];
     };
     inclusiveSectionTitle: string;
     inclusiveSectionContent: { json: Document };
