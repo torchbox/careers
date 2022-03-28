@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ChevronIcon } from 'components/Icons/ChevronIcon';
 import styles from './Button.module.scss';
 
-type ButtonTheme = 'INDIGO' | 'CORAL';
+type ButtonTheme = 'INDIGO' | 'CORAL' | 'WHITE';
 
 type ButtonProps = {
     className?: string;
@@ -21,8 +21,18 @@ export const Button = ({
     theme = 'INDIGO',
     children,
 }: ButtonProps) => {
-    const backgroundClass =
-        theme === 'INDIGO' ? styles.radialBackground : styles.coralBackground;
+    let backgroundClass;
+
+    switch (theme) {
+        case 'INDIGO':
+            backgroundClass = styles.radialBackground;
+            break;
+        case 'CORAL':
+            backgroundClass = styles.coralBackground;
+            break;
+        case 'WHITE':
+            backgroundClass = styles.whiteBackground;
+    }
 
     return (
         <>
