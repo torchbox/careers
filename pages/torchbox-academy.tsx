@@ -4,6 +4,7 @@ import { getTorchboxAcademyPage } from 'lib/api';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
+import OpenToAll from 'components/TorchboxAcademy/OpenToAll';
 import styles from 'styles/pages/TorchboxAcademy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
@@ -43,6 +44,12 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                     />
                 </div>
             </div>
+
+            <OpenToAll
+                title={content.inclusiveSectionTitle}
+                content={content.inclusiveSectionContent}
+                image={content.inclusiveSectionPhoto}
+            />
         </Layout>
     );
 };
