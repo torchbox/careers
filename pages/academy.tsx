@@ -1,22 +1,22 @@
 import type { NextPage } from 'next';
-import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
-import { getTorchboxAcademyPage } from 'lib/api';
-import Hero from 'components/TorchboxAcademy/Hero';
-import TypicalDay from 'components/TorchboxAcademy/TypicalDay';
+import { Academy } from 'types/pages/Academy';
+import { getAcademyPage } from 'lib/api';
+import Hero from 'components/Academy/Hero';
+import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
 import Quote from 'components/Quote';
-import styles from 'styles/pages/TorchboxAcademy.module.scss';
+import styles from 'styles/pages/Academy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
-type TorchboxAcademyPageProps = {
+type AcademyPageProps = {
     preview: boolean;
     jobsAvailable: number;
-    content: TorchboxAcademy;
+    content: Academy;
 };
 
-const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
+const AcademyPage: NextPage<AcademyPageProps> = ({
     preview,
     jobsAvailable,
     content,
@@ -65,10 +65,10 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     );
 };
 
-export default TorchboxAcademyPage;
+export default AcademyPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = await getTorchboxAcademyPage(preview);
+    const content = await getAcademyPage(preview);
     const jobsAvailable = await getNumberOfActiveRoles();
 
     return {
