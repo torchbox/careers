@@ -1,0 +1,131 @@
+.heroContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include media-query(menu-break) {
+        flex-direction: row;
+    }
+}
+
+.textContainer {
+    max-width: 890px;
+    text-align: left;
+    padding-top: 22px;
+    order: 2;
+    padding: 0 $grid * 2;
+
+    @include media-query(large) {
+        padding-left: $grid * 2;
+    }
+
+    @include media-query(menu-break) {
+        order: 1;
+        padding-left: 88px;
+        padding-top: 158px;
+        padding-right: 0;
+        max-width: 600px;
+    }
+}
+
+.title {
+    @include font-size(xxxxl);
+    line-height: 1;
+    font-weight: $weight--extrabold;
+    margin-bottom: 23px;
+}
+
+.subtitle {
+    @include font-size(m);
+    color: var(--color--dark-indigo);
+    font-weight: $weight--bold;
+    line-height: 1.5;
+    margin: 0;
+    padding-bottom: $grid * 1.5;
+}
+
+.titleAccent {
+    color: var(--color--coral);
+}
+
+.image {
+    // Prevent image showing in front of menu dropdown
+    @include z-index(under);
+    clip-path: url(#shardClipPath);
+    width: 375px;
+    height: 375px;
+    margin-left: auto;
+    margin-top: -$grid;
+    margin-bottom: $grid;
+    order: 1;
+
+    @include media-query(medium) {
+        width: 625px;
+        height: 625px;
+        margin-bottom: -$grid;
+        margin-top: -$grid * 2;
+    }
+
+    @include media-query(large) {
+        order: 2;
+        width: 675px;
+        height: 675px;
+        margin-bottom: -$grid * 8;
+        margin-top: 0;
+    }
+
+    @include media-query(hero-break) {
+        width: 800px;
+        height: 800px;
+    }
+
+    @include media-query(site-width) {
+        clip-path: url(#squareShardClipPath);
+    }
+
+    & > span {
+        width: 375px !important;
+        height: 375px !important;
+
+        @include media-query(medium) {
+            width: 625px !important;
+            height: 625px !important;
+        }
+
+        @include media-query(large) {
+            width: 675px !important;
+            height: 675px !important;
+        }
+
+        @include media-query(hero-break) {
+            width: 800px !important;
+            height: 800px !important;
+        }
+
+        & > img {
+            width: 375px !important;
+            height: 375px !important;
+            object-fit: cover !important;
+
+            @include media-query(medium) {
+                width: 625px !important;
+                height: 625px !important;
+            }
+
+            @include media-query(large) {
+                width: 675px !important;
+                height: 675px !important;
+            }
+
+            @include media-query(hero-break) {
+                width: 800px !important;
+                height: 800px !important;
+            }
+        }
+    }
+}
+
+.svg {
+    @include hidden();
+}

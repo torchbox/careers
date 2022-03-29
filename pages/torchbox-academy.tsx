@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
 import { getTorchboxAcademyPage } from 'lib/api';
+import Hero from 'components/TorchboxAcademy/Hero';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
@@ -27,7 +28,10 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                 slug="torchbox-academy"
                 image={content.metadataSocialMediaImage}
             />
-            <h1>Torchbox Academy</h1>
+
+            <Hero image={content.heroImage} subtitle={content.heroSubtitle}>
+                <RichText theme="INDIGO" content={content.heroDescription} />
+            </Hero>
 
             <div className={styles.container}>
                 <div className={styles.textContainer}>
