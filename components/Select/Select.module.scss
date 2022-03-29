@@ -13,7 +13,7 @@
     background-position-x: calc(100% - 20px);
 
     &:focus {
-        outline: 4px solid var(--color--coral);
-        border-color: var(--color--coral);
+        border: 2px solid var(--color--coral);
+        outline: none;
     }
 }

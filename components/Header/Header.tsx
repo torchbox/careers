@@ -20,6 +20,11 @@ const NAVIGATION_LINKS = [
     },
     { title: 'Jobs', url: '/jobs/', isCareersSiteInternalLink: true },
     {
+        title: 'Being at Torchbox',
+        url: '/careers/',
+        isCareersSiteInternalLink: true,
+    },
+    {
         title: 'Life at Torchbox',
         url: '/life-at-torchbox/',
         isCareersSiteInternalLink: true,

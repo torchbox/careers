@@ -74,14 +74,14 @@
         text-align: left;
         font-weight: $weight--bold;
         color: var(--color--dark-indigo);
-        @include font-size(s);
+        @include font-size(xs);
 
         @include media-query(medium) {
             max-width: 80%;
         }
 
         @include media-query(large) {
-            max-width: 200px;
+            max-width: 240px;
         }
     }
 }

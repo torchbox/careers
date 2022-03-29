@@ -77,16 +77,11 @@
 .buttonNavigation {
     display: flex;
     position: relative;
-    height: 70px;
+    height: 80px;
     left: 50%;
-    bottom: -20px;
+    bottom: -25px;
     width: max-content;
     transform: translateX(-50%);
-
-    @include media-query(medium) {
-        left: 0;
-        transform: unset;
-    }
 }
 
 .leftButton {

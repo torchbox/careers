@@ -1,20 +1,22 @@
 import type { NextPage } from 'next';
-import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
-import { getTorchboxAcademyPage } from 'lib/api';
+import { Academy } from 'types/pages/Academy';
+import { getAcademyPage } from 'lib/api';
+import Hero from 'components/Academy/Hero';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
-import OpenToAll from 'components/TorchboxAcademy/OpenToAll';
-import styles from 'styles/pages/TorchboxAcademy.module.scss';
+import OpenToAll from 'components/Academy/OpenToAll';
+import Quote from 'components/Quote';
+import styles from 'styles/pages/Academy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
-type TorchboxAcademyPageProps = {
+type AcademyPageProps = {
     preview: boolean;
     jobsAvailable: number;
-    content: TorchboxAcademy;
+    content: Academy;
 };
 
-const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
+const AcademyPage: NextPage<AcademyPageProps> = ({
     preview,
     jobsAvailable,
     content,
@@ -27,11 +29,16 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                 slug="torchbox-academy"
                 image={content.metadataSocialMediaImage}
             />
-            <h1>Torchbox Academy</h1>
-            <p>
-                <strong>{content.heroSubtitle}</strong>
-            </p>
-            <RichText theme="INDIGO" content={content.heroDescription} />
+
+            <Hero image={content.heroImage} subtitle={content.heroSubtitle}>
+                <RichText theme="INDIGO" content={content.heroDescription} />
+            </Hero>
+
+            <div className={styles.container}>
+                <div className={styles.textContainer}>
+                    <Quote name={content.quoteAuthor}>{content.quote}</Quote>
+                </div>
+            </div>
 
             <div className={styles.container}>
                 <div className={styles.mainContentContainer}>
@@ -54,10 +61,10 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
     );
 };
 
-export default TorchboxAcademyPage;
+export default AcademyPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = await getTorchboxAcademyPage(preview);
+    const content = await getAcademyPage(preview);
     const jobsAvailable = await getNumberOfActiveRoles();
 
     return {

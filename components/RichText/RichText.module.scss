@@ -52,10 +52,15 @@
 
 .hyperlink {
     color: var(--color--dark-indigo);
-    font-weight: $weight--extrabold;
+    font-weight: $weight--bold;
     position: relative;
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color--underline);
     text-underline-position: under;
+
+    &:hover {
+        border-bottom: 2px solid var(--color--lagoon);
+    }
 
     :global .themeLight :local & {
         color: var(--color--dark-indigo);
