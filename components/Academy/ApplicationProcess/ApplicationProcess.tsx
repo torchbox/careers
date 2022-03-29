@@ -3,11 +3,17 @@ import styles from './ApplicationProcess.module.scss';
 
 type ApplicationProcessProps = {
     title: string;
+    stepOne: string;
+    stepTwo: string;
+    stepThree: string;
     children: React.ReactNode;
 };
 
 export const ApplicationProcess = ({
     title,
+    stepOne,
+    stepTwo,
+    stepThree,
     children,
 }: ApplicationProcessProps) => (
     <div className={styles.container}>
@@ -21,18 +27,15 @@ export const ApplicationProcess = ({
         <ul className={styles.list}>
             <li className={styles.step}>
                 <span className={styles.stepNumber}>1</span>
-                <p className={styles.stepText}>Apply for a role above</p>
+                <p className={styles.stepText}>{stepOne}</p>
             </li>
             <li className={styles.step}>
                 <span className={styles.stepNumber}>2</span>
-                <p className={styles.stepText}>We&apos;ll then set up a call</p>
+                <p className={styles.stepText}>{stepTwo}</p>
             </li>
             <li className={styles.step}>
                 <span className={styles.stepNumber}>3</span>
-                <p className={styles.stepText}>
-                    If successful, we&apos;ll invite you to one of our Academy
-                    Days
-                </p>
+                <p className={styles.stepText}>{stepThree}</p>
             </li>
         </ul>
     </div>

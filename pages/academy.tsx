@@ -52,7 +52,12 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                 </div>
             </div>
 
-            <ApplicationProcess title={content.applicationProcessTitle}>
+            <ApplicationProcess
+                title={content.applicationProcessTitle}
+                stepOne={content.applicationProcessStepOne}
+                stepTwo={content.applicationProcessStepTwo}
+                stepThree={content.applicationProcessStepThree}
+            >
                 <RichText
                     theme="INDIGO"
                     content={content.applicationProcessDescription}
