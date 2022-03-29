@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
 import { getTorchboxAcademyPage } from 'lib/api';
 import Hero from 'components/TorchboxAcademy/Hero';
+import TypicalDay from 'components/TorchboxAcademy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
@@ -50,6 +51,16 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                     />
                 </div>
             </div>
+
+            <TypicalDay
+                title={content.typicalDayTitle}
+                firstHeading={content.typicalDayFirstHeading}
+                firstContent={content.typicalDayFirstContent}
+                secondHeading={content.typicalDaySecondHeading}
+                secondContent={content.typicalDaySecondContent}
+            />
+
+            <hr className={styles.longDivider} />
         </Layout>
     );
 };
