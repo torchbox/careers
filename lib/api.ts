@@ -119,6 +119,7 @@ export async function getLandingPage(preview: boolean) {
                                     height
                                   }
                                   description
+                                  instagramLink
                                 }
                               }
                             }

@@ -32,7 +32,7 @@
 .title {
     display: flex;
     flex-direction: column;
-    @include font-size(xxxxl);
+    @include font-size(xxxl);
     line-height: 1;
     color: var(--color--dark-indigo);
 }

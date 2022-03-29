@@ -1,6 +1,7 @@
 .container {
     display: grid;
-    gap: $grid;
+    column-gap: $grid * 3;
+    row-gap: $grid * 2;
     grid-template-columns: 1fr 1fr;
     padding: $grid 0;
     align-items: center;
@@ -9,6 +10,7 @@
     margin-left: 0;
 
     @include media-query(medium) {
+        gap: $grid * 1.5;
         grid-template-columns: repeat(4, 1fr);
         padding: $grid $grid * 2 $grid * 2 $grid * 2;
     }
@@ -17,9 +19,27 @@
         grid-template-columns: repeat(8, 1fr);
         padding: $grid * 2 $grid * 4 $grid * 4 $grid * 4;
     }
+
+    @include media-query(menu-break) {
+        gap: $grid * 2;
+    }
 }
 
 .logo {
     max-width: 131px;
     width: 100%;
+
+    &:nth-child(odd) {
+        justify-self: right;
+    }
+
+    &:nth-child(even) {
+        justify-self: left;
+    }
+
+    @include media-query(medium) {
+        &:nth-child(n) {
+            justify-self: unset;
+        }
+    }
 }

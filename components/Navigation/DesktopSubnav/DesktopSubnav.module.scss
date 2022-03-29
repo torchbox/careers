@@ -41,10 +41,6 @@
             @include link-underscore(2);
             color: var(--color--dark-indigo);
         }
-
-        :global .themeDark :local &::after {
-            background-color: var(--color--dark-indigo);
-        }
     }
 
     &Badge {
@@ -52,20 +48,11 @@
         left: 14px;
         bottom: 10px;
         border-bottom: 0;
-
-        // Don't change badge colours on hover
-        &:hover {
-            color: var(--color--dark-indigo);
-
-            :global .themeDark :local & {
-                color: var(--color--white);
-            }
-        }
     }
 }
 
 .badge {
-    @include font-size(xxs);
+    @include font-size(xxxs);
     @include z-index(badge);
     font-weight: $weight--extrabold;
     line-height: 25px;
@@ -87,25 +74,5 @@
         left: 50%;
         top: 3px;
         transition: background-color $transition-quick;
-
-        :global .themeDark :local & {
-            background-color: var(--color--dark-indigo);
-        }
-    }
-
-    &:hover,
-    &:focus {
-        color: var(--color--coral);
-        :global .themeDark :local & {
-            color: var(--color--dark-indigo);
-        }
-
-        &::before {
-            background-color: var(--color--dark-indigo);
-
-            :global .themeDark :local & {
-                background-color: var(--color--lagoon);
-            }
-        }
     }
 }

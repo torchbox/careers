@@ -109,7 +109,7 @@ export const CarouselArrowButton = ({
         <button
             type="button"
             ref={carouselButtonRef}
-            className={[styles.button, styles.chevronButton, className].join(
+            className={[styles.button, styles.carouselButton, className].join(
                 ' ',
             )}
             aria-label={

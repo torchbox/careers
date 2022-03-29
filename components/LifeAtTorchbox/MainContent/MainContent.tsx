@@ -19,7 +19,7 @@ export const MainContent = ({
                 <div className={styles.titleContainer}>
                     <h2 className={styles.title}>
                         {firstLine}
-                        <span className={styles.accent}>{secondLine}</span>
+                        <span>{secondLine}</span>
                         {thirdLine}
                     </h2>
                 </div>
