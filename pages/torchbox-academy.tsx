@@ -5,6 +5,8 @@ import Hero from 'components/TorchboxAcademy/Hero';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
+import Quote from 'components/Quote';
+import styles from 'styles/pages/TorchboxAcademy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
 type TorchboxAcademyPageProps = {
@@ -30,6 +32,24 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
             <Hero image={content.heroImage} subtitle={content.heroSubtitle}>
                 <RichText theme="INDIGO" content={content.heroDescription} />
             </Hero>
+
+            <div className={styles.container}>
+                <div className={styles.textContainer}>
+                    <Quote name={content.quoteAuthor}>{content.quote}</Quote>
+                </div>
+            </div>
+
+            <div className={styles.container}>
+                <div className={styles.mainContentContainer}>
+                    <h2 className={styles.secondaryTitle}>
+                        {content.mainSectionTitle}
+                    </h2>
+                    <RichText
+                        theme="INDIGO"
+                        content={content.mainSectionContent}
+                    />
+                </div>
+            </div>
         </Layout>
     );
 };
