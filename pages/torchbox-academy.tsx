@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { TorchboxAcademy } from 'types/pages/TorchboxAcademy';
 import { getTorchboxAcademyPage } from 'lib/api';
 import Hero from 'components/TorchboxAcademy/Hero';
+import ApplicationProcess from 'components/TorchboxAcademy/ApplicationProcess';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
@@ -50,6 +51,13 @@ const TorchboxAcademyPage: NextPage<TorchboxAcademyPageProps> = ({
                     />
                 </div>
             </div>
+
+            <ApplicationProcess title={content.applicationProcessTitle}>
+                <RichText
+                    theme="INDIGO"
+                    content={content.applicationProcessDescription}
+                />
+            </ApplicationProcess>
         </Layout>
     );
 };
