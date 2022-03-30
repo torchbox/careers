@@ -17,6 +17,7 @@
 .introductionContainer {
     display: flex;
     flex-direction: column;
+
     @include media-query(large) {
         flex-direction: row;
     }
@@ -46,6 +47,7 @@
 
 .arrow {
     display: none;
+
     @include media-query(large) {
         display: block;
         position: relative;
