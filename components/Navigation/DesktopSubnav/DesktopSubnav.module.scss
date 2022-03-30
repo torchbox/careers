@@ -56,10 +56,10 @@
     @include z-index(badge);
     font-weight: $weight--extrabold;
     line-height: 25px;
-    color: var(--color--dark-indigo);
+    color: var(--color--white);
     position: relative;
 
-    :global .themeDark :local & {
+    &:hover {
         color: var(--color--white);
     }
 
