@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { Academy } from 'types/pages/Academy';
 import { getAcademyPage } from 'lib/api';
 import Hero from 'components/Academy/Hero';
+import ApplicationProcess from 'components/Academy/ApplicationProcess';
 import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
@@ -61,6 +62,18 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
             />
 
             <div className={styles.longDivider} />
+
+            <ApplicationProcess
+                title={content.applicationProcessTitle}
+                stepOne={content.applicationProcessStepOne}
+                stepTwo={content.applicationProcessStepTwo}
+                stepThree={content.applicationProcessStepThree}
+            >
+                <RichText
+                    theme="INDIGO"
+                    content={content.applicationProcessDescription}
+                />
+            </ApplicationProcess>
         </Layout>
     );
 };
