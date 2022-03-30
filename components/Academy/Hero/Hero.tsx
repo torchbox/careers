@@ -36,6 +36,7 @@ export const Hero = ({ image, subtitle, children }: HeroProps) => {
                     src={image.url}
                     alt={image.description}
                     className={styles.image}
+                    priority
                 />
                 <div className={styles.textContainer}>
                     <h1 className={styles.title}>

@@ -58,6 +58,12 @@ const getRenderOptions = (links?: any) => {
             ) => {
                 return <p className={styles.paragraph}>{children}</p>;
             },
+            [BLOCKS.UL_LIST]: (
+                _: React.ReactNode,
+                children: React.ReactNode,
+            ) => {
+                return <ul className={styles.unorderedList}>{children}</ul>;
+            },
             [INLINES.HYPERLINK]: (
                 node: Block | Inline,
                 children: React.ReactNode,

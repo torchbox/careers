@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 import { Academy } from 'types/pages/Academy';
 import { getAcademyPage } from 'lib/api';
 import Hero from 'components/Academy/Hero';
+import ApplicationProcess from 'components/Academy/ApplicationProcess';
+import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
@@ -57,6 +59,28 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                 content={content.inclusiveSectionContent}
                 image={content.inclusiveSectionPhoto}
             />
+
+            <TypicalDay
+                title={content.typicalDayTitle}
+                firstHeading={content.typicalDayFirstHeading}
+                firstContent={content.typicalDayFirstContent}
+                secondHeading={content.typicalDaySecondHeading}
+                secondContent={content.typicalDaySecondContent}
+            />
+
+            <div className={styles.longDivider} />
+
+            <ApplicationProcess
+                title={content.applicationProcessTitle}
+                stepOne={content.applicationProcessStepOne}
+                stepTwo={content.applicationProcessStepTwo}
+                stepThree={content.applicationProcessStepThree}
+            >
+                <RichText
+                    theme="INDIGO"
+                    content={content.applicationProcessDescription}
+                />
+            </ApplicationProcess>
         </Layout>
     );
 };
