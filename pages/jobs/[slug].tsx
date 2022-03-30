@@ -69,10 +69,11 @@ const JobPosting: NextPage<JobPageProps> = ({
                 <div className={styles.contentContainer}>
                     <div className={styles.textContainer}>
                         <div
+                            className={styles.richText}
                             dangerouslySetInnerHTML={{
                                 __html: job.description,
                             }}
-                        ></div>
+                        />
                     </div>
                 </div>
 
