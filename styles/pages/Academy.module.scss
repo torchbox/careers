@@ -23,7 +23,7 @@
     padding: 0 $grid * 1.5;
 
     @include media-query(medium) {
-        padding: 0 $grid * 2;
+        padding: 0 $grid * 3;
     }
 
     @include media-query(large) {
@@ -45,5 +45,37 @@
 
     @include media-query(large) {
         max-width: unset;
+    }
+}
+
+.longDivider {
+    border: 0px;
+    position: relative;
+    display: none;
+    height: 160px;
+
+    @include media-query(medium) {
+        display: block;
+    }
+
+    @include media-query(menu-break) {
+        height: 240px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50px;
+        right: 15%;
+        width: 70%;
+        height: 3px;
+        background: var(--color--coral);
+        transform: rotate(-6deg);
+
+        @include media-query(menu-break) {
+            top: 80px;
+            right: 157px;
+            width: 977px;
+        }
     }
 }

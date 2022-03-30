@@ -1,0 +1,80 @@
+.title {
+    @include font-size(xxxl);
+    font-weight: $weight--extrabold;
+    line-height: 1;
+
+    @include media-query(menu-break) {
+        margin-bottom: 35px;
+    }
+}
+
+.subheading {
+    @include font-size(ml);
+    margin-top: $grid * 1.5;
+
+    @include media-query(medium) {
+        margin-top: $grid * 2;
+    }
+
+    @include media-query(large) {
+        margin-top: $grid * 3;
+    }
+}
+
+.container {
+    margin: 0 auto $grid * 3 auto;
+    padding: 0 $grid * 1.5;
+
+    @include media-query(medium) {
+        padding: 0 $grid * 3;
+        margin: 0 auto;
+        max-width: $content--narrow + 80px;
+    }
+
+    @include media-query(large) {
+        margin: 0 auto $grid * 4 18%;
+        padding: 0;
+        max-width: unset;
+    }
+}
+
+.textContainer {
+    max-width: $content--narrow;
+}
+
+.dayContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: $content--narrow;
+
+    @include media-query(menu-break) {
+        flex-direction: row;
+        max-width: unset;
+    }
+}
+
+.fruitBowl {
+    display: none;
+    width: 170px;
+    height: 170px;
+
+    @include media-query(menu-break) {
+        display: block;
+        align-self: center;
+        margin-left: $grid * 3;
+        margin-right: $grid * 2;
+        flex-shrink: 0;
+    }
+}
+
+.peopleChatting {
+    display: none;
+
+    @include media-query(menu-break) {
+        display: block;
+        align-self: center;
+        margin-left: $grid * 3;
+        margin-right: $grid * 2;
+        flex-shrink: 0;
+    }
+}

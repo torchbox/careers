@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { Academy } from 'types/pages/Academy';
 import { getAcademyPage } from 'lib/api';
 import Hero from 'components/Academy/Hero';
+import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
@@ -50,6 +51,16 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                     />
                 </div>
             </div>
+
+            <TypicalDay
+                title={content.typicalDayTitle}
+                firstHeading={content.typicalDayFirstHeading}
+                firstContent={content.typicalDayFirstContent}
+                secondHeading={content.typicalDaySecondHeading}
+                secondContent={content.typicalDaySecondContent}
+            />
+
+            <div className={styles.longDivider} />
         </Layout>
     );
 };
