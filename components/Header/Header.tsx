@@ -21,7 +21,7 @@ const NAVIGATION_LINKS = [
     { title: 'Jobs', url: '/jobs/', isCareersSiteInternalLink: true },
     {
         title: 'Being at Torchbox',
-        url: '/careers/',
+        url: '/',
         isCareersSiteInternalLink: true,
     },
     {
