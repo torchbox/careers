@@ -60,6 +60,7 @@ const JobPosting: NextPage<JobPageProps> = ({
             <div className={styles.pageContainer}>
                 <JobListingHero
                     title={job.title}
+                    department={job.department}
                     salary={job.salaryRange}
                     location={job.city}
                     applicationLink={job.jobURL}

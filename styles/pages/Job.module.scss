@@ -9,11 +9,11 @@
 
 .contentContainer {
     max-width: 840px;
-    padding: $grid * 2 $grid $grid * 3 $grid;
+    padding: $grid * 2 $grid * 1.5 $grid * 3 $grid * 1.5;
 
     @include media-query(medium) {
         margin: 0 auto;
-        padding-bottom: $grid * 2;
+        padding: $grid * 2 $grid * 3 $grid * 2 $grid * 3;
     }
 
     @include media-query(large) {
@@ -23,9 +23,12 @@
 }
 
 .textContainer {
-    padding-top: $grid * 2;
     max-width: $content--narrow;
     margin-right: auto;
+
+    @include media-query(large) {
+        padding-top: $grid * 2;
+    }
 }
 
 .richText {

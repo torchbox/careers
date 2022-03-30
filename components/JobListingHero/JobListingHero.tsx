@@ -1,10 +1,10 @@
 import Button from 'components/Button';
-import { LocationIcon } from 'components/Icons/LocationIcon';
 import ShareLink from 'components/ShareLink';
 import styles from './JobListingHero.module.scss';
 
 type JobListingHeroProps = {
     title: string;
+    department: string;
     location: string;
     salary: string;
     applicationLink: string;
@@ -14,6 +14,7 @@ type JobListingHeroProps = {
 
 export const JobListingHero = ({
     title,
+    department,
     location,
     salary,
     applicationLink,
@@ -23,24 +24,10 @@ export const JobListingHero = ({
     <div className={styles.contentContainer}>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.textContainer}>
-            <ul className={styles.summary}>
-                <li className={styles.summaryItem}>
-                    <LocationIcon
-                        width={22}
-                        height={23}
-                        className={styles.summaryIcon}
-                    />
-                    <p className={styles.summaryText}>{location}</p>
-                </li>
-                <li className={styles.summaryItem}>
-                    <LocationIcon
-                        width={22}
-                        height={23}
-                        className={styles.summaryIcon}
-                    />
-                    <p className={styles.summaryText}>{salary}</p>
-                </li>
-            </ul>
+            <p className={styles.salary}>{salary}</p>
+            <p className={styles.department}>{department}</p>
+            <p className={styles.location}>{location}</p>
+
             <div className={styles.ctaContainer}>
                 <Button
                     url={applicationLink}
