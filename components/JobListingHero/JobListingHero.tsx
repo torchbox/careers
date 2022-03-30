@@ -33,7 +33,7 @@ export const JobListingHero = ({
                     url={applicationLink}
                     internal={false}
                     className={styles.button}
-                    theme="CORAL"
+                    theme="INDIGO"
                 >
                     Apply for this job
                 </Button>
