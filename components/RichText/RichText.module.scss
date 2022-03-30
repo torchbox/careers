@@ -7,8 +7,8 @@
 }
 
 .paragraph {
-    @include font-size(s);
-    line-height: 30px;
+    @include font-size(xs);
+    line-height: 1.7;
     color: var(--color--grey);
 
     :global .themeLight :local & {
@@ -51,8 +51,8 @@
 }
 
 .hyperlink {
-    color: var(--color--dark-indigo);
-    font-weight: $weight--bold;
+    color: var(--color--indigo);
+    font-weight: $weight--extrabold;
     position: relative;
     text-decoration: none;
     border-bottom: 2px solid var(--color--underline);
@@ -63,11 +63,11 @@
     }
 
     :global .themeLight :local & {
-        color: var(--color--dark-indigo);
+        color: var(--color--indigo);
     }
 
     :global .themeIndigo :local & {
-        color: var(--color--dark-indigo);
+        color: var(--color--indigo);
     }
 
     :global .themeDark :local & {
@@ -79,7 +79,7 @@
     }
 
     :global .themeDark .themeIndigo :local & {
-        color: var(--color--dark-indigo);
+        color: var(--color--indigo);
     }
 }
 

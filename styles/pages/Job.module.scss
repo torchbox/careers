@@ -57,6 +57,11 @@
             }
         }
     }
+
+    p {
+        @include font-size(xs);
+        line-height: 1.7;
+    }
 }
 
 .hiringPolicyTitle {
