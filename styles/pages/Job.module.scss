@@ -1,6 +1,7 @@
 .pageContainer {
     max-width: $site-width;
     margin: 0 auto;
+    padding-top: $grid * 4;
 
     @include media-query(large) {
         padding: $grid * 5 0 $grid * 2 0;
