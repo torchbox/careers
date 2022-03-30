@@ -1,12 +1,12 @@
 .container {
     position: relative;
     margin-bottom: $grid * 2;
-    overflow: hidden;
+    padding-top: $grid * 2;
 
     @include media-query(medium) {
+        padding-top: 0;
         margin-bottom: 0;
-        padding-bottom: $grid * 2;
-        overflow: visible;
+        padding-bottom: $grid * 12;
     }
 
     @include media-query(large) {
@@ -20,12 +20,12 @@
     @include font-size(xxxxl);
     color: var(--color--white);
     line-height: 1;
-    padding-right: $grid * 2;
-    padding-top: $grid * 3;
+    margin-top: $grid;
     max-width: 360px;
 
     @include media-query(medium) {
         max-width: 480px;
+        padding-top: $grid * 7;
         padding-right: 0;
     }
 
@@ -64,7 +64,9 @@
         color: var(--color--white);
     }
 
-    max-width: 315px;
+    @include media-query(medium) {
+        max-width: 345px;
+    }
 
     @include media-query(large) {
         max-width: 415px;
@@ -73,14 +75,11 @@
 
 .textContainer {
     @include z-index(under);
-    text-align: left;
-    padding: $grid * 4 $grid $grid * 19 $grid * 1.5;
+    padding: $grid * 2 $grid * 2 $grid * 3 $grid * 2;
     position: relative;
-    overflow: hidden;
 
     @include media-query(medium) {
         @include z-index(two);
-        overflow: visible;
         padding-top: $grid * 3;
         padding-left: $grid * 2;
     }
@@ -97,13 +96,32 @@
     content: '';
     position: absolute;
     background: radial-gradient(50% 50% at 50% 50%, #2f128d 0%, #251657 100%);
-
     top: 0;
     bottom: 0;
     left: 0;
-    width: 600px;
+    right: 0;
 
-    clip-path: url('#topCornerClipPath');
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+        background-color: var(--color--coral);
+        transform: rotate(30deg);
+    }
+
+    &:before {
+        top: -70px;
+        right: 80px;
+        width: 36px;
+        height: 108px;
+    }
+
+    &:after {
+        top: -20px;
+        right: 40px;
+        width: 22px;
+        height: 56px;
+    }
 
     @include media-query(medium) {
         transform: rotate(30deg);
@@ -111,7 +129,11 @@
         width: 600px;
         left: -90px;
         top: 80px;
-        clip-path: none;
+
+        &:after,
+        &:before {
+            display: none;
+        }
     }
 
     @include media-query(large) {
@@ -125,29 +147,35 @@
 
 .image {
     @include z-index(two);
-    clip-path: url('#bottomSliceClipPath');
-    margin-top: -320px;
-    width: 800px;
-    height: 500px;
+    width: 100%;
 
     @include media-query(medium) {
         @include z-index(under);
         position: absolute;
         right: 0;
         left: 0;
-        bottom: $grid;
-        width: unset;
-        height: unset;
-        clip-path: none;
+        bottom: 0;
         margin-top: 0;
     }
 
     @include media-query(large) {
         left: unset;
         bottom: unset;
-        top: -$grid * 6;
+        top: -$grid * 9;
         width: 1100px;
         height: 700px;
+
+        // Hide the left corners of the image so they don't show behind .background
+        &::before {
+            @include z-index(one);
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: -$grid * 9;
+            left: 0;
+            width: 200px;
+            background-color: var(--color--white);
+        }
     }
 
     @include media-query(menu-break) {
