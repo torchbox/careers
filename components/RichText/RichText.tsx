@@ -63,12 +63,6 @@ const getRenderOptions = (links?: any) => {
             ) => {
                 return <ul className={styles.unorderedList}>{children}</ul>;
             },
-            [BLOCKS.LIST_ITEM]: (
-                _: React.ReactNode,
-                children: React.ReactNode,
-            ) => {
-                return <li className={styles.listItem}>{children}</li>;
-            },
             [INLINES.HYPERLINK]: (
                 node: Block | Inline,
                 children: React.ReactNode,
