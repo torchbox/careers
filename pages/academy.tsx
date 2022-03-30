@@ -60,7 +60,7 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                 secondContent={content.typicalDaySecondContent}
             />
 
-            <hr className={styles.longDivider} />
+            <div className={styles.longDivider} />
         </Layout>
     );
 };
