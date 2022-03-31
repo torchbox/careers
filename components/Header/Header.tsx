@@ -25,11 +25,6 @@ const NAVIGATION_LINKS = [
         isCareersSiteInternalLink: true,
     },
     {
-        title: 'Life at Torchbox',
-        url: '/life-at-torchbox/',
-        isCareersSiteInternalLink: true,
-    },
-    {
         title: 'Blog',
         url: 'https://torchbox.com/blog/',
     },
