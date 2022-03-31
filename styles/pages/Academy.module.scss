@@ -6,7 +6,7 @@
 .textContainer {
     margin: 0 auto $grid auto;
     max-width: $content--narrow;
-    padding: 0 $grid;
+    padding: 0 $grid * 2;
 
     @include media-query(large) {
         padding: 0;

@@ -1,14 +1,15 @@
 .contentContainer {
     max-width: 840px;
-    padding: $grid * 2 $grid 0 $grid;
+    padding: $grid * 1.5 $grid * 1.5 0 $grid * 1.5;
 
     @include media-query(medium) {
         margin: 0 auto;
+        padding: $grid * 3 $grid * 3 0 $grid * 3;
     }
 
     @include media-query(large) {
         padding: 0;
-        margin: 0 auto $grid 24%;
+        margin: 0 auto $grid 25%;
     }
 }
 
@@ -25,43 +26,26 @@
     margin: 0;
 }
 
-.summary {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+.department {
+    @include font-size(s);
+    color: var(--color--dark-indigo);
+    margin-bottom: 5px;
+}
 
-    @include media-query(large) {
-        flex-direction: row;
-    }
+.location {
+    @include font-size(xxxxs);
+    font-weight: $weight--bold;
+    color: var(--color--coral-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 5px;
+}
 
-    &Item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: $grid * 0.5;
-
-        @include media-query(large) {
-            margin-bottom: 0;
-            margin-left: 25px;
-
-            &:first-child {
-                margin-left: 0;
-            }
-        }
-    }
-
-    &Icon {
-        flex-shrink: 0;
-    }
-
-    &Text {
-        @include font-size(xxxs);
-        color: var(--color--coral);
-        font-weight: $weight--bold;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        margin-left: 7px;
-    }
+.salary {
+    @include font-size(m);
+    font-weight: $weight--bold;
+    color: var(--color--dark-indigo);
+    margin-bottom: 15px;
 }
 
 .ctaContainer {

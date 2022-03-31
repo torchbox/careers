@@ -18,7 +18,7 @@
 
     @include media-query(large) {
         padding: 0 0 $grid * 8 0;
-        margin: 0 auto 0 24%;
+        margin: 0 auto 0 25%;
     }
 }
 
@@ -69,12 +69,8 @@
         color: var(--color--indigo);
         display: inline-block;
         margin-bottom: 6px;
-        margin-top: $grid * 2;
+        margin-top: $grid * 3;
         position: relative;
-
-        @include media-query(medium) {
-            margin-top: $grid * 3;
-        }
 
         &:after {
             @include z-index(under);
@@ -96,30 +92,20 @@
         margin-bottom: 15px;
     }
 
-    &MetadataItems {
-        display: flex;
-        flex-direction: column;
-
-        @include media-query(large) {
-            flex-direction: row;
-        }
+    &Department {
+        @include font-size(s);
+        color: var(--color--dark-indigo);
+        margin-top: $grid * 2;
+        margin-bottom: 5px;
     }
 
-    &Metadata {
-        @include font-size(xxxs);
+    &Location {
+        @include font-size(xxxxs);
         font-weight: $weight--bold;
+        color: var(--color--coral-dark);
         text-transform: uppercase;
         letter-spacing: 0.15em;
-        margin-right: $grid;
-        margin-bottom: 5px;
-        color: var(--color--grey);
-        display: flex;
-        flex-direction: row;
-
-        &Icon {
-            min-width: 22px;
-            margin-right: 5px;
-        }
+        margin-bottom: 0;
     }
 }
 

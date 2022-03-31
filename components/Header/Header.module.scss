@@ -1,15 +1,21 @@
-.container {
-    max-width: $site-width;
-    margin: 0 auto;
+.navigationContainer {
     height: $gutter * 2 + $grid * 2;
     // The height of the logo is 40px, aka $grid * 2
+
+    position: relative;
+    margin: 0 8.33vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0;
 
     @include media-query(menu-break) {
         height: unset;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        padding: $grid * 2 $grid * 4.5 0;
+        align-items: flex-start;
+        padding: $grid * 2 0 0;
+        margin: 0 8.33vw;
     }
 
     :global .themeDark :local & {
@@ -17,13 +23,16 @@
     }
 }
 
-.torchboxLogo {
-    @include z-index(two);
-    position: absolute;
-    top: $gutter;
-    left: $gutter;
+.logo {
+    width: 20.8vw;
+    height: 100%;
 
     @include media-query(menu-break) {
-        position: static;
+        margin-left: -4.17vw;
+        margin-top: -10px;
     }
+}
+
+.logoLink {
+    @include z-index(two);
 }

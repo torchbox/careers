@@ -9,7 +9,6 @@ import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import { SwishButton } from 'components/Button/Button';
 import WomanLeanIn from 'components/SVG/WomanLeanIn';
-import { LocationIcon } from 'components/Icons/LocationIcon';
 import Select from 'components/Select';
 import Metadata from 'components/Metadata';
 import type { JobSummary } from '../lib/peopleHR';
@@ -24,24 +23,8 @@ const JobEntry = ({ job }: JobEntryProps) => (
         <a className={styles.jobCard}>
             <p className={styles.jobTitle}>{job.title}</p>
             <p className={styles.jobDescription}>{job.description}</p>
-            <div className={styles.jobMetadataItems}>
-                <div className={styles.jobMetadata}>
-                    <LocationIcon
-                        width={22}
-                        height={23}
-                        className={styles.jobMetadataIcon}
-                    />{' '}
-                    {job.department}
-                </div>
-                <div className={styles.jobMetadata}>
-                    <LocationIcon
-                        width={22}
-                        height={23}
-                        className={styles.jobMetadataIcon}
-                    />{' '}
-                    <div>{job.city}</div>
-                </div>
-            </div>
+            <p className={styles.jobDepartment}>{job.department}</p>
+            <p className={styles.jobLocation}>{job.city}</p>
         </a>
     </Link>
 );

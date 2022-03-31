@@ -12,6 +12,9 @@
         padding: 0;
         margin: 0;
         align-items: center;
+
+        // Adjustment to align menu with main site seamlessly
+        margin-top: -1px;
     }
 
     &Dots {
@@ -65,7 +68,7 @@
 
     &MoreItem {
         position: relative;
-        padding-left: $grid * 3;
+        padding-left: 3.5vw;
         margin-right: 0;
         display: none;
         font-weight: $weight--bold;
@@ -94,8 +97,9 @@
     }
 
     &MoreButton {
-        //Make the button easier to click
-        //The 20px to the right covers the triple dots
+        @include font-size(xs);
+        // Make the button easier to click
+        // The 20px to the right covers the triple dots
         padding: 10px 20px 10px 10px;
         position: relative;
         background-color: transparent;
@@ -117,7 +121,7 @@
 }
 
 .desktopNavItem {
-    margin-right: $grid * 3;
+    margin-right: $grid * 3.5;
 
     &:last-child {
         margin-right: 0;
@@ -132,7 +136,7 @@
     }
 
     &Link {
-        @include font-size(s);
+        @include font-size(xs);
         @include link-underscore(0);
         display: block;
         position: relative;

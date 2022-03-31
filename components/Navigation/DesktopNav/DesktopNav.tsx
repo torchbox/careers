@@ -47,41 +47,39 @@ export const DesktopNav = ({
 
     return (
         <div className={styles.desktopNav}>
-            <div className={styles.desktopNavontainer}>
-                <nav
-                    className={`${styles.desktopNavModal} ${
-                        isOpen ? styles.desktopNavModalOpen : ''
-                    }`}
-                    aria-label="Desktop navigation"
-                    role="navigation"
-                >
-                    <ul className={styles.desktopNavList}>
-                        {navItems}
-                        <li className={styles.desktopNavMoreItem}>
-                            <button
-                                className={styles.desktopNavMoreButton}
-                                onClick={() => toggleMenu()}
-                            >
-                                More
-                                <span className={styles.desktopNavDots} />
-                            </button>
-                            {isOpen && (
-                                <>
-                                    <DesktopSubnav
-                                        jobsAvailable={jobsAvailable}
-                                        links={links.slice(3, links.length)}
-                                        toggleMenu={toggleMenu}
-                                    />
-                                    <div
-                                        className={styles.backgroundOverlay}
-                                        onClick={() => toggleMenu()}
-                                    />
-                                </>
-                            )}
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <nav
+                className={`${styles.desktopNavModal} ${
+                    isOpen ? styles.desktopNavModalOpen : ''
+                }`}
+                aria-label="Desktop navigation"
+                role="navigation"
+            >
+                <ul className={styles.desktopNavList}>
+                    {navItems}
+                    <li className={styles.desktopNavMoreItem}>
+                        <button
+                            className={styles.desktopNavMoreButton}
+                            onClick={() => toggleMenu()}
+                        >
+                            More
+                            <span className={styles.desktopNavDots} />
+                        </button>
+                        {isOpen && (
+                            <>
+                                <DesktopSubnav
+                                    jobsAvailable={jobsAvailable}
+                                    links={links.slice(3, links.length)}
+                                    toggleMenu={toggleMenu}
+                                />
+                                <div
+                                    className={styles.backgroundOverlay}
+                                    onClick={() => toggleMenu()}
+                                />
+                            </>
+                        )}
+                    </li>
+                </ul>
+            </nav>
         </div>
     );
 };

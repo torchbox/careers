@@ -21,7 +21,7 @@ const NAVIGATION_LINKS = [
     { title: 'Jobs', url: '/jobs/', isCareersSiteInternalLink: true },
     {
         title: 'Being at Torchbox',
-        url: '/careers/',
+        url: '/',
         isCareersSiteInternalLink: true,
     },
     {
@@ -65,29 +65,33 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
 
     return (
         <div className={styles.container}>
-            <a
-                className={styles.torchboxLogo}
-                href="https://torchbox.com"
-                aria-label="Home"
-            >
-                <TorchboxLogo />
-            </a>
-            <MobileMenuButton
-                isOpen={isOpen}
-                toggleMobileMenu={toggleMobileMenu}
-            />
-            <MobileNav
-                isOpen={isOpen}
-                links={NAVIGATION_LINKS}
-                navMenuRef={mobileNavRef}
-                jobsAvailable={jobsAvailable}
-            />
-            <DesktopNav
-                isOpen={isOpen}
-                links={NAVIGATION_LINKS}
-                toggleMenu={toggleMobileMenu}
-                jobsAvailable={jobsAvailable}
-            />
+            <div className={styles.navigationContainer}>
+                <div className={styles.logo}>
+                    <a
+                        className={styles.logoLink}
+                        href="https://torchbox.com"
+                        aria-label="Home"
+                    >
+                        <TorchboxLogo />
+                    </a>
+                </div>
+                <MobileMenuButton
+                    isOpen={isOpen}
+                    toggleMobileMenu={toggleMobileMenu}
+                />
+                <MobileNav
+                    isOpen={isOpen}
+                    links={NAVIGATION_LINKS}
+                    navMenuRef={mobileNavRef}
+                    jobsAvailable={jobsAvailable}
+                />
+                <DesktopNav
+                    isOpen={isOpen}
+                    links={NAVIGATION_LINKS}
+                    toggleMenu={toggleMobileMenu}
+                    jobsAvailable={jobsAvailable}
+                />
+            </div>
         </div>
     );
 };
