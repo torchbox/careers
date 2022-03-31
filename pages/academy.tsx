@@ -57,6 +57,8 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                 </div>
             </div>
 
+            <div className={styles.shortDivider} />
+
             <Introduction
                 title={content.introductionTitle}
                 content={content.introductionContent}
