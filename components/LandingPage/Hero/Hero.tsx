@@ -25,8 +25,8 @@ export const Hero = ({ image, children }: HeroProps) => {
                         id="squareShardClipPath"
                         clipPathUnits="objectBoundingBox"
                     >
-                        <path d="M 0.801 0.421 L 0.567 0.768 L 0.759 0.894 L 0.985 0.551 Z " />
-                        <path d="M 0.462 0.007 L 0.81 0.241 L 0.375 0.865 L 0.023 0.63 Z" />
+                        <path d="M 0.85 0.46 L 0.62 0.79 L 0.76 0.89 L 0.985 0.55 Z " />
+                        <path d="M 0.46 0 L 0.9 0.3 L 0.45 0.95 L 0 0.63 Z" />
                     </clipPath>
                 </defs>
             </svg>
