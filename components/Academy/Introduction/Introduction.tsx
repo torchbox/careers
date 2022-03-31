@@ -13,8 +13,9 @@ type IntroductionProps = {
 export const Introduction = ({ title, content, image }: IntroductionProps) => {
     return (
         <>
-            <svg className={styles.hiddenSVG}>
+            <svg className={styles.hiddenClipPath}>
                 <defs>
+                    {/* This clip path is applied to the clipOverlay div via SCSS */}
                     <clipPath
                         id="introductionImageClipPath"
                         clipPathUnits="objectBoundingBox"
