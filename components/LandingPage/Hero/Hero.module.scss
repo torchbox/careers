@@ -57,8 +57,8 @@
     // Prevent image showing in front of menu dropdown
     @include z-index(under);
     clip-path: url(#shardClipPath);
-    width: 375px;
-    height: 375px;
+    width: 335px;
+    height: 335px;
     margin-left: auto;
     order: 1;
 
@@ -85,8 +85,8 @@
     }
 
     & > span {
-        width: 375px !important;
-        height: 375px !important;
+        width: 335px !important;
+        height: 335px !important;
 
         @include media-query(medium) {
             width: 625px !important;
@@ -104,8 +104,8 @@
         }
 
         & > img {
-            width: 375px !important;
-            height: 375px !important;
+            width: 335px !important;
+            height: 335px !important;
             object-fit: cover !important;
 
             @include media-query(medium) {

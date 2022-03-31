@@ -32,6 +32,7 @@
     @include font-size(xxxxl);
     font-weight: $weight--extrabold;
     line-height: 60px;
+    padding: $grid * 0.5;
 
     @include media-query(medium) {
         line-height: 70px;
@@ -47,6 +48,7 @@
 }
 
 .richText {
+    padding: $grid * 0.5;
     & > p {
         color: var(--color--dark-indigo);
     }
