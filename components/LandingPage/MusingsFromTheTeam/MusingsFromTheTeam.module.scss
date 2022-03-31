@@ -107,19 +107,20 @@
     }
 
     &Name {
-        @include font-size(xs);
+        @include font-size(mxs);
         margin: 0;
         color: var(--color--dark-indigo);
     }
 
     &Metadata {
         margin: -5px 0 0 0;
+        line-height: 1;
         white-space: nowrap;
         // Added otherwise the date text will break over two lines on Safari
     }
 
     &Role {
-        @include font-size(xxs);
+        @include font-size(xxxxs);
         color: var(--color--coral-dark);
         font-weight: $weight--bold;
         letter-spacing: 0.15em;

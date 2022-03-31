@@ -1,7 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
 import { ImageTypes } from 'types/Base';
 
-export type TorchboxAcademy = {
+export type Academy = {
     metadataTitle: string;
     metadataDescription: string;
     metadataSocialMediaImage: ImageTypes;
@@ -20,7 +20,7 @@ export type TorchboxAcademy = {
             title: string;
             description: { json: Document };
             applicationLink: string;
-        };
+        }[];
     };
     inclusiveSectionTitle: string;
     inclusiveSectionContent: { json: Document };
@@ -32,7 +32,7 @@ export type TorchboxAcademy = {
     typicalDaySecondContent: { json: Document };
     applicationProcessTitle: string;
     applicationProcessDescription: { json: Document };
-    applicationProcessStepOne: { json: Document };
-    applicationProcessStepTwo: { json: Document };
-    applicationProcessStepThree: { json: Document };
+    applicationProcessStepOne: string;
+    applicationProcessStepTwo: string;
+    applicationProcessStepThree: string;
 };

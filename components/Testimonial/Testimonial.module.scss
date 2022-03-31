@@ -42,21 +42,23 @@
     text-transform: uppercase;
 }
 
+$testimonial-image-size: 330px;
+
 .image {
     clip-path: url(#testimonialClipPath);
-    width: 300px;
-    height: 300px;
+    width: $testimonial-image-size;
+    height: $testimonial-image-size;
 
     & span,
     & img {
-        width: 300px !important;
-        height: 300px !important;
+        width: $testimonial-image-size !important;
+        height: $testimonial-image-size !important;
     }
 }
 
 .imageContainer {
-    width: 300px;
-    height: 300px;
+    width: $testimonial-image-size;
+    height: $testimonial-image-size;
     position: relative;
     margin-top: -$grid * 2;
 
@@ -64,8 +66,8 @@
         @include z-index(two);
         content: '';
         position: absolute;
-        top: 110px;
-        right: 42px;
+        top: 55px;
+        right: 10px;
         width: 29px;
         height: 87px;
         background-color: var(--color--coral);
@@ -80,8 +82,8 @@
         @include z-index(two);
         content: '';
         position: absolute;
-        top: 150px;
-        right: 105px;
+        top: 100px;
+        right: 75px;
         width: 18px;
         height: 45px;
         background-color: var(--color--coral);

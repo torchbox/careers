@@ -119,6 +119,7 @@ export async function getLandingPage(preview: boolean) {
                                     height
                                   }
                                   description
+                                  instagramLink
                                 }
                               }
                             }
@@ -379,7 +380,7 @@ export async function getEmployeeOwnedTrustPage(preview: boolean) {
     return content.data.eotPageCollection.items[0];
 }
 
-export async function getTorchboxAcademyPage(preview: boolean) {
+export async function getAcademyPage(preview: boolean) {
     const content = await fetchGraphQL(
         `{
           torchboxAcademyPageCollection(limit: 1, preview: ` +
@@ -445,15 +446,9 @@ export async function getTorchboxAcademyPage(preview: boolean) {
               applicationProcessDescription {
                 json
               }
-              applicationProcessStepOne {
-                json
-              }
-              applicationProcessStepTwo {
-                json
-              }
-              applicationProcessStepThree {
-                json
-              }
+              applicationProcessStepOne 
+              applicationProcessStepTwo
+              applicationProcessStepThree
             }
           }
         }`,

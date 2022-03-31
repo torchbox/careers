@@ -1,0 +1,86 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $grid * 3;
+    padding: $grid * 1.5;
+
+    @include media-query(medium) {
+        padding: $grid * 3;
+    }
+
+    @include media-query(large) {
+        grid-template-columns: 1fr 1fr;
+        max-width: 1180px;
+        margin: 0 auto;
+    }
+}
+
+.card {
+    position: relative;
+    background-color: var(--color--coral);
+    border-radius: 10px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 60px;
+        width: 30px;
+        height: 40px;
+        border: 2px solid var(--color--white);
+        border-radius: 7px;
+        background: var(--color--grey-light);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        right: 60px;
+        width: 30px;
+        height: 40px;
+        border: 2px solid var(--color--white);
+        border-radius: 7px;
+        background: var(--color--grey-light);
+    }
+}
+
+.title {
+    @include font-size(l);
+    font-weight: $weight--extrabold;
+    color: var(--color--white);
+    text-align: center;
+    margin-top: 35px;
+}
+
+.content {
+    padding: 0 $grid;
+
+    @include media-query(medium) {
+        padding: 0 $grid * 2;
+        text-align: center;
+    }
+}
+
+.button {
+    margin: 25px auto 55px auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.icon {
+    @include z-index(one);
+    position: relative;
+    margin: 50px auto 0 auto;
+}
+
+.microphonePerson {
+    display: block;
+    margin: 0 auto;
+    transform: translateX(36px);
+}
+
+.coffeePerson {
+    display: block;
+    margin: 0 auto;
+}

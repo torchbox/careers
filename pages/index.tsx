@@ -52,9 +52,7 @@ const LandingPage: NextPage<LandingPageProps> = ({
     );
 
     const socialMediaProfilePhotos =
-        socialImagesCollection.imagesCollection.items.map(
-            (item: any) => item.image,
-        );
+        socialImagesCollection.imagesCollection.items;
 
     return (
         <Layout
@@ -110,10 +108,12 @@ const LandingPage: NextPage<LandingPageProps> = ({
             <SocialMediaPhotos photos={socialMediaProfilePhotos} />
 
             <CTA jobs={jobsAvailable} title={landingPageContent.ctaTitle}>
-                <RichText
-                    theme="INDIGO"
-                    content={landingPageContent.ctaDescription}
-                />
+                {landingPageContent.ctaDescription && (
+                    <RichText
+                        theme="INDIGO"
+                        content={landingPageContent.ctaDescription}
+                    />
+                )}
             </CTA>
 
             <MusingsFromTheTeam

@@ -48,3 +48,5 @@ export type AcademyTypes = {
     description: { json: Document };
     applicationLink: string;
 };
+
+export type CharacterType = 'MICROPHONE' | 'COFFEE';

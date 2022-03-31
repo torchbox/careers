@@ -52,10 +52,15 @@
 
 .hyperlink {
     color: var(--color--dark-indigo);
-    font-weight: $weight--extrabold;
+    font-weight: $weight--bold;
     position: relative;
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color--underline);
     text-underline-position: under;
+
+    &:hover {
+        border-bottom: 2px solid var(--color--lagoon);
+    }
 
     :global .themeLight :local & {
         color: var(--color--dark-indigo);
@@ -75,5 +80,32 @@
 
     :global .themeDark .themeIndigo :local & {
         color: var(--color--dark-indigo);
+    }
+}
+
+.unorderedList {
+    list-style: none;
+    margin-left: 2px;
+
+    li {
+        position: relative;
+        padding-left: 28px;
+        margin-bottom: 18px;
+        line-height: 1;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 10px;
+            height: 15px;
+            background-color: var(--color--coral);
+            transform: rotate(30deg);
+
+            :global .themeDark :local & {
+                background-color: var(--color--lagoon);
+            }
+        }
     }
 }
