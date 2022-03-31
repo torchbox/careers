@@ -74,6 +74,21 @@ const clients = `
   }
 }`;
 
+const imageLinks = `
+links {
+  assets {
+    block {
+      sys {
+        id
+      }
+      url
+      width
+      height
+      description
+    }
+  }
+}`;
+
 export async function getLandingPage(preview: boolean) {
     const landingPageContent = await fetchGraphQL(
         `{
@@ -212,6 +227,7 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
                 mainContentTitleThirdLine
                 mainContent {
                     json
+                    ${imageLinks}
                 }
                 atWorkTitle
                 atPlayTitle
