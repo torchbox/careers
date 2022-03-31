@@ -9,6 +9,7 @@ import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
+import OpenToAll from 'components/Academy/OpenToAll';
 import Quote from 'components/Quote';
 import { CharacterType } from 'types/Base';
 import styles from 'styles/pages/Academy.module.scss';
@@ -78,6 +79,12 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
             </div>
 
             <AcademyDayCards academyDays={academyDays} />
+
+            <OpenToAll
+                title={content.inclusiveSectionTitle}
+                content={content.inclusiveSectionContent}
+                image={content.inclusiveSectionPhoto}
+            />
 
             <TypicalDay
                 title={content.typicalDayTitle}

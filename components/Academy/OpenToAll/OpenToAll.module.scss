@@ -1,87 +1,65 @@
 .container {
     position: relative;
-    margin-bottom: $grid * 2;
-    padding-top: $grid * 2;
+    margin: $grid * 4 0 $grid * 2;
 
     @include media-query(medium) {
-        padding-top: 0;
-        margin-bottom: 0;
-        padding-bottom: $grid * 12;
+        margin: $grid * 2 0 0 0;
+        padding-bottom: $grid * 2;
     }
 
     @include media-query(large) {
-        margin-top: $grid * 16;
-        margin-bottom: $grid * 20;
+        margin-top: $grid * 20;
+        margin-bottom: $grid * 24;
         padding-bottom: 0;
     }
 }
 
 .title {
-    @include font-size(xxxxl);
+    // Specify font size manually so title fits on one line on iPhone SE
+    font-size: 50px;
     color: var(--color--white);
     line-height: 1;
     margin-top: $grid;
-    max-width: 360px;
 
     @include media-query(medium) {
-        max-width: 480px;
+        @include font-size(xxxxl);
+        max-width: 450px;
         padding-top: $grid * 7;
         padding-right: 0;
     }
 
     @include media-query(large) {
         padding-top: 0;
-        max-width: 540px;
+        max-width: 600px;
     }
 }
 
-.strikethrough {
-    position: relative;
+.content {
+    margin-bottom: $grid * 1.5;
 
-    &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 8px;
-        border-radius: 10px;
-        background-color: var(--color--coral);
-        top: 50%;
-        left: 0;
-        right: 0;
-        transform: rotate(-2deg);
-    }
-}
-
-.emphasis {
-    color: var(--color--coral);
-}
-
-.richText {
-    color: var(--color--white);
-    margin-bottom: $grid;
-
-    & p {
-        color: var(--color--white);
+    p:last-child {
+        margin-bottom: 0;
     }
 
     @include media-query(medium) {
-        max-width: 345px;
+        max-width: 400px;
     }
 
     @include media-query(large) {
-        max-width: 415px;
+        max-width: 483px;
     }
 }
 
 .textContainer {
     @include z-index(under);
-    padding: $grid * 2 $grid * 2 $grid * 3 $grid * 2;
+    padding: $grid * 2;
     position: relative;
 
     @include media-query(medium) {
         @include z-index(two);
         padding-top: $grid * 3;
         padding-left: $grid * 2;
+        margin-bottom: $grid * 14;
     }
 
     @include media-query(large) {
@@ -155,15 +133,16 @@
         right: 0;
         left: 0;
         bottom: 0;
+        width: unset;
         margin-top: 0;
     }
 
     @include media-query(large) {
         left: unset;
         bottom: unset;
-        top: -$grid * 9;
-        width: 1100px;
-        height: 700px;
+        top: -$grid * 8;
+        width: 1000px;
+        height: 800px;
 
         // Hide the left corners of the image so they don't show behind .background
         &::before {
@@ -171,9 +150,9 @@
             content: '';
             position: absolute;
             top: 0;
-            bottom: -$grid * 9;
+            bottom: 0;
             left: 0;
-            width: 200px;
+            width: 80px;
             background-color: var(--color--white);
         }
     }
