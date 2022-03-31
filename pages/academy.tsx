@@ -3,13 +3,14 @@ import { Academy } from 'types/pages/Academy';
 import { getAcademyPage } from 'lib/api';
 import Hero from 'components/Academy/Hero';
 import ApplicationProcess from 'components/Academy/ApplicationProcess';
+import AcademyDayCards from 'components/Academy/AcademyDayCards';
+import Introduction from 'components/Academy/Introduction';
 import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
 import Quote from 'components/Quote';
 import { CharacterType } from 'types/Base';
-import AcademyDayCards from 'components/Academy/AcademyDayCards';
 import styles from 'styles/pages/Academy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
@@ -55,6 +56,14 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                     <Quote name={content.quoteAuthor}>{content.quote}</Quote>
                 </div>
             </div>
+
+            <div className={styles.shortDivider} />
+
+            <Introduction
+                title={content.introductionTitle}
+                content={content.introductionContent}
+                image={content.introductionPhoto}
+            />
 
             <div className={styles.container}>
                 <div className={styles.mainContentContainer}>

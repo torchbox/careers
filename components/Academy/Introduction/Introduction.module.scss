@@ -1,0 +1,82 @@
+.container {
+    max-width: $site-width;
+    margin: 0 auto;
+    padding: 0 $grid * 1.5;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -35px;
+
+    @include media-query(medium) {
+        padding: 0 $grid * 3 $grid * 2 $grid * 3;
+    }
+
+    @include media-query(large) {
+        flex-direction: row;
+        padding: 0 28px 0 48px;
+    }
+
+    @include media-query(menu-break) {
+        padding: 0 88px;
+        margin-bottom: -50px;
+    }
+}
+
+.textContainer {
+    max-width: $content--narrow + 30px;
+}
+
+.imageContainer {
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    position: relative;
+
+    @include media-query(medium) {
+        display: none;
+    }
+
+    @include media-query(large) {
+        display: block;
+        width: 360px;
+        height: 360px;
+        align-self: flex-end;
+        margin-left: auto;
+        margin-right: unset;
+        flex-shrink: 0;
+    }
+
+    @include media-query(menu-break) {
+        align-self: unset;
+        margin-top: 55px;
+        width: 460px;
+        height: 460px;
+        flex-shrink: 0;
+    }
+}
+
+.hiddenClipPath {
+    @include hidden();
+}
+
+.clipOverlay {
+    @include z-index(two);
+    position: absolute;
+    // -1px prevents outline of image pixels showing on zoom
+    top: -1px;
+    bottom: -1px;
+    right: -1px;
+    left: -1px;
+    clip-path: url(#introductionImageClipPath);
+    background-color: white;
+}
+
+.image {
+    @include z-index(one);
+}
+
+.title {
+    @include font-size(xxxl);
+    font-weight: $weight--extrabold;
+    line-height: 1;
+    margin-bottom: 35px;
+}
