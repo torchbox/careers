@@ -1,0 +1,128 @@
+.container {
+    padding: $grid $grid * 1.5 $grid * 2;
+
+    @include media-query(medium) {
+        padding: $grid * 2 $grid * 3;
+    }
+
+    @include media-query(large) {
+        padding: 0 $grid * 3 $grid * 4 $grid * 3;
+    }
+
+    @include media-query(menu-break) {
+        padding: 0 $grid * 6 $grid * 4 $grid * 4;
+    }
+}
+
+.introductionContainer {
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(large) {
+        flex-direction: row;
+    }
+}
+
+.textContainer {
+    text-align: left;
+    margin-bottom: $grid * 0.5;
+    order: 1;
+
+    @include media-query(medium) {
+        order: 2;
+    }
+
+    @include media-query(large) {
+        max-width: 591px;
+        margin-bottom: $grid * 4;
+    }
+}
+
+.title {
+    @include font-size(xxxl);
+    font-weight: $weight--extrabold;
+    line-height: 1;
+    margin-bottom: 35px;
+}
+
+.arrow {
+    display: none;
+
+    @include media-query(large) {
+        display: block;
+        position: relative;
+        order: 1;
+        margin: auto $grid * 2.5 $grid * 2 auto;
+        bottom: 30px;
+    }
+}
+
+.list {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(large) {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+.step {
+    @include font-size(xs);
+    font-weight: $weight--bold;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    margin-bottom: $grid * 1.5;
+
+    @include media-query(large) {
+        margin-bottom: 0;
+    }
+
+    &Text {
+        color: var(--color--dark-indigo);
+        max-width: 360px;
+
+        @include media-query(large) {
+            max-width: 240px;
+            margin-right: 20px;
+        }
+    }
+
+    &:last-child {
+        .stepText {
+            margin-right: 0;
+        }
+    }
+
+    &Number {
+        @include font-size(ml);
+        font-weight: $weight--extrabold;
+        color: var(--color--white);
+        position: relative;
+        width: 58px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 17px;
+        flex-shrink: 0;
+
+        &::before {
+            @include z-index(under);
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: var(--color--coral);
+            border: 2px solid var(--color--white);
+            border-radius: 31px;
+            outline: 3px solid var(--color--coral);
+        }
+    }
+}

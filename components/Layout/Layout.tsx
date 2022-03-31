@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Theme } from 'types/Base';
 import Alert from 'components/Alert';
 import Footer from 'components/Footer';

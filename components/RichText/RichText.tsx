@@ -58,6 +58,12 @@ const getRenderOptions = (links?: any) => {
             ) => {
                 return <p className={styles.paragraph}>{children}</p>;
             },
+            [BLOCKS.UL_LIST]: (
+                _: React.ReactNode,
+                children: React.ReactNode,
+            ) => {
+                return <ul className={styles.unorderedList}>{children}</ul>;
+            },
             [INLINES.HYPERLINK]: (
                 node: Block | Inline,
                 children: React.ReactNode,
@@ -85,7 +91,7 @@ const getRenderOptions = (links?: any) => {
 
                     if (entry.__typename === 'Quote') {
                         return (
-                            <Quote name={entry.name} role={entry.role}>
+                            <Quote name={entry.name} position={entry.role}>
                                 {entry.quote}
                             </Quote>
                         );

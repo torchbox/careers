@@ -3,13 +3,27 @@ import { Image } from 'components/Image/Image';
 import styles from './SocialMediaPhotos.module.scss';
 
 type SocialMediaPhotosProps = {
-    photos: ImageTypes[];
+    photos: {
+        image: ImageTypes;
+        instagramLink: string;
+    }[];
 };
 
 export const SocialMediaPhotos = ({ photos }: SocialMediaPhotosProps) => {
-    const SocialMediaPhotos = photos.slice(0, 8).map((image, index) => (
+    const SocialMediaPhotos = photos.slice(0, 8).map((photo, index) => (
         <li className={styles.image} key={`social-media-image-${index}`}>
-            <Image layout="fill" src={image.url} alt={image.description} />
+            <a
+                href={photo.instagramLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Go to this photo on Instagram"
+            >
+                <Image
+                    layout="fill"
+                    src={photo.image.url}
+                    alt={photo.image.description}
+                />
+            </a>
         </li>
     ));
 
