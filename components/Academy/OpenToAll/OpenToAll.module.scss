@@ -1,15 +1,15 @@
 .container {
     position: relative;
-    margin-bottom: $grid * 2;
+    margin: $grid * 4 0 $grid * 2;
 
     @include media-query(medium) {
-        margin-bottom: 0;
+        margin: $grid * 2 0 0 0;
         padding-bottom: $grid * 2;
     }
 
     @include media-query(large) {
-        margin-top: $grid * 16;
-        margin-bottom: $grid * 20;
+        margin-top: $grid * 20;
+        margin-bottom: $grid * 24;
         padding-bottom: 0;
     }
 }
@@ -23,17 +23,19 @@
 
     @include media-query(medium) {
         @include font-size(xxxxl);
+        max-width: 450px;
         padding-top: $grid * 7;
         padding-right: 0;
     }
 
     @include media-query(large) {
         padding-top: 0;
+        max-width: 600px;
     }
 }
 
 .content {
-    margin-bottom: $grid;
+    margin-bottom: $grid * 1.5;
 
     p:last-child {
         margin-bottom: 0;
@@ -41,12 +43,10 @@
 
     @include media-query(medium) {
         max-width: 400px;
-        margin-bottom: $grid * 14;
     }
 
     @include media-query(large) {
         max-width: 483px;
-        margin-bottom: $grid;
     }
 }
 
@@ -59,6 +59,7 @@
         @include z-index(two);
         padding-top: $grid * 3;
         padding-left: $grid * 2;
+        margin-bottom: $grid * 14;
     }
 
     @include media-query(large) {
