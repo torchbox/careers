@@ -157,6 +157,10 @@
         height: 775px;
     }
 
+    @include media-query(site-width) {
+        clip-path: url(#squareShardClipPath);
+    }
+
     & > span {
         @include media-query(large) {
             width: 575px !important;

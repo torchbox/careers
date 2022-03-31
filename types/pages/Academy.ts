@@ -20,7 +20,7 @@ export type Academy = {
             title: string;
             description: { json: Document };
             applicationLink: string;
-        };
+        }[];
     };
     inclusiveSectionTitle: string;
     inclusiveSectionContent: { json: Document };

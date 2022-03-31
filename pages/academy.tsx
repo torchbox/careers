@@ -3,12 +3,15 @@ import { Academy } from 'types/pages/Academy';
 import { getAcademyPage } from 'lib/api';
 import Hero from 'components/Academy/Hero';
 import ApplicationProcess from 'components/Academy/ApplicationProcess';
+import AcademyDayCards from 'components/Academy/AcademyDayCards';
+import Introduction from 'components/Academy/Introduction';
 import TypicalDay from 'components/Academy/TypicalDay';
 import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
 import OpenToAll from 'components/Academy/OpenToAll';
 import Quote from 'components/Quote';
+import { CharacterType } from 'types/Base';
 import styles from 'styles/pages/Academy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
@@ -23,6 +26,19 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
     jobsAvailable,
     content,
 }) => {
+    const academyDays = content.academyDaysCollection.items.map(
+        (card, index) => {
+            return {
+                title: card.title,
+                content: card.description,
+                link: card.applicationLink,
+                character: (index === 0
+                    ? 'MICROPHONE'
+                    : 'COFFEE') as CharacterType,
+            };
+        },
+    );
+
     return (
         <Layout theme="INDIGO" preview={preview} jobsAvailable={jobsAvailable}>
             <Metadata
@@ -42,6 +58,14 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                 </div>
             </div>
 
+            <div className={styles.shortDivider} />
+
+            <Introduction
+                title={content.introductionTitle}
+                content={content.introductionContent}
+                image={content.introductionPhoto}
+            />
+
             <div className={styles.container}>
                 <div className={styles.mainContentContainer}>
                     <h2 className={styles.secondaryTitle}>
@@ -53,6 +77,8 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                     />
                 </div>
             </div>
+
+            <AcademyDayCards academyDays={academyDays} />
 
             <OpenToAll
                 title={content.inclusiveSectionTitle}

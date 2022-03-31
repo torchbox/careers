@@ -4,13 +4,9 @@
 }
 
 .textContainer {
-    margin: 0 auto $grid * 3 auto;
+    margin: 0 auto $grid auto;
     max-width: $content--narrow;
     padding: 0 $grid;
-
-    @include media-query(medium) {
-        margin: 0 auto $grid * 4 auto;
-    }
 
     @include media-query(large) {
         padding: 0;
@@ -18,7 +14,7 @@
 }
 
 .mainContentContainer {
-    margin: 0 auto $grid * 3 auto;
+    margin: 0 auto $grid * 2 auto;
     max-width: $content--narrow + 29px;
     padding: 0 $grid * 1.5;
 
@@ -27,7 +23,7 @@
     }
 
     @include media-query(large) {
-        margin: 0 auto $grid * 4 18%;
+        margin: 0 auto $grid * 3 18%;
         padding: 0;
     }
 }
@@ -48,8 +44,38 @@
     }
 }
 
+.shortDivider {
+    position: relative;
+    display: none;
+    height: 65px;
+
+    @include media-query(medium) {
+        display: block;
+    }
+
+    @include media-query(menu-break) {
+        height: 85px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50px;
+        left: $grid * 2.5;
+        width: 45%;
+        height: 3px;
+        background: var(--color--coral);
+        transform: rotate(-6deg);
+
+        @include media-query(menu-break) {
+            top: 45px;
+            left: 92px;
+            width: 578px;
+        }
+    }
+}
+
 .longDivider {
-    border: 0px;
     position: relative;
     display: none;
     height: 160px;

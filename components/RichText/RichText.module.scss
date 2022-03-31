@@ -109,3 +109,14 @@
         }
     }
 }
+
+.image {
+    width: 100%;
+    height: auto;
+    margin: 60px 0;
+
+    &Caption {
+        @include font-size(xxs);
+        margin: 0;
+    }
+}

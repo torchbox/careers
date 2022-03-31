@@ -39,6 +39,13 @@ export const Hero = ({ image, video, subtitle, children }: HeroProps) => {
                         <path d="M 0.996 0.406 L 0.77 0.79 L 0.967 0.908 L 1.207 0.533 L 1.03 0.429 Z" />
                     </clipPath>
                     <clipPath
+                        id="squareShardClipPath"
+                        clipPathUnits="objectBoundingBox"
+                    >
+                        <path d="M 0.85 0.46 L 0.62 0.79 L 0.76 0.89 L 0.985 0.55 Z " />
+                        <path d="M 0.46 0 L 0.9 0.3 L 0.45 0.95 L 0 0.63 Z" />
+                    </clipPath>
+                    <clipPath
                         id="inverseShardClipPath"
                         clipPathUnits="objectBoundingBox"
                     >
