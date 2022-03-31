@@ -36,6 +36,16 @@
     background-color: var(--color--coral);
 }
 
+.whiteBackground {
+    background-color: var(--color--white);
+    color: var(--color--coral);
+
+    &:hover,
+    &:focus {
+        color: var(--color--coral);
+    }
+}
+
 .carouselButton {
     cursor: pointer;
     border: 0;
@@ -87,6 +97,11 @@
     margin-left: 6px;
     margin-right: -28px;
     transition: transform $transition-quick;
+    align-self: center;
+
+    .whiteBackground & path {
+        fill: var(--color--coral);
+    }
 }
 
 .jobsBadge {

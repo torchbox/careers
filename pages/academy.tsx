@@ -8,6 +8,8 @@ import Layout from 'components/Layout';
 import RichText from 'components/RichText';
 import Metadata from 'components/Metadata';
 import Quote from 'components/Quote';
+import { CharacterType } from 'types/Base';
+import AcademyDayCards from 'components/Academy/AcademyDayCards';
 import styles from 'styles/pages/Academy.module.scss';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
@@ -22,6 +24,19 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
     jobsAvailable,
     content,
 }) => {
+    const academyDays = content.academyDaysCollection.items.map(
+        (card, index) => {
+            return {
+                title: card.title,
+                content: card.description,
+                link: card.applicationLink,
+                character: (index === 0
+                    ? 'MICROPHONE'
+                    : 'COFFEE') as CharacterType,
+            };
+        },
+    );
+
     return (
         <Layout theme="INDIGO" preview={preview} jobsAvailable={jobsAvailable}>
             <Metadata
@@ -52,6 +67,8 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                     />
                 </div>
             </div>
+
+            <AcademyDayCards academyDays={academyDays} />
 
             <TypicalDay
                 title={content.typicalDayTitle}

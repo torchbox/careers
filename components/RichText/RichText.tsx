@@ -19,6 +19,7 @@ type Theme = 'LIGHT' | 'DARK' | 'INDIGO';
 
 type RichTextProps = {
     theme: Theme;
+    className?: string;
     content: {
         json: Document;
         links?: any;
@@ -130,7 +131,7 @@ const getRenderOptions = (links?: any) => {
     };
 };
 
-const RichText = ({ theme, content }: RichTextProps) => {
+const RichText = ({ theme, content, className = '' }: RichTextProps) => {
     let themeClass = 'themeLight';
     switch (theme) {
         case 'LIGHT':
@@ -145,7 +146,7 @@ const RichText = ({ theme, content }: RichTextProps) => {
     }
 
     return (
-        <div className={themeClass}>
+        <div className={`${themeClass} ${className}`}>
             {documentToReactComponents(
                 content.json,
                 getRenderOptions(content.links),
