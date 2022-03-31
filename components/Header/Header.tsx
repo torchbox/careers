@@ -59,35 +59,37 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.navigationContainer}>
-                <div className={styles.logo}>
-                    <a
-                        className={styles.logoLink}
-                        href="https://torchbox.com"
-                        aria-label="Home"
-                    >
-                        <TorchboxLogo />
-                    </a>
+        <>
+            <div className={styles.container}>
+                <div className={styles.navigationContainer}>
+                    <div className={styles.logo}>
+                        <a
+                            className={styles.logoLink}
+                            href="https://torchbox.com"
+                            aria-label="Home"
+                        >
+                            <TorchboxLogo />
+                        </a>
+                    </div>
+                    <MobileMenuButton
+                        isOpen={isOpen}
+                        toggleMobileMenu={toggleMobileMenu}
+                    />
+                    <DesktopNav
+                        isOpen={isOpen}
+                        links={NAVIGATION_LINKS}
+                        toggleMenu={toggleMobileMenu}
+                        jobsAvailable={jobsAvailable}
+                    />
                 </div>
-                <MobileMenuButton
-                    isOpen={isOpen}
-                    toggleMobileMenu={toggleMobileMenu}
-                />
-                <MobileNav
-                    isOpen={isOpen}
-                    links={NAVIGATION_LINKS}
-                    navMenuRef={mobileNavRef}
-                    jobsAvailable={jobsAvailable}
-                />
-                <DesktopNav
-                    isOpen={isOpen}
-                    links={NAVIGATION_LINKS}
-                    toggleMenu={toggleMobileMenu}
-                    jobsAvailable={jobsAvailable}
-                />
             </div>
-        </div>
+            <MobileNav
+                isOpen={isOpen}
+                links={NAVIGATION_LINKS}
+                navMenuRef={mobileNavRef}
+                jobsAvailable={jobsAvailable}
+            />
+        </>
     );
 };
 
