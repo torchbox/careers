@@ -31,8 +31,7 @@
     @include z-index(four);
     position: relative;
     text-align: left;
-    padding-left: 15px;
-    padding-top: 22px;
+    padding: 22px $grid * 1.5 0 $grid * 1.5;
     order: 2;
 
     @include media-query(medium) {

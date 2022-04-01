@@ -4,9 +4,11 @@ import 'styles/globals.scss';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 function MyApp({ Component, pageProps }: AppProps) {
     Router.events.on('routeChangeComplete', (url) => {
+        clearAllBodyScrollLocks();
         // Scroll to the hashtag if the user is going back after visiting an anchor
         if (!url.includes('#')) {
             // Otherwise track the page instantly to the top of the new page.

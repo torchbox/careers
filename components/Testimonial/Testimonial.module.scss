@@ -3,7 +3,7 @@
     flex-direction: column;
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 $grid;
+    padding: 0 $grid * 1.5;
 
     @include media-query(medium) {
         flex-direction: row;
@@ -19,7 +19,14 @@
     flex-direction: column;
 
     @include media-query(medium) {
+        margin-top: $grid * 2.5;
+        padding-left: 5px;
+    }
+
+    @include media-query(large) {
         justify-content: flex-end;
+        margin-top: 0;
+        padding-left: 0;
     }
 }
 
@@ -42,23 +49,47 @@
     text-transform: uppercase;
 }
 
-$testimonial-image-size: 330px;
+$testimonial-image-size: 240px;
+$testimonial-image-size-large: 330px;
 
 .image {
     clip-path: url(#testimonialClipPath);
-    width: $testimonial-image-size;
-    height: $testimonial-image-size;
+
+    width: $testimonial-image-size-large;
+    height: $testimonial-image-size-large;
 
     & span,
     & img {
-        width: $testimonial-image-size !important;
-        height: $testimonial-image-size !important;
+        width: $testimonial-image-size-large !important;
+        height: $testimonial-image-size-large !important;
+    }
+
+    @include media-query(medium) {
+        width: $testimonial-image-size;
+        height: $testimonial-image-size;
+
+        & span,
+        & img {
+            width: $testimonial-image-size !important;
+            height: $testimonial-image-size !important;
+        }
+    }
+
+    @include media-query(large) {
+        width: $testimonial-image-size-large;
+        height: $testimonial-image-size-large;
+
+        & span,
+        & img {
+            width: $testimonial-image-size-large !important;
+            height: $testimonial-image-size-large !important;
+        }
     }
 }
 
 .imageContainer {
-    width: $testimonial-image-size;
-    height: $testimonial-image-size;
+    width: $testimonial-image-size-large;
+    height: $testimonial-image-size-large;
     position: relative;
     margin-top: -$grid * 2;
 
