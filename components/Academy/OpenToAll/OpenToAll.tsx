@@ -21,9 +21,9 @@ export const OpenToAll = ({ title, content, image }: OpenToAllProps) => {
                     content={content}
                     className={styles.content}
                 />
-                <Link href="/life-at-torchbox" scroll={false}>
+                <Link href="/" scroll={false}>
                     <a className="underline-link underline-link--white">
-                        Find out more about Life at Torchbox
+                        Find out more about Torchbox
                     </a>
                 </Link>
                 <div className={styles.background}></div>
