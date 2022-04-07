@@ -150,7 +150,11 @@
         cursor: pointer;
         text-decoration: underline;
         text-underline-position: under;
-        margin-bottom: 0;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+        transition: color $transition-quick;
 
         &:hover {
             color: var(--color--coral-dark);
