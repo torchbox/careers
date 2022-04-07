@@ -1,31 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Staging and Deployment
 
-```bash
-fnm use
-```
+This site is live at [https://torchbox.com/careers](https://torchbox.com/careers).
 
-It's recommended you use `fnm` as this is faster than nvm. If you haven't installed fnm yet, you can use `nvm use` here instead.
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000/careers](http://localhost:3000/careers) with your browser to see the result.
-
-N.B. Remember to run `npm install` every time you switch development branches. This triggers a refresh of Prettier, so if you have the Prettier VSCode extension installed, it will correctly format files on save.
-
-Before committing changes, run
-
-```
-npm run format
-npm run lint
-npm run pa11y
-```
-
-So your code passes CI.
+Preview sites are automatically deployed by Vercel every time you push to a remote branch on this GitHub repository. A full list of deployments can be [found here](https://github.com/torchbox/careers/deployments) or on Vercel, don't forget to add `/careers` to the end of the deployment URL or you will only see a 404 page.
 
 ## Pulling data from Contentful
 
@@ -42,35 +21,36 @@ Update the `.env.local` using the RSS feed URL, as found on the password manager
 To view the GraphQL API explorer, go to
 
 ```
-https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }
+https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/explore?access_token={ ACCESS TOKEN }
 ```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Common Errors
-
-### Next: Commmand not found
-
-When running `npm run dev` or similar.
+## Local Development
 
 ```bash
-> careers@ dev /Users/jameshancock/Documents/GitHub/careers
-> next dev
-
-sh: next: command not found
+fnm use
 ```
 
-**Solution:** Make sure you are running the right node version with 'nvm use' or 'fnm use', then delete the `node_modules` folder and run `npm install` to reinstall Next.js correctly.
+It's recommended you use `fnm` as this is faster than nvm. If you haven't installed fnm yet, you can use `nvm use` here instead.
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000/careers](http://localhost:3000/careers) with your browser to see the result.
+
+Before committing changes, run
+
+```
+npm run format
+npm run lint
+npm run pa11y
+```
+
+So your code passes CI.
+
+If you have VSCode installed, the Prettier and Stylelint extensions combined with [VSCode's auto formatting on save](https://blog.yogeshchavan.dev/automatically-format-code-on-file-save-in-visual-studio-code-using-prettier) will catch most of the linting errors for you.
+
+## Further Documentation
+
+View the [`/docs`](https://github.com/torchbox/careers/tree/main/docs) folder for more notes. I recommended reading the React, Styling and Images docs to understand best practices for working on this project, while the Pa11y and PeopleHR pages contain more in-depth technical information and are better used as references.

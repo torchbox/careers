@@ -42,18 +42,21 @@ const LandingPage: NextPage<LandingPageProps> = ({
 5. Define the types for complex data objects in a separate `types/` file.
 
 ```ts
+import { Document } from '@contentful/rich-text-types';
+import { ImageTypes } from 'types/Base';
+
 export type LandingPage = {
   title: string;
   metadataDescription: string;
-  heroImage: Image;
-  workForYouDescription: any;
-  workForYouImage: Image;
-  lifeAsATorchboxer: any;
+  heroImage: ImageTypes;
+  workForYouDescription: { json: Document };
+  workForYouImage: ImageTypes;
   ctaTitle: string;
-  ctaDescription: any;
+  ctaDescription: { json: Document };
+  ...
 };
 ```
 
-6. Where we pull complex unregulated JSON from the Contentful GraphQL Schema, use the `any` type.
+6. Where we pull JSON from the Contentful GraphQL Schema, use the `Document` type imported from `@contentful`.
 7. Add reusable type definitions to `types/Base.ts`
-8. Use arrow functions instead of `function () {}` definitions where possible.
+8. Otherwise, follow the ESLint configuration.
