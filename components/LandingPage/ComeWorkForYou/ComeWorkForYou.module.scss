@@ -74,7 +74,7 @@
 }
 
 .textContainer {
-    @include z-index(under);
+    @include z-index(one);
     padding: $grid * 2 $grid * 2 $grid * 3 $grid * 2;
     position: relative;
 
