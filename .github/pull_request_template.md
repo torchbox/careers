@@ -1,15 +1,15 @@
-## [Link to Ticket On Codebase]()
+### [Link to Ticket On Codebase]()
 
 ### Description of Changes Made
 
 ### How to Test
 
-[Link to preview site page with component]()
+[Link to changes made on preview site]()
 
-### Screenshots, Gifs
+### Screenshots
 
 <details>
-  <summary>Screenshots and Gifs (if relevant)</summary>
+  <summary>Expand to show more</summary>
 
 </details>
 
