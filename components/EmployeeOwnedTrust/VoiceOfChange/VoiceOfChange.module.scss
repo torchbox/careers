@@ -1,10 +1,10 @@
 .container {
     max-width: 725px;
     margin: 0 auto;
-    padding: $grid;
+    padding: $grid $grid * 1.5;
 
     @include media-query(medium) {
-        padding-bottom: $grid;
+        padding: $grid $grid * 2;
     }
 
     @include media-query(large) {
