@@ -32,7 +32,15 @@
     @include font-size(xxxxl);
     font-weight: $weight--extrabold;
     line-height: 1;
-    margin-bottom: $grid * 1.5;
+    margin: 0;
+
+    @include media-query(medium) {
+        margin: $grid * 1.5 0;
+    }
+
+    @include media-query(large) {
+        margin-top: $grid * 3;
+    }
 }
 
 .image {
