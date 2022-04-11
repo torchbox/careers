@@ -16,7 +16,7 @@
         padding-bottom: $grid * 5;
     }
 
-    @include media-query(large) {
+    @include media-query(menu-break) {
         padding: 0 0 $grid * 8 0;
         margin: 0 auto 0 25%;
     }
@@ -150,7 +150,11 @@
         cursor: pointer;
         text-decoration: underline;
         text-underline-position: under;
-        margin-bottom: 0;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+        transition: color $transition-quick;
 
         &:hover {
             color: var(--color--coral-dark);
