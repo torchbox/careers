@@ -1,47 +1,70 @@
 import Link from 'next/link';
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
+import { useRouter } from 'next/router';
 import { NavLink } from 'types/Base';
 import styles from './MobileNav.module.scss';
 
 type MobileNavItemProps = {
     link: NavLink;
+    toggleMobileMenu: (_: void) => void;
     jobsAvailable?: number;
 };
 
-const MobileNavItem = ({ jobsAvailable = 0, link }: MobileNavItemProps) => (
-    <li
-        className={`${styles.mobileNavItem} ${
-            link.title === 'Jobs' &&
-            jobsAvailable > 0 &&
-            styles.mobileNavItemWithBadge
-        }`}
-    >
-        {link.isCareersSiteInternalLink ? (
-            <Link href={link.url} scroll={false}>
-                <a className={styles.mobileNavItemLink}>
+const MobileNavItem = ({
+    jobsAvailable = 0,
+    toggleMobileMenu,
+    link,
+}: MobileNavItemProps) => {
+    const router = useRouter();
+    const redirectOrCloseMenu = (
+        event: React.MouseEvent<HTMLAnchorElement>,
+    ) => {
+        if (link.url === router.pathname) {
+            event.preventDefault();
+            toggleMobileMenu();
+        }
+    };
+    return (
+        <li
+            className={`${styles.mobileNavItem} ${
+                link.title === 'Jobs' &&
+                jobsAvailable > 0 &&
+                styles.mobileNavItemWithBadge
+            }`}
+        >
+            {link.isCareersSiteInternalLink ? (
+                <Link href={link.url} scroll={false}>
+                    <a
+                        className={styles.mobileNavItemLink}
+                        onClick={redirectOrCloseMenu}
+                    >
+                        <span className={styles.mobileNavItemTitle}>
+                            {link.title}
+                        </span>
+                        {link.title === 'Jobs' && jobsAvailable > 0 && (
+                            <span
+                                className={`${styles.mobileNavItemBadgeLink} ${styles.badge}`}
+                                aria-label={`${jobsAvailable} jobs available`}
+                            >
+                                {jobsAvailable}
+                            </span>
+                        )}
+                    </a>
+                </Link>
+            ) : (
+                <a className={styles.mobileNavItemLink} href={link.url}>
                     <span className={styles.mobileNavItemTitle}>
                         {link.title}
                     </span>
-                    {link.title === 'Jobs' && jobsAvailable > 0 && (
-                        <span
-                            className={`${styles.mobileNavItemBadgeLink} ${styles.badge}`}
-                            aria-label={`${jobsAvailable} jobs available`}
-                        >
-                            {jobsAvailable}
-                        </span>
-                    )}
                 </a>
-            </Link>
-        ) : (
-            <a className={styles.mobileNavItemLink} href={link.url}>
-                <span className={styles.mobileNavItemTitle}>{link.title}</span>
-            </a>
-        )}
-    </li>
-);
+            )}
+        </li>
+    );
+};
 
 type MobileNavProps = {
     navMenuRef: RefObject<HTMLDivElement>;
+    toggleMobileMenu: (_: void) => void;
     isOpen: boolean;
     links: NavLink[];
     jobsAvailable?: number;
@@ -49,12 +72,18 @@ type MobileNavProps = {
 
 export const MobileNav = ({
     navMenuRef,
+    toggleMobileMenu,
     isOpen,
     links,
     jobsAvailable = 0,
 }: MobileNavProps) => {
     const navItems = links.map((link, index) => (
-        <MobileNavItem link={link} jobsAvailable={jobsAvailable} key={index} />
+        <MobileNavItem
+            link={link}
+            jobsAvailable={jobsAvailable}
+            key={index}
+            toggleMobileMenu={toggleMobileMenu}
+        />
     ));
 
     return (
