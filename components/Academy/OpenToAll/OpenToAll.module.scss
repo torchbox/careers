@@ -1,6 +1,7 @@
 .container {
     position: relative;
     margin: $grid * 4 0 $grid * 2;
+    max-width: $site-width;
 
     @include media-query(medium) {
         margin: $grid * 2 0 0 0;
@@ -8,8 +9,7 @@
     }
 
     @include media-query(large) {
-        margin-top: $grid * 20;
-        margin-bottom: $grid * 24;
+        margin: $grid * 20 auto $grid * 24 auto;
         padding-bottom: 0;
     }
 }
