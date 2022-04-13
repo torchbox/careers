@@ -55,7 +55,7 @@ export const Layout = ({
             </svg>
             <Alert preview={preview} />
             <Header jobsAvailable={jobsAvailable} />
-            <div className={styles.container}>{children}</div>
+            {children}
             <Footer />
         </div>
     );
