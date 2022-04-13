@@ -1,20 +1,19 @@
 .container {
-    max-width: $site-width;
     margin: 0 auto;
-    padding: 0 $grid $grid * 3 $grid;
+    padding: 0 8.33vw $grid * 3 8.33vw;
     display: flex;
     flex-direction: column;
 
     @include media-query(medium) {
-        padding: $grid * 0 $grid * 2 $grid * 4 $grid * 2;
+        padding: $grid * 0 8.33vw $grid * 4 8.33vw;
     }
 
     @include media-query(large) {
-        padding: $grid * 0 $grid * 4 $grid * 6 $grid * 4;
+        padding: $grid * 0 8.33vw $grid * 6 8.33vw;
     }
 
     @include media-query(menu-break) {
-        padding: $grid * 0 $grid * 4 $grid * 6 $grid * 4;
+        padding: $grid * 0 8.33vw $grid * 6 8.33vw;
     }
 }
 

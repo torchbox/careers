@@ -1,14 +1,10 @@
 .container {
-    padding: $grid;
+    margin: $grid * 2 8.33vw;
     display: flex;
     flex-direction: column;
 
-    @include media-query(medium) {
-        padding: $grid * 2;
-    }
-
     @include media-query(large) {
-        padding: 0 $grid * 4 $grid * 4 $grid * 4;
+        margin: $grid * 4 8.33vw;
         flex-direction: row;
     }
 }
