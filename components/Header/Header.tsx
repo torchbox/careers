@@ -18,7 +18,7 @@ const NAVIGATION_LINKS = [
         title: 'Digital marketing',
         url: 'https://torchbox.com/digital-marketing/',
     },
-    { title: 'Jobs', url: '/jobs/', isCareersSiteInternalLink: true },
+    { title: 'Jobs', url: '/jobs', isCareersSiteInternalLink: true },
     {
         title: 'Being at Torchbox',
         url: '/',
@@ -81,6 +81,7 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
             </div>
             <MobileNav
                 isOpen={isOpen}
+                toggleMobileMenu={toggleMobileMenu}
                 links={NAVIGATION_LINKS}
                 navMenuRef={mobileNavRef}
                 jobsAvailable={jobsAvailable}

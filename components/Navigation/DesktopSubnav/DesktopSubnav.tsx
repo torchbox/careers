@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 import { NavLink } from 'types/Base';
+import { pluralize } from 'lib/utilities';
 import styles from './DesktopSubnav.module.scss';
 
 type DesktopSubnavProps = {
@@ -14,6 +16,7 @@ export const DesktopSubnav = ({
     jobsAvailable = 0,
     toggleMenu,
 }: DesktopSubnavProps) => {
+    const router = useRouter();
     // Use a ref as we don't need to rerender the component on tab navigation
     const keysPressedRef = useRef<Array<string>>([]);
 
@@ -72,10 +75,6 @@ export const DesktopSubnav = ({
                 ? handleLastItemKeyDown
                 : handleKeyDown;
 
-        // If the careers nav item is moved to the top of the list, you shouldn't tab out when shift tabbing the badge
-        const handleBadgeKeyDown =
-            index === links.length - 1 ? handleLastItemKeyDown : handleKeyDown;
-
         // If the careers nav item is at the bottom of the list, you shouldn't tab out until you tab through the badge
         const handleCareersKeyDown =
             index === 0 ? handleFirstItemKeyDown : handleKeyDown;
@@ -92,18 +91,24 @@ export const DesktopSubnav = ({
                             <a
                                 onKeyUp={handleKeyUp}
                                 onKeyDown={handleCareersKeyDown}
-                                className={styles.subnavLink}
+                                className={`${styles.subnavLink} ${
+                                    link.url === router.pathname
+                                        ? styles.subnavLinkActive
+                                        : null
+                                }`}
                             >
                                 {link.title}
                             </a>
                         </Link>
                         {link.title === 'Jobs' && jobsAvailable > 0 && (
-                            <Link href="/jobs/" scroll={false}>
+                            <Link href="/jobs" scroll={false}>
                                 <a
-                                    onKeyUp={handleKeyUp}
-                                    onKeyDown={handleBadgeKeyDown}
                                     className={`${styles.subnavBadge} ${styles.badge}`}
-                                    aria-label={`${jobsAvailable} jobs available`}
+                                    aria-label={`${jobsAvailable} ${pluralize(
+                                        jobsAvailable,
+                                        'job',
+                                        's',
+                                    )} available`}
                                     tabIndex={-1}
                                 >
                                     {jobsAvailable}
