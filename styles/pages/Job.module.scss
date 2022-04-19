@@ -10,7 +10,7 @@
 
 .contentContainer {
     max-width: 840px;
-    padding: $grid * 2 $grid * 1.5 $grid * 3 $grid * 1.5;
+    padding: $grid * 2 $grid * 1.5 $grid * 1.5 $grid * 1.5;
 
     @include media-query(medium) {
         margin: 0 auto;
@@ -66,7 +66,7 @@
 }
 
 .hiringPolicyTitle {
-    margin-top: 0;
+    margin-top: $grid * 2;
 
     @include media-query(medium) {
         margin-top: $grid;
@@ -78,7 +78,9 @@
 }
 
 .whoWeWorkWith {
-    padding: $grid;
+    padding: 0 $grid * 1.5;
+    margin-top: $grid * 1.5;
+    margin-bottom: 0;
 
     @include media-query(medium) {
         margin: $grid auto 0 auto;

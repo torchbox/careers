@@ -12,7 +12,7 @@ export const LifeAsATorchboxer = ({ children }: LifeAsATorchboxerProps) => (
             <h2 className={styles.title}>
                 <span className={styles.titleAccent}>Life as a</span>
                 <br />
-                Torchboxer
+                Torchbox&shy;er
             </h2>
             <div className={styles.richText}>{children}</div>
             <div className={styles.links}>

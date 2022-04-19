@@ -1,5 +1,5 @@
 .container {
-    padding: $grid;
+    padding: $grid $grid * 1.5;
     display: flex;
     flex-direction: column;
 
@@ -32,7 +32,8 @@
     @include font-size(xxxxl);
     font-weight: $weight--extrabold;
     line-height: 60px;
-    padding: $grid * 0.5;
+    word-wrap: break-word;
+    hyphens: manual;
 
     @include media-query(medium) {
         line-height: 70px;
@@ -48,17 +49,29 @@
 }
 
 .richText {
-    padding: $grid * 0.5;
-    & > p {
-        color: var(--color--dark-indigo);
+    & p:last-child {
+        margin-bottom: 0;
     }
 }
 
 .links {
     @include font-size(m);
+    display: flex;
+    flex-direction: column;
+    gap: $grid;
+    margin-top: $grid;
 
-    & a:first-child {
-        margin-right: $grid * 2;
+    & a {
+        width: max-content;
+    }
+
+    @include media-query(medium) {
+        display: block;
+        margin-top: $grid * 1.5;
+
+        & a:first-child {
+            margin-right: $grid * 2;
+        }
     }
 }
 

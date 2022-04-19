@@ -71,10 +71,6 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
                             <TorchboxLogo />
                         </a>
                     </div>
-                    <MobileMenuButton
-                        isOpen={isOpen}
-                        toggleMobileMenu={toggleMobileMenu}
-                    />
                     <DesktopNav
                         isOpen={isOpen}
                         links={NAVIGATION_LINKS}
@@ -88,6 +84,10 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
                 links={NAVIGATION_LINKS}
                 navMenuRef={mobileNavRef}
                 jobsAvailable={jobsAvailable}
+            />
+            <MobileMenuButton
+                isOpen={isOpen}
+                toggleMobileMenu={toggleMobileMenu}
             />
         </>
     );

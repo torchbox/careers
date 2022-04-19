@@ -80,8 +80,8 @@
 .mobileMenuButton {
     @include z-index(menu-button);
     position: absolute;
-    top: $gutter;
-    right: $gutter;
+    top: $grid;
+    right: $grid;
     width: 45px;
     height: 45px;
     display: block;
