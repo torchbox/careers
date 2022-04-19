@@ -32,6 +32,8 @@
     @include font-size(xxxxl);
     font-weight: $weight--extrabold;
     line-height: 60px;
+    word-wrap: break-word;
+    hyphens: manual;
 
     @include media-query(medium) {
         line-height: 70px;
