@@ -3,6 +3,7 @@ import RichText from 'components/RichText';
 import Link from 'next/link';
 import { ImageTypes } from 'types/Base';
 import { Document } from '@contentful/rich-text-types';
+import urls from 'lib/urls';
 import styles from './OpenToAll.module.scss';
 
 type OpenToAllProps = {
@@ -21,7 +22,7 @@ export const OpenToAll = ({ title, content, image }: OpenToAllProps) => {
                     content={content}
                     className={styles.content}
                 />
-                <Link href="/" scroll={false}>
+                <Link href={urls.beingAtTorchbox} scroll={false}>
                     <a className="underline-link underline-link--white">
                         Find out more about Torchbox
                     </a>
