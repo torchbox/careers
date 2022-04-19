@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { RefObject } from 'react';
 import { useRouter } from 'next/router';
 import { NavLink } from 'types/Base';
+import { pluralize } from 'lib/utilities';
 import styles from './MobileNav.module.scss';
 
 type MobileNavItemProps = {
@@ -44,7 +45,11 @@ const MobileNavItem = ({
                         {link.title === 'Jobs' && jobsAvailable > 0 && (
                             <span
                                 className={`${styles.mobileNavItemBadgeLink} ${styles.badge}`}
-                                aria-label={`${jobsAvailable} jobs available`}
+                                aria-label={`${jobsAvailable} ${pluralize(
+                                    jobsAvailable,
+                                    'job',
+                                    's',
+                                )} available`}
                             >
                                 {jobsAvailable}
                             </span>
@@ -81,7 +86,7 @@ export const MobileNav = ({
         <MobileNavItem
             link={link}
             jobsAvailable={jobsAvailable}
-            key={index}
+            key={`mobile-nav-item-${index}`}
             toggleMobileMenu={toggleMobileMenu}
         />
     ));
