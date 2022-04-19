@@ -17,7 +17,7 @@ export const Metadata = ({
 }: MetadataProps) => (
     <Head>
         <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="generator" content="Next.js, Vercel, PeopleHR" />
         <title>{title}</title>
         <meta name="title" content={title} />
