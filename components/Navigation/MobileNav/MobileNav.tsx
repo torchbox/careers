@@ -99,7 +99,6 @@ export const MobileNav = ({
                         isOpen && styles.mobileNavModalOpen
                     }`}
                     aria-label="Mobile navigation"
-                    role="navigation"
                 >
                     <ul className={styles.mobileNavList}>{navItems}</ul>
                 </nav>
