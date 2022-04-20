@@ -1,6 +1,6 @@
 const urls = {
     beingAtTorchbox: '/',
-    lifeAtTorchbox: '/life-at-torchbox/',
+    lifeAtTorchbox: '/about-us/',
     employeeOwnedTrust: '/employee-owned-trust/',
     academy: '/academy/',
     jobs: '/jobs/',
