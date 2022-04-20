@@ -1,45 +1,44 @@
 import type { NextPage } from 'next';
-import type { LandingPage } from 'types/pages/LandingPage';
+import type { BeingAtTorchbox } from 'types/pages/BeingAtTorchbox';
 import Layout from 'components/Layout';
 import ClientLogos from 'components/ClientLogos';
 import Benefits from 'components/Benefits';
-import Hero from 'components/LandingPage/Hero';
-import PageNav from 'components/LandingPage/PageNav';
-import LifeAsATorchboxer from 'components/LandingPage/LifeAsATorchboxer';
-import ComeWorkForYou from 'components/LandingPage/ComeWorkForYou';
-import SocialMediaPhotos from 'components/LandingPage/SocialMediaPhotos';
-import CTA from 'components/LandingPage/CTA';
+import Hero from 'components/BeingAtTorchbox/Hero';
+import PageNav from 'components/BeingAtTorchbox/PageNav';
+import LifeAsATorchboxer from 'components/BeingAtTorchbox/LifeAsATorchboxer';
+import ComeWorkForYou from 'components/BeingAtTorchbox/ComeWorkForYou';
+import SocialMediaPhotos from 'components/BeingAtTorchbox/SocialMediaPhotos';
+import CTA from 'components/BeingAtTorchbox/CTA';
 import RichText from 'components/RichText';
-import MusingsFromTheTeam from 'components/LandingPage/MusingsFromTheTeam';
+import MusingsFromTheTeam from 'components/BeingAtTorchbox/MusingsFromTheTeam';
 import Metadata from 'components/Metadata';
-import { getLandingPage } from 'lib/api';
+import { getBeingAtTorchboxPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 
-type LandingPageProps = {
+type BeingAtTorchboxProps = {
     preview: boolean;
     jobsAvailable: number;
-    landingPageContent: LandingPage;
+    content: BeingAtTorchbox;
 };
 
-const LandingPage: NextPage<LandingPageProps> = ({
+const BeingAtTorchbox: NextPage<BeingAtTorchboxProps> = ({
     preview,
     jobsAvailable,
-    landingPageContent,
+    content,
 }) => {
-    const benefitCollection = landingPageContent.itemsCollection.items.find(
+    const benefitCollection = content.itemsCollection.items.find(
         (obj: any) => obj.__typename === 'Benefits',
     );
 
-    const clientLogoCollection = landingPageContent.itemsCollection.items.find(
+    const clientLogoCollection = content.itemsCollection.items.find(
         (obj: any) => obj.__typename === 'Clients',
     );
 
-    const socialImagesCollection =
-        landingPageContent.itemsCollection.items.find(
-            (obj: any) => obj.__typename === 'ProfileImages',
-        );
+    const socialImagesCollection = content.itemsCollection.items.find(
+        (obj: any) => obj.__typename === 'ProfileImages',
+    );
 
-    const blogPostsCollection = landingPageContent.itemsCollection.items.find(
+    const blogPostsCollection = content.itemsCollection.items.find(
         (obj: any) => obj.__typename === 'MusingsFromTheTeam',
     );
 
@@ -61,33 +60,27 @@ const LandingPage: NextPage<LandingPageProps> = ({
             jobsAvailable={jobsAvailable}
         >
             <Metadata
-                title={landingPageContent.metadataTitle}
-                description={landingPageContent.metadataDescription}
+                title={content.metadataTitle}
+                description={content.metadataDescription}
                 slug=""
-                image={landingPageContent.metadataSocialMediaImage}
+                image={content.metadataSocialMediaImage}
             />
-            <Hero image={landingPageContent.heroImage}>
-                <RichText
-                    theme="INDIGO"
-                    content={landingPageContent.heroTagline}
-                />
-                <PageNav
-                    title={landingPageContent.missionTitle}
-                    jobs={jobsAvailable}
-                >
+            <Hero image={content.heroImage}>
+                <RichText theme="INDIGO" content={content.heroTagline} />
+                <PageNav title={content.missionTitle} jobs={jobsAvailable}>
                     <RichText
                         theme="INDIGO"
-                        content={landingPageContent.missionDescription}
+                        content={content.missionDescription}
                     />
                 </PageNav>
             </Hero>
 
             <ClientLogos logos={clientLogos} />
 
-            <ComeWorkForYou image={landingPageContent.workForYouImage}>
+            <ComeWorkForYou image={content.workForYouImage}>
                 <RichText
                     theme="DARK"
-                    content={landingPageContent.workForYouDescription}
+                    content={content.workForYouDescription}
                 />
             </ComeWorkForYou>
             <div id="benefits">
@@ -101,18 +94,15 @@ const LandingPage: NextPage<LandingPageProps> = ({
                 <LifeAsATorchboxer>
                     <RichText
                         theme="INDIGO"
-                        content={landingPageContent.lifeAsATorchboxer}
+                        content={content.lifeAsATorchboxer}
                     />
                 </LifeAsATorchboxer>
             </div>
             <SocialMediaPhotos photos={socialMediaProfilePhotos} />
 
-            <CTA jobs={jobsAvailable} title={landingPageContent.ctaTitle}>
-                {landingPageContent.ctaDescription && (
-                    <RichText
-                        theme="INDIGO"
-                        content={landingPageContent.ctaDescription}
-                    />
+            <CTA jobs={jobsAvailable} title={content.ctaTitle}>
+                {content.ctaDescription && (
+                    <RichText theme="INDIGO" content={content.ctaDescription} />
                 )}
             </CTA>
 
@@ -123,12 +113,12 @@ const LandingPage: NextPage<LandingPageProps> = ({
     );
 };
 
-export default LandingPage;
+export default BeingAtTorchbox;
 
 export async function getStaticProps({ preview = false }) {
-    const landingPageContent = await getLandingPage(preview);
+    const content = await getBeingAtTorchboxPage(preview);
     const jobsAvailable = await getNumberOfActiveRoles();
     return {
-        props: { preview, jobsAvailable, landingPageContent },
+        props: { preview, jobsAvailable, content },
     };
 }

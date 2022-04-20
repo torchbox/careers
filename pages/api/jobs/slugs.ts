@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { JobPost } from 'lib/peopleHR';
 import { getAllJobPostings } from 'pages/api/_peopleHR';
+import urls from 'lib/urls';
 
 /**
  * Used for generating pages in jobs/[slug].tsx
@@ -9,7 +10,7 @@ import { getAllJobPostings } from 'pages/api/_peopleHR';
 export async function getAllJobSlugs(): Promise<string[] | null> {
     const jobPostings: JobPost[] | null = await getAllJobPostings();
     if (jobPostings === null) return null;
-    return jobPostings.map((post) => `/jobs/${post.slug}`);
+    return jobPostings.map((post) => `${urls.jobs}${post.slug}`);
 }
 
 export default async function handler(

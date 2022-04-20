@@ -1,7 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
 import { ImageTypes } from 'types/Base';
 
-export type LandingPage = {
+export type BeingAtTorchbox = {
     metadataTitle: string;
     metadataDescription: string;
     metadataSocialMediaImage: ImageTypes;

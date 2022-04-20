@@ -22,7 +22,7 @@
 }
 
 .container {
-    margin: 0 auto $grid * 3 auto;
+    margin: 0 auto $grid auto;
     padding: 0 $grid * 1.5;
 
     @include media-query(medium) {

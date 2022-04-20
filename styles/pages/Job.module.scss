@@ -62,4 +62,10 @@
 .whoWeWorkWith {
     padding: $grid * 2 0 $grid 0;
     margin: 0 16.66vw;
+    margin-top: $grid * 1.5;
+
+    @include media-query(medium) {
+        margin-top: $grid;
+        padding-bottom: 0;
+    }
 }

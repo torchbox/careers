@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         );
         console.log('%cGet in Touch 📬', heading);
         console.log(
-            "You can email mailto://recruitment@torchbox.com for any careers enquiries\nWe're also on Twitter at https://twitter.com/torchbox",
+            "You can email mailto:recruitment@torchbox.com for any careers enquiries\nWe're also on Twitter at https://twitter.com/torchbox",
         );
     }, []);
 

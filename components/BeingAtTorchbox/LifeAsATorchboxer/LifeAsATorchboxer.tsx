@@ -1,5 +1,6 @@
 import ArrowLoopLeft from 'components/SVG/ArrowLoop/ArrowLoopLeft';
 import Link from 'next/link';
+import urls from 'lib/urls';
 import styles from './LifeAsATorchboxer.module.scss';
 
 type LifeAsATorchboxerProps = {
@@ -12,11 +13,11 @@ export const LifeAsATorchboxer = ({ children }: LifeAsATorchboxerProps) => (
             <h2 className={styles.title}>
                 <span className={styles.titleAccent}>Life as a</span>
                 <br />
-                Torchboxer
+                Torchbox&shy;er
             </h2>
             <div className={styles.richText}>{children}</div>
             <div className={styles.links}>
-                <Link href="/life-at-torchbox">
+                <Link href={urls.lifeAtTorchbox}>
                     <a className="underline-link underline-link--indigo">
                         Life at Torchbox
                     </a>

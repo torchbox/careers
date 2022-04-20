@@ -1,23 +1,52 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Staging and Deployment
+
+This site is live at [https://torchbox.com/careers](https://torchbox.com/careers).
+
+Preview sites are automatically deployed by Vercel every time you push to a remote branch on this GitHub repository. A full list of deployments can be [found here](https://github.com/torchbox/careers/deployments) or on Vercel, don't forget to add `/careers` to the end of the deployment URL or you will only see a 404 page.
+
+## Pull the source code
 
 ```bash
-fnm use
+git clone git@github.com:torchbox/careers.git
+cd careers
 ```
 
-It's recommended you use `fnm` as this is faster than nvm. If you haven't installed fnm yet, you can use `nvm use` here instead.
+## Requirements
 
-```bash
-npm install
-npm run dev
-```
+### Node.js
 
-Open [http://localhost:3000/careers](http://localhost:3000/careers) with your browser to see the result.
+We recommend using a Node version manager such as [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm) (fnm being a faster version written using Go), to ensure you're running the correct version of Node matching the `.nvmrc` file.
 
-N.B. Remember to run `npm install` every time you switch development branches. This triggers a refresh of Prettier, so if you have the Prettier VSCode extension installed, it will correctly format files on save.
+### Local environment variables / secrets
 
-Before committing changes, run
+This is a headless site which requires communicating with a graphql endpoint provided by **Contentful** as well as an RSS feed providing job listings via **PeopleHR**.
+
+You will need to create and populate an `.env.local` file to access these endpoints, create a template by running `cp .env.local.example .env.local`.
+Log into Torchbox's password manager to find the tokens for PeopleHR, and request access to Contentful from Miles Taylor, Lisa Ballam or James Hancock. With access to Contentful, you can login and find the appropriate env variables in Settings > API Keys.
+
+You can also make use of the GraphQL API explorer to help with writing graphql queries - this can be accessed through `https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/explore?access_token={ ACCESS TOKEN }`.
+
+## Getting started
+
+Install a node version manager as part of the requirements section and follow the steps below.
+
+Steps:
+
+1. Navigate to the project's root directory
+2. Run `fnm use` or `nvm use` to select the correct node environment.
+3. Run `npm install` to install the projects dependencies.
+4. Run `npm run dev` to start the development server at `http://localhost:3000/`.
+5. Navigate to [`http://localhost:3000/careers`](http://localhost:3000/careers).
+
+You can run `npm run build && npm run start` to compile an optimized bundle and then run the application on Node.js in production mode.
+
+Most of these scripts are built on top of Next.js's CLI, for more information see: https://nextjs.org/docs/api-reference/cli.
+
+## Local Development
+
+Before pushing changes, you can run the following commands to check if your code passes CI.
 
 ```
 npm run format
@@ -25,52 +54,8 @@ npm run lint
 npm run pa11y
 ```
 
-So your code passes CI.
+If you have VSCode installed, the Prettier and Stylelint extensions combined with [VSCode's auto formatting on save](https://blog.yogeshchavan.dev/automatically-format-code-on-file-save-in-visual-studio-code-using-prettier) will catch most of the linting errors for you.
 
-## Pulling data from Contentful
+## Further Documentation
 
-Copy `env.local.example` and create an `.env.local` file in the root of the project directory.
-
-Log in to Contentful and from Settings > API Keys populate `.env.local` with the Space ID and Content Delivery access token.
-
-Restart the development server.
-
-## Pulling data from PeopleHR
-
-Update the `.env.local` using the RSS feed URL, as found on the password manager.
-
-To view the GraphQL API explorer, go to
-
-```
-https://graphql.contentful.com/content/v1/spaces/{ SPACE ID }/environments/staging/explore?access_token={ ACCESS TOKEN }
-```
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Common Errors
-
-### Next: Commmand not found
-
-When running `npm run dev` or similar.
-
-```bash
-> careers@ dev /Users/jameshancock/Documents/GitHub/careers
-> next dev
-
-sh: next: command not found
-```
-
-**Solution:** Make sure you are running the right node version with 'nvm use' or 'fnm use', then delete the `node_modules` folder and run `npm install` to reinstall Next.js correctly.
+View the [`/docs`](https://github.com/torchbox/careers/tree/main/docs) folder for more notes. Recommended reading includes the React, Styling and Images docs to understand best practices for working on this project, while the Pa11y and PeopleHR pages contain more in-depth technical information and are better used as references.
