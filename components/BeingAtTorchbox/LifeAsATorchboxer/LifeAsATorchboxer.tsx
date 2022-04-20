@@ -19,7 +19,7 @@ export const LifeAsATorchboxer = ({ children }: LifeAsATorchboxerProps) => (
             <div className={styles.links}>
                 <Link href={urls.lifeAtTorchbox}>
                     <a className="underline-link underline-link--indigo">
-                        Life at Torchbox
+                        About us
                     </a>
                 </Link>
                 <a
