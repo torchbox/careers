@@ -1,24 +1,19 @@
-.pageContainer {
-    max-width: $site-width;
-    margin: 0 auto;
-
-    @include media-query(large) {
-        padding: $grid * 5 0 $grid * 2 0;
-    }
-}
-
 .contentContainer {
-    max-width: 840px;
-    padding: $grid * 2 $grid $grid * 3 $grid;
+    margin: 0 8.33vw;
+    padding: $grid * 3 0;
 
     @include media-query(medium) {
-        margin: 0 auto;
-        padding-bottom: $grid * 5;
+        padding: $grid * 3 0 $grid * 5 0;
+    }
+
+    @include media-query(large) {
+        padding: $grid * 4 0 $grid * 8 0;
+        margin-left: 25vw;
+        max-width: 50vw;
     }
 
     @include media-query(menu-break) {
-        padding: 0 0 $grid * 8 0;
-        margin: 0 auto 0 25%;
+        padding: $grid * 5 0 $grid * 8 0;
     }
 }
 

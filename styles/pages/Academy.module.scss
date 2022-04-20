@@ -23,7 +23,7 @@
     }
 
     @include media-query(large) {
-        margin: 0 auto $grid * 3 18%;
+        margin: 0 auto $grid * 3 16.66vw;
         padding: 0;
     }
 }
@@ -92,7 +92,7 @@
         content: '';
         position: absolute;
         top: 50px;
-        right: 15%;
+        right: 16.66vw;
         width: 70%;
         height: 3px;
         background: var(--color--coral);
@@ -100,7 +100,7 @@
 
         @include media-query(menu-break) {
             top: 80px;
-            right: 157px;
+            width: 60%;
             width: 977px;
         }
     }

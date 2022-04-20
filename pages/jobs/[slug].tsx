@@ -57,53 +57,48 @@ const JobPosting: NextPage<JobPageProps> = ({
                 image={content.metadataSocialMediaImage}
             />
             <JobPostingSchemaGenerator job={job} />
-            <div className={styles.pageContainer}>
-                <JobListingHero
-                    title={job.title}
-                    department={job.department}
-                    salary={job.salaryRange}
-                    location={job.city}
-                    applicationLink={job.jobURL}
-                    description={job.vacancyDescription}
-                    sharingURL={jobURL}
+
+            <JobListingHero
+                title={job.title}
+                department={job.department}
+                salary={job.salaryRange}
+                location={job.city}
+                applicationLink={job.jobURL}
+                description={job.vacancyDescription}
+                sharingURL={jobURL}
+            />
+
+            <div className={styles.contentContainer}>
+                <div
+                    className={styles.richText}
+                    dangerouslySetInnerHTML={{
+                        __html: job.description,
+                    }}
                 />
-                <div className={styles.contentContainer}>
-                    <div className={styles.textContainer}>
-                        <div
-                            className={styles.richText}
-                            dangerouslySetInnerHTML={{
-                                __html: job.description,
-                            }}
-                        />
-                    </div>
-                </div>
-
-                <Benefits
-                    title={content.itemsCollection.items[0].benefitsTitle}
-                    benefits={benefits}
-                />
-
-                <div className={styles.contentContainer}>
-                    <div className={styles.textContainer}>
-                        <h2 className={styles.hiringPolicyTitle}>
-                            {content.hiringPolicyTitle}
-                        </h2>
-                        <RichText
-                            theme="LIGHT"
-                            content={content.hiringPolicyDescription}
-                        />
-                        <ApplyButton
-                            title="Apply for this job"
-                            url={job.jobURL}
-                        >
-                            Join the team and help make the world a better place
-                        </ApplyButton>
-                    </div>
-                </div>
-
-                <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
-                <ClientLogos logos={clientLogos} />
             </div>
+
+            <Benefits
+                title={content.itemsCollection.items[0].benefitsTitle}
+                benefits={benefits}
+            />
+
+            <div className={styles.contentContainer}>
+                <div className={styles.textContainer}>
+                    <h2 className={styles.hiringPolicyTitle}>
+                        {content.hiringPolicyTitle}
+                    </h2>
+                    <RichText
+                        theme="LIGHT"
+                        content={content.hiringPolicyDescription}
+                    />
+                    <ApplyButton title="Apply for this job" url={job.jobURL}>
+                        Join the team and help make the world a better place
+                    </ApplyButton>
+                </div>
+            </div>
+
+            <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
+            <ClientLogos logos={clientLogos} />
         </Layout>
     );
 };

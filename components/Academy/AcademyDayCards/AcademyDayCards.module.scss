@@ -2,16 +2,15 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: $grid * 3;
-    padding: $grid * 1.5;
+    padding: $grid * 1.5 8.33vw;
 
     @include media-query(medium) {
-        padding: $grid * 3;
+        padding: $grid * 2 3.5vw;
     }
 
     @include media-query(large) {
         grid-template-columns: 1fr 1fr;
-        max-width: 1180px;
-        margin: 0 auto;
+        margin: 0 3.5vw;
     }
 }
 

@@ -1,16 +1,21 @@
 .heroContainer {
     width: 100%;
+    max-width: $site-width;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 0 0 $grid * 1.5;
+    padding-left: $grid * 1.5;
 
     @include media-query(medium) {
-        padding: 0 0 0 $grid * 2;
+        padding-left: $grid * 2;
     }
 
     @include media-query(menu-break) {
         flex-direction: row;
+    }
+
+    @include media-query(site-width) {
+        margin: 0 auto;
     }
 }
 
@@ -25,8 +30,11 @@
 
     @include media-query(menu-break) {
         order: 1;
-        padding-left: 88px;
-        padding-top: 158px;
+        padding-top: 160px;
+    }
+
+    @include media-query(site-width) {
+        padding-left: 0;
     }
 }
 

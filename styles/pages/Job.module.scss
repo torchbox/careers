@@ -1,34 +1,10 @@
-.pageContainer {
-    max-width: $site-width;
-    margin: 0 auto;
-    padding-top: $grid * 4;
-
-    @include media-query(large) {
-        padding: $grid * 5 0 $grid * 2 0;
-    }
-}
-
 .contentContainer {
-    max-width: 840px;
-    padding: $grid * 2 $grid * 1.5 $grid * 1.5 $grid * 1.5;
-
-    @include media-query(medium) {
-        margin: 0 auto;
-        padding: $grid * 2 $grid * 3 $grid * 2 $grid * 3;
-    }
+    margin: 0 8.33vw;
+    padding: $grid 0;
 
     @include media-query(large) {
-        padding: 0 0 $grid * 2 0;
-        margin: 0 auto 0 25%;
-    }
-}
-
-.textContainer {
-    max-width: $content--narrow;
-    margin-right: auto;
-
-    @include media-query(large) {
-        padding-top: $grid * 2;
+        margin-left: 25vw;
+        max-width: 50vw;
     }
 }
 
@@ -69,7 +45,7 @@
     margin-top: $grid * 2;
 
     @include media-query(medium) {
-        margin-top: $grid;
+        margin-top: $grid * 3;
     }
 
     @include media-query(large) {
@@ -78,17 +54,12 @@
 }
 
 .whoWeWorkWith {
-    padding: 0 $grid * 1.5;
+    padding: $grid * 2 0 $grid 0;
+    margin: 0 16.66vw;
     margin-top: $grid * 1.5;
-    margin-bottom: 0;
 
     @include media-query(medium) {
-        margin: $grid auto 0 auto;
+        margin-top: $grid;
         padding-bottom: 0;
-    }
-
-    @include media-query(large) {
-        max-width: 1100px;
-        padding: 0 $grid * 2;
     }
 }
