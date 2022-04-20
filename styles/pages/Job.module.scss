@@ -35,7 +35,8 @@
         }
     }
 
-    p {
+    p,
+    li {
         @include font-size(xs);
         line-height: 1.7;
     }
