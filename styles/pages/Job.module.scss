@@ -8,12 +8,6 @@
     }
 }
 
-.textContainer {
-    @include media-query(large) {
-        padding-top: $grid * 2;
-    }
-}
-
 .richText {
     ul {
         list-style: none;
