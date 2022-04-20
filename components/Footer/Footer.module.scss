@@ -7,11 +7,17 @@
     margin: 0 8.33vw;
 
     @include media-query(medium) {
+        margin: 0 3.5vw;
         padding: $grid * 3 0 $grid * 2 0;
     }
 
     @include media-query(large) {
         padding: $grid * 3 0 $grid 0;
+    }
+
+    @include media-query(x-large) {
+        max-width: $site-width;
+        margin: 0 auto;
     }
 }
 
@@ -39,6 +45,19 @@
             position: absolute;
             top: 18px;
             left: -7vw;
+            width: 2px;
+            height: 262px;
+            background-color: var(--color--dark-indigo);
+            transform: rotate(30deg);
+        }
+    }
+
+    @include media-query(x-large) {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: -140px;
             width: 2px;
             height: 262px;
             background-color: var(--color--dark-indigo);
