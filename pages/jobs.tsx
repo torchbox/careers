@@ -11,6 +11,7 @@ import { SwishButton } from 'components/Button/Button';
 import WomanLeanIn from 'components/SVG/WomanLeanIn';
 import Select from 'components/Select';
 import Metadata from 'components/Metadata';
+import urls from 'lib/urls';
 import type { JobSummary } from '../lib/peopleHR';
 import styles from '../styles/pages/Jobs.module.scss';
 
@@ -19,7 +20,7 @@ type JobEntryProps = {
 };
 
 const JobEntry = ({ job }: JobEntryProps) => (
-    <Link href={'/jobs/' + job.slug}>
+    <Link href={{ pathname: urls.jobEntry, query: { slug: job.slug } }}>
         <a className={styles.jobCard}>
             <p className={styles.jobTitle}>{job.title}</p>
             <p className={styles.jobDescription}>{job.description}</p>
