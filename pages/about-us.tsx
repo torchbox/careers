@@ -1,24 +1,24 @@
 import type { NextPage } from 'next';
-import type { LifeAtTorchboxPage } from 'types/pages/LifeAtTorchbox';
+import type { AboutUsPage } from 'types/pages/AboutUs';
 import Layout from 'components/Layout';
 import Testimonial from 'components/Testimonial';
-import Hero from 'components/LifeAtTorchbox/Hero';
-import MainContent from 'components/LifeAtTorchbox/MainContent';
-import ValuesCarousel from 'components/LifeAtTorchbox/ValuesCarousel';
-import AtWorkAtPlay from 'components/LifeAtTorchbox/AtWorkAtPlay';
+import Hero from 'components/AboutUs/Hero';
+import MainContent from 'components/AboutUs/MainContent';
+import ValuesCarousel from 'components/AboutUs/ValuesCarousel';
+import AtWorkAtPlay from 'components/AboutUs/AtWorkAtPlay';
 import Metadata from 'components/Metadata';
 import RichText from 'components/RichText';
-import { getLifeAtTorchboxPage } from 'lib/api';
+import { getAboutUsPage } from 'lib/api';
 import { getNumberOfActiveRoles } from './api/_peopleHR';
 import styles from '../styles/pages/LifeAtTorchbox.module.scss';
 
-type LifeAtTorchboxPageProps = {
+type AboutUsPageProps = {
     preview: boolean;
     jobsAvailable: number;
-    content: LifeAtTorchboxPage;
+    content: AboutUsPage;
 };
 
-const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
+const AboutUsPage: NextPage<AboutUsPageProps> = ({
     preview,
     jobsAvailable,
     content,
@@ -36,7 +36,7 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
             <Metadata
                 title={content.metadataTitle}
                 description={content.metadataDescription}
-                slug="life-at-torchbox"
+                slug="about-us"
                 image={content.metadataSocialMediaImage}
             />
             <div className={styles.indigoBackground}>
@@ -88,10 +88,10 @@ const LifeAtTorchboxPage: NextPage<LifeAtTorchboxPageProps> = ({
     );
 };
 
-export default LifeAtTorchboxPage;
+export default AboutUsPage;
 
 export async function getStaticProps({ preview = false }) {
-    const content = await getLifeAtTorchboxPage(preview);
+    const content = await getAboutUsPage(preview);
     const jobsAvailable = await getNumberOfActiveRoles();
     return {
         props: { preview, jobsAvailable, content },

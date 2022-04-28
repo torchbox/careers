@@ -197,7 +197,7 @@ export async function getBeingAtTorchboxPage(preview: boolean) {
     return content.data.landingPageCollection.items[0];
 }
 
-export async function getLifeAtTorchboxPage(preview: boolean) {
+export async function getAboutUsPage(preview: boolean) {
     const content = await fetchGraphQL(
         `{
             lifeAtTorchboxPageCollection(limit: 1, preview: ` +

@@ -1,7 +1,7 @@
 .container {
     max-width: $site-width;
     margin: 0 auto;
-    padding: 0 $grid * 1.5 $grid * 2 $grid * 1.5;
+    padding: 0 $grid * 1.5 $grid * 3 $grid * 1.5;
     display: flex;
     flex-direction: column;
     background: radial-gradient(
@@ -11,15 +11,16 @@
     );
 
     @include media-query(medium) {
-        padding: 0 $grid * 2 $grid * 2 $grid * 2;
+        padding: 0 $grid * 2 $grid * 3 $grid * 2;
     }
 
     @include media-query(large) {
         flex-direction: row;
+        padding-bottom: $grid * 4;
     }
 
     @include media-query(hero-break) {
-        padding: 0 $grid * 4 $grid * 2 $grid * 4;
+        padding: 0 $grid * 4 $grid * 6 $grid * 4;
     }
 }
 
