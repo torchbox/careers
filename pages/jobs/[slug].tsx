@@ -51,8 +51,8 @@ const JobPosting: NextPage<JobPageProps> = ({
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
             <Metadata
-                title={content.metadataTitle}
-                description={content.metadataDescription}
+                title={`${job.title} | Torchbox Careers`}
+                description={job.vacancyDescription}
                 slug={`jobs/${job.slug}`}
                 image={content.metadataSocialMediaImage}
             />
