@@ -2,6 +2,7 @@ import { Document } from '@contentful/rich-text-types';
 import RichText from 'components/RichText';
 import MicrophonePerson from 'components/SVG/MicrophonePerson';
 import CoffeePerson from 'components/SVG/CoffeePerson';
+import Button from 'components/Button';
 import { CharacterType } from 'types/Base';
 import styles from './AcademyDayCards.module.scss';
 
@@ -12,7 +13,7 @@ type AcademyDay = {
     character: CharacterType;
 };
 
-const Card = ({ title, content, character }: AcademyDay) => (
+const Card = ({ title, content, link, character }: AcademyDay) => (
     <div className={styles.card}>
         <div className={styles.icon}>
             {character === 'MICROPHONE' ? (
@@ -25,12 +26,14 @@ const Card = ({ title, content, character }: AcademyDay) => (
         <h3 className={styles.title}>{title}</h3>
 
         <RichText theme="INDIGO" content={content} className={styles.content} />
-        {/*
-        <Button url={link} theme="WHITE" className={styles.button} internal>
-            Apply now
-        </Button>
-        */}
-        <div className={styles.disabledButton}>Applications closed</div>
+
+        {link !== '' ? (
+            <Button url={link} theme="WHITE" className={styles.button} internal>
+                Apply now
+            </Button>
+        ) : (
+            <div className={styles.disabledButton}>Applications closed</div>
+        )}
     </div>
 );
 
