@@ -27,7 +27,7 @@ const Card = ({ title, content, link, character }: AcademyDay) => (
 
         <RichText theme="INDIGO" content={content} className={styles.content} />
 
-        {link !== '' ? (
+        {link !== null ? (
             <Button url={link} theme="WHITE" className={styles.button} internal>
                 Apply now
             </Button>
