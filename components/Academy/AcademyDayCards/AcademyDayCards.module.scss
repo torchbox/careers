@@ -83,3 +83,16 @@
     display: block;
     margin: 0 auto;
 }
+
+.disabledButton {
+    @include font-size(m);
+    background-color: var(--color--white);
+    border-radius: 7px;
+    color: var(--color--coral);
+    cursor: not-allowed;
+    display: block;
+    font-weight: $weight--extrabold;
+    width: max-content;
+    padding: 12px 20px 12px 20px;
+    margin: 20px auto 40px auto;
+}
