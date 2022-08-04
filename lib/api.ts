@@ -34,7 +34,7 @@ const benefits = `
     ... on Benefits {
         benefitsTitle
         benefitsIntro
-        benefitsListCollection(limit: 8) {
+        benefitsListCollection(limit: 10) {
             items {
                 benefitName
                 benefitSnippet
