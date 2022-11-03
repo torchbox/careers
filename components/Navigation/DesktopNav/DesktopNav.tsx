@@ -14,7 +14,7 @@ type DesktopNavItemProps = {
 const DesktopNavItem = ({ link }: DesktopNavItemProps) => (
     <li className={styles.desktopNavItem}>
         {link.isCareersSiteInternalLink ? (
-            <Link href={link.url} scroll={false}>
+            <Link href={link.url} scroll={false} legacyBehavior>
                 <a className={styles.desktopNavItemLink}>
                     <span className={styles.desktopNavItemTitle}>
                         {link.title}

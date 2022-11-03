@@ -23,7 +23,7 @@ export const ApplicationDeadline = ({
                 <span className={styles.emphasis}>{titleEmphasis}</span>
             </h2>
             <div className={styles.richText}>{children}</div>
-            <Link href="/">
+            <Link href="/" legacyBehavior>
                 <a className="underline-link underline-link--white">
                     Apply now
                 </a>

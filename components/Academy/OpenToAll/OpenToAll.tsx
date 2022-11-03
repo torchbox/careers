@@ -22,7 +22,7 @@ export const OpenToAll = ({ title, content, image }: OpenToAllProps) => {
                     content={content}
                     className={styles.content}
                 />
-                <Link href={urls.beingAtTorchbox} scroll={false}>
+                <Link href={urls.beingAtTorchbox} scroll={false} legacyBehavior>
                     <a className="underline-link underline-link--white">
                         Find out more about Torchbox
                     </a>

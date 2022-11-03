@@ -35,7 +35,7 @@ const MobileNavItem = ({
             }`}
         >
             {link.isCareersSiteInternalLink ? (
-                <Link href={link.url} scroll={false}>
+                <Link href={link.url} scroll={false} legacyBehavior>
                     <a
                         className={styles.mobileNavItemLink}
                         onClick={redirectOrCloseMenu}

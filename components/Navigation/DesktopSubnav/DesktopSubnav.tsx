@@ -88,7 +88,7 @@ export const DesktopSubnav = ({
                 {/* Render next.js links with <Link> to preload content */}
                 {link.isCareersSiteInternalLink ? (
                     <>
-                        <Link href={link.url} scroll={false}>
+                        <Link href={link.url} scroll={false} legacyBehavior>
                             <a
                                 onKeyUp={handleKeyUp}
                                 onKeyDown={handleCareersKeyDown}
@@ -102,7 +102,11 @@ export const DesktopSubnav = ({
                             </a>
                         </Link>
                         {link.title === 'Jobs' && jobsAvailable > 0 && (
-                            <Link href={urls.jobs} scroll={false}>
+                            <Link
+                                href={urls.jobs}
+                                scroll={false}
+                                legacyBehavior
+                            >
                                 <a
                                     className={`${styles.subnavBadge} ${styles.badge}`}
                                     aria-label={`${jobsAvailable} ${pluralize(
