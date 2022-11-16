@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
+export default function NotFound() {}
 
-export default function NotFound() {
-    const router = useRouter();
-
-    if (typeof window !== 'undefined') {
-        router.push('https://torchbox.com/404/');
-    }
+export async function getStaticProps() {
+    return {
+        redirect: {
+            destination: 'https://torchbox.com/404/',
+        },
+    };
 }
