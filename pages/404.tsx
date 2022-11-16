@@ -1,9 +1,11 @@
-export default function NotFound() {}
+import { useRouter } from 'next/router';
 
-export async function getStaticProps() {
-    return {
-        redirect: {
-            destination: 'https://torchbox.com/404/',
-        },
-    };
+// Redirect solution with useRouter following this GitHub discussion
+// https://github.com/vercel/next.js/discussions/13813
+export default function NotFound() {
+    const router = useRouter();
+
+    if (typeof window !== 'undefined') {
+        router.push('https://torchbox.com/404/');
+    }
 }
