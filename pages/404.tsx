@@ -1,5 +1,9 @@
+import { useRouter } from 'next/router';
+
 export default function NotFound() {
+    const router = useRouter();
+
     if (typeof window !== 'undefined') {
-        window.location.href = 'https://torchbox.com/404/';
+        router.push('https://torchbox.com/404/');
     }
 }
