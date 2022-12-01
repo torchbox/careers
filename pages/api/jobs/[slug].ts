@@ -2,11 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { JobPost } from 'lib/peopleHR';
 import { getAllJobPostings } from 'pages/api/_peopleHR';
 
-export async function getJobPost(
-    slug: string,
-): Promise<JobPost | undefined | null> {
-    const jobPostings: JobPost[] | null = await getAllJobPostings();
-    if (jobPostings === null) return null;
+export async function getJobPost(slug: string): Promise<JobPost | undefined> {
+    const jobPostings: JobPost[] = await getAllJobPostings();
     return jobPostings.find((post) => post.slug === slug);
 }
 

@@ -197,15 +197,10 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
 export default Jobs;
 
 export async function getStaticProps({ preview = false }) {
-    try {
-        const jobs = await getAllJobSummaries();
-        const content = (await getJobListingPage(preview)) ?? [];
-        return {
-            props: { preview, jobs, content },
-            revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
-        };
-    } catch (error) {
-        // Next.js will display previously cached page instead of revalidating.
-        throw new Error('Failed to fetch People HR Job listings')
-    }
+    const jobs = await getAllJobSummaries();
+    const content = (await getJobListingPage(preview)) ?? [];
+    return {
+        props: { preview, jobs, content },
+        revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
+    };
 }
