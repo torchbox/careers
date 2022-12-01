@@ -205,8 +205,7 @@ export async function getStaticProps({ preview = false }) {
             revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
         };
     } catch (error) {
-        return {
-            notFound: true,
-        };
+        // Next.js will display previously cached page instead of revalidating.
+        throw new Error('Failed to fetch People HR Job listings')
     }
 }
