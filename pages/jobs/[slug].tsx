@@ -112,24 +112,18 @@ export async function getStaticProps({
     params: { slug: string };
     preview: boolean;
 }) {
-    try {
-        const job = await getJobPost(params.slug);
-        const jobsAvailable = await getNumberOfActiveRoles();
-        const jobSlug = params.slug;
-        const content = await getJobPage(preview);
-        if (!job) {
-            return { notFound: true };
-        }
-
-        return {
-            props: { preview, job, jobsAvailable, content, jobSlug },
-            revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
-        };
-    } catch (error) {
-        return {
-            notFound: true,
-        };
+    const job = await getJobPost(params.slug);
+    const jobsAvailable = await getNumberOfActiveRoles();
+    const jobSlug = params.slug;
+    const content = await getJobPage(preview);
+    if (!job) {
+        return { notFound: true };
     }
+
+    return {
+        props: { preview, job, jobsAvailable, content, jobSlug },
+        revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
+    };
 }
 
 export async function getStaticPaths() {

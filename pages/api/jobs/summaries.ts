@@ -8,8 +8,7 @@ import { getAllJobPostings } from 'pages/api/_peopleHR';
  * @returns an array of job summaries.
  */
 export async function getAllJobSummaries() {
-    const jobPostings: JobPost[] | null = await getAllJobPostings();
-    if (jobPostings === null) return null;
+    const jobPostings: JobPost[] = await getAllJobPostings();
     return jobPostings.map((post) => createJobSummaryFromPost(post));
 }
 

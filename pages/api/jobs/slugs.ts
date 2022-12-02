@@ -7,9 +7,8 @@ import urls from 'lib/urls';
  * Used for generating pages in jobs/[slug].tsx
  * @returns an array of URL slugs for all the job posts.
  */
-export async function getAllJobSlugs(): Promise<string[] | null> {
-    const jobPostings: JobPost[] | null = await getAllJobPostings();
-    if (jobPostings === null) return null;
+export async function getAllJobSlugs(): Promise<string[]> {
+    const jobPostings: JobPost[] = await getAllJobPostings();
     return jobPostings.map((post) => `${urls.jobs}${post.slug}`);
 }
 
