@@ -81,21 +81,28 @@ const getRenderOptions = (links?: any) => {
                 node: Block | Inline,
                 _: React.ReactNode,
             ) => {
-                if (links) {
-                    const entryMap = new Map();
-                    for (const entry of links.entries.block) {
-                        entryMap.set(entry.sys.id, entry);
-                    }
+                try {
+                    if (links) {
+                        const entryMap = new Map();
+                        for (const entry of links.entries.block) {
+                            entryMap.set(entry.sys.id, entry);
+                        }
 
-                    const entry = entryMap.get(node.data.target.sys.id);
+                        const entry = entryMap.get(node.data.target.sys.id);
 
-                    if (entry.__typename === 'Quote') {
-                        return (
-                            <Quote name={entry.name} position={entry.role}>
-                                {entry.quote}
-                            </Quote>
-                        );
+                        if (entry.__typename === 'Quote') {
+                            return (
+                                <Quote name={entry.name} position={entry.role}>
+                                    {entry.quote}
+                                </Quote>
+                            );
+                        }
                     }
+                } catch {
+                    // Error catching added to prevent draft or unpublished image embeds from breaking the site during the build process.
+                    // An unpublished image embed can appear to have been added to the page in Contentful while not being a published asset,
+                    // causing confusion to editors when the image doesn't appear or the build process doesn't deploy
+                    return <p>Embedded item not yet published.</p>;
                 }
 
                 return <p>Embedded content not found.</p>;
@@ -104,25 +111,29 @@ const getRenderOptions = (links?: any) => {
                 node: Block | Inline,
                 _: React.ReactNode,
             ) => {
-                if (links) {
-                    const assetMap = new Map();
-                    for (const asset of links.assets.block) {
-                        assetMap.set(asset.sys.id, asset);
+                try {
+                    if (links) {
+                        const assetMap = new Map();
+                        for (const asset of links.assets.block) {
+                            assetMap.set(asset.sys.id, asset);
+                        }
+
+                        const asset = assetMap.get(node.data.target.sys.id);
+                        const { url, width, height, description } =
+                            asset as ImageTypes;
+
+                        return (
+                            <Image
+                                className={styles.image}
+                                src={url}
+                                width={width}
+                                height={height}
+                                alt={description}
+                            />
+                        );
                     }
-
-                    const asset = assetMap.get(node.data.target.sys.id);
-                    const { url, width, height, description } =
-                        asset as ImageTypes;
-
-                    return (
-                        <Image
-                            className={styles.image}
-                            src={url}
-                            width={width}
-                            height={height}
-                            alt={description}
-                        />
-                    );
+                } catch {
+                    return <p>Embedded item not yet published.</p>;
                 }
 
                 return <p>Embedded image not found.</p>;
