@@ -1,14 +1,9 @@
 .container {
-    margin: $grid;
+    margin: $grid 8.33vw $grid * 3 8.33vw;
     text-align: left;
-    margin-bottom: $grid * 3;
-
-    @include media-query(medium) {
-        margin: $grid $grid * 2 $grid * 3 $grid * 2;
-    }
 
     @include media-query(large) {
-        margin: $grid * 4 auto $grid * 6 auto;
+        margin: $grid * 4 16.66vw $grid * 6 16.66vw;
         max-width: 930px; // Following design
     }
 }

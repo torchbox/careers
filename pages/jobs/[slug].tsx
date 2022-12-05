@@ -51,59 +51,54 @@ const JobPosting: NextPage<JobPageProps> = ({
     return (
         <Layout theme="LIGHT" preview={preview} jobsAvailable={jobsAvailable}>
             <Metadata
-                title={content.metadataTitle}
-                description={content.metadataDescription}
+                title={`${job.title} | Torchbox Careers`}
+                description={job.vacancyDescription}
                 slug={`jobs/${job.slug}`}
                 image={content.metadataSocialMediaImage}
             />
             <JobPostingSchemaGenerator job={job} />
-            <div className={styles.pageContainer}>
-                <JobListingHero
-                    title={job.title}
-                    department={job.department}
-                    salary={job.salaryRange}
-                    location={job.city}
-                    applicationLink={job.jobURL}
-                    description={job.vacancyDescription}
-                    sharingURL={jobURL}
+
+            <JobListingHero
+                title={job.title}
+                department={job.department}
+                salary={job.salaryRange}
+                location={job.city}
+                applicationLink={job.jobURL}
+                description={job.vacancyDescription}
+                sharingURL={jobURL}
+            />
+
+            <div className={styles.contentContainer}>
+                <div
+                    className={styles.richText}
+                    dangerouslySetInnerHTML={{
+                        __html: job.description,
+                    }}
                 />
-                <div className={styles.contentContainer}>
-                    <div className={styles.textContainer}>
-                        <div
-                            className={styles.richText}
-                            dangerouslySetInnerHTML={{
-                                __html: job.description,
-                            }}
-                        />
-                    </div>
-                </div>
-
-                <Benefits
-                    title={content.itemsCollection.items[0].benefitsTitle}
-                    benefits={benefits}
-                />
-
-                <div className={styles.contentContainer}>
-                    <div className={styles.textContainer}>
-                        <h2 className={styles.hiringPolicyTitle}>
-                            {content.hiringPolicyTitle}
-                        </h2>
-                        <RichText
-                            theme="LIGHT"
-                            content={content.hiringPolicyDescription}
-                        />
-                        <ApplyButton
-                            title="Apply for this job"
-                            url={job.jobURL}
-                        >
-                            Join the team and help make the world a better place
-                        </ApplyButton>
-                    </div>
-                </div>
-
-                <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
-                <ClientLogos logos={clientLogos} />
             </div>
+
+            <Benefits
+                title={content.itemsCollection.items[0].benefitsTitle}
+                benefits={benefits}
+            />
+
+            <div className={styles.contentContainer}>
+                <div className={styles.textContainer}>
+                    <h2 className={styles.hiringPolicyTitle}>
+                        {content.hiringPolicyTitle}
+                    </h2>
+                    <RichText
+                        theme="LIGHT"
+                        content={content.hiringPolicyDescription}
+                    />
+                    <ApplyButton title="Apply for this job" url={job.jobURL}>
+                        Join the team and help make the world a better place
+                    </ApplyButton>
+                </div>
+            </div>
+
+            <h2 className={styles.whoWeWorkWith}>Who we work with</h2>
+            <ClientLogos logos={clientLogos} />
         </Layout>
     );
 };
@@ -117,24 +112,18 @@ export async function getStaticProps({
     params: { slug: string };
     preview: boolean;
 }) {
-    try {
-        const job = await getJobPost(params.slug);
-        const jobsAvailable = await getNumberOfActiveRoles();
-        const jobSlug = params.slug;
-        const content = await getJobPage(preview);
-        if (!job) {
-            return { notFound: true };
-        }
-
-        return {
-            props: { preview, job, jobsAvailable, content, jobSlug },
-            revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
-        };
-    } catch (error) {
-        return {
-            notFound: true,
-        };
+    const job = await getJobPost(params.slug);
+    const jobsAvailable = await getNumberOfActiveRoles();
+    const jobSlug = params.slug;
+    const content = await getJobPage(preview);
+    if (!job) {
+        return { notFound: true };
     }
+
+    return {
+        props: { preview, job, jobsAvailable, content, jobSlug },
+        revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
+    };
 }
 
 export async function getStaticPaths() {

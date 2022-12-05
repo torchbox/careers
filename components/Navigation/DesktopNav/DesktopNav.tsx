@@ -52,7 +52,6 @@ export const DesktopNav = ({
                     isOpen ? styles.desktopNavModalOpen : ''
                 }`}
                 aria-label="Desktop navigation"
-                role="navigation"
             >
                 <ul className={styles.desktopNavList}>
                     {navItems}

@@ -11,6 +11,7 @@ import { SwishButton } from 'components/Button/Button';
 import WomanLeanIn from 'components/SVG/WomanLeanIn';
 import Select from 'components/Select';
 import Metadata from 'components/Metadata';
+import urls from 'lib/urls';
 import type { JobSummary } from '../lib/peopleHR';
 import styles from '../styles/pages/Jobs.module.scss';
 
@@ -19,7 +20,7 @@ type JobEntryProps = {
 };
 
 const JobEntry = ({ job }: JobEntryProps) => (
-    <Link href={'/jobs/' + job.slug}>
+    <Link href={{ pathname: urls.jobEntry, query: { slug: job.slug } }}>
         <a className={styles.jobCard}>
             <p className={styles.jobTitle}>{job.title}</p>
             <p className={styles.jobDescription}>{job.description}</p>
@@ -120,82 +121,73 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
                 slug="jobs"
                 image={content.metadataSocialMediaImage}
             />
-            <div className={styles.pageContainer}>
-                <div className={styles.contentContainer}>
-                    <Title
-                        firstLine={content.firstTitleLine}
-                        secondLine={content.secondTitleLine}
-                    />
-                    <div className={styles.textContainer}>
-                        {content.subtitle && (
-                            <RichText
-                                theme="INDIGO"
-                                content={content.subtitle}
-                            />
-                        )}
+            <div className={styles.contentContainer}>
+                <Title
+                    firstLine={content.firstTitleLine}
+                    secondLine={content.secondTitleLine}
+                />
+                <div className={styles.textContainer}>
+                    {content.subtitle && (
+                        <RichText theme="INDIGO" content={content.subtitle} />
+                    )}
 
-                        {jobsAvailable ? (
-                            <>
-                                <div className={styles.filter}>
-                                    <Select
-                                        label="Filter by locations"
-                                        options={locations}
-                                        value={location}
-                                        handleChange={handleLocationChange}
-                                        className={styles.filterSelect}
-                                    />
-                                    <Select
-                                        label="Filter by departments"
-                                        options={departments}
-                                        value={department}
-                                        handleChange={handleDepartmentChange}
-                                        className={styles.filterSelect}
-                                    />
+                    {jobsAvailable ? (
+                        <>
+                            <div className={styles.filter}>
+                                <Select
+                                    label="Filter by locations"
+                                    options={locations}
+                                    value={location}
+                                    handleChange={handleLocationChange}
+                                    className={styles.filterSelect}
+                                />
+                                <Select
+                                    label="Filter by departments"
+                                    options={departments}
+                                    value={department}
+                                    handleChange={handleDepartmentChange}
+                                    className={styles.filterSelect}
+                                />
+                            </div>
+                            {jobEntries.length > 0 ? (
+                                jobEntries
+                            ) : (
+                                <div className={styles.filterNoResults}>
+                                    <p
+                                        className={
+                                            styles.filterNoResultsMessage
+                                        }
+                                    >
+                                        No jobs found for these filter options.
+                                    </p>
+                                    <button
+                                        className={styles.filterReset}
+                                        onClick={resetFilter}
+                                        onKeyDown={resetFilterKeyDownHandler}
+                                        tabIndex={0}
+                                    >
+                                        Click here to reset the filter.
+                                    </button>
                                 </div>
-                                {jobEntries.length > 0 ? (
-                                    jobEntries
-                                ) : (
-                                    <div className={styles.filterNoResults}>
-                                        <p
-                                            className={
-                                                styles.filterNoResultsMessage
-                                            }
-                                        >
-                                            No jobs found for these filter
-                                            options.
-                                        </p>
-                                        <button
-                                            className={styles.filterReset}
-                                            onClick={resetFilter}
-                                            onKeyDown={
-                                                resetFilterKeyDownHandler
-                                            }
-                                            tabIndex={0}
-                                        >
-                                            Click here to reset the filter.
-                                        </button>
-                                    </div>
-                                )}{' '}
-                            </>
-                        ) : (
-                            <p className={styles.noPositionsAvailable}>
-                                Unfortunately there are no positions available
-                                at the moment. <br aria-hidden />
-                                <br aria-hidden /> Please check back again
-                                later, or consider sending a speculative
-                                application below.
-                            </p>
-                        )}
+                            )}{' '}
+                        </>
+                    ) : (
+                        <p className={styles.noPositionsAvailable}>
+                            Unfortunately there are no positions available at
+                            the moment. <br aria-hidden />
+                            <br aria-hidden /> Please check back again later, or
+                            consider sending a speculative application below.
+                        </p>
+                    )}
 
-                        <WomanLeanIn className={styles.womanSVG} />
+                    <WomanLeanIn className={styles.womanSVG} />
 
-                        <JobCTA title={content.ctaTitle}>
-                            <RichText
-                                theme="INDIGO"
-                                content={content.ctaDescription}
-                            />
-                        </JobCTA>
-                    </div>
+                    <JobCTA title={content.ctaTitle}>
+                        <RichText
+                            theme="INDIGO"
+                            content={content.ctaDescription}
+                        />
+                    </JobCTA>
                 </div>
             </div>
         </Layout>
@@ -205,16 +197,10 @@ const Jobs: NextPage<JobsPageProps> = ({ preview, jobs, content }) => {
 export default Jobs;
 
 export async function getStaticProps({ preview = false }) {
-    try {
-        const jobs = await getAllJobSummaries();
-        const content = (await getJobListingPage(preview)) ?? [];
-        return {
-            props: { preview, jobs, content },
-            revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
-        };
-    } catch (error) {
-        return {
-            notFound: true,
-        };
-    }
+    const jobs = await getAllJobSummaries();
+    const content = (await getJobListingPage(preview)) ?? [];
+    return {
+        props: { preview, jobs, content },
+        revalidate: 60 * 60, // After one hour, the cache expires and the page gets rebuilt.
+    };
 }

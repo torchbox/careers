@@ -2,16 +2,15 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: $grid * 3;
-    padding: $grid * 1.5;
+    padding: $grid * 1.5 8.33vw;
 
     @include media-query(medium) {
-        padding: $grid * 3;
+        padding: $grid * 2 3.5vw;
     }
 
     @include media-query(large) {
         grid-template-columns: 1fr 1fr;
-        max-width: 1180px;
-        margin: 0 auto;
+        margin: 0 3.5vw;
     }
 }
 
@@ -83,4 +82,17 @@
 .coffeePerson {
     display: block;
     margin: 0 auto;
+}
+
+.disabledButton {
+    @include font-size(m);
+    background-color: var(--color--white);
+    border-radius: 7px;
+    color: var(--color--coral);
+    cursor: not-allowed;
+    display: block;
+    font-weight: $weight--extrabold;
+    width: max-content;
+    padding: 12px 20px 12px 20px;
+    margin: 20px auto 40px auto;
 }

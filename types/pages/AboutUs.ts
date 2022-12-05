@@ -1,7 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
 import { ImageTypes, VideoTypes } from 'types/Base';
 
-export type LifeAtTorchboxPage = {
+export type AboutUsPage = {
     metadataTitle: string;
     metadataDescription: string;
     metadataSocialMediaImage: ImageTypes;

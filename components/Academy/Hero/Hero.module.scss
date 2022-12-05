@@ -7,6 +7,11 @@
     @include media-query(menu-break) {
         flex-direction: row;
     }
+
+    @include media-query(site-width) {
+        margin: 0 auto;
+        max-width: $site-width;
+    }
 }
 
 .textContainer {

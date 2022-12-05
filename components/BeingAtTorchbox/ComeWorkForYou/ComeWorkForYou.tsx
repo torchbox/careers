@@ -1,6 +1,7 @@
 import { ImageTypes } from 'types/Base';
 import Link from 'next/link';
 import { Image } from 'components/Image/Image';
+import urls from 'lib/urls';
 import styles from './ComeWorkForYou.module.scss';
 
 type ComeWorkForYouProps = {
@@ -19,7 +20,7 @@ export const ComeWorkForYou = ({ image, children }: ComeWorkForYouProps) => (
                 <span className={styles.emphasis}>you</span>.
             </h2>
             <div className={styles.richText}>{children}</div>
-            <Link href="/employee-owned-trust" scroll={false}>
+            <Link href={urls.employeeOwnedTrust} scroll={false}>
                 <a className="underline-link underline-link--white">
                     Employee ownership benefits
                 </a>

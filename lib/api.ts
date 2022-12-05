@@ -34,7 +34,7 @@ const benefits = `
     ... on Benefits {
         benefitsTitle
         benefitsIntro
-        benefitsListCollection(limit: 8) {
+        benefitsListCollection(limit: 10) {
             items {
                 benefitName
                 benefitSnippet
@@ -89,8 +89,8 @@ links {
   }
 }`;
 
-export async function getLandingPage(preview: boolean) {
-    const landingPageContent = await fetchGraphQL(
+export async function getBeingAtTorchboxPage(preview: boolean) {
+    const content = await fetchGraphQL(
         `{
             landingPageCollection(limit: 1, preview: ` +
             preview +
@@ -116,7 +116,7 @@ export async function getLandingPage(preview: boolean) {
                 itemsCollection {
                         items {
                             __typename
-                            
+
                             ... on ProfileImages {
                               imagesCollection(limit: 8) {
                                 items {
@@ -167,7 +167,7 @@ export async function getLandingPage(preview: boolean) {
                       }
                     }
                 }
-                      
+
                 workForYouDescription {
                     json
                 }
@@ -194,11 +194,11 @@ export async function getLandingPage(preview: boolean) {
         preview,
     );
 
-    return landingPageContent.data.landingPageCollection.items[0];
+    return content.data.landingPageCollection.items[0];
 }
 
-export async function getLifeAtTorchboxPage(preview: boolean) {
-    const lifeAtTorchboxPageContent = await fetchGraphQL(
+export async function getAboutUsPage(preview: boolean) {
+    const content = await fetchGraphQL(
         `{
             lifeAtTorchboxPageCollection(limit: 1, preview: ` +
             preview +
@@ -281,11 +281,11 @@ export async function getLifeAtTorchboxPage(preview: boolean) {
         preview,
     );
 
-    return lifeAtTorchboxPageContent.data.lifeAtTorchboxPageCollection.items[0];
+    return content.data.lifeAtTorchboxPageCollection.items[0];
 }
 
 export async function getJobListingPage(preview: boolean) {
-    const pageContent = await fetchGraphQL(
+    const content = await fetchGraphQL(
         `{
         jobListingPageCollection(limit: 1, preview: ` +
             preview +
@@ -306,11 +306,11 @@ export async function getJobListingPage(preview: boolean) {
         }`,
         preview,
     );
-    return pageContent.data.jobListingPageCollection.items[0];
+    return content.data.jobListingPageCollection.items[0];
 }
 
 export async function getJobPage(preview: boolean) {
-    const pageContent = await fetchGraphQL(
+    const content = await fetchGraphQL(
         `{
           jobPageCollection(limit: 1, preview: ` +
             preview +
@@ -333,7 +333,7 @@ export async function getJobPage(preview: boolean) {
           }`,
         preview,
     );
-    return pageContent.data.jobPageCollection.items[0];
+    return content.data.jobPageCollection.items[0];
 }
 
 export async function getEmployeeOwnedTrustPage(preview: boolean) {
@@ -462,7 +462,7 @@ export async function getAcademyPage(preview: boolean) {
               applicationProcessDescription {
                 json
               }
-              applicationProcessStepOne 
+              applicationProcessStepOne
               applicationProcessStepTwo
               applicationProcessStepThree
             }

@@ -32,20 +32,19 @@ async function parseXML(xml: string): Promise<any> {
  * @returns an XML string, or null if a server error occurs.
  */
 async function fetchPeopleHRFeed(): Promise<string | null> {
-    if (process.env.PEOPLEHR_RSS_FEED_URL)
+    if (process.env.PEOPLEHR_RSS_FEED_URL) {
         return fetch(process.env.PEOPLEHR_RSS_FEED_URL).then(
             async (response) => {
                 if (response.ok) return parseXML(await response.text());
-                console.error(
+                throw new Error(
                     'Error fetching PeopleHR feed: RSS Feed URL not responding',
                 );
-                return null;
             },
         );
-    console.error(
+    }
+    throw new Error(
         'Error fetching PeopleHR feed: PEOPLEHR_RSS_FEED_URL is not defined',
     );
-    return null;
 }
 
 function writeToCache(
@@ -93,31 +92,7 @@ async function getJobPostingData() {
         if (cache.lastUpdated + CACHE_TTL < Date.now()) {
             // The cache has timed out, fetch new data from PeopleHR
 
-            const peopleHRJobPostings = await fetchPeopleHRFeed().catch(
-                (error) => {
-                    console.error('Error fetching data from PeopleHR: ', error);
-                    return null;
-                },
-            );
-
-            if (!peopleHRJobPostings) {
-                // In the event of a server error, don't update the job listings if we
-                // still have cached listings available to use instead
-
-                if (!cache.jobs) {
-                    return null;
-                }
-
-                // Refresh the cache timeout with existing data
-                const fileData = {
-                    lastUpdated: Date.now(),
-                    jobs: cache.jobs,
-                };
-
-                writeToCache(cacheFilePath, fileData);
-
-                return cache.jobs;
-            }
+            const peopleHRJobPostings = await fetchPeopleHRFeed();
 
             // If the server responds OK, update according to the feed contents
             const fileData = {
@@ -135,15 +110,7 @@ async function getJobPostingData() {
     }
 
     // If the cache file doesn't exist, create one
-    const peopleHRJobPostings = await fetchPeopleHRFeed().catch((error) => {
-        console.error('Error fetching data from PeopleHR: ', error);
-        return null;
-    });
-
-    if (!peopleHRJobPostings) {
-        // In the event of a server error, return 404
-        return null;
-    }
+    const peopleHRJobPostings = await fetchPeopleHRFeed();
 
     // Create a new file and set the cache
     const fileData = {
@@ -156,9 +123,8 @@ async function getJobPostingData() {
     return peopleHRJobPostings;
 }
 
-export async function getAllJobPostings(): Promise<JobPost[] | null> {
+export async function getAllJobPostings(): Promise<JobPost[]> {
     const jobPostingData = await getJobPostingData();
-    if (jobPostingData === null) return null;
     return convertJSONToJobPosts(jobPostingData);
 }
 

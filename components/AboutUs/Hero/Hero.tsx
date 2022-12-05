@@ -100,11 +100,7 @@ export const Hero = ({ image, video, subtitle, children }: HeroProps) => {
                     />
                 )}
                 <div className={styles.textContainer}>
-                    <h1 className={styles.title}>
-                        <span className={styles.titleAccent}>Life at</span>
-                        <br />
-                        Torchbox
-                    </h1>
+                    <h1 className={styles.title}>About us</h1>
                     <div className={styles.subtitle}>{subtitle}</div>
                     <div className={styles.description}>{children}</div>
                     <ArrowLoopRight className={styles.arrow} />

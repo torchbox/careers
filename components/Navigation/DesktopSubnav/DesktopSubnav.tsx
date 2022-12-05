@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { NavLink } from 'types/Base';
 import { pluralize } from 'lib/utilities';
+import urls from 'lib/urls';
 import styles from './DesktopSubnav.module.scss';
 
 type DesktopSubnavProps = {
@@ -101,7 +102,7 @@ export const DesktopSubnav = ({
                             </a>
                         </Link>
                         {link.title === 'Jobs' && jobsAvailable > 0 && (
-                            <Link href="/jobs" scroll={false}>
+                            <Link href={urls.jobs} scroll={false}>
                                 <a
                                     className={`${styles.subnavBadge} ${styles.badge}`}
                                     aria-label={`${jobsAvailable} ${pluralize(

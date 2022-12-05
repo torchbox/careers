@@ -1,12 +1,14 @@
 .container {
-    padding: $grid $grid * 1.5 $grid * 2;
+    max-width: $site-width;
+    padding: $grid 8.33vw $grid * 2 8.33vw;
 
     @include media-query(medium) {
-        padding: $grid * 2 $grid * 3;
+        padding: $grid * 2 8.33vw;
     }
 
     @include media-query(large) {
-        padding: 0 $grid * 3 $grid * 4 $grid * 3;
+        padding: 0 8.33vw $grid * 4 8.33vw;
+        margin: 0 auto;
     }
 
     @include media-query(menu-break) {

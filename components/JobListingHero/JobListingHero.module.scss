@@ -1,22 +1,20 @@
 .contentContainer {
-    max-width: 840px;
-    padding: $grid * 1.5 $grid * 1.5 0 $grid * 1.5;
+    padding: $grid * 2 0 0 0;
+    margin: 0 8.33vw;
 
     @include media-query(medium) {
-        margin: 0 auto;
-        padding: $grid * 3 $grid * 3 0 $grid * 3;
+        padding: $grid * 3 0 0 0;
     }
 
     @include media-query(large) {
-        padding: 0;
-        margin: 0 auto $grid 25%;
+        padding: $grid * 4 0 $grid * 2 0;
+        margin-left: 25vw;
+        max-width: 50vw;
     }
 }
 
 .textContainer {
     padding-top: $grid * 1.5;
-    max-width: $content--narrow;
-    margin-right: auto;
 }
 
 .title {
