@@ -99,6 +99,9 @@ const getRenderOptions = (links?: any) => {
                         }
                     }
                 } catch {
+                    // Error catching added to prevent draft or unpublished image embeds from breaking the site during the build process.
+                    // An unpublished image embed can appear to have been added to the page in Contentful while not being a published asset,
+                    // causing confusion to editors when the image doesn't appear or the build process doesn't deploy
                     return <p>Embedded item not yet published.</p>;
                 }
 
