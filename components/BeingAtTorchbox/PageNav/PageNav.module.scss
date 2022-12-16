@@ -18,6 +18,11 @@
     transform: rotate(10deg);
 }
 
+.svgArrowLoopPath {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+
 .navigation {
     display: flex;
     flex-direction: row;

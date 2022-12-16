@@ -14,7 +14,10 @@ type Animation = {
  * @param {HTMLElement} element
  * @param {Animation} animation
  */
-export const animate = (element: HTMLElement, animation: Animation) => {
+export const animate = (
+    element: HTMLElement | SVGElement,
+    animation: Animation,
+) => {
     const { keyframes, options } = animation;
 
     const animationHandler = element.animate(keyframes, options);
@@ -43,7 +46,7 @@ export const animate = (element: HTMLElement, animation: Animation) => {
  * @param {Animation Options} options
  */
 export const animateWithOptions = (
-    element: HTMLElement,
+    element: HTMLElement | SVGElement,
     animation: Animation,
     options: any,
 ) => {
@@ -68,5 +71,16 @@ export const fadeInSlideUp = {
     options: {
         duration: 540,
         easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+    },
+};
+
+/**
+ * SVG arrow path animation
+ */
+export const drawSVGPath = {
+    keyframes: [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+    options: {
+        duration: 1800,
+        easing: 'ease',
     },
 };
