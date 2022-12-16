@@ -75,7 +75,8 @@ export const fadeInSlideUp = {
 };
 
 /**
- * SVG arrow path animation
+ * SVG path drawing animation
+ * This expects that the pathLength attribute of the <path> element is set to 1
  */
 export const drawSVGPath = {
     keyframes: [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],

@@ -1,0 +1,9 @@
+.svgArrowLoopPath {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+
+    @media (prefers-reduced-motion: reduce) {
+        stroke-dasharray: 0;
+        stroke-dashoffset: 0;
+    }
+}

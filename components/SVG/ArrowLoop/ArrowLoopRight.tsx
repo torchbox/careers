@@ -1,3 +1,7 @@
+import { animateWithOptions, drawSVGPath } from 'lib/animations';
+import { RefObject, useRef, useEffect } from 'react';
+import styles from './ArrowLoop.module.scss';
+
 type ArrowLoopRightProps = {
     className?: string;
     width?: number;
@@ -8,17 +12,85 @@ export const ArrowLoopRight = ({
     className = '',
     width = 95,
     height = 123,
-}: ArrowLoopRightProps): React.ReactElement => (
-    <svg
-        className={className}
-        xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
-        fill="none"
-    >
-        <path
-            fill="#251657"
-            d="M.296 3.155a2 2 0 013.793-1.27L.296 3.154zm22.92 39.462l1.543-1.272-1.543 1.272zM50.618 54.33l.254-1.984-.254 1.984zm40.207-21.518l1.904.611-1.904-.61zm.178-10.846l1.458-1.368-1.458 1.368zm-7.01-.3l.274 1.981-.274-1.98zm-14.72 3.721l.773 1.845-.773-1.845zm-21.96 14.98l1.335 1.489-1.336-1.488zM22.87 73.593l1.866.72-1.866-.72zM20.983 121.7a2 2 0 01-2.681.901l-16.118-8.014a2 2 0 011.781-3.582l14.327 7.124 7.124-14.327a2 2 0 013.581 1.781L20.983 121.7zM4.09 1.884c4.609 13.758 11.513 28.346 20.67 39.46l-3.087 2.544C12.096 32.266 4.995 17.183.296 3.155l3.793-1.27zm20.67 39.46c2.854 3.464 7.007 5.93 11.708 7.68 4.69 1.746 9.797 2.733 14.405 3.322l-.507 3.968c-4.768-.61-10.206-1.648-15.294-3.542-5.078-1.89-9.938-4.683-13.399-8.884l3.087-2.543zm26.113 11.002c16.389 2.094 32.91-4.128 38.048-20.144l3.809 1.221c-5.958 18.575-24.93 25.118-42.364 22.89l.507-3.967zM88.92 32.202c.418-1.302 1-3.215 1.213-5.07.228-1.988-.052-3.226-.589-3.797l2.917-2.737c1.843 1.963 1.892 4.843 1.646 6.99-.262 2.282-.957 4.525-1.378 5.835l-3.809-1.221zm.624-8.867c.077.081.04-.017-.386-.094-.395-.071-.925-.087-1.554-.05-1.32.08-2.466.335-3.337.456l-.55-3.962c.47-.065 2.14-.395 3.645-.486.784-.048 1.669-.046 2.508.106.808.146 1.825.476 2.591 1.293l-2.917 2.737zm-5.277.312c-4.863.675-9.818 1.742-14.221 3.585l-1.545-3.69c4.85-2.03 10.184-3.159 15.217-3.857l.55 3.962zm-14.221 3.585c-7.908 3.31-14.87 8.763-21.398 14.624l-2.672-2.977c6.62-5.942 13.985-11.763 22.525-15.337l1.545 3.69zM48.648 41.856c-10.39 9.327-18.902 19.489-23.911 32.456l-3.731-1.441c5.319-13.77 14.32-24.43 24.97-33.992l2.672 2.977zM24.737 74.312c-5.487 14.204-8.46 31.528-3.648 45.86l-3.792 1.274c-5.24-15.608-1.928-33.984 3.709-48.575l3.73 1.441z"
-        />
-    </svg>
-);
+}: ArrowLoopRightProps): React.ReactElement => {
+    const containerRef: RefObject<SVGSVGElement> = useRef<SVGSVGElement | null>(
+        null,
+    );
+
+    // Animate the entrance of the SVG arrow loop.
+    useEffect(() => {
+        const containerNode = containerRef?.current;
+        const hasIOSupport = !!window.IntersectionObserver;
+        if (!hasIOSupport || !containerNode) return;
+
+        const callback = (
+            entries: IntersectionObserverEntry[],
+            observer: IntersectionObserver,
+        ) => {
+            // Look at all intersection observer event entries reported
+            entries.forEach((entry) => {
+                // If the event entry is of a target element intersecting with the observer
+                if (entry.isIntersecting) {
+                    const pathElements = entry.target.children;
+
+                    // Emotion: airy, graceful. Avoid the second path feeling like a tick box check. Draw the user down the page
+                    animateWithOptions(
+                        pathElements[0] as SVGElement,
+                        drawSVGPath,
+                        {
+                            duration: 1700,
+                            easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+                        },
+                    );
+                    animateWithOptions(
+                        pathElements[1] as SVGElement,
+                        drawSVGPath,
+                        { delay: 1700, duration: 500, easing: 'ease' },
+                    );
+
+                    // Stop observing so the animation doesn't replay if they scroll down again.
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        let observerThreshold = 0.1;
+
+        const observer = new IntersectionObserver(callback, {
+            root: null,
+            rootMargin: '0px',
+            threshold: observerThreshold,
+        });
+
+        observer.observe(containerNode);
+
+        return () => observer.disconnect();
+    });
+
+    return (
+        <svg
+            className={className}
+            width={width}
+            height={height}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 70 85"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.6"
+            stroke="#251657"
+            ref={containerRef}
+        >
+            <path
+                className={styles.svgArrowLoopPath}
+                pathLength="1"
+                d="M6.6 1.8C.2 37 2.8 55.8 37.4 47 72.4 39.4 53.8 5.4 33.2 22 11 41.6 17.4 69.8 29.4 83.4"
+            ></path>
+            <path
+                className={styles.svgArrowLoopPath}
+                pathLength="1"
+                d="M18.8 79.8 29.4 83.4 32.3 73.9"
+            ></path>
+        </svg>
+    );
+};
