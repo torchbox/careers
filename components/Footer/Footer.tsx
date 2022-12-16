@@ -70,10 +70,10 @@ const GetInTouch = () => (
                 </a>
                 <a
                     className={styles.getInTouchPhoneLink}
-                    href="tel://+447545468483"
-                    aria-label="Will's phone number"
+                    href="tel://+441608811870"
+                    aria-label="Torchbox office phone number"
                 >
-                    +447545468483
+                    +441608811870
                 </a>
             </div>
         </div>
