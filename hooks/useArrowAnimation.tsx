@@ -1,10 +1,10 @@
 import { animateWithOptions, drawSVGPath } from 'lib/animations';
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-export const useArrowAnimation = (containerRef: any) => {
+export const useArrowAnimation = (svgRef: RefObject<SVGSVGElement>) => {
     // Animate the entrance of the SVG arrow loop.
     useEffect(() => {
-        const containerNode = containerRef?.current;
+        const containerNode = svgRef?.current;
         const hasIOSupport = !!window.IntersectionObserver;
         if (!hasIOSupport || !containerNode) return;
 

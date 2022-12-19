@@ -29,6 +29,10 @@
     max-width: 131px;
     width: 100%;
     opacity: 0;
+    // Specify height so intersection observer can load elements smoothly
+    height: 100%;
+    display: flex;
+    align-items: center;
 
     &:nth-child(odd) {
         justify-self: right;
