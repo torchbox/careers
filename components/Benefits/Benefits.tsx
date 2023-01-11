@@ -1,5 +1,7 @@
 import FruitBowl from 'components/SVG/FruitBowl';
 import { BenefitStarIcon } from 'components/Icons/BenefitStarIcon';
+import { useChildElementsAnimation } from 'hooks/useChildElementsAnimation';
+import { RefObject, useRef } from 'react';
 import styles from './Benefits.module.scss';
 
 type BenefitsProps = {
@@ -8,6 +10,11 @@ type BenefitsProps = {
 };
 
 export const Benefits = ({ title, benefits }: BenefitsProps) => {
+    const containerRef: RefObject<HTMLUListElement> =
+        useRef<HTMLUListElement | null>(null);
+
+    useChildElementsAnimation(containerRef);
+
     const listOfBenefits = benefits.map((benefit) => (
         <li className={styles.benefitItem} key={benefit}>
             <BenefitStarIcon className={styles.benefitIcon} />
@@ -19,7 +26,9 @@ export const Benefits = ({ title, benefits }: BenefitsProps) => {
         <div className={styles.container}>
             <div className={styles.textContainer}>
                 <h2 className={styles.title}>{title}</h2>
-                <ul className={styles.benefitsList}>{listOfBenefits}</ul>
+                <ul className={styles.benefitsList} ref={containerRef}>
+                    {listOfBenefits}
+                </ul>
             </div>
             <div className={styles.decoration}>
                 <FruitBowl className={styles.fruitBowl} />
