@@ -16,6 +16,28 @@
     opacity: 0;
     list-style-type: none;
     border: 2px solid var(--color--white);
+    clip-path: inset(0);
+    transition: clip-path 0.3s ease-in;
+
+    &::after {
+        content: '';
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        background-color: var(--color--coral);
+        width: 100px;
+        height: 100px;
+        // This clip-path only works for a 100px by 100px element
+        // Create a new clip-path at https://www.svgviewer.dev/s/15890/heart
+        clip-path: path(
+            'M90.293 12.227C79.59 3.105 63.672 4.746 53.848 14.883L50 18.848l-3.848 -3.965C36.348 4.746 20.41 3.105 9.707 12.227c-12.266 10.469 -12.91 29.258 -1.934 40.605l37.793 39.023c2.441 2.52 6.406 2.52 8.848 0l37.793 -39.023c10.996 -11.348 10.352 -30.137 -1.914 -40.605z'
+        );
+        opacity: 0;
+        // 0.25 instead of 0.3 as the heart exit animation should be slightly less noticeable
+        transition: opacity 0.25s ease-in, transform 0.3s ease-in;
+    }
 
     /* Hide the last two images on mobile */
     &:nth-child(7n),
@@ -27,6 +49,17 @@
         &:nth-child(7n),
         &:nth-child(8n) {
             display: block;
+        }
+    }
+
+    &:hover {
+        clip-path: inset(2% 2% 2% 2%);
+        transition: clip-path 0.3s ease-out;
+
+        &::after {
+            opacity: 0.75;
+            transform: translate(-50%, -50%) scale(0.75);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
     }
 }
