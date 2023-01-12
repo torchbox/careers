@@ -21,7 +21,7 @@ export const YouTubeEmbed = ({ url }: YouTubeEmbedProps) => {
         if (videoId) {
             setVideoId(videoId);
         } else {
-            setError('YouTube video ID could not be extracted.');
+            setError('Embedded YouTube video no longer available.');
         }
     }, [url]);
 
