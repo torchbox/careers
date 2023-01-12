@@ -8,7 +8,9 @@ Preview the API response of what this embed outputs by using the Contentful Prev
 
 `https://graphql.contentful.com/content/v1/spaces/[space ID here]/explore?access_token=[preview API key here]`
 
-For local development, you can enter preview mode via the FE api or switch your local env variable to fetch from the preview API directly.
+For local development, you can enter preview mode via the FE api. Use the following URL:
+
+`http://localhost:3000/careers/api/preview?secret=[preview API key here]&url=careers`
 
 After you've added your new embed component in the `components` folder, continue by updating the following files.
 
