@@ -1,7 +1,7 @@
 import { RefObject, useRef } from 'react';
 import type { BlogPost } from 'types/Base';
 import Image from 'components/Image';
-import { useChildElementsAnimation } from 'hooks/useChildElementsAnimation';
+import { useFadeInChildren } from 'hooks/useFadeInChildren';
 import styles from './MusingsFromTheTeam.module.scss';
 
 type MusingsFromTheTeamProps = {
@@ -46,7 +46,7 @@ export const MusingsFromTheTeam = ({ postData }: MusingsFromTheTeamProps) => {
     const containerRef: RefObject<HTMLUListElement> =
         useRef<HTMLUListElement | null>(null);
 
-    useChildElementsAnimation(containerRef);
+    useFadeInChildren(containerRef);
 
     const posts = postData.map((post, index) => (
         <BlogPostCard post={post} key={`blog-post-${index}`} />

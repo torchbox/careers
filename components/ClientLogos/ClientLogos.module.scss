@@ -29,7 +29,7 @@
     max-width: 131px;
     width: 100%;
     opacity: 0;
-    // Specify height so intersection observer can load elements smoothly
+    // Specify a consistent height for all logos so intersection observer loads them in smoothly
     height: 100%;
     display: flex;
     align-items: center;

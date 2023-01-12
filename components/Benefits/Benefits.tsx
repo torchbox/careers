@@ -1,6 +1,6 @@
 import FruitBowl from 'components/SVG/FruitBowl';
 import { BenefitStarIcon } from 'components/Icons/BenefitStarIcon';
-import { useChildElementsAnimation } from 'hooks/useChildElementsAnimation';
+import { useFadeInChildren } from 'hooks/useFadeInChildren';
 import { RefObject, useRef } from 'react';
 import styles from './Benefits.module.scss';
 
@@ -13,7 +13,7 @@ export const Benefits = ({ title, benefits }: BenefitsProps) => {
     const containerRef: RefObject<HTMLUListElement> =
         useRef<HTMLUListElement | null>(null);
 
-    useChildElementsAnimation(containerRef);
+    useFadeInChildren(containerRef);
 
     const listOfBenefits = benefits.map((benefit) => (
         <li className={styles.benefitItem} key={benefit}>

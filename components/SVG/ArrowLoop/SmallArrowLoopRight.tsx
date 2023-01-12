@@ -1,4 +1,4 @@
-import { useArrowAnimation } from 'hooks/useArrowAnimation';
+import { useDrawArrow } from 'hooks/useDrawArrow';
 import { RefObject, useRef } from 'react';
 import styles from './ArrowLoop.module.scss';
 
@@ -10,7 +10,7 @@ export const SmallArrowLoopRight = ({
     className = '',
 }: SmallArrowLoopRightProps): React.ReactElement => {
     const svgRef: RefObject<SVGSVGElement> = useRef<SVGSVGElement | null>(null);
-    useArrowAnimation(svgRef);
+    useDrawArrow(svgRef);
 
     return (
         <svg

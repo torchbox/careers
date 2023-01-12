@@ -1,7 +1,7 @@
 import { ImageTypes } from 'types/Base';
 import { Image } from 'components/Image/Image';
 import { RefObject, useRef } from 'react';
-import { useChildElementsAnimation } from 'hooks/useChildElementsAnimation';
+import { useFadeInChildren } from 'hooks/useFadeInChildren';
 import styles from './SocialMediaPhotos.module.scss';
 
 type SocialMediaPhotosProps = {
@@ -15,7 +15,7 @@ export const SocialMediaPhotos = ({ photos }: SocialMediaPhotosProps) => {
     const containerRef: RefObject<HTMLUListElement> =
         useRef<HTMLUListElement | null>(null);
 
-    useChildElementsAnimation(containerRef);
+    useFadeInChildren(containerRef);
 
     const SocialMediaPhotos = photos.slice(0, 8).map((photo, index) => (
         <li className={styles.image} key={`social-media-image-${index}`}>

@@ -2,17 +2,17 @@ import { animateWithOptions, fadeInSlideUp } from 'lib/animations';
 import { useEffect, useState } from 'react';
 
 /**
- * This hook animates the appearance of all the child elements of any given container as they scroll into the viewport.
+ * This hook fades in the child elements of a container as they scroll into the viewport.
  * The opacity of the child elements should be set to zero in SCSS.
  * To use, add a ref to the container element and pass it to this hook.
  *
  * const containerRef: RefObject<HTMLUListElement> = useRef<HTMLUListElement | null>(null);
- * useChildElementsAnimation(containerRef);
+ * useFadeInChildren(containerRef);
  * <div ref={containerRef}>... child elements to animate ...</div>
  *
  * @param containerRef element that contains the elements to be animated
  */
-export const useChildElementsAnimation = (containerRef: any) => {
+export const useFadeInChildren = (containerRef: any) => {
     const [nextElementToLoad, setNextElementToLoad] = useState(0);
 
     useEffect(() => {
