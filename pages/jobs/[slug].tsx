@@ -77,8 +77,7 @@ const JobPosting: NextPage<JobPageProps> = ({
                 />
             </div>
 
-            {/* Independent trustees don't receive benefits. Todo: This code change was requested as an ad-hoc fix -
-                we could pull a list of job titles that don't receive benefits from the CMS in the future. */}
+            {/* Independent trustees don't receive benefits. */}
             {job.title !== 'Independent Trustee' && (
                 <Benefits
                     title={content.itemsCollection.items[0].benefitsTitle}
