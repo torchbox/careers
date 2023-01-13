@@ -77,10 +77,13 @@ const JobPosting: NextPage<JobPageProps> = ({
                 />
             </div>
 
-            <Benefits
-                title={content.itemsCollection.items[0].benefitsTitle}
-                benefits={benefits}
-            />
+            {/* Independent trustees don't receive benefits. */}
+            {job.title !== 'Independent Trustee' && (
+                <Benefits
+                    title={content.itemsCollection.items[0].benefitsTitle}
+                    benefits={benefits}
+                />
+            )}
 
             <div className={styles.contentContainer}>
                 <div className={styles.textContainer}>
