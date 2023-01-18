@@ -32,14 +32,14 @@ export const useDrawArrow = (svgRef: RefObject<SVGSVGElement>) => {
                         pathElements[0] as SVGElement,
                         drawSVGPath,
                         {
-                            duration: 1600,
+                            duration: 450,
                             easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
                         },
                     );
                     animateWithOptions(
                         pathElements[1] as SVGElement,
                         drawSVGPath,
-                        { delay: 1600, duration: 500, easing: 'ease' },
+                        { delay: 415, duration: 210, easing: 'ease-in' },
                     );
 
                     // Stop observing so the animation doesn't replay if they scroll down again.
@@ -48,7 +48,7 @@ export const useDrawArrow = (svgRef: RefObject<SVGSVGElement>) => {
             });
         };
 
-        let observerThreshold = 0.1;
+        let observerThreshold = 0.6;
 
         const observer = new IntersectionObserver(callback, {
             root: null,
