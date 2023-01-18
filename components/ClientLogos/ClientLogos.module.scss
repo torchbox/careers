@@ -26,9 +26,12 @@
 }
 
 .logo {
+    @media (prefers-reduced-motion: no-preference) {
+        opacity: 0;
+    }
+
     max-width: 131px;
     width: 100%;
-    opacity: 0;
     // Specify a consistent height for all logos so intersection observer loads them in smoothly
     height: 100%;
     display: flex;

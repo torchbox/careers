@@ -15,7 +15,7 @@ export const SocialMediaPhotos = ({ photos }: SocialMediaPhotosProps) => {
     const containerRef: RefObject<HTMLUListElement> =
         useRef<HTMLUListElement | null>(null);
 
-    useFadeInChildren(containerRef);
+    useFadeInChildren(containerRef, 0.3);
 
     const SocialMediaPhotos = photos.slice(0, 8).map((photo, index) => (
         <li className={styles.image} key={`social-media-image-${index}`}>

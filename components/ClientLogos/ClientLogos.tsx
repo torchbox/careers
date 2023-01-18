@@ -12,7 +12,7 @@ export const ClientLogos = ({ logos }: ClientLogosProps) => {
     const containerRef: RefObject<HTMLUListElement> =
         useRef<HTMLUListElement | null>(null);
 
-    useFadeInChildren(containerRef);
+    useFadeInChildren(containerRef, 0.7);
 
     // Slice used to cap number of logos at 8, but this is also restricted to 8 items in Contentful
     const listOfClientLogos = logos.slice(0, 8).map((logo, index) => (

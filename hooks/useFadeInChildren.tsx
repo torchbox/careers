@@ -12,7 +12,10 @@ import { useEffect, useState } from 'react';
  *
  * @param containerRef element that contains the elements to be animated
  */
-export const useFadeInChildren = (containerRef: any) => {
+export const useFadeInChildren = (
+    containerRef: any,
+    observerThreshold: number,
+) => {
     const [nextElementToLoad, setNextElementToLoad] = useState(0);
 
     useEffect(() => {
@@ -36,11 +39,20 @@ export const useFadeInChildren = (containerRef: any) => {
                     currentElementAnimationIndex ===
                         nextElementAnimationIndex.toString()
                 ) {
-                    animateWithOptions(
-                        entry.target as HTMLElement,
-                        fadeInSlideUp,
-                        { delay: index * 80 },
+                    const reduceMotionMediaQuery = window.matchMedia(
+                        '(prefers-reduced-motion: no-preference)',
                     );
+
+                    if (
+                        !reduceMotionMediaQuery ||
+                        reduceMotionMediaQuery.matches
+                    ) {
+                        animateWithOptions(
+                            entry.target as HTMLElement,
+                            fadeInSlideUp,
+                            { delay: index * 40 },
+                        );
+                    }
 
                     // Stop observing so the animation doesn't replay
                     observer.unobserve(entry.target);
@@ -50,8 +62,6 @@ export const useFadeInChildren = (containerRef: any) => {
 
             setNextElementToLoad(nextElementAnimationIndex);
         };
-
-        const observerThreshold = 0.5;
 
         const observer = new IntersectionObserver(callback, {
             root: null,

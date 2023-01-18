@@ -55,8 +55,6 @@
 }
 
 .blogPost {
-    opacity: 0;
-
     &Link:hover,
     &Link:focus {
         & > .blogPostTitle {

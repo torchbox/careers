@@ -64,13 +64,13 @@ export const animateWithOptions = (
  */
 export const fadeInSlideUp = {
     keyframes: [
-        { transform: 'translateY(25px)', opacity: 0 },
+        { transform: 'translateY(20px)', opacity: 0 },
         { opacity: 1, offset: 0.75 },
         { transform: 'translateY(0)', opacity: 1 },
     ],
     options: {
-        duration: 540,
-        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        duration: 350,
+        easing: 'cubic-bezier( 0.34, 1.26, 0.64, 1 )',
     },
 };
 
