@@ -1,7 +1,12 @@
-import { useState, useEffect } from 'react';
 import styles from './YouTubeEmbed.module.scss';
 
-const getVideoId = (url: string) => {
+/**
+ * Parses any format of YouTube URL to return only the video ID.
+ * This ensures a consistent format for the embed URL.
+ * @param url The YouTube URL.
+ * @returns The video ID, or null if the URL format is invalid.
+ */
+const parseURLtoGetVideoId = (url: string) => {
     const regExp =
         /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
@@ -13,24 +18,12 @@ type YouTubeEmbedProps = {
 };
 
 export const YouTubeEmbed = ({ url }: YouTubeEmbedProps) => {
-    const [videoId, setVideoId] = useState<string | null>(null);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const videoId = getVideoId(url);
-        if (videoId) {
-            setVideoId(videoId);
-        } else {
-            setError('Embedded YouTube video no longer available.');
-        }
-    }, [url]);
-
-    if (error) {
-        return <p>{error}</p>;
-    }
+    const videoId = parseURLtoGetVideoId(url);
 
     if (!videoId) {
-        return <p>Loading...</p>;
+        return (
+            <p>The YouTube video linked to by this embed was not accessible.</p>
+        );
     }
 
     return (
