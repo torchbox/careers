@@ -100,7 +100,12 @@ const getRenderOptions = (links?: any) => {
                         }
 
                         if (entry.__typename === 'YouTubeEmbed') {
-                            return <YouTubeEmbed url={entry.videoUrl} />;
+                            return (
+                                <YouTubeEmbed
+                                    url={entry.videoUrl}
+                                    title={entry.videoTitle}
+                                />
+                            );
                         }
                     }
                 } catch {

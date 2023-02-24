@@ -15,9 +15,10 @@ const parseURLtoGetVideoId = (url: string) => {
 
 type YouTubeEmbedProps = {
     url: string;
+    title: string;
 };
 
-export const YouTubeEmbed = ({ url }: YouTubeEmbedProps) => {
+export const YouTubeEmbed = ({ url, title }: YouTubeEmbedProps) => {
     const videoId = parseURLtoGetVideoId(url);
 
     if (!videoId) {
@@ -29,7 +30,7 @@ export const YouTubeEmbed = ({ url }: YouTubeEmbedProps) => {
     return (
         <iframe
             className={styles.container}
-            title="YouTube video player"
+            title={title}
             src={`https://www.youtube-nocookie.com/embed/${videoId}`}
         />
     );

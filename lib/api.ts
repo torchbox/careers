@@ -372,6 +372,7 @@ export async function getEmployeeOwnedTrustPage(preview: boolean) {
                     }
                     ... on YouTubeEmbed {
                       videoUrl
+                      videoTitle
                     }
                   }
                 }
