@@ -430,7 +430,7 @@ export async function getAcademyPage(preview: boolean) {
               mainSectionContent {
                 json
               }
-              academyDaysCollection(limit: 2) {
+              academyDaysCollection(limit: 3) {
                 items {
                   title
                   description {

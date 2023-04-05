@@ -3,14 +3,19 @@
     grid-template-columns: 1fr;
     gap: $grid * 3;
     padding: $grid * 1.5 8.33vw;
+    max-width: $site-width;
 
     @include media-query(medium) {
         padding: $grid * 2 3.5vw;
     }
 
     @include media-query(large) {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         margin: 0 3.5vw;
+    }
+
+    @include media-query(site-width) {
+        margin: 0 auto;
     }
 }
 
@@ -41,6 +46,16 @@
         border: 2px solid var(--color--white);
         border-radius: 7px;
         background: var(--color--grey-light);
+    }
+
+    @include media-query(large) {
+        // All cards span 2 columns for the 4 wide grid on desktop
+        grid-column: span 2;
+
+        // The third academy card is centered in the middle two columns
+        &:nth-child(3) {
+            grid-column: 2 / 4;
+        }
     }
 }
 
