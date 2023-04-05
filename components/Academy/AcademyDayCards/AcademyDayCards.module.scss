@@ -3,6 +3,7 @@
     grid-template-columns: 1fr;
     gap: $grid * 3;
     padding: $grid * 1.5 8.33vw;
+    max-width: $site-width;
 
     @include media-query(medium) {
         padding: $grid * 2 3.5vw;
@@ -11,6 +12,10 @@
     @include media-query(large) {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         margin: 0 3.5vw;
+    }
+
+    @include media-query(site-width) {
+        margin: 0 auto;
     }
 }
 
