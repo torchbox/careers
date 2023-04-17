@@ -21,6 +21,8 @@ type AcademyPageProps = {
     content: Academy;
 };
 
+const CHARACTERS: CharacterType[] = ['MICROPHONE', 'COFFEE', 'POST_IT_NOTES'];
+
 const AcademyPage: NextPage<AcademyPageProps> = ({
     preview,
     jobsAvailable,
@@ -32,9 +34,7 @@ const AcademyPage: NextPage<AcademyPageProps> = ({
                 title: card.title,
                 content: card.description,
                 link: card.applicationLink,
-                character: (index === 0
-                    ? 'MICROPHONE'
-                    : 'COFFEE') as CharacterType,
+                character: CHARACTERS[index],
             };
         },
     );

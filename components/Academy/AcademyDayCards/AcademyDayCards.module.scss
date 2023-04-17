@@ -99,6 +99,11 @@
     margin: 0 auto;
 }
 
+.postItNotePerson {
+    display: block;
+    margin: 0 auto;
+}
+
 .disabledButton {
     @include font-size(m);
     background-color: var(--color--white);

@@ -49,4 +49,4 @@ export type AcademyTypes = {
     applicationLink: string;
 };
 
-export type CharacterType = 'MICROPHONE' | 'COFFEE';
+export type CharacterType = 'MICROPHONE' | 'COFFEE' | 'POST_IT_NOTES';

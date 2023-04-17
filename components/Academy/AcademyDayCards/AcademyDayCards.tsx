@@ -2,6 +2,7 @@ import { Document } from '@contentful/rich-text-types';
 import RichText from 'components/RichText';
 import MicrophonePerson from 'components/SVG/MicrophonePerson';
 import CoffeePerson from 'components/SVG/CoffeePerson';
+import PostItNotePerson from 'components/SVG/PostItNotesPerson';
 import Button from 'components/Button';
 import { CharacterType } from 'types/Base';
 import styles from './AcademyDayCards.module.scss';
@@ -21,6 +22,9 @@ const Card = ({ title, content, link, character }: AcademyDay) => (
             ) : null}
             {character === 'COFFEE' ? (
                 <CoffeePerson className={styles.coffeePerson} />
+            ) : null}
+            {character === 'POST_IT_NOTES' ? (
+                <PostItNotePerson className={styles.postItNotePerson} />
             ) : null}
         </div>
         <h3 className={styles.title}>{title}</h3>
@@ -47,7 +51,7 @@ export const AcademyDayCards = ({ academyDays }: AcademyDayCardsProps) => {
             title={card.title}
             content={card.content}
             link={card.link}
-            character={index === 0 ? 'MICROPHONE' : 'COFFEE'}
+            character={card.character}
             key={`academy-card-${index}`}
         />
     ));
