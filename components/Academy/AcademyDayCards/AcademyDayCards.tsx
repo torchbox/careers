@@ -18,13 +18,17 @@ const Card = ({ title, content, link, character }: AcademyDay) => (
     <div className={styles.card}>
         <div className={styles.icon}>
             {character === 'MICROPHONE' ? (
-                <MicrophonePerson className={styles.microphonePerson} />
+                <MicrophonePerson
+                    className={[styles.person, styles.microphonePerson].join(
+                        ' ',
+                    )}
+                />
             ) : null}
             {character === 'COFFEE' ? (
-                <CoffeePerson className={styles.coffeePerson} />
+                <CoffeePerson className={styles.person} />
             ) : null}
             {character === 'POST_IT_NOTES' ? (
-                <PostItNotePerson className={styles.postItNotePerson} />
+                <PostItNotePerson className={styles.person} />
             ) : null}
         </div>
         <h3 className={styles.title}>{title}</h3>
