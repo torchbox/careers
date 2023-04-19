@@ -6,7 +6,7 @@ type JobListingHeroProps = {
     title: string;
     department: string;
     location: string;
-    salary: string;
+    salary?: string;
     applicationLink: string;
     description: string;
     sharingURL: string;
@@ -24,7 +24,7 @@ export const JobListingHero = ({
     <div className={styles.contentContainer}>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.textContainer}>
-            <p className={styles.salary}>{salary}</p>
+            {salary && <p className={styles.salary}>{salary}</p>}
             <p className={styles.department}>{department}</p>
             <p className={styles.location}>{location}</p>
 

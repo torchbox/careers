@@ -270,7 +270,6 @@ function jobPostingJSONIsValid(json: any) {
         'vacancydescription',
         'city',
         'department',
-        'salaryrange',
     ];
 
     for (let i = 0; i < requiredProperties.length; i += 1) {
@@ -308,7 +307,7 @@ export function createJobPostFromJSON(json: any) {
             jobURL: json.JobURL[0],
             vacancyDescription: json.vacancydescription[0],
             department: json.department[0],
-            salaryRange: json.salaryrange[0],
+            salaryRange: json.salaryrange ? json.salaryrange[0] : null,
             city: json.city[0],
             slug: slug,
         };
