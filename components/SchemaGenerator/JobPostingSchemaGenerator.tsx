@@ -2,22 +2,23 @@ import Head from 'next/head';
 import type { JobPost } from 'lib/peopleHR';
 
 export const JobPostingSchemaGenerator = ({ job }: { job: JobPost }) => {
-    let splittingString = ' - ';
-
-    if (job.salaryRange.includes(' to ')) {
-        splittingString = ' to ';
-    }
-
-    const minSalary = job.salaryRange.split(splittingString)[0];
-    const maxSalary = job.salaryRange.split(splittingString)[1];
-
-    const datePosted = new Date().toISOString();
-
     let estimatedSalary = '';
-    // Only include an estimated salary if we can guarantee the correct currency type
-    if (!!maxSalary && job.salaryRange.includes('£')) {
-        // remove special characters from min and maxValue
-        estimatedSalary = `"estimatedSalary": {
+
+    if (job.salaryRange) {
+        let splittingString = ' - ';
+
+        if (job.salaryRange.includes(' to ')) {
+            splittingString = ' to ';
+        }
+
+        const minSalary = job.salaryRange.split(splittingString)[0];
+        const maxSalary = job.salaryRange.split(splittingString)[1];
+
+        // Only include an estimated salary if we can guarantee the correct currency type
+        if (!!maxSalary && job.salaryRange.includes('£')) {
+            // remove special characters from min and maxValue
+            estimatedSalary = `
+        "estimatedSalary": {
             "@type": "MonetaryAmount",
             "currency": "GBP",
             "value": {
@@ -27,13 +28,15 @@ export const JobPostingSchemaGenerator = ({ job }: { job: JobPost }) => {
                 "unitText": "YEAR"
             }
         },`;
+        }
     }
+
+    const datePosted = new Date().toISOString();
 
     const schema = `
     {
         "@context": "http://schema.org",
-        "@type": "JobPosting",
-        ${estimatedSalary && estimatedSalary}
+        "@type": "JobPosting",${estimatedSalary}
         "datePosted": "${datePosted}",
         ${job.department && '"employmentUnit":"' + job.department + '",'}
         "description": "${job.vacancyDescription}",
