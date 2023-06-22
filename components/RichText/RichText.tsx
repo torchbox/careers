@@ -12,6 +12,7 @@ import {
 } from '@contentful/rich-text-types';
 import Image from 'components/Image';
 import Quote from 'components/Quote';
+import YouTubeEmbed from 'components/YouTubeEmbed';
 import { ImageTypes } from 'types/Base';
 import styles from './RichText.module.scss';
 
@@ -95,6 +96,15 @@ const getRenderOptions = (links?: any) => {
                                 <Quote name={entry.name} position={entry.role}>
                                     {entry.quote}
                                 </Quote>
+                            );
+                        }
+
+                        if (entry.__typename === 'YouTubeEmbed') {
+                            return (
+                                <YouTubeEmbed
+                                    url={entry.videoUrl}
+                                    title={entry.videoTitle}
+                                />
                             );
                         }
                     }

@@ -370,6 +370,10 @@ export async function getEmployeeOwnedTrustPage(preview: boolean) {
                       name
                       role
                     }
+                    ... on YouTubeEmbed {
+                      videoUrl
+                      videoTitle
+                    }
                   }
                 }
               }
