@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { NavLink } from 'types/Base';
-import DesktopSubnav from '../DesktopSubnav';
 import { ExternalLinkIcon } from 'components/Icons/ExternalLinkIcon';
+import DesktopSubnav from '../DesktopSubnav';
 import styles from './DesktopNav.module.scss';
 
 type DesktopNavItemProps = {
