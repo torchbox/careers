@@ -127,11 +127,11 @@
         margin-right: 0;
     }
 
-    @include media-query(menu-break-larger) {
+    @include media-query('site-width') {
         margin-right: 50px;
     }
 
-    @include media-query(x-large) {
+    @include media-query('x-large') {
         margin-right: 70px;
     }
 
