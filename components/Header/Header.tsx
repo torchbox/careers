@@ -42,6 +42,10 @@ const NAVIGATION_LINKS = [
         title: 'Team',
         url: 'https://torchbox.com/team/',
     },
+    {
+        title: 'Work',
+        url: 'https://torchbox.com/work/',
+    },
 ];
 
 type HeaderProps = {
