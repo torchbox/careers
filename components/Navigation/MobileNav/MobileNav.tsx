@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { RefObject } from 'react';
 import { useRouter } from 'next/router';
 import { NavLink } from 'types/Base';
+import { ExternalLinkIcon } from 'components/Icons/ExternalLinkIcon';
 import { pluralize } from 'lib/utilities';
 import styles from './MobileNav.module.scss';
 
@@ -56,6 +57,15 @@ const MobileNavItem = ({
                         )}
                     </a>
                 </Link>
+            ) : link.isExternalLink ? (
+                <a className={styles.mobileNavItemLink} href={link.url}>
+                    <span className={styles.mobileNavItemTitle}>
+                        {link.title}
+                        <ExternalLinkIcon
+                            className={styles.mobileNavItemExternalLinkIcon}
+                        />
+                    </span>
+                </a>
             ) : (
                 <a className={styles.mobileNavItemLink} href={link.url}>
                     <span className={styles.mobileNavItemTitle}>

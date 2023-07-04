@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { NavLink } from 'types/Base';
+import { ExternalLinkIcon } from 'components/Icons/ExternalLinkIcon';
 import DesktopSubnav from '../DesktopSubnav';
 import styles from './DesktopNav.module.scss';
 
@@ -7,7 +8,7 @@ type DesktopNavItemProps = {
     link: NavLink;
 };
 
-// For rendering the three primary links of the desktop nav
+// For rendering the four primary links of the desktop nav
 // There is no support here for rendering a Careers link with a job count badge
 // However you can choose pages within the careers site to link to, and have them preloaded.
 const DesktopNavItem = ({ link }: DesktopNavItemProps) => (
@@ -20,6 +21,13 @@ const DesktopNavItem = ({ link }: DesktopNavItemProps) => (
                     </span>
                 </a>
             </Link>
+        ) : link.isExternalLink ? (
+            <a className={styles.desktopNavItemLink} href={link.url}>
+                <span className={styles.desktopNavItemTitle}>{link.title}</span>
+                <ExternalLinkIcon
+                    className={styles.desktopNavItemExternalLinkIcon}
+                />
+            </a>
         ) : (
             <a className={styles.desktopNavItemLink} href={link.url}>
                 <span className={styles.desktopNavItemTitle}>{link.title}</span>
@@ -42,7 +50,7 @@ export const DesktopNav = ({
     jobsAvailable = 0,
 }: DesktopNavProps) => {
     const navItems = links
-        .slice(0, 3)
+        .slice(0, 4)
         .map((link, index) => <DesktopNavItem link={link} key={index} />);
 
     return (
@@ -67,7 +75,7 @@ export const DesktopNav = ({
                             <>
                                 <DesktopSubnav
                                     jobsAvailable={jobsAvailable}
-                                    links={links.slice(3, links.length)}
+                                    links={links.slice(4, links.length)}
                                     toggleMenu={toggleMenu}
                                 />
                                 <div

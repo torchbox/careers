@@ -211,14 +211,17 @@
     }
 
     @include media-query(menu-break) {
-        flex-direction: row;
-        padding: $grid * 3 0 $grid $grid * 3;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: baseline;
+        padding: $grid * 3 $grid * 3 $grid $grid * 3;
     }
 }
 
 .appendix {
     display: flex;
     flex-direction: column;
+    align-items: baseline;
     width: 100%;
     order: 2;
 
@@ -229,7 +232,6 @@
     @include media-query(menu-break) {
         flex-direction: row;
         order: 1;
-        width: 50%;
         margin: 0;
     }
 
@@ -239,13 +241,17 @@
         margin: $grid 0 0 0;
 
         @include media-query(menu-break) {
-            margin: 6px $grid 0 0;
+            margin: 0 $grid 0 0;
             align-self: center;
         }
     }
 
     &Links {
+        display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: $grid / 2;
+        column-gap: $grid;
         align-items: center;
         margin-bottom: $grid;
 
@@ -260,12 +266,23 @@
 
     &Link {
         display: inline-block;
-        margin-left: $grid;
         color: var(--color--dark-indigo);
         @include font-size(xxs);
+    }
 
-        &:first-child {
-            margin-left: 0;
+    // Not currently used, but torchbox.com now has support for external links in
+    // the footer, so this may become needed
+    &ExternalLinkIcon {
+        width: 10px;
+        height: 10px;
+        fill: var(--color--indigo);
+        transition: fill $transition-quick;
+        position: relative;
+        top: 3px;
+        opacity: 0.8;
+
+        .appendixLink:hover & {
+            fill: var(--color--coral-dark);
         }
     }
 }
@@ -282,8 +299,7 @@
     @include media-query(menu-break) {
         order: 2;
         margin-bottom: 0;
-        width: 50%;
-        transform: translateX(-20%);
+        justify-content: flex-end;
     }
 
     &ListItem {

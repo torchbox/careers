@@ -1,4 +1,5 @@
 import { Document } from '@contentful/rich-text-types';
+import { isExternal } from 'util/types';
 
 export type Theme = 'LIGHT' | 'DARK' | 'INDIGO';
 
@@ -10,6 +11,7 @@ export type NavLink = {
     title: string;
     url: string;
     isCareersSiteInternalLink?: boolean;
+    isExternalLink?: boolean;
 };
 
 export type ImageTypes = {

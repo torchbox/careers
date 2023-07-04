@@ -8,7 +8,7 @@ import styles from './Header.module.scss';
 
 const NAVIGATION_LINKS = [
     {
-        title: 'Design + build products',
+        title: 'Digital products',
         url: 'https://torchbox.com/digital-products/',
     },
     {
@@ -18,6 +18,11 @@ const NAVIGATION_LINKS = [
     {
         title: 'Digital marketing',
         url: 'https://torchbox.com/digital-marketing/',
+    },
+    {
+        title: 'AI + Innovation',
+        url: 'https://ai.torchbox.com/',
+        isExternalLink: true,
     },
     { title: 'Jobs', url: urls.jobs, isCareersSiteInternalLink: true },
     {
@@ -36,6 +41,10 @@ const NAVIGATION_LINKS = [
     {
         title: 'Team',
         url: 'https://torchbox.com/team/',
+    },
+    {
+        title: 'Work',
+        url: 'https://torchbox.com/work/',
     },
 ];
 

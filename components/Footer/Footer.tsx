@@ -82,7 +82,9 @@ const GetInTouch = () => (
 
 const Appendix = () => (
     <div className={styles.appendix}>
-        <div className={styles.appendixCopyrightNotice}>© Torchbox 2022</div>
+        <div className={styles.appendixCopyrightNotice}>
+            © Torchbox {new Date().getFullYear()}
+        </div>
         <div className={styles.appendixLinks}>
             <a
                 className={styles.appendixLink}
@@ -101,6 +103,12 @@ const Appendix = () => (
                 href="https://torchbox.com/anti-slavery-and-human-trafficking-policy/"
             >
                 Anti-Slavery Policy
+            </a>
+            <a
+                className={styles.appendixLink}
+                href="https://torchbox.com/environment-policy/"
+            >
+                Sustainability Policy
             </a>
         </div>
     </div>

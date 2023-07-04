@@ -121,10 +121,18 @@
 }
 
 .desktopNavItem {
-    margin-right: $grid * 3.5;
+    margin-right: 30px;
 
     &:last-child {
         margin-right: 0;
+    }
+
+    @include media-query('site-width') {
+        margin-right: 50px;
+    }
+
+    @include media-query('x-large') {
+        margin-right: 70px;
     }
 
     &Title {
@@ -177,6 +185,29 @@
         position: absolute;
         right: -25px;
         top: -15px;
+    }
+
+    &ExternalLinkIcon {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        top: 2px;
+        right: -4px;
+        fill: var(--color--header-links);
+        transition: fill $transition-quick;
+        opacity: 0.8;
+
+        :global .themeDark :local & {
+            fill: var(--color--white);
+        }
+
+        .desktopNavItemLink:hover & {
+            fill: var(--color--coral);
+
+            :global .themeDark :local & {
+                fill: var(--color--lagoon);
+            }
+        }
     }
 }
 
