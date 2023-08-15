@@ -127,11 +127,13 @@ export const MobileMenuButton = ({
     toggleMobileMenu,
 }: MobileMenuButtonProps) => (
     <button
+        type="button"
         className={`${styles.mobileMenuButton} ${
             isOpen && styles.mobileMenuActive
         }`}
         aria-label="Menu toggle"
         onClick={() => toggleMobileMenu()}
+        aria-expanded={isOpen}
     >
         <span></span>
         <span></span>

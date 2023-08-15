@@ -55,6 +55,12 @@
             > .jobTitle:after {
                 transform: scaleY(100%);
             }
+
+            > .jobTitle {
+                @include hcm() {
+                    @include hcm-underline-hover();
+                }
+            }
         }
     }
 
@@ -79,6 +85,14 @@
             transform-origin: bottom;
             background-color: var(--color--underline);
             transition: transform 0.2s ease;
+
+            @include hcm() {
+                display: none;
+            }
+        }
+
+        @include hcm() {
+            @include hcm-underline();
         }
     }
 

@@ -54,12 +54,20 @@
     color: var(--color--indigo);
     font-weight: $weight--extrabold;
     position: relative;
-    text-decoration: none;
-    border-bottom: 2px solid var(--color--underline);
-    text-underline-position: under;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--color--underline);
 
     &:hover {
-        border-bottom: 2px solid var(--color--lagoon);
+        text-decoration-color: var(--color--lagoon);
+    }
+
+    @include hcm() {
+        &:hover,
+        &:focus {
+            @include hcm-underline-hover();
+        }
     }
 
     :global .themeLight :local & {

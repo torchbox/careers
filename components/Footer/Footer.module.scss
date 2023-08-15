@@ -176,6 +176,13 @@
         color: var(--color--dark-indigo);
         text-decoration-line: underline;
         text-underline-position: under;
+
+        @include hcm() {
+            &:hover,
+            &:focus {
+                @include hcm-underline-hover();
+            }
+        }
     }
 
     &PhoneLink {
@@ -188,6 +195,15 @@
         &:hover {
             text-decoration: underline;
             text-underline-position: under;
+        }
+
+        @include hcm() {
+            @include hcm-underline();
+
+            &:hover,
+            &:focus {
+                @include hcm-underline-hover();
+            }
         }
     }
 
@@ -268,6 +284,15 @@
         display: inline-block;
         color: var(--color--dark-indigo);
         @include font-size(xxs);
+
+        @include hcm() {
+            @include hcm-underline();
+
+            &:hover,
+            &:focus {
+                @include hcm-underline-hover();
+            }
+        }
     }
 
     // Not currently used, but torchbox.com now has support for external links in
@@ -313,6 +338,10 @@
     &Link path,
     &Icon path {
         transition: fill $transition-quick;
+
+        @include high-contrast-dark-mode() {
+            fill: var(--color--white);
+        }
     }
 
     &Link:focus path {

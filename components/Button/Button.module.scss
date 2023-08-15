@@ -22,6 +22,17 @@
             animation-play-state: running;
         }
     }
+
+    @include hcm() {
+        color: ButtonText;
+        border: 1px solid ButtonBorder;
+
+        &:hover,
+        &:focus {
+            color: ActiveText;
+            border-color: ActiveText;
+        }
+    }
 }
 
 .radialBackground {
@@ -124,6 +135,10 @@
         background-color: var(--color--coral);
         width: 21px;
         height: 27px;
+
+        @include hcm() {
+            border: 1px solid ActiveText;
+        }
     }
 }
 

@@ -16,11 +16,11 @@ export const ChevronIcon = ({ size = 20, className }: ChevronIconProps) => (
         aria-hidden="true"
     >
         <path
-            fill="#fff"
+            fill="currentColor"
             fillRule="evenodd"
-            d="M 20.05 0 
-            L 8.4 10.094 
-            L 19.699 24 
+            d="M 20.05 0
+            L 8.4 10.094
+            L 19.699 24
             L 8.4 37.906
             L 20.05 48
             l 19.214 -23.647

@@ -16,4 +16,12 @@
         border: 2px solid var(--color--coral);
         outline: none;
     }
+
+    @include hcm() {
+        &:hover,
+        &:focus {
+            border-color: ActiveText;
+            color: ActiveText;
+        }
+    }
 }
