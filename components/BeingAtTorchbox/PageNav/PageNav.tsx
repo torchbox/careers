@@ -58,7 +58,7 @@ const AnchorLinks = ({ jobs = 0 }: { jobs: number }) => {
                 </a>
             </li>
             <li className={styles.jobNavItem}>
-                <Link href="/jobs" scroll={false}>
+                <Link href="/jobs" scroll={false} legacyBehavior>
                     <a className={styles.jobsLink}>
                         Jobs
                         {jobs > 0 ? (

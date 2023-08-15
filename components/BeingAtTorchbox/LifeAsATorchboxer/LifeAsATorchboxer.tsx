@@ -17,7 +17,7 @@ export const LifeAsATorchboxer = ({ children }: LifeAsATorchboxerProps) => (
             </h2>
             <div className={styles.richText}>{children}</div>
             <div className={styles.links}>
-                <Link href={urls.aboutUs}>
+                <Link href={urls.aboutUs} legacyBehavior>
                     <a className="underline-link underline-link--indigo">
                         About us
                     </a>

@@ -37,7 +37,7 @@ export const Button = ({
     return (
         <>
             {internal ? (
-                <Link href={url} scroll={false}>
+                <Link href={url} scroll={false} legacyBehavior>
                     <a
                         className={[
                             styles.button,
@@ -86,7 +86,7 @@ export const SwishButton = ({
     jobs = 0,
     children,
 }: ButtonProps) => (
-    <Link href={url} scroll={false}>
+    <Link href={url} scroll={false} legacyBehavior>
         <a
             className={[styles.button, styles.radialBackground, className].join(
                 ' ',

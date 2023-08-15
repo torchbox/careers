@@ -42,25 +42,25 @@ const getRenderOptions = (links?: any) => {
         },
         renderNode: {
             [BLOCKS.HEADING_2]: (
-                _: React.ReactNode,
+                _: Block | Inline,
                 children: React.ReactNode,
             ) => {
                 return <h2 className={styles.h2}>{children}</h2>;
             },
             [BLOCKS.HEADING_3]: (
-                _: React.ReactNode,
+                _: Block | Inline,
                 children: React.ReactNode,
             ) => {
                 return <h3 className={styles.h3}>{children}</h3>;
             },
             [BLOCKS.PARAGRAPH]: (
-                _: React.ReactNode,
+                _: Block | Inline,
                 children: React.ReactNode,
             ) => {
                 return <p className={styles.paragraph}>{children}</p>;
             },
             [BLOCKS.UL_LIST]: (
-                _: React.ReactNode,
+                _: Block | Inline,
                 children: React.ReactNode,
             ) => {
                 return <ul className={styles.unorderedList}>{children}</ul>;

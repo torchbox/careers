@@ -20,7 +20,10 @@ type JobEntryProps = {
 };
 
 const JobEntry = ({ job }: JobEntryProps) => (
-    <Link href={{ pathname: urls.jobEntry, query: { slug: job.slug } }}>
+    <Link
+        href={{ pathname: urls.jobEntry, query: { slug: job.slug } }}
+        legacyBehavior
+    >
         <a className={styles.jobCard}>
             <p className={styles.jobTitle}>{job.title}</p>
             <p className={styles.jobDescription}>{job.description}</p>

@@ -1,8 +1,11 @@
-import type { NextPage } from 'next';
-import redirect from 'nextjs-redirect';
+import { useRouter } from 'next/router';
 
-const Redirect = redirect('https://torchbox.com/404/');
+// Redirect solution with useRouter following this GitHub discussion
+// https://github.com/vercel/next.js/discussions/13813
+export default function NotFound() {
+    const router = useRouter();
 
-const NotFound: NextPage = () => <Redirect />;
-
-export default NotFound;
+    if (typeof window !== 'undefined') {
+        router.push('https://torchbox.com/404/');
+    }
+}
