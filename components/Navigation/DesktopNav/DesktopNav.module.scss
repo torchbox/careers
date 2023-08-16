@@ -74,13 +74,15 @@
                 background-color: ButtonText;
                 color: ButtonText;
 
-                .desktopNavMoreButton:hover & {
+                .desktopNavMoreButton:hover &,
+                .desktopNavMoreButton:focus & {
                     color: ActiveText;
                     background-color: ActiveText;
                 }
             }
 
-            .desktopNavMoreButton:hover & {
+            .desktopNavMoreButton:hover &,
+            .desktopNavMoreButton:focus & {
                 color: ActiveText;
                 background-color: ActiveText;
             }
