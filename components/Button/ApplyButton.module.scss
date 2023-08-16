@@ -51,6 +51,15 @@
             outline: 3px solid var(--color--coral);
         }
     }
+
+    @include hcm() {
+        border: 1px solid ButtonBorder;
+
+        &:hover,
+        &:focus {
+            border-color: ActiveText;
+        }
+    }
 }
 
 .radialBackground {

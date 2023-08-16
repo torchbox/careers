@@ -61,6 +61,11 @@
         left: 14px;
         bottom: 10px;
         border-bottom: 0;
+
+        @include hcm() {
+            border: 1px solid var(--color--dark-indigo);
+            padding: 2px;
+        }
     }
 }
 
