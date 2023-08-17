@@ -266,6 +266,15 @@
         &:hover {
             color: var(--color--white);
         }
+
+        @include hcm() {
+            @include hcm-underline();
+
+            &:hover,
+            &:focus {
+                @include hcm-underline-hover();
+            }
+        }
     }
 
     &BadgeLink {
