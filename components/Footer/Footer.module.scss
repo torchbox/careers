@@ -177,11 +177,9 @@
         text-decoration-line: underline;
         text-underline-position: under;
 
-        @include hcm() {
-            &:hover,
-            &:focus {
-                @include hcm-underline-hover();
-            }
+        &:hover,
+        &:focus {
+            @include hcm-underline-hover();
         }
     }
 
@@ -197,13 +195,11 @@
             text-underline-position: under;
         }
 
-        @include hcm() {
-            @include hcm-underline();
+        @include hcm-underline();
 
-            &:hover,
-            &:focus {
-                @include hcm-underline-hover();
-            }
+        &:hover,
+        &:focus {
+            @include hcm-underline-hover();
         }
     }
 
@@ -284,14 +280,13 @@
         display: inline-block;
         color: var(--color--dark-indigo);
         @include font-size(xxs);
+        @include hcm-underline();
+        text-decoration-color: var(--color--dark-indigo);
 
-        @include hcm() {
-            @include hcm-underline();
-
-            &:hover,
-            &:focus {
-                @include hcm-underline-hover();
-            }
+        &:hover,
+        &:focus {
+            text-decoration-color: var(--color-underline);
+            @include hcm-underline-hover();
         }
     }
 
