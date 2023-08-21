@@ -45,6 +45,15 @@
             @include link-underscore(2);
             color: var(--color--dark-indigo);
         }
+
+        @include hcm() {
+            @include hcm-underline();
+
+            &:hover,
+            &:focus {
+                @include hcm-underline-hover();
+            }
+        }
     }
 
     &Badge {
@@ -52,6 +61,11 @@
         left: 14px;
         bottom: 10px;
         border-bottom: 0;
+
+        @include hcm() {
+            border: 1px solid var(--color--dark-indigo);
+            padding: 2px;
+        }
     }
 }
 

@@ -90,9 +90,14 @@
     cursor: pointer;
     background-color: var(--color--white);
     border-radius: 50%;
+    transition: background-color $transition;
 
     @include media-query(menu-break) {
         display: none;
+    }
+
+    @include hcm() {
+        filter: invert(1);
     }
 
     :global .themeDark :local & {
@@ -128,6 +133,27 @@
             height: 3px;
             left: 14px;
             top: 29px;
+        }
+
+        @include hcm() {
+            filter: invert(1);
+        }
+    }
+
+    &:hover {
+        background-color: var(--color--header-icon-color);
+
+        span {
+            background-color: var(--color--white);
+        }
+    }
+
+    @include hcm() {
+        filter: invert(1);
+
+        &:focus,
+        &:hover {
+            filter: invert(0);
         }
     }
 }
@@ -231,9 +257,23 @@
         padding: $gutter 0;
         border: 0;
         font-weight: $weight--bold;
+        visibility: hidden;
+
+        .mobileNavModalOpen & {
+            visibility: visible;
+        }
 
         &:hover {
             color: var(--color--white);
+        }
+
+        @include hcm() {
+            @include hcm-underline();
+
+            &:hover,
+            &:focus {
+                @include hcm-underline-hover();
+            }
         }
     }
 

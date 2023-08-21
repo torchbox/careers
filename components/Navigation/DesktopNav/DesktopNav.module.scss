@@ -64,6 +64,29 @@
                 color: var(--color--white);
             }
         }
+
+        @include hcm() {
+            background-color: ButtonText;
+            color: ButtonText;
+
+            &::after,
+            &::before {
+                background-color: ButtonText;
+                color: ButtonText;
+
+                .desktopNavMoreButton:hover &,
+                .desktopNavMoreButton:focus & {
+                    color: ActiveText;
+                    background-color: ActiveText;
+                }
+            }
+
+            .desktopNavMoreButton:hover &,
+            .desktopNavMoreButton:focus & {
+                color: ActiveText;
+                background-color: ActiveText;
+            }
+        }
     }
 
     &MoreItem {
@@ -116,6 +139,17 @@
         &:focus,
         &:hover {
             cursor: pointer;
+        }
+
+        @include hcm() {
+            color: ButtonText;
+            border: 1px solid ButtonBorder;
+
+            &:hover,
+            &:focus {
+                color: ActiveText;
+                border-color: ActiveText;
+            }
         }
     }
 }
@@ -175,6 +209,16 @@
 
             &::after {
                 background-color: var(--color--lagoon);
+            }
+        }
+
+        @include hcm() {
+            @include hcm-underline();
+
+            &:hover,
+            &:focus,
+            &--active {
+                @include hcm-underline-hover();
             }
         }
     }

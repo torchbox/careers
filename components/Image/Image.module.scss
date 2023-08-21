@@ -5,6 +5,10 @@
     & > span {
         position: unset !important;
     }
+
+    @include hcm() {
+        background-color: CanvasText;
+    }
 }
 
 .image {

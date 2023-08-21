@@ -106,6 +106,12 @@
         display: block;
         margin-left: $grid;
     }
+
+    @include hcm() {
+        path {
+            fill: ActiveText;
+        }
+    }
 }
 
 .title {

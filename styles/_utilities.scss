@@ -68,4 +68,18 @@
             width: 100%;
         }
     }
+
+    @include hcm() {
+        @include hcm-underline();
+
+        &:hover,
+        &:focus,
+        &--active {
+            @include hcm-underline-hover();
+        }
+
+        &::before {
+            display: none;
+        }
+    }
 }

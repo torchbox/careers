@@ -4,6 +4,22 @@
     :global .themeDark :local & {
         fill: var(--color--white);
     }
+
+    @include hcm() {
+        fill: var(--color--black);
+
+        :global .themeDark :local & {
+            fill: var(--color--black);
+        }
+    }
+
+    @include high-contrast-dark-mode() {
+        fill: var(--color--white);
+
+        :global .themeDark :local & {
+            fill: var(--color--white);
+        }
+    }
 }
 
 .flamePath {
@@ -11,5 +27,21 @@
 
     :global .themeDark :local & {
         fill: var(--color--lagoon);
+
+        @include hcm() {
+            fill: var(--color--black);
+
+            @include high-contrast-dark-mode() {
+                fill: var(--color--white);
+            }
+        }
+    }
+
+    @include hcm() {
+        fill: var(--color--black);
+    }
+
+    @include high-contrast-dark-mode() {
+        fill: var(--color--white);
     }
 }

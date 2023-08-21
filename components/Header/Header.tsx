@@ -89,16 +89,16 @@ export const Header = ({ jobsAvailable = 0 }: HeaderProps) => {
                     />
                 </div>
             </div>
+            <MobileMenuButton
+                isOpen={isOpen}
+                toggleMobileMenu={toggleMobileMenu}
+            />
             <MobileNav
                 isOpen={isOpen}
                 toggleMobileMenu={toggleMobileMenu}
                 links={NAVIGATION_LINKS}
                 navMenuRef={mobileNavRef}
                 jobsAvailable={jobsAvailable}
-            />
-            <MobileMenuButton
-                isOpen={isOpen}
-                toggleMobileMenu={toggleMobileMenu}
             />
         </>
     );

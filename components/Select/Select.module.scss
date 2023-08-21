@@ -16,4 +16,17 @@
         border: 2px solid var(--color--coral);
         outline: none;
     }
+
+    @include hcm() {
+        border-color: ButtonText;
+        color: ButtonText;
+        background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.565.5H1.102C.878.5.752.736.892.898l3.731 4.327a.284.284 0 0 0 .42 0L8.775.898C8.914.736 8.79.5 8.565.5Z' fill='ButtonText'/%3E%3C/svg%3E");
+
+        &:hover,
+        &:focus {
+            border-color: ActiveText;
+            color: ActiveText;
+            background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.565.5H1.102C.878.5.752.736.892.898l3.731 4.327a.284.284 0 0 0 .42 0L8.775.898C8.914.736 8.79.5 8.565.5Z' fill='ActiveText'/%3E%3C/svg%3E");
+        }
+    }
 }

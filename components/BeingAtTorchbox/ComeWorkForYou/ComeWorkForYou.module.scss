@@ -54,6 +54,10 @@
         left: 0;
         right: 0;
         transform: rotate(-2deg);
+
+        @include hcm() {
+            background-color: ActiveText;
+        }
     }
 }
 

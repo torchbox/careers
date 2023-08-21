@@ -81,6 +81,14 @@
         @include media-query(medium) {
             margin-bottom: $grid;
         }
+
+        @include hcm() {
+            @include hcm-underline();
+
+            .blogPostLink:hover & {
+                @include hcm-underline-hover();
+            }
+        }
     }
 }
 
