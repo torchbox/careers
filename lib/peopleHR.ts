@@ -336,6 +336,8 @@ export function createJobSummaryFromPost(post: JobPost): JobSummary {
 export function convertJSONToJobPosts(json: any): JobPost[] {
     const jobPostingsJSON = json.rss.channel[0].item;
 
+    if (!jobPostingsJSON) return [];
+
     const jobPosts: JobPost[] = [];
 
     for (let i = 0; i < jobPostingsJSON.length; i += 1) {

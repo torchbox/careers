@@ -186,9 +186,9 @@
 .noPositionsAvailable {
     @include font-size(m);
     color: var(--color--dark-indigo);
-    margin: $grid 0 0 0;
+    margin: $grid * 3 0 0 0;
 
     @include media-query(large) {
-        margin: $grid * 3 0 0 0;
+        margin: $grid * 6 0 0 0;
     }
 }
