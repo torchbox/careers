@@ -20,9 +20,8 @@ const NAVIGATION_LINKS = [
         url: 'https://torchbox.com/digital-marketing/',
     },
     {
-        title: 'AI + Innovation',
-        url: 'https://ai.torchbox.com/',
-        isExternalLink: true,
+        title: 'Innovation',
+        url: 'https://torchbox.com/innovation/',
     },
     { title: 'Jobs', url: urls.jobs, isCareersSiteInternalLink: true },
     {
