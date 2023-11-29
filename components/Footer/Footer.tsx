@@ -110,6 +110,12 @@ const Appendix = () => (
             >
                 Sustainability Policy
             </a>
+            <a
+                className={styles.appendixLink}
+                href="https://torchbox.com/impact-report-2022/"
+            >
+                Impact Report
+            </a>
         </div>
     </div>
 );
