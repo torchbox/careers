@@ -1,3 +1,25 @@
+# Careers site - RETIRED
+
+> [!WARNING]
+> This repo was previously used for the careers section of the torchbox.com repo, and is now retired. You probably want https://github.com/torchbox/torchbox.com.
+
+The old REAME content is preserved below for reference.
+
+<pre>
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+</pre>
+
+# Historical documentation
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Staging and Deployment
