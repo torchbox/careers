@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import { ArrowLoopRight } from '../../SVG/ArrowLoop/ArrowLoopRight';
+import { ArrowLoopRight } from 'components/SVG/ArrowLoop/ArrowLoopRight';
 import styles from './PageNav.module.scss';
 
 type PageNavProps = {
@@ -75,7 +75,7 @@ const AnchorLinks = ({ jobs = 0 }: { jobs: number }) => {
 export const PageNav = ({ title, children }: PageNavProps) => {
     return (
         <div className={styles.container}>
-            <ArrowLoopRight className={styles.image} />
+            <ArrowLoopRight className={styles.svgArrowLoop} />
             <h2 className={styles.title}>{title}</h2>
             <div className={styles.richText}>{children}</div>
         </div>

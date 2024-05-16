@@ -12,6 +12,12 @@
     }
 }
 
+.svgArrowLoop {
+    width: 95px;
+    height: 130px;
+    transform: rotate(10deg);
+}
+
 .navigation {
     display: flex;
     flex-direction: row;

@@ -74,11 +74,12 @@
 
     @include media-query(large) {
         display: block;
-        margin: $grid * 2.5 0 $grid * 3 $grid * 2;
+        margin: $grid * 2.5 0 $grid * 3 0;
+        transform: rotate(10deg);
     }
 
     > path {
-        fill: var(--color--lagoon);
+        stroke: var(--color--lagoon);
     }
 }
 
